@@ -116,12 +116,23 @@ print(f"First 15: {all_genres[:15]}")
 ## Data Storage
 
 ### Locations
-- **Source Data**: `DATAS/literature.json` - Optimized JSON with authors grouped
-- **TinyDB File**: `DATAS/.literature_db.json` - TinyDB database (auto-created on first use)
+- **Source Data**: `DATAS/literature.json` - bundled catalogue, read-only
+- **Default store**: in memory (`tinydb.storages.MemoryStorage`), nothing is written to disk
+- **Persistent store** (optional): any path passed to `LiteratureProvider.use_database()`, typically `default_db_path()` (`~/.cache/faker-literature/literature_db.json` on Linux, `%LOCALAPPDATA%\faker-literature\` on Windows)
 
-### File Sizes
-- `literature.json`: ~92 KB (4104 lines)
-- Total catalog: 102 authors, 189 books, 107 unique genres
+### Bundled catalogue
+- `literature.json`: ~270 KB (12,000 lines)
+- 164 authors, 425 books, ~200 unique genres per locale
+
+### Sources
+Every record carries a `source` field (`builtin`, `wikidata`, ...).
+`BookStore.replace_source(source, books)` validates all the records first, then
+replaces the books of that source only. A persistent store records the SHA-256
+of `literature.json` and re-syncs the `builtin` books when it changes, keeping
+imported books.
+
+Text fields (`writer`, `nationality`, `title`, `publisher`) may be a plain string
+or a `{"fr_FR": ..., "en_US": ...}` mapping; `pages` and `publisher` may be `null`.
 
 ## Backward Compatibility
 
@@ -142,14 +153,13 @@ fake.literary_work()     # Alias for book()
 ## Implementation Details
 
 ### Lazy Initialization
-The database is initialized on first use through a class method `_init_db()`. This ensures:
-- Minimal startup overhead
-- Database is created only when needed
-- Shared instance across all provider instances
+The shared `BookStore` is created on first use by `LiteratureProvider._get_store()`
+and reused by every provider instance.
 
-### Dual Storage
-- **In-Memory**: Flat list of books for fast generation
-- **TinyDB File**: Persistent database for queries
+### Caching
+Generation methods draw from a localized snapshot of the catalogue, built once
+per locale and invalidated whenever a source is replaced. Query methods
+(`books_by_*`) go through TinyDB.
 
 ### Locale Support
 All methods respect the configured locale (fr_FR or en_US) for:
@@ -186,13 +196,13 @@ book_en = fake_en.book()
 print(book_en['genre'])  # ['genre1_en', 'genre2_en']
 ```
 
-All 189 books in the catalog now have properly translated genre lists for both fr_FR and en_US locales. Over 100 genre types have been translated with semantic accuracy.
+All 425 bundled books have genre lists for both fr_FR and en_US locales.
 
 ## Requirements
 
 ```
-tinydb>=4.8.0
-faker>=18.0.0
+tinydb>=4.0.0
+faker>=20.0.0
 ```
 
 Install with:
@@ -202,10 +212,6 @@ pip install tinydb faker
 
 ## Query Performance
 
-Query results are optimized for:
-- **books_by_author()**: O(n) where n = number of books
-- **books_by_genre()**: O(n) with case-insensitive matching
-- **books_by_year()**: O(1) with TinyDB index
-- **books_by_year_range()**: O(n) with efficient range filtering
-- **all_authors()**: O(n) with deduplication
-- **all_genres()**: O(n) with deduplication
+TinyDB has no index: every `books_by_*()` query scans all the records, and a
+file-backed store re-reads the whole JSON file on each query. This is fine for
+a few thousand books; beyond that, a SQLite-backed store would be preferable.

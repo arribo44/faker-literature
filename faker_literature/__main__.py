@@ -1,20 +1,24 @@
-"""Command-line demo for the faker-literature provider.
+"""Command-line entry point for the faker-literature provider.
 
-Run with:  python -m faker_literature
+Run the demo with:       python -m faker_literature
+Import from Wikidata:    python -m faker_literature import-wikidata --limit 500
 """
 
+import argparse
 import json
 
 from faker import Faker
 
-from faker_literature import LiteratureProvider
+from faker_literature import LiteratureProvider, default_db_path
 
 
 def _section(title):
     print(f"\n--- {title} ---")
 
 
-def main():
+def demo(db_path=None):
+    if db_path is not None:
+        LiteratureProvider.use_database(db_path)
     fake = Faker("en_US")
     fake.add_provider(LiteratureProvider)
 
@@ -85,6 +89,37 @@ def main():
     print("\n" + "=" * 60)
     print("End of demo")
     print("=" * 60)
+
+
+def import_wikidata(db_path, limit, min_sitelinks):
+    from faker_literature.importers import wikidata
+
+    store = LiteratureProvider.use_database(db_path)
+    count = wikidata.import_into(store, limit=limit, min_sitelinks=min_sitelinks)
+    print(f"Imported {count} works from Wikidata into {store.path}")
+    print(f"Books per source: {store.sources()}")
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(prog="python -m faker_literature")
+    parser.add_argument(
+        "--db", metavar="PATH",
+        help="persistent catalogue to use (the demo uses the bundled one by default)",
+    )
+    commands = parser.add_subparsers(dest="command")
+    commands.add_parser("demo", help="show sample generated data (default)")
+    importer = commands.add_parser("import-wikidata", help="add well-known works from Wikidata")
+    importer.add_argument("--limit", type=int, default=500, help="maximum number of works (default: 500)")
+    importer.add_argument(
+        "--min-sitelinks", type=int, default=30,
+        help="minimum number of Wikipedia articles about a work (default: 30)",
+    )
+    args = parser.parse_args(argv)
+
+    if args.command == "import-wikidata":
+        import_wikidata(args.db or default_db_path(), args.limit, args.min_sitelinks)
+    else:
+        demo(args.db)
 
 
 if __name__ == "__main__":

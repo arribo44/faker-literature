@@ -1,71 +1,68 @@
 """Faker provider for generating literature-related data."""
 
-import json
-from pathlib import Path
+import copy
+
 from faker.providers import BaseProvider
-from tinydb import TinyDB, Query
+from tinydb import Query
+
+from faker_literature.store import LOCALES, BookStore, default_db_path, pick
+
+
+__all__ = ["LiteratureProvider", "BookStore", "default_db_path"]
 
 
 class LiteratureProvider(BaseProvider):
     """Generate authors, books, genres and publishing details in two locales."""
 
-    SUPPORTED_LOCALES = ("fr_FR", "en_US")
+    SUPPORTED_LOCALES = LOCALES
 
     LOCALE_DEFAULT_NATIONALITY = {
         "fr_FR": "français",
         "en_US": "American",
     }
 
-    # Class variable to hold the TinyDB instance (lazy initialization)
-    _db = None
-    _books_flat = None
+    # Catalogue shared by every provider instance (lazy initialization)
+    _store = None
 
     @classmethod
-    def _init_db(cls):
-        """Initialize TinyDB from optimized JSON file."""
-        if cls._db is not None:
-            return cls._db, cls._books_flat
+    def use_database(cls, path=None):
+        """Point every provider at the catalogue persisted at ``path``.
 
-        # Load optimized JSON with authors
-        data_path = Path(__file__).parent / "DATAS" / "literature.json"
-        with open(data_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
+        The file is created if needed, typically at :func:`default_db_path`,
+        and keeps books imported from external datasets.  ``None`` switches
+        back to the bundled catalogue held in memory.
+        """
+        if cls._store is not None:
+            cls._store.close()
+        cls._store = BookStore(path)
+        return cls._store
 
-        # Initialize TinyDB with file storage
-        db_path = Path(__file__).parent / "DATAS" / ".literature_db.json"
-        db = TinyDB(str(db_path), indent=4, ensure_ascii=False)
-        
-        # Check if database is empty, if so populate it
-        if len(db) == 0:
-            # Flatten and insert all books with author info
-            for author_entry in data["authors"]:
-                author_name = author_entry["name"]
-                for book in author_entry["books"]:
-                    flat_book = {
-                        "writer": author_name,
-                        "nationality": author_entry["nationality"],
-                        **book
-                    }
-                    db.insert(flat_book)
+    @classmethod
+    def _get_store(cls):
+        if cls._store is None:
+            cls._store = BookStore()
+        return cls._store
 
-        # Build flat books list from database
-        flat_books = db.all()
-
-        cls._db = db
-        cls._books_flat = flat_books
-        return db, flat_books
+    @classmethod
+    def _resolve_locale(cls, locale):
+        """Map ``locale`` to a supported one, falling back on its language."""
+        if locale in cls.SUPPORTED_LOCALES:
+            return locale
+        language = str(locale).replace("-", "_").split("_")[0]
+        for supported in cls.SUPPORTED_LOCALES:
+            if supported.split("_")[0] == language:
+                return supported
+        raise ValueError(
+            f"Unsupported locale {locale!r}; supported locales are {', '.join(cls.SUPPORTED_LOCALES)}"
+        )
 
     def __init__(self, generator):
         super().__init__(generator)
+        # Faker has no public accessor for a generator's locale
         config = getattr(generator, "_Generator__config", {})
         locale = config.get("locale", "en_US") if isinstance(config, dict) else "en_US"
-        if locale not in self.SUPPORTED_LOCALES:
-            raise ValueError(
-                f"Unsupported locale {locale!r}; supported locales are {', '.join(self.SUPPORTED_LOCALES)}"
-            )
-        self._provider_locale = locale
-        # Ensure DB is initialized
-        self.__class__._init_db()
+        self._provider_locale = self._resolve_locale(locale)
+        self._get_store()
 
     @property
     def provider_locale(self):
@@ -73,150 +70,81 @@ class LiteratureProvider(BaseProvider):
         return self._provider_locale
 
     @property
+    def store(self):
+        """Return the :class:`BookStore` shared by every provider."""
+        return self._get_store()
+
+    @property
     def db(self):
-        """Return TinyDB instance."""
-        return self._init_db()[0]
+        """Return the TinyDB table holding the book records."""
+        return self._get_store().books
 
     @property
     def books_flat(self):
-        """Return flat list of all books."""
-        return self._init_db()[1]
+        """Return a copy of every raw (non-localized) book record."""
+        return copy.deepcopy(self._get_store().books.all())
+
+    @property
+    def _catalogue(self):
+        return self._get_store().localized(self.provider_locale)
+
+    @staticmethod
+    def _export(book):
+        """Return a caller-owned copy of a localized record."""
+        return dict(book, genre=list(book["genre"]))
 
     @property
     def books(self):
         """Return the shared catalogue localized for the current locale."""
-        locale = self.provider_locale
-        return tuple(
-            {
-                "writer": book["writer"],
-                "nationality": book["nationality"][locale],
-                "title": book["title"][locale],
-                "genre": book["genre"][locale],
-                "year": book["year"],
-                "pages": book["pages"][locale],
-                "publisher": book["publisher"][locale],
-            }
-            for book in self.books_flat
-        )
+        return tuple(self._export(book) for book in self._catalogue)
+
+    def _search(self, condition):
+        return [self._export(book) for book in self._get_store().search(condition, self.provider_locale)]
 
     # Query methods with advanced filtering
     def books_by_author(self, author_name):
-        """Query books by author name."""
-        Book = Query()
-        results = self.db.search(Book.writer == author_name)
+        """Query books by author name (as spelled in the current locale)."""
         locale = self.provider_locale
-        return [
-            {
-                "writer": book["writer"],
-                "nationality": book["nationality"][locale],
-                "title": book["title"][locale],
-                "genre": book["genre"][locale],
-                "year": book["year"],
-                "pages": book["pages"][locale],
-                "publisher": book["publisher"][locale],
-            }
-            for book in results
-        ]
+        return self._search(Query().writer.test(lambda writer: pick(writer, locale) == author_name))
 
     def books_by_genre(self, genre_name):
-        """Query books by genre (searches both locale variants)."""
+        """Query books by genre, case-insensitively, in the current locale."""
         locale = self.provider_locale
-        results = []
-        for book in self.books_flat:
-            genres = book["genre"][locale] if isinstance(book["genre"], dict) else book["genre"]
-            if isinstance(genres, list):
-                if genre_name.lower() in [g.lower() for g in genres]:
-                    results.append({
-                        "writer": book["writer"],
-                        "nationality": book["nationality"][locale],
-                        "title": book["title"][locale],
-                        "genre": genres,
-                        "year": book["year"],
-                        "pages": book["pages"][locale],
-                        "publisher": book["publisher"][locale],
-                    })
-            else:
-                if genre_name.lower() == genres.lower():
-                    results.append({
-                        "writer": book["writer"],
-                        "nationality": book["nationality"][locale],
-                        "title": book["title"][locale],
-                        "genre": [genres],
-                        "year": book["year"],
-                        "pages": book["pages"][locale],
-                        "publisher": book["publisher"][locale],
-                    })
-        return results
+        wanted = genre_name.lower()
+        return self._search(
+            Query().genre.test(lambda genres: wanted in (g.lower() for g in pick(genres, locale)))
+        )
 
     def books_by_year(self, year):
         """Query books published in a specific year."""
-        Book = Query()
-        results = self.db.search(Book.year == year)
-        locale = self.provider_locale
-        return [
-            {
-                "writer": book["writer"],
-                "nationality": book["nationality"][locale],
-                "title": book["title"][locale],
-                "genre": book["genre"][locale],
-                "year": book["year"],
-                "pages": book["pages"][locale],
-                "publisher": book["publisher"][locale],
-            }
-            for book in results
-        ]
+        return self._search(Query().year == year)
 
     def books_by_year_range(self, start_year, end_year):
         """Query books published within a year range."""
         Book = Query()
-        results = self.db.search((Book.year >= start_year) & (Book.year <= end_year))
-        locale = self.provider_locale
-        return [
-            {
-                "writer": book["writer"],
-                "nationality": book["nationality"][locale],
-                "title": book["title"][locale],
-                "genre": book["genre"][locale],
-                "year": book["year"],
-                "pages": book["pages"][locale],
-                "publisher": book["publisher"][locale],
-            }
-            for book in results
-        ]
+        return self._search((Book.year >= start_year) & (Book.year <= end_year))
 
     def all_authors(self):
         """Return list of all unique authors."""
-        return sorted(set(book["writer"] for book in self.books_flat))
+        return sorted(set(book["writer"] for book in self._catalogue))
 
     def all_genres(self):
         """Return list of all unique genres for the current locale."""
-        locale = self.provider_locale
-        genres = set()
-        for book in self.books_flat:
-            if isinstance(book["genre"], dict):
-                book_genres = book["genre"][locale]
-            else:
-                book_genres = book["genre"] if isinstance(book["genre"], list) else [book["genre"]]
-            genres.update(book_genres)
-        return sorted(genres)
+        return sorted(set(genre for book in self._catalogue for genre in book["genre"]))
 
     def all_nationalities(self):
         """Return list of all unique author nationalities for the current locale."""
-        locale = self.provider_locale
-        return sorted(set(book["nationality"][locale] for book in self.books_flat))
+        return sorted(set(book["nationality"] for book in self._catalogue))
 
     # Standard methods (for Faker compatibility)
     @staticmethod
     def _book_matches_genre(book, genre_name):
         """Check if a book's genre includes the given genre (case-insensitive)."""
-        genres = book["genre"]
-        if isinstance(genres, list):
-            return genre_name.lower() in [g.lower() for g in genres]
-        return genre_name.lower() == genres.lower()
+        return genre_name.lower() in [g.lower() for g in book["genre"]]
 
     def book(self):
         """Return a coherent fake book record."""
-        return dict(self.random_element(self.books))
+        return self._export(self.random_element(self._catalogue))
 
     def writer(self, nationality=None, genre=None):
         """Return a famous writer, optionally filtered by nationality and/or genre.
@@ -228,7 +156,7 @@ class LiteratureProvider(BaseProvider):
         """
         if nationality is None:
             nationality = self.LOCALE_DEFAULT_NATIONALITY.get(self.provider_locale)
-        pool = [b for b in self.books if b["nationality"] == nationality]
+        pool = [b for b in self._catalogue if b["nationality"] == nationality]
         if genre is not None:
             pool = [b for b in pool if self._book_matches_genre(b, genre)]
         writers = [b["writer"] for b in pool]
@@ -242,7 +170,7 @@ class LiteratureProvider(BaseProvider):
 
     def title(self, genre=None):
         """Return a well-known literary title, optionally filtered by genre."""
-        pool = self.books
+        pool = self._catalogue
         if genre is not None:
             pool = [b for b in pool if self._book_matches_genre(b, genre)]
         titles = [b["title"] for b in pool]
@@ -252,31 +180,23 @@ class LiteratureProvider(BaseProvider):
 
     def genre(self):
         """Return a literary genre translated for the current locale."""
-        locale = self.provider_locale
-        genres = []
-        for book in self.books:
-            # book["genre"] is already localized from the books property
-            if isinstance(book["genre"], list):
-                genres.extend(book["genre"])
-            else:
-                genres.append(book["genre"])
-        return self.random_element(genres)
+        return self.random_element([genre for book in self._catalogue for genre in book["genre"]])
 
     def publication_year(self):
         """Return a publication year represented in the catalogue."""
-        return self.random_element([book["year"] for book in self.books])
+        return self.random_element([book["year"] for book in self._catalogue])
 
     def pages(self):
         """Return a plausible page count from the catalogue."""
-        return self.random_element([book["pages"] for book in self.books])
+        return self.random_element([book["pages"] for book in self._catalogue if book["pages"] is not None])
 
     def publisher(self):
         """Return a publisher represented in the catalogue."""
-        return self.random_element([book["publisher"] for book in self.books])
+        return self.random_element([book["publisher"] for book in self._catalogue if book["publisher"]])
 
     def nationality(self):
         """Return an author nationality for the current locale."""
-        return self.random_element([book["nationality"] for book in self.books])
+        return self.random_element([book["nationality"] for book in self._catalogue])
 
     def literary_work(self):
         """Alias for :meth:`book` suitable for generated datasets."""

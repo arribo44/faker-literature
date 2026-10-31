@@ -1,0 +1,209 @@
+"""TinyDB-backed storage for the literature catalogue.
+
+Books are stored as flat records whose text fields are either plain strings
+or ``{locale: value}`` dictionaries.  Every record carries a ``source`` field
+so that books imported from external datasets can live next to the bundled
+catalogue and be replaced independently of it.
+"""
+
+import hashlib
+import json
+import os
+from pathlib import Path
+
+from tinydb import Query, TinyDB
+from tinydb.storages import MemoryStorage
+
+
+LOCALES = ("fr_FR", "en_US")
+SCHEMA_VERSION = 1
+BUILTIN_SOURCE = "builtin"
+BUILTIN_DATA = Path(__file__).parent / "DATAS" / "literature.json"
+
+MAX_TEXT_LENGTH = 300
+MAX_GENRES = 20
+MIN_YEAR, MAX_YEAR = -3000, 2100
+MAX_PAGES = 100000
+
+
+def default_db_path():
+    """Return a per-user cache location for a persistent catalogue."""
+    if os.name == "nt":
+        base = Path(os.environ.get("LOCALAPPDATA", Path.home() / "AppData" / "Local"))
+    else:
+        base = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache"))
+    return base / "faker-literature" / "literature_db.json"
+
+
+def load_builtin_books(path=BUILTIN_DATA):
+    """Read the bundled JSON and return ``(flat records, sha256 of the file)``."""
+    raw = Path(path).read_bytes()
+    data = json.loads(raw.decode("utf-8"))
+    books = []
+    for author in data["authors"]:
+        for book in author["books"]:
+            books.append({
+                "writer": author["name"],
+                "nationality": author["nationality"],
+                **book,
+                "source": BUILTIN_SOURCE,
+            })
+    return books, hashlib.sha256(raw).hexdigest()
+
+
+# Validation
+
+def _check_string(value, field):
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"{field}: expected a non-empty string, got {value!r}")
+    if len(value) > MAX_TEXT_LENGTH:
+        raise ValueError(f"{field}: longer than {MAX_TEXT_LENGTH} characters")
+
+
+def _check_localized(value, field, check, allow_plain=False):
+    if allow_plain and not isinstance(value, dict):
+        check(value, field)
+        return
+    if not isinstance(value, dict):
+        raise ValueError(f"{field}: expected a {{locale: value}} mapping")
+    missing = set(LOCALES) - set(value)
+    if missing:
+        raise ValueError(f"{field}: missing locales {sorted(missing)}")
+    for locale in LOCALES:
+        check(value[locale], f"{field}[{locale}]")
+
+
+def _check_genres(value, field):
+    if not isinstance(value, (list, tuple)) or not value or len(value) > MAX_GENRES:
+        raise ValueError(f"{field}: expected 1 to {MAX_GENRES} genres")
+    for index, genre in enumerate(value):
+        _check_string(genre, f"{field}[{index}]")
+
+
+def _check_pages(value, field):
+    if value is None:
+        return
+    if isinstance(value, bool) or not isinstance(value, int) or not 0 < value <= MAX_PAGES:
+        raise ValueError(f"{field}: expected a page count between 1 and {MAX_PAGES}")
+
+
+def _check_optional_string(value, field):
+    if value is not None:
+        _check_string(value, field)
+
+
+def validate_book(book):
+    """Raise ``ValueError`` if ``book`` does not follow the catalogue schema."""
+    if not isinstance(book, dict):
+        raise ValueError("book: expected a mapping")
+    _check_localized(book.get("writer"), "writer", _check_string, allow_plain=True)
+    _check_localized(book.get("nationality"), "nationality", _check_string)
+    _check_localized(book.get("title"), "title", _check_string)
+    _check_localized(book.get("genre"), "genre", _check_genres)
+    year = book.get("year")
+    if isinstance(year, bool) or not isinstance(year, int) or not MIN_YEAR <= year <= MAX_YEAR:
+        raise ValueError(f"year: expected an integer between {MIN_YEAR} and {MAX_YEAR}")
+    if book.get("pages") is not None:
+        _check_localized(book["pages"], "pages", _check_pages)
+    if book.get("publisher") is not None:
+        _check_localized(book["publisher"], "publisher", _check_optional_string)
+    _check_string(book.get("source"), "source")
+
+
+# Localization
+
+def pick(value, locale):
+    """Return ``value[locale]`` for localized mappings, ``value`` itself otherwise."""
+    return value.get(locale) if isinstance(value, dict) else value
+
+
+def localize_book(book, locale):
+    """Return a new record with every field resolved for ``locale``.
+
+    ``genre`` is a tuple so that cached records cannot be modified in place.
+    """
+    return {
+        "writer": pick(book["writer"], locale),
+        "nationality": pick(book["nationality"], locale),
+        "title": pick(book["title"], locale),
+        "genre": tuple(pick(book["genre"], locale)),
+        "year": book["year"],
+        "pages": pick(book.get("pages"), locale),
+        "publisher": pick(book.get("publisher"), locale),
+    }
+
+
+class BookStore:
+    """Catalogue of flat book records kept in TinyDB.
+
+    Without ``path`` the database lives in memory and nothing touches the disk.
+    With ``path`` it is persisted there: the bundled books are re-synced
+    whenever the bundled JSON changes, while imported books are kept.
+    """
+
+    def __init__(self, path=None, builtin_path=BUILTIN_DATA):
+        self.path = None if path is None else Path(path)
+        if self.path is None:
+            self._db = TinyDB(storage=MemoryStorage)
+        else:
+            self._db = TinyDB(
+                str(self.path), create_dirs=True, encoding="utf-8",
+                indent=2, ensure_ascii=False,
+            )
+        self._localized = {}
+        self._sync_builtin(builtin_path)
+
+    @property
+    def books(self):
+        """Return the TinyDB table holding the book records."""
+        return self._db.table("books")
+
+    def _sync_builtin(self, builtin_path):
+        books, digest = load_builtin_books(builtin_path)
+        expected = {"schema": SCHEMA_VERSION, "builtin_sha256": digest}
+        meta = self._db.table("meta")
+        if meta.all() == [expected]:
+            return
+        self.replace_source(BUILTIN_SOURCE, books)
+        meta.truncate()
+        meta.insert(expected)
+
+    def replace_source(self, source, books):
+        """Replace every book of ``source`` with ``books`` and return their count.
+
+        All records are validated before anything is written, so an invalid
+        record leaves the store unchanged.
+        """
+        books = [dict(book, source=source) for book in books]
+        for index, book in enumerate(books):
+            try:
+                validate_book(book)
+            except ValueError as error:
+                raise ValueError(f"{source} book #{index}: {error}") from None
+        self.books.remove(Query().source == source)
+        self.books.insert_multiple(books)
+        self._localized.clear()
+        return len(books)
+
+    def sources(self):
+        """Return the number of books stored for each source."""
+        counts = {}
+        for book in self.books.all():
+            counts[book["source"]] = counts.get(book["source"], 0) + 1
+        return counts
+
+    def localized(self, locale):
+        """Return every book localized for ``locale`` (cached until the next write)."""
+        if locale not in self._localized:
+            self._localized[locale] = tuple(
+                localize_book(book, locale) for book in self.books.all()
+            )
+        return self._localized[locale]
+
+    def search(self, condition, locale):
+        """Return the books matching a TinyDB ``condition``, localized for ``locale``."""
+        return [localize_book(book, locale) for book in self.books.search(condition)]
+
+    def close(self):
+        """Release the underlying storage."""
+        self._db.close()
