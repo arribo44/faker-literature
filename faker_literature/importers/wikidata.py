@@ -11,7 +11,7 @@ import time
 import urllib.parse
 import urllib.request
 
-from faker_literature.store import validate_book
+from faker_literature.store import MAX_PAGES, validate_book
 
 
 SOURCE = "wikidata"
@@ -31,16 +31,23 @@ SELECT ?work ?links WHERE {
 """
 
 DETAILS_QUERY = """
-SELECT ?work ?titleFr ?titleEn ?author ?writerFr ?writerEn ?date ?pages
+SELECT ?work ?titleFr ?titleEn ?author ?writerFr ?writerEn ?date ?inception ?pages
        ?genreFr ?genreEn ?country ?demonymFr ?demonymEn ?publisherFr ?publisherEn
 WHERE {
   VALUES ?work { %(works)s }
-  ?work wdt:P50 ?author ;
-        wdt:P577|wdt:P571 ?date .
+  ?work wdt:P50 ?author .
+  OPTIONAL { ?work wdt:P577 ?date }
+  OPTIONAL { ?work wdt:P571 ?inception }
+  FILTER(BOUND(?date) || BOUND(?inception))
   ?work rdfs:label ?titleFr . FILTER(LANG(?titleFr) = "fr")
   ?work rdfs:label ?titleEn . FILTER(LANG(?titleEn) = "en")
-  ?author rdfs:label ?writerFr . FILTER(LANG(?writerFr) = "fr")
-  ?author rdfs:label ?writerEn . FILTER(LANG(?writerEn) = "en")
+  # Names identical in every language are now stored once, as "mul" labels
+  OPTIONAL { ?author rdfs:label ?authorFr . FILTER(LANG(?authorFr) = "fr") }
+  OPTIONAL { ?author rdfs:label ?authorEn . FILTER(LANG(?authorEn) = "en") }
+  OPTIONAL { ?author rdfs:label ?authorMul . FILTER(LANG(?authorMul) = "mul") }
+  BIND(COALESCE(?authorFr, ?authorMul) AS ?writerFr)
+  BIND(COALESCE(?authorEn, ?authorMul) AS ?writerEn)
+  FILTER(BOUND(?writerFr) && BOUND(?writerEn))
   OPTIONAL {
     ?work wdt:P136 ?genre .
     ?genre rdfs:label ?genreFr . FILTER(LANG(?genreFr) = "fr")
@@ -122,16 +129,19 @@ def parse_bindings(bindings):
             "title": {"fr_FR": value["titleFr"], "en_US": value["titleEn"]},
             "writers": {},
             "years": set(),
+            "inceptions": set(),
             "pages": set(),
             "genres": {},
             "demonyms": {},
             "publisher": None,
         })
         work["writers"].setdefault(value["author"], (value["writerFr"], value["writerEn"]))
-        year = _parse_year(value["date"])
-        if year is not None:
-            work["years"].add(year)
-        if value.get("pages", "").isdigit():
+        for key, years in (("date", work["years"]), ("inception", work["inceptions"])):
+            year = _parse_year(value[key]) if key in value else None
+            if year is not None:
+                years.add(year)
+        # Page counts contain typos such as 940512: keep plausible ones
+        if value.get("pages", "").isdigit() and 0 < int(value["pages"]) <= MAX_PAGES:
             work["pages"].add(int(value["pages"]))
         if "genreFr" in value:
             work["genres"].setdefault(value["genreFr"], value["genreEn"])
@@ -144,7 +154,9 @@ def parse_bindings(bindings):
 
     records = []
     for entity, work in works.items():
-        if not (work["genres"] and work["demonyms"] and work["years"]):
+        # Publication date first, creation date only when it is missing
+        years = work["years"] or work["inceptions"]
+        if not (work["genres"] and work["demonyms"] and years):
             continue
         # Several citizenships: the lowest Q-id is usually the best known country
         demonyms_fr, demonyms_en = work["demonyms"][min(work["demonyms"], key=lambda q: int(q[1:]))]
@@ -165,7 +177,7 @@ def parse_bindings(bindings):
                 "fr_FR": list(work["genres"]),
                 "en_US": list(work["genres"].values()),
             },
-            "year": min(work["years"]),
+            "year": min(years),
             "pages": None if pages is None else {"fr_FR": pages, "en_US": pages},
             "publisher": work["publisher"],
         })

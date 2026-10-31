@@ -1,0 +1,245 @@
+import copy
+import json
+import sys
+from pathlib import Path
+
+import pytest
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools" / "literature_editor"))
+
+import editor  # noqa: E402
+
+
+def _cells(**values):
+    return {key: {"type": "literal", "value": value} for key, value in values.items()}
+
+
+WORK = "http://www.wikidata.org/entity/Q100"
+FRENCH = "http://www.wikidata.org/entity/Q150"
+ENGLISH = "http://www.wikidata.org/entity/Q1860"
+
+
+@pytest.fixture
+def catalogue():
+    return copy.deepcopy(editor.load_catalogue())
+
+
+def _author(**overrides):
+    author = {
+        "wikidata_id": "Q999999",
+        "name": {"fr_FR": "Murasaki Shikibu", "en_US": "Murasaki Shikibu"},
+        "nationality": {"fr_FR": "japonais", "en_US": "Japanese"},
+    }
+    author.update(overrides)
+    return author
+
+
+def _book(**overrides):
+    book = {
+        "wikidata_id": "Q193375",
+        "title": {"fr_FR": "Le Dit du Genji", "en_US": "The Tale of Genji"},
+        "year": "1008",
+        "genre": {"fr_FR": "roman, classique", "en_US": "novel, classic"},
+        "pages": {"fr_FR": "1400", "en_US": ""},
+        "publisher": {"fr_FR": "Verdier", "en_US": ""},
+    }
+    book.update(overrides)
+    return book
+
+
+@pytest.mark.parametrize("text", ["Q535", "q535", " Q535 ", "https://www.wikidata.org/wiki/Q535",
+                                  "http://www.wikidata.org/entity/Q535"])
+def test_parse_qid_accepts_ids_and_urls(text):
+    assert editor.parse_qid(text) == "Q535"
+
+
+@pytest.mark.parametrize("text", ["", "Victor Hugo", "Q0", "P31", "Q535 } DELETE", "https://evil.example/wiki/Q535"])
+def test_parse_qid_rejects_anything_else(text):
+    with pytest.raises(ValueError):
+        editor.parse_qid(text)
+
+
+def test_parse_author_picks_one_country_and_falls_back_on_the_other_name():
+    rows = [
+        _cells(nameEn="Victor Hugo", country="http://www.wikidata.org/entity/Q142", demonymFr="Française", demonymEn="French"),
+        _cells(country="http://www.wikidata.org/entity/Q142", demonymFr="Français", demonymEn="French"),
+    ]
+
+    author = editor.parse_author("Q535", rows)
+
+    assert author["name"] == {"fr_FR": "Victor Hugo", "en_US": "Victor Hugo"}
+    assert author["nationality"] == {"fr_FR": "français", "en_US": "French"}
+
+
+def test_parse_works_uses_localized_editions_then_work_values():
+    rows = [
+        _cells(work=WORK, links="40", titleFr="Les Misérables", titleEn="Les Misérables", typeFr="roman",
+               date="1862-04-03T00:00:00Z", genreFr="roman historique", genreEn="historical novel", pages="1500",
+               publisherFr="A. Lacroix", publisherEn="A. Lacroix"),
+        _cells(work="http://www.wikidata.org/entity/Q101", links="2", titleFr="Poème obscur"),
+        _cells(work="http://www.wikidata.org/entity/Q102", links="99"),
+    ]
+    editions = [
+        _cells(work=WORK, lang=FRENCH, pages="1900", publisherFr="Gallimard"),
+        _cells(work=WORK, lang=ENGLISH, publisherEn="Penguin Classics"),
+    ]
+
+    works = editor.parse_works(rows, editions)
+
+    assert [work["wikidata_id"] for work in works] == ["Q100", "Q101"]
+    best = works[0]
+    assert best["year"] == 1862
+    assert best["pages"] == {"fr_FR": 1900, "en_US": 1500}
+    assert best["publisher"] == {"fr_FR": "Gallimard", "en_US": "Penguin Classics"}
+    assert best["genre"] == {"fr_FR": ["roman historique"], "en_US": ["historical novel"]}
+    assert works[1]["year"] is None
+
+
+def test_add_book_creates_a_sorted_author(catalogue):
+    message, created = editor.add_book(catalogue, _author(), _book())
+
+    assert created
+    assert "Murasaki Shikibu" in message
+    names = [editor._sort_name(entry["name"]) for entry in catalogue["authors"]]
+    index = next(i for i, entry in enumerate(catalogue["authors"]) if entry.get("wikidata_id") == "Q999999")
+    assert names[index - 1] <= names[index] <= names[index + 1]
+    book = catalogue["authors"][index]["books"][0]
+    assert book["year"] == 1008
+    assert book["genre"]["fr_FR"] == ["roman", "classique"]
+    assert book["pages"] == {"fr_FR": 1400, "en_US": None}
+    assert book["publisher"] == {"fr_FR": "Verdier", "en_US": None}
+
+
+def test_add_book_appends_to_an_existing_author_by_year(catalogue):
+    author = _author(wikidata_id="Q535", name={"fr_FR": "Victor Hugo", "en_US": "Victor Hugo"},
+                     nationality={"fr_FR": "ignoré", "en_US": "ignored"})
+    book = _book(wikidata_id="Q1", title={"fr_FR": "Les Orientales", "en_US": "Les Orientales"}, year="1829")
+
+    _, created = editor.add_book(catalogue, author, book)
+
+    assert not created
+    hugo = next(entry for entry in catalogue["authors"] if entry["name"] == "Victor Hugo")
+    assert hugo["wikidata_id"] == "Q535"
+    assert hugo["nationality"]["fr_FR"] == "français"
+    years = [book["year"] for book in hugo["books"]]
+    assert years == sorted(years) and 1829 in years
+
+
+def test_add_book_rejects_duplicates_and_invalid_books(catalogue):
+    editor.add_book(catalogue, _author(), _book())
+
+    with pytest.raises(ValueError, match="déjà"):
+        editor.add_book(catalogue, _author(), _book(wikidata_id="Q2"))
+    with pytest.raises(ValueError, match="Année manquante"):
+        editor.add_book(catalogue, _author(), _book(wikidata_id="Q3", title={"fr_FR": "A", "en_US": "B"}, year="vers 1000"))
+    with pytest.raises(ValueError, match=r"Titre \(anglais\) : champ obligatoire"):
+        editor.add_book(catalogue, _author(), _book(wikidata_id="Q4", title={"fr_FR": "Seulement FR", "en_US": ""}))
+
+
+def test_localized_names_are_kept_only_when_they_differ(catalogue):
+    editor.add_book(catalogue, _author(wikidata_id="Q9333", name={"fr_FR": "Lao-Tseu", "en_US": "Laozi"}),
+                    _book(title={"fr_FR": "Tao-tö-king", "en_US": "Tao Te Ching"}, year="-400"))
+
+    laozi = next(entry for entry in catalogue["authors"] if entry.get("wikidata_id") == "Q9333")
+    assert laozi["name"] == {"fr_FR": "Lao-Tseu", "en_US": "Laozi"}
+
+
+def test_existing_author_is_matched_by_any_localized_name(catalogue):
+    # The catalogue spells him "Homère" and already holds the Odyssey
+    with pytest.raises(ValueError, match="déjà"):
+        editor.add_book(catalogue, _author(wikidata_id="Q6691", name={"fr_FR": "Homer", "en_US": "Homère"}),
+                        _book(wikidata_id="Q35160", title={"fr_FR": "L'Odyssée", "en_US": "The Odyssey"}))
+
+
+def test_save_catalogue_keeps_the_bundled_layout(tmp_path):
+    path = tmp_path / "literature.json"
+    original = editor.CATALOGUE_PATH.read_text(encoding="utf-8")
+
+    editor.save_catalogue(json.loads(original), path)
+
+    assert path.read_text(encoding="utf-8") == original
+    assert [p.name for p in tmp_path.iterdir()] == ["literature.json"]
+
+
+def test_annotate_flags_known_works(catalogue):
+    author = {"wikidata_id": "Q535", "name": {"fr_FR": "Victor Hugo", "en_US": "Victor Hugo"}}
+    works = [
+        {"wikidata_id": "Q180736", "title": {"fr_FR": "Les Misérables", "en_US": "Les Misérables"}},
+        {"wikidata_id": "Q1", "title": {"fr_FR": "Inédit", "en_US": "Unpublished"}},
+    ]
+
+    existing = editor.annotate(catalogue, author, works)
+
+    assert existing["books"] >= 1
+    assert [work["in_catalogue"] for work in works] == [True, False]
+
+
+def test_multilingual_labels_fill_missing_names_and_titles():
+    author = editor.parse_author("Q535", [_cells(nameMul="Victor Hugo")])
+    works = editor.parse_works([_cells(work=WORK, links="5", titleMul="Hernani", titleFr="Hernani ou l'Honneur castillan",
+                                       inception="1829-01-01T00:00:00Z", date="1830-02-25T00:00:00Z", pages="940512")], [])
+
+    assert author["name"] == {"fr_FR": "Victor Hugo", "en_US": "Victor Hugo"}
+    assert works[0]["title"] == {"fr_FR": "Hernani ou l'Honneur castillan", "en_US": "Hernani"}
+    assert works[0]["year"] == 1830
+    assert works[0]["pages"] == {"fr_FR": None, "en_US": None}
+
+
+def test_genre_errors_are_explained_in_french(catalogue):
+    with pytest.raises(ValueError, match=r"Genres \(français\) : au moins un genre"):
+        editor.add_book(catalogue, _author(), _book(genre={"fr_FR": " , ", "en_US": "novel"}))
+
+
+def test_parse_influences_separates_people_from_works():
+    rows = [
+        _cells(influence="http://www.wikidata.org/entity/Q905", nameMul="Franz Kafka", descFr="écrivain", human="true"),
+        _cells(influence="http://www.wikidata.org/entity/Q905", nameFr="Franz Kafka", human="true"),
+        _cells(influence="http://www.wikidata.org/entity/Q3587963", nameFr="Élise ou la vraie vie", human="false"),
+        _cells(influence="http://www.wikidata.org/entity/Q7197", nameEn="Simone de Beauvoir", human="true"),
+    ]
+
+    influences = editor.parse_influences(rows)
+
+    assert [influence["name"] for influence in influences] == ["Élise ou la vraie vie", "Franz Kafka", "Simone de Beauvoir"]
+    assert [influence["person"] for influence in influences] == [False, True, True]
+    assert influences[1]["description"] == "écrivain"
+
+
+def test_annotate_flags_influences_already_in_the_catalogue(catalogue):
+    author = {
+        "wikidata_id": "Q134798", "name": {"fr_FR": "Haruki Murakami", "en_US": "Haruki Murakami"},
+        "influences": [
+            {"wikidata_id": "Q79904", "name": "J.D. Salinger", "person": True},
+            {"wikidata_id": "Q1", "name": "Inconnu", "person": True},
+            {"wikidata_id": "Q2", "name": "Victor Hugo", "person": False},
+        ],
+    }
+
+    editor.annotate(catalogue, author, [])
+
+    assert [influence["in_catalogue"] for influence in author["influences"]] == [True, False, False]
+
+
+def test_author_names_match_regardless_of_spacing_and_punctuation(catalogue):
+    entry = editor.find_author(catalogue, "Q79904", ["J. D. Salinger"])
+
+    assert entry is not None and entry["name"] == "J.D. Salinger"
+    assert editor.find_author(catalogue, "Q1", ["h.p. LOVECRAFT"])["name"] == "H. P. Lovecraft"
+    assert editor.find_author(catalogue, "Q1", ["Emile Zola"])["name"] == "Émile Zola"
+
+
+def test_titles_differing_by_an_article_are_duplicates(catalogue):
+    homer = _author(wikidata_id="Q6691", name={"fr_FR": "Homère", "en_US": "Homer"})
+
+    for title_fr, title_en in (("Iliade", "Iliad"), ("l’Odyssée", "Odyssey")):
+        with pytest.raises(ValueError, match="déjà"):
+            editor.add_book(catalogue, homer, _book(wikidata_id="Q9", title={"fr_FR": title_fr, "en_US": title_en}))
+
+
+def test_french_nationality_and_genres_are_lower_cased(catalogue):
+    editor.add_book(catalogue, _author(nationality={"fr_FR": "Japonais", "en_US": "Japanese"}),
+                    _book(genre={"fr_FR": "Roman, roman, Classique", "en_US": "Novel, classic"}))
+
+    entry = editor.find_author(catalogue, "Q999999", [])
+    assert entry["nationality"]["fr_FR"] == "japonais"
+    assert entry["books"][0]["genre"] == {"fr_FR": ["roman", "classique"], "en_US": ["Novel", "classic"]}

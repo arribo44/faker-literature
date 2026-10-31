@@ -62,11 +62,11 @@
           "genre": {
             "fr_FR": [
               "roman policier",
-              "hermétiquement"
+              "mystère en chambre close"
             ],
             "en_US": [
               "detective novel",
-              "locked room"
+              "locked room mystery"
             ]
           },
           "title": {
@@ -823,6 +823,24 @@
           }
         },
         {
+          "year": 1992,
+          "genre": {
+            "fr_FR": [
+              "roman"
+            ],
+            "en_US": [
+              "novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Passion simple",
+            "en_US": "Simple Passion"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q60222267"
+        },
+        {
           "year": 1997,
           "genre": {
             "fr_FR": [
@@ -871,6 +889,27 @@
             "fr_FR": "Gallimard",
             "en_US": "Seven Stories Press"
           }
+        },
+        {
+          "year": 2000,
+          "genre": {
+            "fr_FR": [
+              "roman"
+            ],
+            "en_US": [
+              "novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "L'Événement",
+            "en_US": "Happening"
+          },
+          "pages": {
+            "fr_FR": 128,
+            "en_US": null
+          },
+          "publisher": null,
+          "wikidata_id": "Q30742322"
         },
         {
           "year": 2016,
@@ -997,7 +1036,8 @@
             "en_US": "Seven Stories Press"
           }
         }
-      ]
+      ],
+      "wikidata_id": "Q1153825"
     },
     {
       "name": "Antoine de Saint-Exupéry",
@@ -1198,6 +1238,43 @@
             "fr_FR": "Les Belles Lettres",
             "en_US": "Oxford University Press"
           }
+        }
+      ]
+    },
+    {
+      "name": {
+        "fr_FR": "Aristote",
+        "en_US": "Aristotle"
+      },
+      "wikidata_id": "Q868",
+      "nationality": {
+        "fr_FR": "grec",
+        "en_US": "Greek"
+      },
+      "books": [
+        {
+          "year": -340,
+          "genre": {
+            "fr_FR": [
+              "traité"
+            ],
+            "en_US": [
+              "treatise"
+            ]
+          },
+          "title": {
+            "fr_FR": "Éthique à Nicomaque",
+            "en_US": "Nicomachean Ethics"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 368
+          },
+          "publisher": {
+            "fr_FR": "Librairie philosophique de Ladrange",
+            "en_US": "University of Chicago Press"
+          },
+          "wikidata_id": "Q474537"
         }
       ]
     },
@@ -1504,6 +1581,79 @@
       ]
     },
     {
+      "name": {
+        "fr_FR": "Baruch Spinoza",
+        "en_US": "Benedictus de Spinoza"
+      },
+      "wikidata_id": "Q35802",
+      "nationality": {
+        "fr_FR": "néerlandais",
+        "en_US": "Dutch"
+      },
+      "books": [
+        {
+          "year": 1670,
+          "genre": {
+            "fr_FR": [
+              "philosophie"
+            ],
+            "en_US": [
+              "philosophy"
+            ]
+          },
+          "title": {
+            "fr_FR": "Traité théologico-politique",
+            "en_US": "Tractatus Theologico-Politicus"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q970102"
+        },
+        {
+          "year": 1677,
+          "genre": {
+            "fr_FR": [
+              "traité"
+            ],
+            "en_US": [
+              "treatise"
+            ]
+          },
+          "title": {
+            "fr_FR": "Éthique",
+            "en_US": "Ethics"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 186
+          },
+          "publisher": {
+            "fr_FR": "Garnier Frères",
+            "en_US": "Penguin Classics"
+          },
+          "wikidata_id": "Q862816"
+        },
+        {
+          "year": 1677,
+          "genre": {
+            "fr_FR": [
+              "essai"
+            ],
+            "en_US": [
+              "essay"
+            ]
+          },
+          "title": {
+            "fr_FR": "Traité politique",
+            "en_US": "Tractatus Politicus"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q1228496"
+        }
+      ]
+    },
+    {
       "name": "Bertolt Brecht",
       "nationality": {
         "fr_FR": "allemand",
@@ -1584,6 +1734,121 @@
             "fr_FR": "L'Arche",
             "en_US": "Penguin Classics"
           }
+        }
+      ]
+    },
+    {
+      "name": "Blaise Pascal",
+      "wikidata_id": "Q1290",
+      "nationality": {
+        "fr_FR": "français",
+        "en_US": "French"
+      },
+      "books": [
+        {
+          "year": 1670,
+          "genre": {
+            "fr_FR": [
+              "philosophie"
+            ],
+            "en_US": [
+              "philosophy"
+            ]
+          },
+          "title": {
+            "fr_FR": "Pensées",
+            "en_US": "Pensées"
+          },
+          "pages": {
+            "fr_FR": 358,
+            "en_US": 334
+          },
+          "publisher": {
+            "fr_FR": "Éditions Desclée de Brouwer",
+            "en_US": "Dutton"
+          },
+          "wikidata_id": "Q17360856"
+        }
+      ]
+    },
+    {
+      "name": "Bret Easton Ellis",
+      "wikidata_id": "Q241583",
+      "nationality": {
+        "fr_FR": "américain",
+        "en_US": "American"
+      },
+      "books": [
+        {
+          "year": 1987,
+          "genre": {
+            "fr_FR": [
+              "roman"
+            ],
+            "en_US": [
+              "novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Les Lois de l'attraction",
+            "en_US": "The Rules of Attraction"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Simon & Schuster",
+            "en_US": "Simon & Schuster"
+          },
+          "wikidata_id": "Q1307153"
+        },
+        {
+          "year": 1998,
+          "genre": {
+            "fr_FR": [
+              "roman humoristique",
+              "thriller"
+            ],
+            "en_US": [
+              "humorous novel",
+              "thriller"
+            ]
+          },
+          "title": {
+            "fr_FR": "Glamorama",
+            "en_US": "Glamorama"
+          },
+          "pages": {
+            "fr_FR": 537,
+            "en_US": null
+          },
+          "publisher": {
+            "fr_FR": "Éditions Robert Laffont",
+            "en_US": "Alfred A. Knopf"
+          },
+          "wikidata_id": "Q2668869"
+        },
+        {
+          "year": 2005,
+          "genre": {
+            "fr_FR": [
+              "horreur"
+            ],
+            "en_US": [
+              "horror"
+            ]
+          },
+          "title": {
+            "fr_FR": "Lunar Park",
+            "en_US": "Lunar Park"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 308
+          },
+          "publisher": {
+            "fr_FR": "Alfred A. Knopf",
+            "en_US": "Picador"
+          },
+          "wikidata_id": "Q1877383"
         }
       ]
     },
@@ -1756,6 +2021,30 @@
       },
       "books": [
         {
+          "year": 1839,
+          "genre": {
+            "fr_FR": [
+              "roman d'apprentissage"
+            ],
+            "en_US": [
+              "Bildungsroman"
+            ]
+          },
+          "title": {
+            "fr_FR": "Oliver Twist",
+            "en_US": "Oliver Twist"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 608
+          },
+          "publisher": {
+            "fr_FR": "Hachette",
+            "en_US": "Penguin Classics"
+          },
+          "wikidata_id": "Q164974"
+        },
+        {
           "year": 1859,
           "genre": {
             "fr_FR": [
@@ -1780,7 +2069,8 @@
             "en_US": "Penguin Classics"
           }
         }
-      ]
+      ],
+      "wikidata_id": "Q5686"
     },
     {
       "name": "Charlotte Brontë",
@@ -2675,6 +2965,34 @@
       ]
     },
     {
+      "name": "David Hume",
+      "wikidata_id": "Q37160",
+      "nationality": {
+        "fr_FR": "britannique",
+        "en_US": "British"
+      },
+      "books": [
+        {
+          "year": 1739,
+          "genre": {
+            "fr_FR": [
+              "philosophie"
+            ],
+            "en_US": [
+              "philosophy"
+            ]
+          },
+          "title": {
+            "fr_FR": "Traité de la nature humaine",
+            "en_US": "A Treatise of Human Nature"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q2451675"
+        }
+      ]
+    },
+    {
       "name": "Delphine de Vigan",
       "nationality": {
         "fr_FR": "français",
@@ -2850,6 +3168,52 @@
       },
       "books": [
         {
+          "year": 1839,
+          "genre": {
+            "fr_FR": [
+              "gothique",
+              "horreur"
+            ],
+            "en_US": [
+              "gothic",
+              "horror"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Chute de la maison Usher",
+            "en_US": "The Fall of the House of Usher"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "George G. Harrap and Co."
+          },
+          "wikidata_id": "Q1197735"
+        },
+        {
+          "year": 1841,
+          "genre": {
+            "fr_FR": [
+              "mystère en chambre close",
+              "roman policier"
+            ],
+            "en_US": [
+              "locked room mystery",
+              "detective novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Double Assassinat dans la rue Morgue",
+            "en_US": "The Murders in the Rue Morgue"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Graham's Magazine",
+            "en_US": "George G. Harrap and Co."
+          },
+          "wikidata_id": "Q459667"
+        },
+        {
           "year": 1845,
           "genre": {
             "fr_FR": [
@@ -2873,8 +3237,30 @@
             "fr_FR": "Lippincott, Grambo & Co.",
             "en_US": "Lippincott, Grambo & Co."
           }
+        },
+        {
+          "year": 1845,
+          "genre": {
+            "fr_FR": [
+              "poésie narrative"
+            ],
+            "en_US": [
+              "narrative poetry"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Corbeau",
+            "en_US": "The Raven"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Michel Lévy frères",
+            "en_US": "New-York Mirror"
+          },
+          "wikidata_id": "Q22726"
         }
-      ]
+      ],
+      "wikidata_id": "Q16867"
     },
     {
       "name": "Edgar Rice Burroughs",
@@ -2888,7 +3274,8 @@
           "genre": {
             "fr_FR": [
               "roman d'aventure",
-              "science-fiction"
+              "science-fiction",
+              "romance planétaire"
             ],
             "en_US": [
               "adventure novel",
@@ -2914,7 +3301,8 @@
           "genre": {
             "fr_FR": [
               "roman d'aventure",
-              "science-fiction"
+              "science-fiction",
+              "romance planétaire"
             ],
             "en_US": [
               "adventure novel",
@@ -2940,7 +3328,8 @@
           "genre": {
             "fr_FR": [
               "roman d'aventure",
-              "science-fiction"
+              "science-fiction",
+              "romance planétaire"
             ],
             "en_US": [
               "adventure novel",
@@ -3014,6 +3403,29 @@
           }
         },
         {
+          "year": 1915,
+          "genre": {
+            "fr_FR": [
+              "aventure",
+              "fantasy"
+            ],
+            "en_US": [
+              "adventure",
+              "fantasy"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Retour de Tarzan",
+            "en_US": "The Return of Tarzan"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "A. C. McClurg"
+          },
+          "wikidata_id": "Q2441302"
+        },
+        {
           "year": 1918,
           "genre": {
             "fr_FR": [
@@ -3040,7 +3452,8 @@
             "en_US": "A. C. McClurg"
           }
         }
-      ]
+      ],
+      "wikidata_id": "Q148234"
     },
     {
       "name": "Elmore Leonard",
@@ -3209,6 +3622,27 @@
           }
         },
         {
+          "year": 1883,
+          "genre": {
+            "fr_FR": [
+              "naturalisme"
+            ],
+            "en_US": [
+              "naturalism"
+            ]
+          },
+          "title": {
+            "fr_FR": "Au Bonheur des Dames",
+            "en_US": "The Ladies' Paradise"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Éditions Fasquelle",
+            "en_US": null
+          },
+          "wikidata_id": "Q1170032"
+        },
+        {
           "year": 1885,
           "genre": {
             "fr_FR": [
@@ -3232,8 +3666,33 @@
             "fr_FR": "G. Charpentier",
             "en_US": "Oxford University Press"
           }
+        },
+        {
+          "year": 1890,
+          "genre": {
+            "fr_FR": [
+              "thriller psychologique"
+            ],
+            "en_US": [
+              "psychological thriller"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Bête humaine",
+            "en_US": "La Bête humaine"
+          },
+          "pages": {
+            "fr_FR": 415,
+            "en_US": null
+          },
+          "publisher": {
+            "fr_FR": "Éditions Charpentier",
+            "en_US": "Bibliothèque Charpentier"
+          },
+          "wikidata_id": "Q942810"
         }
-      ]
+      ],
+      "wikidata_id": "Q504"
     },
     {
       "name": "Emily Brontë",
@@ -3266,6 +3725,43 @@
             "fr_FR": "Gallimard",
             "en_US": "Penguin Classics"
           }
+        }
+      ]
+    },
+    {
+      "name": {
+        "fr_FR": "Emmanuel Kant",
+        "en_US": "Immanuel Kant"
+      },
+      "wikidata_id": "Q9312",
+      "nationality": {
+        "fr_FR": "allemand",
+        "en_US": "German"
+      },
+      "books": [
+        {
+          "year": 1781,
+          "genre": {
+            "fr_FR": [
+              "essai"
+            ],
+            "en_US": [
+              "essay"
+            ]
+          },
+          "title": {
+            "fr_FR": "Critique de la raison pure",
+            "en_US": "Critique of Pure Reason"
+          },
+          "pages": {
+            "fr_FR": 676,
+            "en_US": 785
+          },
+          "publisher": {
+            "fr_FR": "Éditions F. Alcan",
+            "en_US": "Cambridge University Press"
+          },
+          "wikidata_id": "Q220002"
         }
       ]
     },
@@ -3640,6 +4136,107 @@
       ]
     },
     {
+      "name": "Francis Bacon",
+      "wikidata_id": "Q37388",
+      "nationality": {
+        "fr_FR": "britannique",
+        "en_US": "British"
+      },
+      "books": [
+        {
+          "year": 1627,
+          "genre": {
+            "fr_FR": [
+              "fantasy",
+              "philosophique",
+              "utopie",
+              "science-fiction"
+            ],
+            "en_US": [
+              "fantasy",
+              "philosophical",
+              "utopia",
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Nouvelle Atlantide",
+            "en_US": "New Atlantis"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q1233830"
+        }
+      ]
+    },
+    {
+      "name": {
+        "fr_FR": "François-René de Chateaubriand",
+        "en_US": "François-Auguste-René de Chateaubriand"
+      },
+      "wikidata_id": "Q49767",
+      "nationality": {
+        "fr_FR": "français",
+        "en_US": "French"
+      },
+      "books": [
+        {
+          "year": 1802,
+          "genre": {
+            "fr_FR": [
+              "autobiographie"
+            ],
+            "en_US": [
+              "autobiography"
+            ]
+          },
+          "title": {
+            "fr_FR": "René",
+            "en_US": "René"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q1097238"
+        },
+        {
+          "year": 1802,
+          "genre": {
+            "fr_FR": [
+              "roman"
+            ],
+            "en_US": [
+              "novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Atala",
+            "en_US": "Atala"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q753251"
+        },
+        {
+          "year": 1849,
+          "genre": {
+            "fr_FR": [
+              "roman"
+            ],
+            "en_US": [
+              "novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Mémoires d'outre-tombe",
+            "en_US": "Mémoires d'Outre-Tombe"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q2263221"
+        }
+      ]
+    },
+    {
       "name": "Françoise Sagan",
       "nationality": {
         "fr_FR": "français",
@@ -3754,8 +4351,37 @@
             "fr_FR": "Verlag Die Schmiede",
             "en_US": "Schocken"
           }
+        },
+        {
+          "year": 1915,
+          "genre": {
+            "fr_FR": [
+              "horreur",
+              "épique",
+              "absurde"
+            ],
+            "en_US": [
+              "horror",
+              "epic",
+              "absurdism"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Métamorphose",
+            "en_US": "The Metamorphosis"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 218
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "W. W. Norton & Company"
+          },
+          "wikidata_id": "Q184222"
         }
-      ]
+      ],
+      "wikidata_id": "Q905"
     },
     {
       "name": "Fred Vargas",
@@ -3947,6 +4573,89 @@
             "fr_FR": "A. L., M. et Cie",
             "en_US": "Vintage"
           }
+        }
+      ]
+    },
+    {
+      "name": "Geoffrey Chaucer",
+      "wikidata_id": "Q5683",
+      "nationality": {
+        "fr_FR": "britannique",
+        "en_US": "British"
+      },
+      "books": [
+        {
+          "year": 1387,
+          "genre": {
+            "fr_FR": [
+              "poésie"
+            ],
+            "en_US": [
+              "poetry"
+            ]
+          },
+          "title": {
+            "fr_FR": "Les Contes de Cantorbéry",
+            "en_US": "The Canterbury Tales"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 1328
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "William Caxton"
+          },
+          "wikidata_id": "Q191663"
+        }
+      ]
+    },
+    {
+      "name": "George Sand",
+      "wikidata_id": "Q3816",
+      "nationality": {
+        "fr_FR": "français",
+        "en_US": "French"
+      },
+      "books": [
+        {
+          "year": 1846,
+          "genre": {
+            "fr_FR": [
+              "roman pastoral"
+            ],
+            "en_US": [
+              "pastoral novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Mare au Diable",
+            "en_US": "La Mare au diable"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Maison Quantin",
+            "en_US": "Little, Brown and Company"
+          },
+          "wikidata_id": "Q3210542"
+        },
+        {
+          "year": 1849,
+          "genre": {
+            "fr_FR": [
+              "roman"
+            ],
+            "en_US": [
+              "novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Petite Fadette",
+            "en_US": "La Petite Fadette"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q2735124"
         }
       ]
     },
@@ -4623,12 +5332,199 @@
       ]
     },
     {
+      "name": "H. G. Wells",
+      "wikidata_id": "Q42511",
+      "nationality": {
+        "fr_FR": "britannique",
+        "en_US": "British"
+      },
+      "books": [
+        {
+          "year": 1895,
+          "genre": {
+            "fr_FR": [
+              "voyage dans le temps",
+              "romance",
+              "dystopie",
+              "apocalyptique",
+              "science-fiction"
+            ],
+            "en_US": [
+              "time travel",
+              "romance",
+              "dystopian",
+              "apocalyptic",
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Machine à explorer le temps",
+            "en_US": "The Time Machine"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q627333"
+        },
+        {
+          "year": 1895,
+          "genre": {
+            "fr_FR": [
+              "horreur",
+              "science-fiction"
+            ],
+            "en_US": [
+              "horror",
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "L'Île du docteur Moreau",
+            "en_US": "The Island of Dr Moreau"
+          },
+          "pages": {
+            "fr_FR": 250,
+            "en_US": 176
+          },
+          "publisher": {
+            "fr_FR": "Mercure de France",
+            "en_US": "Project Gutenberg"
+          },
+          "wikidata_id": "Q718268"
+        },
+        {
+          "year": 1897,
+          "genre": {
+            "fr_FR": [
+              "guerre",
+              "apocalyptique",
+              "science-fiction",
+              "roman-feuilleton"
+            ],
+            "en_US": [
+              "war",
+              "apocalyptic",
+              "science fiction",
+              "serialized fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Guerre des mondes",
+            "en_US": "The War of the Worlds"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 145
+          },
+          "publisher": {
+            "fr_FR": "Mercure de France",
+            "en_US": "Project Gutenberg"
+          },
+          "wikidata_id": "Q213019"
+        },
+        {
+          "year": 1897,
+          "genre": {
+            "fr_FR": [
+              "science-fiction"
+            ],
+            "en_US": [
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "L'Homme invisible",
+            "en_US": "The Invisible Man"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 208
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "Project Gutenberg"
+          },
+          "wikidata_id": "Q1539509"
+        }
+      ]
+    },
+    {
       "name": "H. P. Lovecraft",
       "nationality": {
         "fr_FR": "américain",
         "en_US": "American"
       },
       "books": [
+        {
+          "year": 1919,
+          "genre": {
+            "fr_FR": [
+              "conte",
+              "horreur",
+              "weird fiction",
+              "science-fiction"
+            ],
+            "en_US": [
+              "tale",
+              "horror",
+              "weird fiction",
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "Dagon",
+            "en_US": "Dagon"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q1157371"
+        },
+        {
+          "year": 1921,
+          "genre": {
+            "fr_FR": [
+              "horreur",
+              "weird fiction",
+              "science-fiction"
+            ],
+            "en_US": [
+              "horror",
+              "weird fiction",
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Cité sans nom",
+            "en_US": "The Nameless City"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q1112623"
+        },
+        {
+          "year": 1927,
+          "genre": {
+            "fr_FR": [
+              "horreur",
+              "weird fiction",
+              "science-fiction"
+            ],
+            "en_US": [
+              "horror",
+              "weird fiction",
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Couleur tombée du ciel",
+            "en_US": "The Colour Out of Space"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Experimenter Publishing",
+            "en_US": "Experimenter Publishing"
+          },
+          "wikidata_id": "Q1212384"
+        },
         {
           "year": 1928,
           "genre": {
@@ -4655,6 +5551,28 @@
           }
         },
         {
+          "year": 1929,
+          "genre": {
+            "fr_FR": [
+              "horreur",
+              "weird fiction",
+              "science-fiction"
+            ],
+            "en_US": [
+              "horror",
+              "weird fiction",
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "L'Abomination de Dunwich",
+            "en_US": "The Dunwich Horror"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q2468877"
+        },
+        {
           "year": 1931,
           "genre": {
             "fr_FR": [
@@ -4678,6 +5596,249 @@
             "fr_FR": "Weird Tales",
             "en_US": "Weird Tales"
           }
+        },
+        {
+          "year": 1931,
+          "genre": {
+            "fr_FR": [
+              "horreur",
+              "weird fiction",
+              "science-fiction"
+            ],
+            "en_US": [
+              "horror",
+              "weird fiction",
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "Celui qui chuchotait dans les ténèbres",
+            "en_US": "The Whisperer in Darkness"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q1152214"
+        },
+        {
+          "year": 1936,
+          "genre": {
+            "fr_FR": [
+              "horreur",
+              "monde perdu",
+              "weird fiction",
+              "science-fiction"
+            ],
+            "en_US": [
+              "horror",
+              "lost world",
+              "weird fiction",
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "Les Montagnes hallucinées",
+            "en_US": "At the Mountains of Madness"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q786586"
+        },
+        {
+          "year": 1936,
+          "genre": {
+            "fr_FR": [
+              "horreur",
+              "weird fiction",
+              "science-fiction"
+            ],
+            "en_US": [
+              "horror",
+              "weird fiction",
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Cauchemar d'Innsmouth",
+            "en_US": "The Shadow Over Innsmouth"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Fantasy Publishing Company, Inc.",
+            "en_US": "Fantasy Publishing Company, Inc."
+          },
+          "wikidata_id": "Q1068054"
+        },
+        {
+          "year": 1943,
+          "genre": {
+            "fr_FR": [
+              "épistolaire",
+              "fantasy",
+              "science-fiction"
+            ],
+            "en_US": [
+              "epistolary",
+              "fantasy",
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "L'Affaire Charles Dexter Ward",
+            "en_US": "The Case of Charles Dexter Ward"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "Ballantine Books"
+          },
+          "wikidata_id": "Q543844"
+        }
+      ],
+      "wikidata_id": "Q169566"
+    },
+    {
+      "name": "Hannah Arendt",
+      "wikidata_id": "Q60025",
+      "nationality": {
+        "fr_FR": "américain",
+        "en_US": "American"
+      },
+      "books": [
+        {
+          "year": 1951,
+          "genre": {
+            "fr_FR": [
+              "essai"
+            ],
+            "en_US": [
+              "essay"
+            ]
+          },
+          "title": {
+            "fr_FR": "Les Origines du totalitarisme",
+            "en_US": "The Origins of Totalitarianism"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Seuil",
+            "en_US": "Schocken Books"
+          },
+          "wikidata_id": "Q1327843"
+        },
+        {
+          "year": 1961,
+          "genre": {
+            "fr_FR": [
+              "philosophie politique"
+            ],
+            "en_US": [
+              "political philosophy"
+            ]
+          },
+          "title": {
+            "fr_FR": "La crise de la culture",
+            "en_US": "Between Past and Future"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Éditions Gallimard",
+            "en_US": null
+          },
+          "wikidata_id": "Q743797"
+        },
+        {
+          "year": 1963,
+          "genre": {
+            "fr_FR": [
+              "essai"
+            ],
+            "en_US": [
+              "essay"
+            ]
+          },
+          "title": {
+            "fr_FR": "Eichmann à Jérusalem",
+            "en_US": "Eichmann in Jerusalem"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 298
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "Penguin Classics"
+          },
+          "wikidata_id": "Q480743"
+        }
+      ]
+    },
+    {
+      "name": "Haruki Murakami",
+      "wikidata_id": "Q134798",
+      "nationality": {
+        "fr_FR": "japonais",
+        "en_US": "Japanese"
+      },
+      "books": [
+        {
+          "year": 1987,
+          "genre": {
+            "fr_FR": [
+              "romance",
+              "roman d'apprentissage"
+            ],
+            "en_US": [
+              "romance",
+              "Bildungsroman"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Ballade de l'impossible",
+            "en_US": "Norwegian Wood"
+          },
+          "pages": {
+            "fr_FR": 445,
+            "en_US": 296
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "Vintage Books"
+          },
+          "wikidata_id": "Q751348"
+        }
+      ]
+    },
+    {
+      "name": "Henry James",
+      "wikidata_id": "Q170509",
+      "nationality": {
+        "fr_FR": "américain",
+        "en_US": "American"
+      },
+      "books": [
+        {
+          "year": 1881,
+          "genre": {
+            "fr_FR": [
+              "roman"
+            ],
+            "en_US": [
+              "novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Portrait de femme",
+            "en_US": "The Portrait of a Lady"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 594
+          },
+          "publisher": {
+            "fr_FR": "Macmillan Publishers",
+            "en_US": "Dell Publishing"
+          },
+          "wikidata_id": "Q861017"
         }
       ]
     },
@@ -4863,7 +6024,8 @@
           "publisher": {
             "fr_FR": "Les Belles Lettres",
             "en_US": "Penguin Classics"
-          }
+          },
+          "wikidata_id": "Q8275"
         },
         {
           "year": -750,
@@ -4888,9 +6050,11 @@
           "publisher": {
             "fr_FR": "Les Belles Lettres",
             "en_US": "Penguin Classics"
-          }
+          },
+          "wikidata_id": "Q35160"
         }
-      ]
+      ],
+      "wikidata_id": "Q6691"
     },
     {
       "name": "Honoré de Balzac",
@@ -5000,6 +6164,27 @@
           }
         },
         {
+          "year": 1836,
+          "genre": {
+            "fr_FR": [
+              "roman"
+            ],
+            "en_US": [
+              "novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Lys dans la vallée",
+            "en_US": "The Lily of the Valley"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Edmond Werdet",
+            "en_US": "Edmond Werdet"
+          },
+          "wikidata_id": "Q2572925"
+        },
+        {
           "year": 1837,
           "genre": {
             "fr_FR": [
@@ -5049,7 +6234,8 @@
             "en_US": "Penguin Classics"
           }
         }
-      ]
+      ],
+      "wikidata_id": "Q9711"
     },
     {
       "name": "Isaac Asimov",
@@ -5058,6 +6244,30 @@
         "en_US": "American"
       },
       "books": [
+        {
+          "year": 1950,
+          "genre": {
+            "fr_FR": [
+              "science-fiction"
+            ],
+            "en_US": [
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "Les Robots",
+            "en_US": "I, Robot"
+          },
+          "pages": {
+            "fr_FR": 180,
+            "en_US": 256
+          },
+          "publisher": {
+            "fr_FR": "Gnome Press",
+            "en_US": "Del Rey Books"
+          },
+          "wikidata_id": "Q393018"
+        },
         {
           "year": 1951,
           "genre": {
@@ -5107,6 +6317,40 @@
             "fr_FR": "Doubleday",
             "en_US": "Doubleday"
           }
+        }
+      ],
+      "wikidata_id": "Q34981"
+    },
+    {
+      "name": "Isaac Newton",
+      "wikidata_id": "Q935",
+      "nationality": {
+        "fr_FR": "britannique",
+        "en_US": "British"
+      },
+      "books": [
+        {
+          "year": 1687,
+          "genre": {
+            "fr_FR": [
+              "philosophie naturelle",
+              "science"
+            ],
+            "en_US": [
+              "natural philosophy",
+              "science"
+            ]
+          },
+          "title": {
+            "fr_FR": "Philosophiæ naturalis principia mathematica",
+            "en_US": "Philosophiæ Naturalis Principia Mathematica"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Michel Lambert",
+            "en_US": null
+          },
+          "wikidata_id": "Q205921"
         }
       ]
     },
@@ -5953,6 +7197,34 @@
       ]
     },
     {
+      "name": "Jean de La Bruyère",
+      "wikidata_id": "Q314975",
+      "nationality": {
+        "fr_FR": "français",
+        "en_US": "French"
+      },
+      "books": [
+        {
+          "year": 1688,
+          "genre": {
+            "fr_FR": [
+              "maximes"
+            ],
+            "en_US": [
+              "maxims"
+            ]
+          },
+          "title": {
+            "fr_FR": "Les Caractères",
+            "en_US": "Les Caractères"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q1648784"
+        }
+      ]
+    },
+    {
       "name": "Jean Giono",
       "nationality": {
         "fr_FR": "français",
@@ -6042,6 +7314,158 @@
             "fr_FR": "Le Bélial'",
             "en_US": "Le Bélial'"
           }
+        }
+      ]
+    },
+    {
+      "name": "Jean-Jacques Rousseau",
+      "wikidata_id": "Q6527",
+      "nationality": {
+        "fr_FR": "français",
+        "en_US": "French"
+      },
+      "books": [
+        {
+          "year": 1762,
+          "genre": {
+            "fr_FR": [
+              "philosophie politique",
+              "essai"
+            ],
+            "en_US": [
+              "political philosophy",
+              "essay"
+            ]
+          },
+          "title": {
+            "fr_FR": "Du Contrat social",
+            "en_US": "The Social Contract"
+          },
+          "pages": {
+            "fr_FR": 324,
+            "en_US": 188
+          },
+          "publisher": {
+            "fr_FR": "Marc-Michel Rey",
+            "en_US": "Penguin Classics"
+          },
+          "wikidata_id": "Q190126"
+        },
+        {
+          "year": 1762,
+          "genre": {
+            "fr_FR": [
+              "philosophique",
+              "roman d'apprentissage",
+              "traité",
+              "essai"
+            ],
+            "en_US": [
+              "philosophical",
+              "Bildungsroman",
+              "treatise",
+              "essay"
+            ]
+          },
+          "title": {
+            "fr_FR": "Émile ou De l'éducation",
+            "en_US": "Emile, or On Education"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q913599"
+        },
+        {
+          "year": 1782,
+          "genre": {
+            "fr_FR": [
+              "traité",
+              "autobiographie"
+            ],
+            "en_US": [
+              "treatise",
+              "autobiography"
+            ]
+          },
+          "title": {
+            "fr_FR": "Les Confessions",
+            "en_US": "Confessions"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 608
+          },
+          "publisher": null,
+          "wikidata_id": "Q1207595"
+        }
+      ]
+    },
+    {
+      "name": "Jean-Paul Sartre",
+      "wikidata_id": "Q9364",
+      "nationality": {
+        "fr_FR": "français",
+        "en_US": "French"
+      },
+      "books": [
+        {
+          "year": 1938,
+          "genre": {
+            "fr_FR": [
+              "roman philosophique",
+              "roman existentialiste"
+            ],
+            "en_US": [
+              "philosophical novel",
+              "existentialist novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Nausée",
+            "en_US": "Nausea"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q658288"
+        },
+        {
+          "year": 1943,
+          "genre": {
+            "fr_FR": [
+              "essai"
+            ],
+            "en_US": [
+              "essay"
+            ]
+          },
+          "title": {
+            "fr_FR": "L'Être et le Néant",
+            "en_US": "Being and Nothingness"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Éditions Gallimard",
+            "en_US": "Éditions Gallimard"
+          },
+          "wikidata_id": "Q119709"
+        },
+        {
+          "year": 1948,
+          "genre": {
+            "fr_FR": [
+              "politique"
+            ],
+            "en_US": [
+              "political"
+            ]
+          },
+          "title": {
+            "fr_FR": "Les Mains sales",
+            "en_US": "Dirty Hands"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q1219278"
         }
       ]
     },
@@ -6375,6 +7799,71 @@
       ]
     },
     {
+      "name": "John Locke",
+      "wikidata_id": "Q9353",
+      "nationality": {
+        "fr_FR": "britannique",
+        "en_US": "British"
+      },
+      "books": [
+        {
+          "year": 1690,
+          "genre": {
+            "fr_FR": [
+              "traité"
+            ],
+            "en_US": [
+              "treatise"
+            ]
+          },
+          "title": {
+            "fr_FR": "Traité du gouvernement civil",
+            "en_US": "Two Treatises of Government"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Awnsham Churchill",
+            "en_US": "Awnsham Churchill"
+          },
+          "wikidata_id": "Q231949"
+        }
+      ]
+    },
+    {
+      "name": "John Milton",
+      "wikidata_id": "Q79759",
+      "nationality": {
+        "fr_FR": "britannique",
+        "en_US": "British"
+      },
+      "books": [
+        {
+          "year": 1667,
+          "genre": {
+            "fr_FR": [
+              "poésie épique"
+            ],
+            "en_US": [
+              "epic poetry"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Paradis perdu",
+            "en_US": "Paradise Lost"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 433
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "Modern Library"
+          },
+          "wikidata_id": "Q28754"
+        }
+      ]
+    },
+    {
       "name": "John Steinbeck",
       "nationality": {
         "fr_FR": "américain",
@@ -6693,6 +8182,34 @@
           }
         },
         {
+          "year": 1872,
+          "genre": {
+            "fr_FR": [
+              "jeunesse",
+              "aventure",
+              "roman-feuilleton"
+            ],
+            "en_US": [
+              "children's literature",
+              "adventure",
+              "serialized fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Tour du monde en quatre-vingts jours",
+            "en_US": "Around the World in Eighty Days"
+          },
+          "pages": {
+            "fr_FR": 220,
+            "en_US": 252
+          },
+          "publisher": {
+            "fr_FR": "Hetzel éds",
+            "en_US": "Project Gutenberg"
+          },
+          "wikidata_id": "Q1219561"
+        },
+        {
           "year": 1873,
           "genre": {
             "fr_FR": [
@@ -6766,8 +8283,81 @@
             "fr_FR": "J. Hetzel",
             "en_US": "Signet Classics"
           }
+        },
+        {
+          "year": 1879,
+          "genre": {
+            "fr_FR": [
+              "aventure"
+            ],
+            "en_US": [
+              "adventure"
+            ]
+          },
+          "title": {
+            "fr_FR": "Les Tribulations d'un Chinois en Chine",
+            "en_US": "Tribulations of a Chinaman in China"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Hetzel éds",
+            "en_US": "Hetzel éds"
+          },
+          "wikidata_id": "Q1214433"
+        },
+        {
+          "year": 1886,
+          "genre": {
+            "fr_FR": [
+              "science-fiction"
+            ],
+            "en_US": [
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "Robur-le-Conquérant",
+            "en_US": "Robur the Conqueror"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Hetzel éds",
+            "en_US": "Project Gutenberg"
+          },
+          "wikidata_id": "Q978723"
+        },
+        {
+          "year": 1888,
+          "genre": {
+            "fr_FR": [
+              "aventure",
+              "science-fiction",
+              "robinsonnade",
+              "fantasy"
+            ],
+            "en_US": [
+              "adventure",
+              "science fiction",
+              "robinsonade",
+              "fantasy"
+            ]
+          },
+          "title": {
+            "fr_FR": "L'Île mystérieuse",
+            "en_US": "The Mysterious Island"
+          },
+          "pages": {
+            "fr_FR": 616,
+            "en_US": 600
+          },
+          "publisher": {
+            "fr_FR": "Pierre-Jules Hetzel",
+            "en_US": "Hetzel éds"
+          },
+          "wikidata_id": "Q471005"
         }
-      ]
+      ],
+      "wikidata_id": "Q33977"
     },
     {
       "name": "Julie Otsuka",
@@ -7282,6 +8872,37 @@
             "fr_FR": "Orbit",
             "en_US": "Orbit"
           }
+        }
+      ]
+    },
+    {
+      "name": "Malcolm Lowry",
+      "wikidata_id": "Q357120",
+      "nationality": {
+        "fr_FR": "britannique",
+        "en_US": "British"
+      },
+      "books": [
+        {
+          "year": 1947,
+          "genre": {
+            "fr_FR": [
+              "roman autobiographique"
+            ],
+            "en_US": [
+              "autobiographical novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Au-dessous du volcan",
+            "en_US": "Under the Volcano"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Reynal & Hitchcock",
+            "en_US": "Reynal & Hitchcock"
+          },
+          "wikidata_id": "Q1570020"
         }
       ]
     },
@@ -8090,6 +9711,42 @@
       ]
     },
     {
+      "name": "Michel de Montaigne",
+      "wikidata_id": "Q41568",
+      "nationality": {
+        "fr_FR": "français",
+        "en_US": "French"
+      },
+      "books": [
+        {
+          "year": 1580,
+          "genre": {
+            "fr_FR": [
+              "autobiographie",
+              "essai"
+            ],
+            "en_US": [
+              "autobiography",
+              "essay"
+            ]
+          },
+          "title": {
+            "fr_FR": "Essais",
+            "en_US": "Essays"
+          },
+          "pages": {
+            "fr_FR": 1853,
+            "en_US": 406
+          },
+          "publisher": {
+            "fr_FR": "Perisse Frères",
+            "en_US": "Penguin Books"
+          },
+          "wikidata_id": "Q624852"
+        }
+      ]
+    },
+    {
       "name": "Michel Foucault",
       "nationality": {
         "fr_FR": "français",
@@ -8598,6 +10255,43 @@
       ]
     },
     {
+      "name": {
+        "fr_FR": "Ovide",
+        "en_US": "Ovid"
+      },
+      "wikidata_id": "Q7198",
+      "nationality": {
+        "fr_FR": "romain",
+        "en_US": "Roman"
+      },
+      "books": [
+        {
+          "year": 8,
+          "genre": {
+            "fr_FR": [
+              "poésie épique"
+            ],
+            "en_US": [
+              "epic poetry"
+            ]
+          },
+          "title": {
+            "fr_FR": "Métamorphoses",
+            "en_US": "Metamorphoses"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 416
+          },
+          "publisher": {
+            "fr_FR": "Firmin-Didot",
+            "en_US": "Penguin Classics"
+          },
+          "wikidata_id": "Q184742"
+        }
+      ]
+    },
+    {
       "name": "Pablo Neruda",
       "nationality": {
         "fr_FR": "chilien",
@@ -8757,6 +10451,24 @@
       },
       "books": [
         {
+          "year": 1956,
+          "genre": {
+            "fr_FR": [
+              "science-fiction"
+            ],
+            "en_US": [
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "Rapport minoritaire",
+            "en_US": "The Minority Report"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q1811417"
+        },
+        {
           "year": 1962,
           "genre": {
             "fr_FR": [
@@ -8780,6 +10492,28 @@
             "fr_FR": "Putnam",
             "en_US": "Putnam"
           }
+        },
+        {
+          "year": 1965,
+          "genre": {
+            "fr_FR": [
+              "dystopie",
+              "philosophique",
+              "science-fiction"
+            ],
+            "en_US": [
+              "dystopian",
+              "philosophical",
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Dieu venu du Centaure",
+            "en_US": "The Three Stigmata of Palmer Eldritch"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q1193211"
         },
         {
           "year": 1968,
@@ -8830,8 +10564,36 @@
             "fr_FR": "Doubleday",
             "en_US": "Doubleday"
           }
+        },
+        {
+          "year": 1977,
+          "genre": {
+            "fr_FR": [
+              "psychologique",
+              "dystopie",
+              "philosophique",
+              "science-fiction"
+            ],
+            "en_US": [
+              "psychological",
+              "dystopian",
+              "philosophical",
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "Substance mort",
+            "en_US": "A Scanner Darkly"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Doubleday",
+            "en_US": "Doubleday"
+          },
+          "wikidata_id": "Q1198489"
         }
-      ]
+      ],
+      "wikidata_id": "Q171091"
     },
     {
       "name": "Philip Roth",
@@ -9043,6 +10805,42 @@
       },
       "books": [
         {
+          "year": -400,
+          "genre": {
+            "fr_FR": [
+              "dialogue philosophique"
+            ],
+            "en_US": [
+              "philosophical dialogue"
+            ]
+          },
+          "title": {
+            "fr_FR": "Gorgias",
+            "en_US": "Gorgias"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q264241"
+        },
+        {
+          "year": -400,
+          "genre": {
+            "fr_FR": [
+              "dialogue philosophique"
+            ],
+            "en_US": [
+              "philosophical dialogue"
+            ]
+          },
+          "title": {
+            "fr_FR": "Protagoras",
+            "en_US": "Protagoras"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q520328"
+        },
+        {
           "year": -399,
           "genre": {
             "fr_FR": [
@@ -9116,8 +10914,27 @@
             "fr_FR": "GF Flammarion",
             "en_US": "Penguin Classics"
           }
+        },
+        {
+          "year": -359,
+          "genre": {
+            "fr_FR": [
+              "dialogue philosophique"
+            ],
+            "en_US": [
+              "philosophical dialogue"
+            ]
+          },
+          "title": {
+            "fr_FR": "Timée",
+            "en_US": "Timaeus"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q371884"
         }
-      ]
+      ],
+      "wikidata_id": "Q859"
     },
     {
       "name": "Primo Levi",
@@ -9243,6 +11060,40 @@
             "fr_FR": "Alfred A. Knopf",
             "en_US": "Alfred A. Knopf"
           }
+        }
+      ]
+    },
+    {
+      "name": "René Descartes",
+      "wikidata_id": "Q9191",
+      "nationality": {
+        "fr_FR": "français",
+        "en_US": "French"
+      },
+      "books": [
+        {
+          "year": 1637,
+          "genre": {
+            "fr_FR": [
+              "essai"
+            ],
+            "en_US": [
+              "essay"
+            ]
+          },
+          "title": {
+            "fr_FR": "Discours de la méthode",
+            "en_US": "Discourse on the Method"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 108
+          },
+          "publisher": {
+            "fr_FR": "Joannes Maire",
+            "en_US": "Joannes Maire"
+          },
+          "wikidata_id": "Q731224"
         }
       ]
     },
@@ -10541,6 +12392,40 @@
       ]
     },
     {
+      "name": "Thomas Hobbes",
+      "wikidata_id": "Q37621",
+      "nationality": {
+        "fr_FR": "britannique",
+        "en_US": "British"
+      },
+      "books": [
+        {
+          "year": 1651,
+          "genre": {
+            "fr_FR": [
+              "philosophie"
+            ],
+            "en_US": [
+              "philosophy"
+            ]
+          },
+          "title": {
+            "fr_FR": "Léviathan",
+            "en_US": "Leviathan"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 688
+          },
+          "publisher": {
+            "fr_FR": "Andrew Crooke",
+            "en_US": "Penguin Classics"
+          },
+          "wikidata_id": "Q193034"
+        }
+      ]
+    },
+    {
       "name": "Thomas Mann",
       "nationality": {
         "fr_FR": "allemand",
@@ -10652,8 +12537,8 @@
     {
       "name": "Thucydide",
       "nationality": {
-        "fr_FR": "grec antique",
-        "en_US": "Ancient Greek"
+        "fr_FR": "grec",
+        "en_US": "Greek"
       },
       "books": [
         {
@@ -10691,6 +12576,27 @@
       },
       "books": [
         {
+          "year": 1973,
+          "genre": {
+            "fr_FR": [
+              "essai"
+            ],
+            "en_US": [
+              "essay"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Guerre du faux",
+            "en_US": "Faith in Fakes"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Éditions Bompiani",
+            "en_US": "Bompiani"
+          },
+          "wikidata_id": "Q5431258"
+        },
+        {
           "year": 1980,
           "genre": {
             "fr_FR": [
@@ -10716,29 +12622,123 @@
           }
         },
         {
-          "year": 2004,
+          "year": 1988,
           "genre": {
             "fr_FR": [
-              "roman historique",
-              "philosophique"
+              "aventure",
+              "roman policier",
+              "roman ésotérique",
+              "roman historique"
             ],
             "en_US": [
-              "historical novel",
-              "philosophical"
+              "adventure",
+              "detective novel",
+              "esoteric novel",
+              "historical novel"
             ]
           },
           "title": {
-            "fr_FR": "La Pendule de Foucault",
-            "en_US": "The Foucault Pendulum"
+            "fr_FR": "Le Pendule de Foucault",
+            "en_US": "Foucault's Pendulum"
           },
           "pages": {
             "fr_FR": 704,
             "en_US": 672
           },
           "publisher": {
-            "fr_FR": "Bompiani",
+            "fr_FR": "Grasset",
             "en_US": "Harcourt"
-          }
+          },
+          "wikidata_id": "Q437791"
+        },
+        {
+          "year": 1994,
+          "genre": {
+            "fr_FR": [
+              "roman historique"
+            ],
+            "en_US": [
+              "historical novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "L'Île du jour d'avant",
+            "en_US": "The Island of the Day Before"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 515
+          },
+          "publisher": {
+            "fr_FR": "Éditions Grasset",
+            "en_US": "Secker & Warburg"
+          },
+          "wikidata_id": "Q472031"
+        },
+        {
+          "year": 1995,
+          "genre": {
+            "fr_FR": [
+              "essai"
+            ],
+            "en_US": [
+              "essay"
+            ]
+          },
+          "title": {
+            "fr_FR": "Reconnaître le fascisme",
+            "en_US": "Ur-Fascism"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q99620602"
+        },
+        {
+          "year": 2000,
+          "genre": {
+            "fr_FR": [
+              "mystère en chambre close",
+              "roman historique"
+            ],
+            "en_US": [
+              "locked room mystery",
+              "historical novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Baudolino",
+            "en_US": "Baudolino"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 522
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "Harcourt"
+          },
+          "wikidata_id": "Q791487"
+        },
+        {
+          "year": 2007,
+          "genre": {
+            "fr_FR": [
+              "essai"
+            ],
+            "en_US": [
+              "essay"
+            ]
+          },
+          "title": {
+            "fr_FR": "Histoire de la laideur",
+            "en_US": "On Ugliness"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Éditions Bompiani",
+            "en_US": "Bompiani"
+          },
+          "wikidata_id": "Q3974113"
         },
         {
           "year": 2015,
@@ -10765,7 +12765,8 @@
             "en_US": "Harper"
           }
         }
-      ]
+      ],
+      "wikidata_id": "Q12807"
     },
     {
       "name": "Ursula K. Le Guin",
@@ -10834,6 +12835,54 @@
       },
       "books": [
         {
+          "year": 1823,
+          "genre": {
+            "fr_FR": [
+              "roman"
+            ],
+            "en_US": [
+              "novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Han d'Islande",
+            "en_US": "Han d'Islande"
+          },
+          "pages": {
+            "fr_FR": 363,
+            "en_US": 172
+          },
+          "publisher": {
+            "fr_FR": "Gustave Simon",
+            "en_US": null
+          },
+          "wikidata_id": "Q2496854"
+        },
+        {
+          "year": 1829,
+          "genre": {
+            "fr_FR": [
+              "roman"
+            ],
+            "en_US": [
+              "novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Dernier Jour d'un condamné",
+            "en_US": "The Last Day of a Condemned Man"
+          },
+          "pages": {
+            "fr_FR": 96,
+            "en_US": 96
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "George Henderson"
+          },
+          "wikidata_id": "Q1199417"
+        },
+        {
           "year": 1831,
           "genre": {
             "fr_FR": [
@@ -10857,6 +12906,24 @@
             "fr_FR": "Charles Gosselin",
             "en_US": "Penguin Classics"
           }
+        },
+        {
+          "year": 1839,
+          "genre": {
+            "fr_FR": [
+              "tragédie"
+            ],
+            "en_US": [
+              "tragedy"
+            ]
+          },
+          "title": {
+            "fr_FR": "Ruy Blas",
+            "en_US": "Ruy Blas"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q3085278"
         },
         {
           "year": 1840,
@@ -10957,6 +13024,133 @@
             "fr_FR": "Pagnerre",
             "en_US": "Oxford University Press"
           }
+        },
+        {
+          "year": 1866,
+          "genre": {
+            "fr_FR": [
+              "roman"
+            ],
+            "en_US": [
+              "novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Les Travailleurs de la mer",
+            "en_US": "Toilers of the Sea"
+          },
+          "pages": {
+            "fr_FR": 426,
+            "en_US": null
+          },
+          "publisher": {
+            "fr_FR": "Émile Testard et Cie",
+            "en_US": null
+          },
+          "wikidata_id": "Q1211109"
+        },
+        {
+          "year": 1874,
+          "genre": {
+            "fr_FR": [
+              "roman historique"
+            ],
+            "en_US": [
+              "historical novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Quatrevingt-treize",
+            "en_US": "Ninety-Three"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Paul Ollendorff",
+            "en_US": "A. L. Burt Company"
+          },
+          "wikidata_id": "Q199940"
+        }
+      ],
+      "wikidata_id": "Q535"
+    },
+    {
+      "name": {
+        "fr_FR": "Virgile",
+        "en_US": "Virgil"
+      },
+      "wikidata_id": "Q1398",
+      "nationality": {
+        "fr_FR": "romain",
+        "en_US": "Roman"
+      },
+      "books": [
+        {
+          "year": -50,
+          "genre": {
+            "fr_FR": [
+              "épique",
+              "poésie épique"
+            ],
+            "en_US": [
+              "epic",
+              "epic poetry"
+            ]
+          },
+          "title": {
+            "fr_FR": "Énéide",
+            "en_US": "Aeneid"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "Longman"
+          },
+          "wikidata_id": "Q60220"
+        },
+        {
+          "year": -40,
+          "genre": {
+            "fr_FR": [
+              "poésie pastorale"
+            ],
+            "en_US": [
+              "pastoral poetry"
+            ]
+          },
+          "title": {
+            "fr_FR": "Bucoliques",
+            "en_US": "Eclogues"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Cranach Press",
+            "en_US": "Longman"
+          },
+          "wikidata_id": "Q546203"
+        },
+        {
+          "year": -36,
+          "genre": {
+            "fr_FR": [
+              "poésie didactique"
+            ],
+            "en_US": [
+              "didactic poetry"
+            ]
+          },
+          "title": {
+            "fr_FR": "Géorgiques",
+            "en_US": "Georgics"
+          },
+          "pages": {
+            "fr_FR": 324,
+            "en_US": null
+          },
+          "publisher": {
+            "fr_FR": "Garnier Frères",
+            "en_US": "Longman"
+          },
+          "wikidata_id": "Q674439"
         }
       ]
     },
@@ -11447,6 +13641,27 @@
       },
       "books": [
         {
+          "year": 1593,
+          "genre": {
+            "fr_FR": [
+              "drame historique"
+            ],
+            "en_US": [
+              "historical drama"
+            ]
+          },
+          "title": {
+            "fr_FR": "Richard III",
+            "en_US": "Richard III"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "Yale University Press"
+          },
+          "wikidata_id": "Q652011"
+        },
+        {
           "year": 1595,
           "genre": {
             "fr_FR": [
@@ -11470,6 +13685,30 @@
             "fr_FR": "Gallimard",
             "en_US": "Penguin Classics"
           }
+        },
+        {
+          "year": 1595,
+          "genre": {
+            "fr_FR": [
+              "drame historique"
+            ],
+            "en_US": [
+              "historical drama"
+            ]
+          },
+          "title": {
+            "fr_FR": "Richard II",
+            "en_US": "Richard II"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 160
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "Yale University Press"
+          },
+          "wikidata_id": "Q649562"
         },
         {
           "year": 1599,
@@ -11497,6 +13736,27 @@
           }
         },
         {
+          "year": 1599,
+          "genre": {
+            "fr_FR": [
+              "drame historique"
+            ],
+            "en_US": [
+              "historical drama"
+            ]
+          },
+          "title": {
+            "fr_FR": "Henri V",
+            "en_US": "Henry V"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Didier",
+            "en_US": "Yale University Press"
+          },
+          "wikidata_id": "Q495954"
+        },
+        {
           "year": 1600,
           "genre": {
             "fr_FR": [
@@ -11518,6 +13778,54 @@
             "fr_FR": "Gallimard",
             "en_US": "Penguin Classics"
           }
+        },
+        {
+          "year": 1600,
+          "genre": {
+            "fr_FR": [
+              "comédie"
+            ],
+            "en_US": [
+              "comedy"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Songe d'une nuit d'été",
+            "en_US": "A Midsummer Night's Dream"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 171
+          },
+          "publisher": {
+            "fr_FR": "Didier",
+            "en_US": "Yale University Press"
+          },
+          "wikidata_id": "Q104871"
+        },
+        {
+          "year": 1600,
+          "genre": {
+            "fr_FR": [
+              "tragi-comédie"
+            ],
+            "en_US": [
+              "tragicomedy"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Marchand de Venise",
+            "en_US": "The Merchant of Venice"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 249
+          },
+          "publisher": {
+            "fr_FR": "Pagnerre éditeur",
+            "en_US": "Yale University Press"
+          },
+          "wikidata_id": "Q206400"
         },
         {
           "year": 1605,
@@ -11612,8 +13920,98 @@
             "fr_FR": "Gallimard",
             "en_US": "Penguin Classics"
           }
+        },
+        {
+          "year": 1622,
+          "genre": {
+            "fr_FR": [
+              "théâtre",
+              "tragédie"
+            ],
+            "en_US": [
+              "theater",
+              "tragedy"
+            ]
+          },
+          "title": {
+            "fr_FR": "Othello",
+            "en_US": "Othello"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 145
+          },
+          "publisher": {
+            "fr_FR": "Pagnerre éditeur",
+            "en_US": "Yale University Press"
+          },
+          "wikidata_id": "Q26833"
+        },
+        {
+          "year": 1623,
+          "genre": {
+            "fr_FR": [
+              "drame historique"
+            ],
+            "en_US": [
+              "historical drama"
+            ]
+          },
+          "title": {
+            "fr_FR": "Henri VIII",
+            "en_US": "Henry VIII"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "Yale University Press"
+          },
+          "wikidata_id": "Q672059"
+        },
+        {
+          "year": 1623,
+          "genre": {
+            "fr_FR": [
+              "tragédie"
+            ],
+            "en_US": [
+              "tragedy"
+            ]
+          },
+          "title": {
+            "fr_FR": "Antoine et Cléopâtre",
+            "en_US": "Antony and Cleopatra"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Didier",
+            "en_US": "Yale University Press"
+          },
+          "wikidata_id": "Q606830"
+        },
+        {
+          "year": 1623,
+          "genre": {
+            "fr_FR": [
+              "comédie"
+            ],
+            "en_US": [
+              "comedy"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Mégère apprivoisée",
+            "en_US": "The Taming of the Shrew"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "Yale University Press"
+          },
+          "wikidata_id": "Q332387"
         }
-      ]
+      ],
+      "wikidata_id": "Q692"
     },
     {
       "name": "William Faulkner",

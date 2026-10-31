@@ -13,13 +13,13 @@ Every record comes from a real catalogue of well-known works, so a generated boo
 
 | | Count |
 |---|---|
-| Authors | 164 |
-| Books | 425 |
-| Genres | ~200 per locale |
-| Nationalities | 22 |
+| Authors | 190 |
+| Books | 518 |
+| Genres | ~220 per locale |
+| Nationalities | 24 |
 | Years covered | 800 BC → 2024 |
 
-Classics, crime fiction, science fiction, fantasy, horror, poetry, drama, essays and contemporary novels by French, American, British, Italian, Greek, Russian, Latin-American writers, and more.
+Classics, philosophy, crime fiction, science fiction, fantasy, horror, poetry, drama, essays and contemporary novels by French, American, British, Italian, Greek, Roman, Russian, German, Japanese, Latin-American writers, and more.
 
 ---
 
@@ -210,7 +210,7 @@ fake.books_by_year_range(-500, 0)       # Ancient Greek works
 Catalogue overview:
 
 ```python
-fake.all_authors()        # ['Agatha Christie', 'Alain Damasio', ...]  (164, sorted)
+fake.all_authors()        # ['Agatha Christie', 'Alain Damasio', ...]  (190, sorted)
 fake.all_genres()         # ['absurd novel', 'absurdism', 'adolescence', ...]  (sorted, localized)
 fake.all_nationalities()  # ['Algerian', 'American', 'Ancient Greek', 'Argentine', ...]
 fake_fr.all_nationalities()  # ['algérien', 'allemand', 'américain', 'argentin', ...]
@@ -358,7 +358,7 @@ store.replace_source("my_dataset", [
     },
 ])
 
-store.sources()   # {'builtin': 425, 'wikidata': 142, 'my_dataset': 1}
+store.sources()   # {'builtin': 518, 'wikidata': 142, 'my_dataset': 1}
 ```
 
 Record schema:

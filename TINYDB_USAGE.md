@@ -121,8 +121,8 @@ print(f"First 15: {all_genres[:15]}")
 - **Persistent store** (optional): any path passed to `LiteratureProvider.use_database()`, typically `default_db_path()` (`~/.cache/faker-literature/literature_db.json` on Linux, `%LOCALAPPDATA%\faker-literature\` on Windows)
 
 ### Bundled catalogue
-- `literature.json`: ~270 KB (12,000 lines)
-- 164 authors, 425 books, ~200 unique genres per locale
+- `literature.json`: ~320 KB (14,500 lines)
+- 190 authors, 518 books, ~220 unique genres per locale
 
 ### Sources
 Every record carries a `source` field (`builtin`, `wikidata`, ...).
@@ -196,7 +196,7 @@ book_en = fake_en.book()
 print(book_en['genre'])  # ['genre1_en', 'genre2_en']
 ```
 
-All 425 bundled books have genre lists for both fr_FR and en_US locales.
+All 518 bundled books have genre lists for both fr_FR and en_US locales.
 
 ## Requirements
 

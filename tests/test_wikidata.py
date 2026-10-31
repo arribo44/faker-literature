@@ -91,3 +91,19 @@ def test_import_replaces_previous_wikidata_books(monkeypatch):
 
     assert count == 1
     assert store.sources()["wikidata"] == 1
+
+
+def test_publication_date_wins_over_creation_date():
+    [record] = wikidata.parse_bindings([_row(date="1869-04-01T00:00:00Z", inception="1860-01-01T00:00:00Z")])
+    assert record["year"] == 1869
+
+    no_publication = _row(inception="1860-01-01T00:00:00Z")
+    del no_publication["date"]
+    [record] = wikidata.parse_bindings([no_publication])
+    assert record["year"] == 1860
+
+
+def test_implausible_page_counts_are_ignored():
+    [record] = wikidata.parse_bindings([_row(pages="940512")])
+
+    assert record["pages"] is None

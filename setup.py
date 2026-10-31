@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as readme_file:
 
 setup(
     name="faker-literature",
-    version="0.2.1",
+    version="0.3.0",
     description="A Faker provider for generating literature-related data",
     long_description=long_description,
     long_description_content_type="text/markdown",

@@ -4,6 +4,21 @@ Toutes les évolutions notables de `faker-literature` sont documentées dans ce 
 
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0/) et les versions suivent [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.3.0] - 2026-10-31
+
+### Ajouté
+
+- Catalogue enrichi : 190 auteurs et 518 livres (contre 164 et 425), notamment des philosophes (Aristote, Descartes, Kant, Rousseau, Sartre, Spinoza…), des classiques latins et anglais (Virgile, Ovide, Chaucer, Milton) et de nouvelles œuvres de Shakespeare, Lovecraft, Eco, Hugo et Verne.
+- Éditeur web local du catalogue (`tools/literature_editor/`) : recherche des œuvres d'un auteur par son identifiant Wikidata et ajout dans `literature.json`.
+- Éditeur : section « Influencé par » (propriété P737) avec recherche en un clic, message OK / KO après chaque ajout, navigation Précédent / Suivant entre auteurs.
+
+### Corrigé
+
+- Catalogue : doublons supprimés (deux copies de l'Iliade et de l'Odyssée, et « La Pendule de Foucault » remplacée par « Le Pendule de Foucault », 1988), années corrigées, nationalités harmonisées (24 au lieu de 31, toutes en minuscules en français) et genres fusionnés (223 au lieu de 265), dont la traduction erronée « hermétiquement » devenue « mystère en chambre close ».
+- Éditeur : détection des doublons insensible aux articles et à la ponctuation des noms (« L'Iliade » = « Iliade », « J. D. Salinger » = « J.D. Salinger »).
+- Importeur Wikidata : les auteurs dont le nom n'existe que sous forme de libellé multilingue (`mul`), comme Victor Hugo, étaient ignorés.
+- Importeur Wikidata : la date de publication est préférée à la date de création, et les nombres de pages aberrants sont ignorés.
+
 ## [0.2.1] - 2026-10-31
 
 ### Ajouté
@@ -39,6 +54,7 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 - Packaging PyPI avec `setup.py`.
 - Tests automatises et documentation d'utilisation.
 
+[0.3.0]: https://github.com/arribo44/faker-literature/releases/tag/v0.3.0
 [0.2.1]: https://github.com/arribo44/faker-literature/releases/tag/v0.2.1
 [0.2.0]: https://github.com/arribo44/faker-literature/releases/tag/v0.2.0
 [0.1.0]: https://github.com/arribo44/faker-literature/releases/tag/v0.1.0

@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Éditeur du catalogue</title>
+<style>
+  :root {
+    --bg: #f6f5f1; --surface: #ffffff; --surface-2: #f0eee8; --text: #1f1d1a; --muted: #6b665e;
+    --border: #dedad1; --accent: #7a3e1d; --accent-text: #ffffff; --ok: #2f6b3a; --ok-bg: #e4f1e5;
+    --warn: #8a5a00; --warn-bg: #fbefd5; --error: #a12a2a; --error-bg: #fbe3e1; --focus: #c2703d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171614; --surface: #211f1c; --surface-2: #2a2824; --text: #ece8e1; --muted: #a39d93;
+      --border: #3a3732; --accent: #e09a6b; --accent-text: #1b1310; --ok: #8fd19a; --ok-bg: #1f3323;
+      --warn: #f0c46a; --warn-bg: #3a2f17; --error: #f19a93; --error-bg: #3d1f1d; --focus: #e09a6b;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 1040px; margin: 0 auto; padding: 24px 16px 80px; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  h2 { font-size: 1.15rem; margin: 0 0 12px; }
+  .muted { color: var(--muted); }
+  .small { font-size: 0.85rem; }
+  a { color: var(--accent); }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-top: 16px; }
+  form.search { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  form.search input { flex: 1 1 260px; }
+  input, button { font: inherit; color: inherit; }
+  input { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 7px 10px; width: 100%; min-width: 0; }
+  input:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  input.missing { border-color: var(--error); background: var(--error-bg); }
+  input:disabled { background: var(--surface-2); color: var(--muted); }
+  button { border: 1px solid var(--border); background: var(--surface-2); border-radius: 6px; padding: 7px 14px; cursor: pointer; }
+  button.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); font-weight: 600; }
+  button:disabled { opacity: 0.55; cursor: default; }
+  .status { margin-top: 12px; padding: 10px 12px; border-radius: 6px; }
+  .status.error { background: var(--error-bg); color: var(--error); }
+  .status.info { background: var(--surface-2); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px 14px; }
+  label { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 3px; }
+  .badge { display: inline-block; font-size: 0.75rem; padding: 1px 8px; border-radius: 99px; margin-left: 6px; white-space: nowrap; vertical-align: 1px; }
+  .badge.ok { background: var(--ok-bg); color: var(--ok); }
+  .badge.warn { background: var(--warn-bg); color: var(--warn); }
+  .note { margin: 10px 0 0; padding: 8px 10px; border-radius: 6px; background: var(--surface-2); font-size: 0.9rem; }
+  .toolbar { display: flex; gap: 12px 18px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+  .toolbar input[type=search] { flex: 1 1 220px; width: auto; }
+  .toolbar label { display: flex; gap: 6px; align-items: center; margin: 0; color: var(--text); font-size: 0.9rem; }
+  .toolbar input[type=checkbox] { width: auto; }
+  details.work { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; background: var(--surface); }
+  details.work[open] { border-color: var(--accent); }
+  details.work > summary { cursor: pointer; padding: 10px 12px; list-style: none; display: flex; gap: 10px; align-items: baseline; }
+  details.work > summary::-webkit-details-marker { display: none; }
+  details.work > summary::before { content: "▸"; color: var(--muted); }
+  details.work[open] > summary::before { content: "▾"; }
+  .work-title { font-weight: 600; overflow-wrap: anywhere; }
+  .work-meta { margin-left: auto; text-align: right; flex-shrink: 0; }
+  .work-body { padding: 4px 12px 14px 30px; }
+  .actions { display: flex; gap: 12px; align-items: center; margin-top: 12px; flex-wrap: wrap; }
+  .result { flex-basis: 100%; padding: 8px 12px; border-radius: 6px; font-weight: 600; }
+  .result.ok { background: var(--ok-bg); color: var(--ok); }
+  .result.error { background: var(--error-bg); color: var(--error); }
+  .influences { margin-top: 16px; border-top: 1px solid var(--border); padding-top: 12px; }
+  .influences h3 { font-size: 1rem; margin: 0 0 8px; }
+  .influences ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .influences li { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+  .linklike { background: none; border: none; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; font-family: ui-monospace, monospace; font-size: 0.9rem; }
+  .linklike:disabled { color: var(--muted); text-decoration: none; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; max-height: 220px; overflow: auto; margin-top: 8px; }
+  .chip { padding: 2px 10px; border-radius: 99px; font-size: 0.82rem; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  #toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); max-width: calc(100% - 32px);
+           padding: 10px 16px; border-radius: 8px; background: var(--ok-bg); color: var(--ok); border: 1px solid var(--ok);
+           box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+  #toast.error { background: var(--error-bg); color: var(--error); border-color: var(--error); }
+  @media (max-width: 600px) {
+    details.work > summary { flex-wrap: wrap; }
+    .work-meta { margin-left: 0; text-align: left; width: 100%; }
+    .work-body { padding-left: 12px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Éditeur du catalogue faker-literature</h1>
+  <p class="muted small" id="stats">Chargement du catalogue…</p>
+
+  <form class="search" id="search-form">
+    <input id="qid" name="qid" required autocomplete="off" aria-label="Identifiant Wikidata de l'auteur"
+           placeholder="Identifiant Wikidata de l'auteur : Q535 ou https://www.wikidata.org/wiki/Q535">
+    <button class="primary" id="search-button" type="submit">Rechercher</button>
+  </form>
+  <p class="small muted">Pas d'identifiant ? <a id="wikidata-search" href="https://www.wikidata.org/" target="_blank" rel="noopener noreferrer">Cherchez l'auteur sur Wikidata</a> : son identifiant (Q…) est affiché à côté de son nom.</p>
+  <div id="status" role="status" aria-live="polite"></div>
+
+  <section class="panel" id="author-panel" hidden>
+    <h2 id="author-heading"></h2>
+    <p class="muted small" id="author-description"></p>
+    <div class="grid">
+      <div><label for="name-fr">Nom (français)</label><input id="name-fr"></div>
+      <div><label for="name-en">Nom (anglais)</label><input id="name-en"></div>
+      <div><label for="nat-fr">Nationalité (français)</label><input id="nat-fr" list="nationalities-fr" placeholder="français"></div>
+      <div><label for="nat-en">Nationalité (anglais)</label><input id="nat-en" list="nationalities-en" placeholder="French"></div>
+    </div>
+    <p class="note" id="author-note"></p>
+    <div class="influences">
+      <h3>Influencé par <span class="muted small">(propriété P737 de Wikidata — cliquez sur un identifiant pour rechercher cet auteur)</span></h3>
+      <div id="influences"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="genres-panel" hidden>
+    <details>
+      <summary><strong>Genres déjà utilisés dans le catalogue</strong> <span class="muted small">— cliquez pour l'ajouter au dernier champ « genres » sélectionné</span></summary>
+      <input type="search" id="genre-filter" placeholder="Filtrer les genres…" style="margin-top:10px">
+      <div class="cols">
+        <div><strong class="small">Français</strong><div class="chips" id="chips-fr"></div></div>
+        <div><strong class="small">Anglais</strong><div class="chips" id="chips-en"></div></div>
+      </div>
+    </details>
+  </section>
+
+  <section class="panel" id="works-panel" hidden>
+    <h2 id="works-heading"></h2>
+    <div class="toolbar">
+      <input type="search" id="work-filter" placeholder="Filtrer par titre…" aria-label="Filtrer par titre">
+      <label><input type="checkbox" id="hide-known"> Masquer celles déjà au catalogue</label>
+      <label><input type="checkbox" id="only-complete"> Seulement les fiches complètes</label>
+    </div>
+    <div id="works"></div>
+  </section>
+</main>
+
+<datalist id="nationalities-fr"></datalist>
+<datalist id="nationalities-en"></datalist>
+<datalist id="publishers-fr"></datalist>
+<datalist id="publishers-en"></datalist>
+<div id="toast" role="alert" hidden></div>
+
+<script>
+"use strict";
+
+const $ = (id) => document.getElementById(id);
+const LOCALES = ["fr_FR", "en_US"];
+const state = { author: null, existing: null, works: [] };
+const lastGenreInput = { fr_FR: null, en_US: null };
+
+function el(tag, attrs = {}, ...children) {
+  const node = document.createElement(tag);
+  for (const [key, value] of Object.entries(attrs)) {
+    if (value === null || value === undefined || value === false) continue;
+    if (key === "class") node.className = value;
+    else if (key.startsWith("on")) node.addEventListener(key.slice(2), value);
+    else if (key === "value") node.value = value;
+    else node.setAttribute(key, value === true ? "" : value);
+  }
+  for (const child of children.flat()) {
+    if (child === null || child === undefined || child === false) continue;
+    node.append(child instanceof Node ? child : document.createTextNode(String(child)));
+  }
+  return node;
+}
+
+function setStatus(message, kind = "info") {
+  const box = $("status");
+  box.replaceChildren();
+  if (!message) { box.className = ""; return; }
+  box.className = "status " + kind;
+  box.textContent = message;
+}
+
+let toastTimer;
+function toast(message, isError = false) {
+  const box = $("toast");
+  box.textContent = message;
+  box.className = isError ? "error" : "";
+  box.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { box.hidden = true; }, isError ? 7000 : 4000);
+}
+
+const SERVER_HELP = "lancez le serveur avec « .venv/bin/python tools/literature_editor/server.py » "
+  + "depuis la racine du projet, puis ouvrez l'adresse qu'il affiche (http://127.0.0.1:8765/).";
+
+async function api(path, options = {}) {
+  let response;
+  try {
+    response = await fetch(path, options);
+  } catch (error) {
+    throw new Error("Le serveur local ne répond pas : " + SERVER_HELP);
+  }
+  let payload = {};
+  try { payload = await response.json(); } catch (error) { /* empty body */ }
+  if (!response.ok) throw new Error(payload.error || `Erreur ${response.status}`);
+  return payload;
+}
+
+// Catalogue suggestions
+
+function fillDatalist(id, values) {
+  $(id).replaceChildren(...values.map((value) => el("option", { value })));
+}
+
+function renderChips() {
+  const query = $("genre-filter").value.trim().toLowerCase();
+  for (const [locale, short] of [["fr_FR", "fr"], ["en_US", "en"]]) {
+    const genres = (state.catalogue?.genre[locale] || []).filter((g) => g.toLowerCase().includes(query));
+    $("chips-" + short).replaceChildren(...genres.map((genre) =>
+      el("button", { type: "button", class: "chip", onclick: () => appendGenre(locale, genre) }, genre)));
+  }
+}
+
+function appendGenre(locale, genre) {
+  const input = lastGenreInput[locale];
+  if (!input || !input.isConnected) {
+    toast("Ouvrez d'abord une œuvre et cliquez dans son champ « genres " + (locale === "fr_FR" ? "français" : "anglais") + " ».", true);
+    return;
+  }
+  const genres = input.value.split(",").map((g) => g.trim()).filter(Boolean);
+  if (!genres.includes(genre)) genres.push(genre);
+  input.value = genres.join(", ");
+  input.dispatchEvent(new Event("input"));
+}
+
+async function loadCatalogue() {
+  try {
+    const info = await api("/api/catalogue");
+    state.catalogue = info;
+    $("stats").textContent = `${info.authors} auteurs · ${info.books} livres dans literature.json`;
+    fillDatalist("nationalities-fr", info.nationality.fr_FR);
+    fillDatalist("nationalities-en", info.nationality.en_US);
+    fillDatalist("publishers-fr", info.publisher.fr_FR);
+    fillDatalist("publishers-en", info.publisher.en_US);
+    renderChips();
+  } catch (error) {
+    $("stats").textContent = "Impossible de lire le catalogue : " + error.message;
+  }
+}
+
+// Author
+
+function renderAuthor() {
+  const { author, existing } = state;
+  $("author-panel").hidden = false;
+  $("author-heading").replaceChildren(
+    author.name.fr_FR + " ",
+    el("a", { class: "small", href: "https://www.wikidata.org/wiki/" + author.wikidata_id, target: "_blank", rel: "noopener noreferrer" }, author.wikidata_id),
+    existing ? el("span", { class: "badge ok" }, "au catalogue") : el("span", { class: "badge warn" }, "nouvel auteur"),
+  );
+  $("author-description").textContent = author.description;
+
+  const pick = (value, locale) => (value && typeof value === "object" ? value[locale] : value) || "";
+  const source = existing || author;
+  $("name-fr").value = pick(source.name, "fr_FR");
+  $("name-en").value = pick(source.name, "en_US");
+  $("nat-fr").value = pick(source.nationality, "fr_FR");
+  $("nat-en").value = pick(source.nationality, "en_US");
+  for (const id of ["name-fr", "name-en", "nat-fr", "nat-en"]) {
+    $(id).disabled = Boolean(existing);
+    $(id).classList.toggle("missing", !existing && !$(id).value.trim());
+  }
+  $("author-note").textContent = existing
+    ? `Déjà dans le catalogue avec ${existing.books} livre(s) : les livres seront ajoutés à cet auteur, son nom et sa nationalité sont conservés.`
+    : "Cet auteur sera créé au premier ajout. Vérifiez son nom et sa nationalité, de préférence avec une valeur déjà utilisée (liste proposée).";
+  renderInfluences();
+}
+
+function influenceItem(influence) {
+  const id = influence.person
+    ? el("button", { type: "button", class: "linklike", title: "Rechercher " + influence.name, onclick: () => searchFor(influence.wikidata_id) }, influence.wikidata_id)
+    : el("a", { class: "small", href: "https://www.wikidata.org/wiki/" + influence.wikidata_id, target: "_blank", rel: "noopener noreferrer" }, influence.wikidata_id);
+  return el("li", {},
+    el("strong", {}, influence.name), id,
+    influence.in_catalogue ? el("span", { class: "badge ok" }, "au catalogue") : null,
+    influence.description ? el("span", { class: "muted small" }, influence.description) : null);
+}
+
+function renderInfluences() {
+  const influences = state.author.influences || [];
+  const people = influences.filter((influence) => influence.person);
+  const others = influences.filter((influence) => !influence.person);
+  const blocks = [];
+  if (people.length) blocks.push(el("ul", {}, people.map(influenceItem)));
+  if (others.length) {
+    blocks.push(el("p", { class: "muted small", style: "margin: 12px 0 6px" }, "Autres influences (œuvres, mouvements…) :"));
+    blocks.push(el("ul", {}, others.map(influenceItem)));
+  }
+  if (!blocks.length) blocks.push(el("p", { class: "muted small", style: "margin: 0" }, "Aucune influence renseignée sur Wikidata pour cet auteur."));
+  $("influences").replaceChildren(...blocks);
+}
+
+function authorPayload() {
+  return {
+    wikidata_id: state.author.wikidata_id,
+    name: { fr_FR: $("name-fr").value, en_US: $("name-en").value },
+    nationality: { fr_FR: $("nat-fr").value, en_US: $("nat-en").value },
+  };
+}
+
+// Works
+
+const isComplete = (work) => Boolean(work.title.fr_FR && work.title.en_US && work.year !== null
+  && work.genre.fr_FR.length && work.genre.en_US.length);
+
+function workSummary(work) {
+  const title = work.title.fr_FR || work.title.en_US;
+  const other = work.title.fr_FR && work.title.en_US && work.title.en_US !== work.title.fr_FR ? work.title.en_US : "";
+  const meta = [work.year ?? "année ?", work.type, work.pages.fr_FR || work.pages.en_US ? `${work.pages.fr_FR || work.pages.en_US} p.` : ""]
+    .filter((part) => part !== "" && part !== null);
+  return [
+    el("span", { class: "work-title" }, title, other ? el("span", { class: "muted" }, " — " + other) : null,
+      work.in_catalogue ? el("span", { class: "badge ok" }, "au catalogue") : null,
+      !work.in_catalogue && !isComplete(work) ? el("span", { class: "badge warn" }, "à compléter") : null),
+    el("span", { class: "work-meta muted small" }, meta.join(" · ")),
+  ];
+}
+
+function field(labelText, input) {
+  const id = "f" + Math.random().toString(36).slice(2);
+  input.id = id;
+  return el("div", {}, el("label", { for: id }, labelText), input);
+}
+
+function buildWorkForm(work, details) {
+  const inputs = {
+    title_fr: el("input", { value: work.title.fr_FR, required: true }),
+    title_en: el("input", { value: work.title.en_US, required: true }),
+    year: el("input", { value: work.year ?? "", inputmode: "numeric", placeholder: "-800 pour 800 av. J.-C.", required: true }),
+    genre_fr: el("input", { value: work.genre.fr_FR.join(", "), placeholder: "roman, science-fiction", required: true }),
+    genre_en: el("input", { value: work.genre.en_US.join(", "), placeholder: "novel, science fiction", required: true }),
+    pages_fr: el("input", { value: work.pages.fr_FR ?? "", inputmode: "numeric" }),
+    pages_en: el("input", { value: work.pages.en_US ?? "", inputmode: "numeric" }),
+    publisher_fr: el("input", { value: work.publisher.fr_FR, list: "publishers-fr", placeholder: "Gallimard" }),
+    publisher_en: el("input", { value: work.publisher.en_US, list: "publishers-en", placeholder: "Penguin Classics" }),
+  };
+  inputs.genre_fr.addEventListener("focus", () => { lastGenreInput.fr_FR = inputs.genre_fr; });
+  inputs.genre_en.addEventListener("focus", () => { lastGenreInput.en_US = inputs.genre_en; });
+
+  const required = ["title_fr", "title_en", "year", "genre_fr", "genre_en"];
+  const refresh = () => required.forEach((key) => inputs[key].classList.toggle("missing", !inputs[key].value.trim()));
+  Object.values(inputs).forEach((input) => input.addEventListener("input", refresh));
+  refresh();
+
+  const button = el("button", { type: "button", class: "primary" }, work.in_catalogue ? "Déjà au catalogue" : "Ajouter au catalogue");
+  button.disabled = work.in_catalogue;
+  const result = el("div", { class: "result", role: "status", "aria-live": "polite", hidden: true });
+  button.addEventListener("click", () => addWork(work, inputs, button, details, result));
+
+  return el("div", { class: "work-body" },
+    el("div", { class: "grid" },
+      field("Titre français *", inputs.title_fr), field("Titre anglais *", inputs.title_en),
+      field("Année de publication *", inputs.year),
+      field("Genres français * (séparés par des virgules)", inputs.genre_fr),
+      field("Genres anglais * (séparés par des virgules)", inputs.genre_en),
+      field("Pages (édition française)", inputs.pages_fr), field("Pages (édition anglaise)", inputs.pages_en),
+      field("Éditeur français", inputs.publisher_fr), field("Éditeur anglais", inputs.publisher_en),
+    ),
+    el("div", { class: "actions" }, button,
+      el("a", { class: "small", href: "https://www.wikidata.org/wiki/" + work.wikidata_id, target: "_blank", rel: "noopener noreferrer" },
+        "Voir " + work.wikidata_id + " sur Wikidata"),
+      el("span", { class: "muted small" }, "* obligatoire"), result),
+  );
+}
+
+function showResult(result, ok, message) {
+  result.hidden = false;
+  result.className = "result " + (ok ? "ok" : "error");
+  result.textContent = (ok ? "✓ OK — " : "✗ KO — ") + message;
+}
+
+const REQUIRED_LABELS = {
+  title_fr: "titre français", title_en: "titre anglais", year: "année",
+  genre_fr: "genres français", genre_en: "genres anglais",
+};
+
+async function addWork(work, inputs, button, details, resultBox) {
+  const missingAuthor = !state.existing && ["name-fr", "name-en", "nat-fr", "nat-en"].filter((id) => !$(id).value.trim());
+  if (missingAuthor && missingAuthor.length) {
+    missingAuthor.forEach((id) => $(id).classList.add("missing"));
+    showResult(resultBox, false, "non ajouté : complétez d'abord le nom et la nationalité de l'auteur, en haut de la page.");
+    $(missingAuthor[0]).focus();
+    return;
+  }
+  const missing = Object.keys(REQUIRED_LABELS).filter((key) => !inputs[key].value.trim());
+  if (missing.length) {
+    showResult(resultBox, false, "non ajouté : à compléter — " + missing.map((key) => REQUIRED_LABELS[key]).join(", ") + ".");
+    inputs[missing[0]].focus();
+    return;
+  }
+  const book = {
+    wikidata_id: work.wikidata_id,
+    title: { fr_FR: inputs.title_fr.value, en_US: inputs.title_en.value },
+    year: inputs.year.value,
+    genre: { fr_FR: inputs.genre_fr.value, en_US: inputs.genre_en.value },
+    pages: { fr_FR: inputs.pages_fr.value, en_US: inputs.pages_en.value },
+    publisher: { fr_FR: inputs.publisher_fr.value, en_US: inputs.publisher_en.value },
+  };
+  button.disabled = true;
+  button.textContent = "Ajout…";
+  try {
+    const response = await api("/api/books", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ author: authorPayload(), book }),
+    });
+    work.in_catalogue = true;
+    button.textContent = "Ajouté ✓";
+    Object.values(inputs).forEach((input) => { input.disabled = true; input.classList.remove("missing"); });
+    renderWorksHeading();
+    details.querySelector("summary").replaceChildren(...workSummary(work));
+    showResult(resultBox, true, `${response.message} Enregistré dans literature.json (${response.total_books} livres au total).`);
+    toast(response.message);
+    if (!state.existing) {
+      state.existing = { name: authorPayload().name, nationality: authorPayload().nationality, books: 0 };
+    }
+    state.existing.books += 1;
+    renderAuthor();
+    applyFilters();
+    loadCatalogue();
+  } catch (error) {
+    button.disabled = false;
+    button.textContent = "Ajouter au catalogue";
+    showResult(resultBox, false, "non ajouté : " + error.message);
+    toast(error.message, true);
+  }
+}
+
+function renderWorksHeading() {
+  const { works, total } = state;
+  const known = works.filter((work) => work.in_catalogue).length;
+  $("works-heading").textContent = total > works.length
+    ? `${total} œuvres sur Wikidata — les ${works.length} plus connues affichées (${known} déjà au catalogue)`
+    : `${works.length} œuvre(s) sur Wikidata (${known} déjà au catalogue)`;
+}
+
+function renderWorks() {
+  const { works } = state;
+  $("works-panel").hidden = false;
+  $("genres-panel").hidden = false;
+  renderWorksHeading();
+
+  const list = works.map((work) => {
+    const details = el("details", { class: "work" }, el("summary", {}, ...workSummary(work)));
+    details.addEventListener("toggle", () => {
+      if (details.open && !details.dataset.built) {
+        details.append(buildWorkForm(work, details));
+        details.dataset.built = "1";
+      }
+    });
+    work.node = details;
+    return details;
+  });
+  $("works").replaceChildren(...(list.length ? list : [el("p", { class: "muted" }, "Aucune œuvre trouvée pour cet auteur.")]));
+  applyFilters();
+}
+
+function applyFilters() {
+  const query = $("work-filter").value.trim().toLowerCase();
+  const hideKnown = $("hide-known").checked;
+  const onlyComplete = $("only-complete").checked;
+  for (const work of state.works) {
+    const text = (work.title.fr_FR + " " + work.title.en_US).toLowerCase();
+    work.node.hidden = (query && !text.includes(query)) || (hideKnown && work.in_catalogue) || (onlyComplete && !isComplete(work));
+  }
+}
+
+// Search
+
+function searchFor(id) {
+  $("qid").value = id;
+  $("search-form").requestSubmit();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+async function search(event) {
+  event.preventDefault();
+  const text = $("qid").value.trim();
+  const button = $("search-button");
+  button.disabled = true;
+  setStatus("Interrogation de Wikidata… (quelques secondes, plus pour les auteurs très prolifiques)");
+  try {
+    const result = await api("/api/author?id=" + encodeURIComponent(text));
+    Object.assign(state, result);
+    // Each author gets its own history entry, so "Back" returns to the previous one
+    const address = "?id=" + encodeURIComponent(result.author.wikidata_id);
+    if (location.search !== address) history.pushState(null, "", address);
+    setStatus("");
+    renderAuthor();
+    renderWorks();
+  } catch (error) {
+    setStatus(error.message, "error");
+  } finally {
+    button.disabled = false;
+  }
+}
+
+$("search-form").addEventListener("submit", search);
+$("qid").addEventListener("input", () => {
+  const text = $("qid").value.trim();
+  $("wikidata-search").href = text && !/^q\d+$/i.test(text)
+    ? "https://www.wikidata.org/w/index.php?search=" + encodeURIComponent(text)
+    : "https://www.wikidata.org/";
+});
+for (const id of ["work-filter", "hide-known", "only-complete"]) $(id).addEventListener("input", applyFilters);
+$("genre-filter").addEventListener("input", renderChips);
+for (const id of ["name-fr", "name-en", "nat-fr", "nat-en"]) {
+  $(id).addEventListener("input", () => $(id).classList.toggle("missing", !$(id).value.trim()));
+}
+if (location.protocol === "file:") {
+  $("search-button").disabled = true;
+  $("stats").textContent = "";
+  setStatus("Cette page est ouverte comme un fichier : elle ne peut ni interroger Wikidata ni modifier le catalogue. Pour l'utiliser, "
+    + SERVER_HELP, "error");
+} else {
+  loadCatalogue();
+}
+
+// A bookmarked ?id=Q... address starts the search directly, as do Back / Forward
+function searchFromAddress() {
+  const id = new URLSearchParams(location.search).get("id");
+  if (id && location.protocol !== "file:") {
+    $("qid").value = id;
+    $("search-form").requestSubmit();
+  }
+}
+window.addEventListener("popstate", searchFromAddress);
+searchFromAddress();
+</script>
+</body>
+</html>
