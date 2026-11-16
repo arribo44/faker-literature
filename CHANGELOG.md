@@ -4,7 +4,7 @@ Toutes les évolutions notables de `faker-literature` sont documentées dans ce 
 
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0/) et les versions suivent [Semantic Versioning](https://semver.org/lang/fr/).
 
-## [Non publié]
+## [0.4.0] - 2026-11-16
 
 ### Modifié
 
@@ -30,6 +30,7 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 
 ### Outillage
 
+- Workflow de publication (`.github/workflows/release.yml`) : le push d'un tag `vX.Y.Z` teste et construit le paquet, vérifie que le tag correspond à la version et au CHANGELOG, publie sur PyPI par Trusted Publishing (sans jeton) et crée la release GitHub ; un lancement manuel publie sur TestPyPI.
 - Commande `faker-literature` (avec `--version`), équivalente à `python -m faker_literature`.
 - Annotations de type sur tout le paquet, vérifiées par mypy en mode strict, et fichier `py.typed`.
 - Extra `dev` (`pip install -e ".[dev]"`) : tests, ruff, mypy, build et twine.
@@ -123,6 +124,7 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 - Packaging PyPI avec `setup.py`.
 - Tests automatises et documentation d'utilisation.
 
+[0.4.0]: https://github.com/arribo44/faker-literature/releases/tag/v0.4.0
 [0.3.0]: https://github.com/arribo44/faker-literature/releases/tag/v0.3.0
 [0.2.1]: https://github.com/arribo44/faker-literature/releases/tag/v0.2.1
 [0.2.0]: https://github.com/arribo44/faker-literature/releases/tag/v0.2.0
