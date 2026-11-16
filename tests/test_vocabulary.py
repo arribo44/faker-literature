@@ -47,7 +47,8 @@ def test_add_refuses_a_label_of_another_genre():
 
 
 @pytest.mark.parametrize("genres, message", [
-    ({"crime": {"fr_FR": "polar", "en_US": "crime"}, "noir": {"fr_FR": "Polar", "en_US": "noir"}}, "already used by crime"),
+    ({"crime": {"fr_FR": "polar", "en_US": "crime"},
+      "noir": {"fr_FR": "Polar", "en_US": "noir"}}, "already used by crime"),
     ({"crime": {"fr_FR": "polar", "en_US": "crime", "aliases": {"en_US": ["noir"]}},
       "noir": {"fr_FR": "noir", "en_US": "noir"}}, "already used by crime"),
     ({"Crime": {"fr_FR": "polar", "en_US": "crime"}}, "genre id"),

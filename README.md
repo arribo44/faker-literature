@@ -1,7 +1,8 @@
 # Faker Literature Provider
 
 [![PyPI version](https://badge.fury.io/py/faker-literature.svg)](https://badge.fury.io/py/faker-literature)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![CI](https://github.com/arribo44/faker-literature/actions/workflows/ci.yml/badge.svg)](https://github.com/arribo44/faker-literature/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 **A custom [Faker](https://faker.readthedocs.io/) provider for generating realistic literature data: writers, books, genres, publishers and more.**
@@ -54,7 +55,7 @@ cd faker-literature
 pip install -e .
 ```
 
-**Requirements**: Python 3.8+, `faker>=20.0.0`, `tinydb>=4.0.0`.
+**Requirements**: Python 3.10+, `faker>=20.0.0`, `tinydb>=4.0.0`. The package ships type hints (`py.typed`).
 
 ---
 
@@ -289,7 +290,7 @@ By default the bundled catalogue is loaded **in memory** and nothing is written 
 Import well-known literary works from Wikidata (CC0 licence) into a database stored in your user cache directory:
 
 ```bash
-python -m faker_literature import-wikidata --limit 500 --min-sitelinks 30
+faker-literature import-wikidata --limit 500 --min-sitelinks 30
 ```
 
 | Option | Default | Description |
@@ -300,7 +301,7 @@ python -m faker_literature import-wikidata --limit 500 --min-sitelinks 30
 
 ```bash
 # Import into a specific file
-python -m faker_literature --db ./my_catalogue.json import-wikidata --limit 1000 --min-sitelinks 20
+faker-literature --db ./my_catalogue.json import-wikidata --limit 1000 --min-sitelinks 20
 ```
 
 Default database location:
@@ -414,13 +415,14 @@ store.books.search((Book.year < 1900) & (Book.source == "wikidata"))
 Run the built-in demo to see every feature:
 
 ```bash
-python -m faker_literature
+faker-literature            # or: python -m faker_literature
+faker-literature --version
 ```
 
 Or with an enlarged catalogue:
 
 ```bash
-python -m faker_literature --db ~/.cache/faker-literature/literature_db.json demo
+faker-literature --db ~/.cache/faker-literature/literature_db.json demo
 ```
 
 Quick tour of both locales:
@@ -451,22 +453,27 @@ git clone https://github.com/arribo44/faker-literature.git
 cd faker-literature
 python -m venv .venv
 source .venv/bin/activate
-pip install -e ".[test]"
+pip install -e ".[dev]"      # tests, ruff, mypy, build and twine
 
 pytest                       # run the test suite (no network needed)
 pytest --cov=faker_literature
+ruff check .                 # lint
+mypy                         # type check (strict)
 python -m build              # build the distributions
 ```
+
+The version is defined once, in `faker_literature/__init__.py` (`__version__`); the packaging metadata lives in `pyproject.toml`. GitHub Actions runs the same checks on every push and pull request: lint and type check, the test suite on Python 3.10 to 3.14 (and on Windows), then a build of the package checked with `twine check` and installed from the wheel.
 
 Project layout:
 
 ```
 faker_literature/
 ├── __init__.py          # LiteratureProvider
-├── __main__.py          # CLI: demo and import-wikidata
+├── __main__.py          # CLI (faker-literature): demo and import-wikidata
 ├── store.py             # BookStore: TinyDB storage, validation, localization
 ├── vocabulary.py        # GenreVocabulary: one translation per genre, aliases
 ├── matching.py          # name/title normalization, duplicate detection
+├── _storage.py          # atomic JSON storage and inter-process lock
 ├── importers/
 │   └── wikidata.py      # Wikidata importer
 └── DATAS/

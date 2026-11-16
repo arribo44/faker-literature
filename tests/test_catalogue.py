@@ -8,19 +8,13 @@ in both locales.
 
 import json
 import re
-import sys
 from collections import Counter, defaultdict
-from pathlib import Path
 
+import editor
 import pytest
 
 from faker_literature.store import BUILTIN_DATA, LOCALES, load_builtin_books, validate_book
 from faker_literature.vocabulary import GenreVocabulary
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools" / "literature_editor"))
-
-import editor  # noqa: E402
-
 
 QID = re.compile(r"Q[1-9][0-9]*")
 

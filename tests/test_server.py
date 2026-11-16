@@ -5,15 +5,10 @@ import json
 import sys
 import threading
 from http.server import ThreadingHTTPServer
-from pathlib import Path
 
+import editor
 import pytest
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools" / "literature_editor"))
-
-import editor  # noqa: E402
-import server  # noqa: E402
-
+import server
 
 BOOK = {
     "author": {"wikidata_id": "Q999999", "name": {"fr_FR": "Murasaki Shikibu", "en_US": "Murasaki Shikibu"},
@@ -89,7 +84,8 @@ def test_write_with_the_session_keeps_the_file_permissions(running):
 
     assert response.status == 201, data
     assert "Le Dit du Genji" in catalogue.read_text(encoding="utf-8")
-    assert catalogue.stat().st_mode & 0o777 == 0o644
+    if sys.platform != "win32":  # POSIX permissions
+        assert catalogue.stat().st_mode & 0o777 == 0o644
 
 
 @pytest.mark.parametrize("headers", [{"Host": "evil.example:80"}, {"Origin": "http://evil.example"}])

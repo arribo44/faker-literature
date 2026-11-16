@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "faker-literature"
+dynamic = ["version"]
+description = "A Faker provider for generating literature-related data"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "arribo44", email = "pypi-jctranc@mailo.com" }]
+keywords = ["faker", "literature", "books", "authors", "test data"]
+requires-python = ">=3.10"
+dependencies = ["faker>=20.0.0", "tinydb>=4.0.0"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Testing :: Mocking",
+    "Typing :: Typed",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7", "pytest-cov"]
+dev = ["faker-literature[test]", "mypy", "ruff", "build", "twine"]
+
+[project.scripts]
+faker-literature = "faker_literature.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/arribo44/faker-literature"
+Documentation = "https://github.com/arribo44/faker-literature#readme"
+Source = "https://github.com/arribo44/faker-literature"
+"Bug Tracker" = "https://github.com/arribo44/faker-literature/issues"
+Changelog = "https://github.com/arribo44/faker-literature/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+include = ["faker_literature*"]
+
+[tool.setuptools.package-data]
+faker_literature = ["DATAS/*.json", "py.typed"]
+
+[tool.setuptools.dynamic]
+version = { attr = "faker_literature.__version__" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# The local catalogue editor is a script, not part of the package
+pythonpath = ["tools/literature_editor"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# These scripts put the repository on sys.path before importing the package
+"tools/literature_editor/*.py" = ["E402"]
+
+[tool.mypy]
+python_version = "3.10"
+files = ["faker_literature"]
+strict = true

@@ -24,7 +24,6 @@ from urllib.parse import parse_qs, urlsplit
 
 import editor
 
-
 INDEX = Path(__file__).with_name("index.html")
 MAX_BODY = 64 * 1024
 WRITE_LOCK = threading.Lock()
@@ -57,7 +56,8 @@ class EditorHandler(BaseHTTPRequestHandler):
                 self.close_connection = True
                 return
             try:
-                self._error(HTTPStatus.INTERNAL_SERVER_ERROR, "Erreur interne du serveur : voir le terminal où il tourne.")
+                self._error(HTTPStatus.INTERNAL_SERVER_ERROR,
+                            "Erreur interne du serveur : voir le terminal où il tourne.")
             except OSError:
                 pass
 
@@ -157,7 +157,8 @@ class EditorHandler(BaseHTTPRequestHandler):
             return
         try:
             payload = json.loads(self.rfile.read(length).decode("utf-8"))
-            if not isinstance(payload, dict) or not isinstance(payload.get("author"), dict) or not isinstance(payload.get("book"), dict):
+            if not (isinstance(payload, dict) and isinstance(payload.get("author"), dict)
+                    and isinstance(payload.get("book"), dict)):
                 raise ValueError("Requête mal formée.")
             with WRITE_LOCK:
                 data = editor.load_catalogue()

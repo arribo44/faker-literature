@@ -1,0 +1,4 @@
+# The source distribution can run the test suite, which covers the catalogue editor
+include CHANGELOG.md TINYDB_USAGE.md
+graft tools
+global-exclude __pycache__ *.py[cod]

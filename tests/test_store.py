@@ -2,13 +2,14 @@ import json
 import multiprocessing
 import os
 import stat
+import sys
 
 import pytest
 from faker import Faker
 
 from faker_literature import LiteratureProvider
-from faker_literature.store import BUILTIN_DATA, BookStore, validate_book
 from faker_literature._storage import FileLock
+from faker_literature.store import BUILTIN_DATA, BookStore, validate_book
 
 
 @pytest.fixture
@@ -177,6 +178,7 @@ def test_records_edited_by_hand_are_validated_on_opening(tmp_path):
         BookStore(db_path)
 
 
+@pytest.mark.skipif(sys.platform == "win32", reason="POSIX permissions")
 def test_database_permissions_are_kept(tmp_path):
     db_path = tmp_path / "db.json"
     store = BookStore(db_path)

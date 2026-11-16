@@ -6,13 +6,22 @@ when sorting every literary work: a first query lists the works with at least
 details are fetched in small batches.
 """
 
+from __future__ import annotations
+
 import json
 import time
 import urllib.parse
 import urllib.request
+from collections.abc import Callable, Iterable, Mapping
+from typing import Any
 
 from faker_literature.matching import YEAR_TOLERANCE, DuplicateIndex
-from faker_literature.store import MAX_PAGES, load_vocabulary, validate_book
+from faker_literature.store import MAX_PAGES, BookStore, Record, load_vocabulary, validate_book
+from faker_literature.vocabulary import GenreVocabulary
+
+# One SPARQL result row: {variable: {"type": ..., "value": ...}}
+Binding = dict[str, dict[str, str]]
+Log = Callable[[str], object]
 
 
 SOURCE = "wikidata"
@@ -69,7 +78,7 @@ WHERE {
 """
 
 
-def run_query(query):
+def run_query(query: str) -> list[Binding]:
     """POST ``query`` to the Wikidata endpoint and return the result bindings."""
     request = urllib.request.Request(
         ENDPOINT,
@@ -83,17 +92,18 @@ def run_query(query):
         body = response.read(MAX_RESPONSE_BYTES + 1)
     if len(body) > MAX_RESPONSE_BYTES:
         raise ValueError(f"Wikidata response larger than {MAX_RESPONSE_BYTES} bytes")
-    return json.loads(body.decode("utf-8"))["results"]["bindings"]
+    bindings: list[Binding] = json.loads(body.decode("utf-8"))["results"]["bindings"]
+    return bindings
 
 
-def _entity_id(uri):
+def _entity_id(uri: str) -> str:
     entity = uri.rsplit("/", 1)[-1]
     if not (entity.startswith("Q") and entity[1:].isdigit()):
         raise ValueError(f"Unexpected Wikidata entity {uri!r}")
     return entity
 
 
-def _parse_year(value):
+def _parse_year(value: str) -> int | None:
     """Extract the year of an ``xsd:dateTime`` such as ``-0800-01-01T00:00:00Z``."""
     try:
         return int(value[:value.index("-", 1)])
@@ -104,13 +114,16 @@ def _parse_year(value):
 EN_ADJECTIVE_SUFFIXES = ("ish", "ian", "an", "ese", "ch", "ic", "i")
 
 
-def _pick_demonym(values, locale):
+def _pick_demonym(values: Iterable[str], locale: str) -> str:
     """Choose one demonym among the gendered / plural forms Wikidata lists.
 
     French keeps the shortest form (masculine singular, e.g. ``français``);
     English prefers singular adjectives (``British`` over ``Briton``).
     """
-    shortest = lambda value: (len(value), value)
+    def shortest(value: str) -> tuple[int, str]:
+        return len(value), value
+
+    values = list(values)
     if locale == "en_US":
         singular = [value for value in values if not value.endswith("s")] or list(values)
         adjectives = [value for value in singular if value.lower().endswith(EN_ADJECTIVE_SUFFIXES)]
@@ -118,7 +131,7 @@ def _pick_demonym(values, locale):
     return min(values, key=shortest).lower()
 
 
-def map_genres(labels, vocabulary):
+def map_genres(labels: Iterable[tuple[str, str]], vocabulary: GenreVocabulary) -> list[str]:
     """Return the vocabulary ids of the ``(French, English)`` genre labels.
 
     Wikidata genres are matched on their French label, then on their English
@@ -133,14 +146,14 @@ def map_genres(labels, vocabulary):
     return ids
 
 
-def parse_bindings(bindings, vocabulary=None):
+def parse_bindings(bindings: Iterable[Binding], vocabulary: GenreVocabulary | None = None) -> list[Record]:
     """Group SPARQL rows by work and return catalogue records.
 
     Genres are mapped onto ``vocabulary`` (by default the bundled one).  Works
     lacking a known genre, a nationality or a usable date are left out.
     """
     vocabulary = vocabulary or load_vocabulary()
-    works = {}
+    works: dict[str, dict[str, Any]] = {}
     for row in bindings:
         value = {key: cell["value"] for key, cell in row.items()}
         work = works.setdefault(_entity_id(value["work"]), {
@@ -170,7 +183,7 @@ def parse_bindings(bindings, vocabulary=None):
         if "publisherFr" in value and work["publisher"] is None:
             work["publisher"] = {"fr_FR": value["publisherFr"], "en_US": value["publisherEn"]}
 
-    records = []
+    records: list[Record] = []
     for entity, work in works.items():
         # Publication date first, creation date only when it is missing
         years = work["years"] or work["inceptions"]
@@ -200,7 +213,7 @@ def parse_bindings(bindings, vocabulary=None):
     return records
 
 
-def exclude_known(records, known_books):
+def exclude_known(records: Iterable[Record], known_books: Iterable[Mapping[str, Any]]) -> list[Record]:
     """Drop records already present in ``known_books``.
 
     A record is known when it has the same Wikidata id as a known book, or
@@ -211,7 +224,13 @@ def exclude_known(records, known_books):
     return [record for record in records if record not in index]
 
 
-def fetch_works(limit=500, min_sitelinks=30, pause=1.0, log=print, vocabulary=None):
+def fetch_works(
+    limit: int = 500,
+    min_sitelinks: int = 30,
+    pause: float = 1.0,
+    log: Log = print,
+    vocabulary: GenreVocabulary | None = None,
+) -> list[Record]:
     """Fetch up to ``limit`` of the most linked literary works and return valid records."""
     limit = max(1, min(int(limit), MAX_LIMIT))
     min_sitelinks = max(0, int(min_sitelinks))
@@ -221,7 +240,7 @@ def fetch_works(limit=500, min_sitelinks=30, pause=1.0, log=print, vocabulary=No
     entities = list(dict.fromkeys(_entity_id(row["work"]["value"]) for row in ranked))
     log(f"{len(entities)} candidate works with >= {min_sitelinks} sitelinks")
 
-    records = []
+    records: list[Record] = []
     for start in range(0, len(entities), BATCH_SIZE):
         if len(records) >= limit:
             break
@@ -243,7 +262,7 @@ def fetch_works(limit=500, min_sitelinks=30, pause=1.0, log=print, vocabulary=No
     return valid
 
 
-def import_into(store, limit=500, min_sitelinks=30, log=print):
+def import_into(store: BookStore, limit: int = 500, min_sitelinks: int = 30, log: Log = print) -> int:
     """Fetch works from Wikidata and replace the store's ``wikidata`` books with them."""
     builtin = [book for book in store.books.all() if book["source"] != SOURCE]
     vocabulary = load_vocabulary()

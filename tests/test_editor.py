@@ -1,13 +1,8 @@
 import copy
 import json
-import sys
-from pathlib import Path
 
+import editor
 import pytest
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools" / "literature_editor"))
-
-import editor  # noqa: E402
 
 
 def _cells(**values):
@@ -61,7 +56,8 @@ def test_parse_qid_rejects_anything_else(text):
 
 def test_parse_author_picks_one_country_and_falls_back_on_the_other_name():
     rows = [
-        _cells(nameEn="Victor Hugo", country="http://www.wikidata.org/entity/Q142", demonymFr="Française", demonymEn="French"),
+        _cells(nameEn="Victor Hugo", country="http://www.wikidata.org/entity/Q142",
+               demonymFr="Française", demonymEn="French"),
         _cells(country="http://www.wikidata.org/entity/Q142", demonymFr="Français", demonymEn="French"),
     ]
 
@@ -131,7 +127,8 @@ def test_add_book_rejects_duplicates_and_invalid_books(catalogue):
     with pytest.raises(ValueError, match="déjà"):
         editor.add_book(catalogue, _author(), _book(wikidata_id="Q2"))
     with pytest.raises(ValueError, match="Année manquante"):
-        editor.add_book(catalogue, _author(), _book(wikidata_id="Q3", title={"fr_FR": "A", "en_US": "B"}, year="vers 1000"))
+        editor.add_book(catalogue, _author(),
+                        _book(wikidata_id="Q3", title={"fr_FR": "A", "en_US": "B"}, year="vers 1000"))
     with pytest.raises(ValueError, match=r"Titre \(anglais\) : champ obligatoire"):
         editor.add_book(catalogue, _author(), _book(wikidata_id="Q4", title={"fr_FR": "Seulement FR", "en_US": ""}))
 
@@ -176,8 +173,9 @@ def test_annotate_flags_known_works(catalogue):
 
 def test_multilingual_labels_fill_missing_names_and_titles():
     author = editor.parse_author("Q535", [_cells(nameMul="Victor Hugo")])
-    works = editor.parse_works([_cells(work=WORK, links="5", titleMul="Hernani", titleFr="Hernani ou l'Honneur castillan",
-                                       inception="1829-01-01T00:00:00Z", date="1830-02-25T00:00:00Z", pages="940512")], [])
+    works = editor.parse_works([_cells(work=WORK, links="5", titleMul="Hernani",
+                                       titleFr="Hernani ou l'Honneur castillan", inception="1829-01-01T00:00:00Z",
+                                       date="1830-02-25T00:00:00Z", pages="940512")], [])
 
     assert author["name"] == {"fr_FR": "Victor Hugo", "en_US": "Victor Hugo"}
     assert works[0]["title"] == {"fr_FR": "Hernani ou l'Honneur castillan", "en_US": "Hernani"}
@@ -238,7 +236,9 @@ def test_parse_influences_separates_people_from_works():
 
     influences = editor.parse_influences(rows)
 
-    assert [influence["name"] for influence in influences] == ["Élise ou la vraie vie", "Franz Kafka", "Simone de Beauvoir"]
+    assert [influence["name"] for influence in influences] == [
+        "Élise ou la vraie vie", "Franz Kafka", "Simone de Beauvoir",
+    ]
     assert [influence["person"] for influence in influences] == [False, True, True]
     assert influences[1]["description"] == "écrivain"
 

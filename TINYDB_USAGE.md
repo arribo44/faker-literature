@@ -214,7 +214,7 @@ faker>=20.0.0
 
 Install with:
 ```bash
-pip install tinydb faker
+pip install faker-literature   # installs faker and tinydb
 ```
 
 ## Query Performance

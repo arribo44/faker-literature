@@ -6,6 +6,19 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 
 ## [Non publié]
 
+### Modifié
+
+- Python 3.10 ou plus est requis (Faker et TinyDB n'acceptent plus les versions antérieures, et Python 3.8 / 3.9 ne sont plus maintenus) ; Python 3.13 et 3.14 sont pris en charge.
+- Le paquet est décrit par `pyproject.toml`, qui remplace `setup.py` et `requirements.txt` ; la version est définie une seule fois (`faker_literature.__version__`).
+
+### Outillage
+
+- Commande `faker-literature` (avec `--version`), équivalente à `python -m faker_literature`.
+- Annotations de type sur tout le paquet, vérifiées par mypy en mode strict, et fichier `py.typed`.
+- Extra `dev` (`pip install -e ".[dev]"`) : tests, ruff, mypy, build et twine.
+- Intégration continue GitHub Actions : ruff, mypy, tests de Python 3.10 à 3.14 sous Linux et sous Windows, construction du paquet vérifiée par `twine check` et installée depuis la wheel.
+- L'archive source contient l'éditeur du catalogue, ce qui permet d'y lancer toute la suite de tests.
+
 ### Sécurité
 
 - Éditeur : l'API exige un cookie de session (`HttpOnly`, `SameSite=Strict`) posé par la page, qu'aucun autre site ne peut joindre à ses requêtes.

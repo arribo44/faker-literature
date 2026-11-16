@@ -11,11 +11,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from faker_literature.importers.wikidata import _entity_id, _parse_year, _pick_demonym, run_query  # noqa: E402
-from faker_literature.matching import DuplicateIndex, name_key, names as _names, sort_key, title_key  # noqa: E402
-from faker_literature.store import LOCALES, MAX_PAGES, validate_book  # noqa: E402
-from faker_literature.vocabulary import GenreVocabulary  # noqa: E402
-
+from faker_literature.importers.wikidata import _entity_id, _parse_year, _pick_demonym, run_query
+from faker_literature.matching import DuplicateIndex, name_key, sort_key, title_key
+from faker_literature.matching import names as _names
+from faker_literature.store import LOCALES, MAX_PAGES, validate_book
+from faker_literature.vocabulary import GenreVocabulary
 
 CATALOGUE_PATH = ROOT / "faker_literature" / "DATAS" / "literature.json"
 MAX_WORKS = 300
@@ -42,7 +42,8 @@ SELECT ?nameFr ?nameEn ?nameMul ?descFr ?country ?demonymFr ?demonymEn WHERE {
 """
 
 WORKS_QUERY = """
-SELECT ?work ?links ?titleFr ?titleEn ?titleMul ?typeFr ?date ?inception ?pages ?genreFr ?genreEn ?publisherFr ?publisherEn WHERE {
+SELECT ?work ?links ?titleFr ?titleEn ?titleMul ?typeFr ?date ?inception ?pages
+       ?genreFr ?genreEn ?publisherFr ?publisherEn WHERE {
   ?work wdt:P50 wd:%(qid)s ;
         wikibase:sitelinks ?links .
   FILTER NOT EXISTS { ?work wdt:P31 wd:Q13442814 }
@@ -184,7 +185,8 @@ def parse_works(rows, edition_rows):
         edition = editions.setdefault((_entity_id(value["work"]), locale), {"pages": None, "publisher": None})
         if edition["pages"] is None and _valid_pages(value.get("pages")):
             edition["pages"] = int(value["pages"])
-        label = value.get("publisherFr" if locale == "fr_FR" else "publisherEn") or value.get("publisherEn") or value.get("publisherFr")
+        own = "publisherFr" if locale == "fr_FR" else "publisherEn"
+        label = value.get(own) or value.get("publisherEn") or value.get("publisherFr")
         if edition["publisher"] is None and label:
             edition["publisher"] = label
 
@@ -331,7 +333,9 @@ def _clean_pages(value):
 def _clean_genres(value):
     if isinstance(value, str):
         value = value.split(",")
-    return [genre.strip() for genre in value if isinstance(genre, str) and genre.strip()] if isinstance(value, list) else []
+    if not isinstance(value, list):
+        return []
+    return [genre.strip() for genre in value if isinstance(genre, str) and genre.strip()]
 
 
 def _lower_first(text):
@@ -344,7 +348,7 @@ def suggest_genres(vocabulary, genre):
     Unknown genres are kept as they are, so that the user can add them.
     """
     suggested = {locale: [] for locale in LOCALES}
-    for fr, en in zip(genre["fr_FR"], genre["en_US"]):
+    for fr, en in zip(genre["fr_FR"], genre["en_US"], strict=True):
         genre_id = vocabulary.match(fr, "fr_FR") or vocabulary.match(en, "en_US")
         labels = vocabulary.genres[genre_id] if genre_id else {"fr_FR": fr, "en_US": en}
         for locale in LOCALES:
@@ -375,7 +379,7 @@ def genre_ids(vocabulary, genre):
         raise ValueError(f"Genres : {labels} absent(s) du vocabulaire. Pour créer un nouveau genre, "
                          f"donnez sa traduction en {missing} à la même position que dans l'autre liste.")
     new = []
-    for fr, en in zip(unknown["fr_FR"], unknown["en_US"]):
+    for fr, en in zip(unknown["fr_FR"], unknown["en_US"], strict=True):
         try:
             genre_id = vocabulary.add(fr, en)
         except ValueError as error:
@@ -401,7 +405,8 @@ def build_book(raw):
         "genre": genre,
         "title": _clean_localized(raw.get("title")),
         "pages": pages if any(value is not None for value in pages.values()) else None,
-        "publisher": {locale: value or None for locale, value in publisher.items()} if any(publisher.values()) else None,
+        "publisher": ({locale: value or None for locale, value in publisher.items()}
+                      if any(publisher.values()) else None),
     }
     wikidata_id = raw.get("wikidata_id")
     if wikidata_id:
@@ -474,7 +479,8 @@ def add_book(data, raw_author, raw_book):
         data["authors"].insert(position, entry)
     else:
         entry.setdefault("wikidata_id", qid)
-    position = next((index for index, other in enumerate(entry["books"]) if other["year"] > book["year"]), len(entry["books"]))
+    position = next((index for index, other in enumerate(entry["books"]) if other["year"] > book["year"]),
+                    len(entry["books"]))
     entry["books"].insert(position, book)
     data["genres"] = dict(sorted(genres.items()))
 
