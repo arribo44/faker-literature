@@ -129,7 +129,7 @@ print(f"First 15: {all_genres[:15]}")
 
 ### Bundled catalogue
 - `literature.json`: ~320 KB (14,500 lines)
-- 190 authors, 518 books, ~210 unique genres per locale
+- 1,006 authors, 2,255 books, 220 genres per locale, 84 literary awards
 
 ### Sources
 Every record carries a `source` field (`builtin`, `wikidata`, ...).
@@ -203,7 +203,7 @@ book_en = fake_en.book()
 print(book_en['genre'])  # ['genre1_en', 'genre2_en']
 ```
 
-All 518 bundled books have genre lists for both fr_FR and en_US locales.
+All 2,255 bundled books have genre lists for both fr_FR and en_US locales.
 
 ## Requirements
 

@@ -490,7 +490,7 @@ store.replace_source("my_dataset", [
     },
 ])
 
-store.sources()   # {'builtin': 518, 'wikidata': 142, 'my_dataset': 1}
+store.sources()   # {'builtin': 2255, 'wikidata': 142, 'my_dataset': 1}
 ```
 
 Record schema:
