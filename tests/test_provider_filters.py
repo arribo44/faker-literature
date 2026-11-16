@@ -121,6 +121,8 @@ def test_pools_are_refreshed_when_the_catalogue_changes(tmp_path):
         fake.add_provider(LiteratureProvider)
         before = fake.all_authors()
         assert "Zed Newcomer" not in before
+        # Build the cached pool of novels before the catalogue changes
+        assert fake.books_sample(1, genre="novel")
 
         store.replace_source("test", [{
             "writer": "Zed Newcomer", "nationality": {"fr_FR": "américain", "en_US": "American"},
@@ -129,7 +131,10 @@ def test_pools_are_refreshed_when_the_catalogue_changes(tmp_path):
         }])
 
         assert "Zed Newcomer" in fake.all_authors()
-        assert "New" in {fake.title(genre="NOVEL") for _ in range(2000)}
+        # Every novel, drawn without replacement from the refreshed pool
+        all_novels = fake.books_sample(len(fake.books_by_genre("novel")), genre="NOVEL")
+        assert "New" in {book["title"] for book in all_novels}
+        assert fake.title(genre="novel", author="zed newcomer") == "New"
     finally:
         LiteratureProvider.use_database(None)
 
