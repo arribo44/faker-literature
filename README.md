@@ -15,7 +15,7 @@ Every record comes from a real catalogue of well-known works, so a generated boo
 |---|---|
 | Authors | 190 |
 | Books | 518 |
-| Genres | ~220 per locale |
+| Genres | ~210 per locale |
 | Nationalities | 24 |
 | Years covered | 800 BC → 2024 |
 
@@ -97,7 +97,7 @@ book_fr = fake_fr.book()
 # {
 #     'writer': 'Robert E. Howard',
 #     'nationality': 'américain',
-#     'title': 'Les Ombres de Kampala',
+#     'title': 'Des crânes dans les étoiles',
 #     'genre': ['horreur', 'épée et sorcellerie'],
 #     'year': 1928,
 #     'pages': 192,

@@ -12,7 +12,7 @@
           "genre": {
             "fr_FR": [
               "roman policier",
-              "énigme"
+              "mystère"
             ],
             "en_US": [
               "detective novel",
@@ -112,7 +112,7 @@
           "genre": {
             "fr_FR": [
               "roman policier",
-              "avion"
+              "aviation"
             ],
             "en_US": [
               "detective novel",
@@ -137,7 +137,7 @@
           "genre": {
             "fr_FR": [
               "roman policier",
-              "énigme"
+              "mystère"
             ],
             "en_US": [
               "detective novel",
@@ -579,7 +579,7 @@
             ],
             "en_US": [
               "autobiographical novel",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -625,7 +625,7 @@
           "genre": {
             "fr_FR": [
               "roman contemporain",
-              "amour"
+              "romance"
             ],
             "en_US": [
               "contemporary novel",
@@ -747,7 +747,7 @@
             ],
             "en_US": [
               "horror",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -772,7 +772,7 @@
             ],
             "en_US": [
               "horror",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -1349,7 +1349,7 @@
           "genre": {
             "fr_FR": [
               "roman policier",
-              "énigme"
+              "mystère"
             ],
             "en_US": [
               "detective novel",
@@ -1374,7 +1374,7 @@
           "genre": {
             "fr_FR": [
               "roman policier",
-              "énigme"
+              "mystère"
             ],
             "en_US": [
               "detective novel",
@@ -1532,12 +1532,10 @@
           "year": 1996,
           "genre": {
             "fr_FR": [
-              "roman d'aventures",
-              "capitaine Alatriste"
+              "roman d'aventures"
             ],
             "en_US": [
-              "adventure novel",
-              "Captain Alatriste"
+              "adventure novel"
             ]
           },
           "title": {
@@ -1845,7 +1843,7 @@
             "en_US": 308
           },
           "publisher": {
-            "fr_FR": "Alfred A. Knopf",
+            "fr_FR": null,
             "en_US": "Picador"
           },
           "wikidata_id": "Q1877383"
@@ -1961,7 +1959,7 @@
             ],
             "en_US": [
               "children's literature",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -2084,7 +2082,7 @@
           "genre": {
             "fr_FR": [
               "roman gothique",
-              "romanesque"
+              "romance"
             ],
             "en_US": [
               "gothic novel",
@@ -2340,7 +2338,7 @@
             ],
             "en_US": [
               "horror",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -2365,7 +2363,7 @@
             ],
             "en_US": [
               "horror",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -2622,7 +2620,7 @@
           "genre": {
             "fr_FR": [
               "science-fiction",
-              "horror"
+              "horreur"
             ],
             "en_US": [
               "science fiction",
@@ -3222,7 +3220,7 @@
             ],
             "en_US": [
               "horror",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -3273,7 +3271,7 @@
           "year": 1912,
           "genre": {
             "fr_FR": [
-              "roman d'aventure",
+              "roman d'aventures",
               "science-fiction",
               "romance planétaire"
             ],
@@ -3297,10 +3295,35 @@
           }
         },
         {
+          "year": 1912,
+          "genre": {
+            "fr_FR": [
+              "roman d'aventures",
+              "jungle"
+            ],
+            "en_US": [
+              "adventure novel",
+              "jungle"
+            ]
+          },
+          "title": {
+            "fr_FR": "Tarzan chez les singes",
+            "en_US": "Tarzan of the Apes"
+          },
+          "pages": {
+            "fr_FR": 288,
+            "en_US": 272
+          },
+          "publisher": {
+            "fr_FR": "Hachette",
+            "en_US": "A. C. McClurg"
+          }
+        },
+        {
           "year": 1913,
           "genre": {
             "fr_FR": [
-              "roman d'aventure",
+              "roman d'aventures",
               "science-fiction",
               "romance planétaire"
             ],
@@ -3327,7 +3350,7 @@
           "year": 1914,
           "genre": {
             "fr_FR": [
-              "roman d'aventure",
+              "roman d'aventures",
               "science-fiction",
               "romance planétaire"
             ],
@@ -3351,35 +3374,10 @@
           }
         },
         {
-          "year": 1912,
-          "genre": {
-            "fr_FR": [
-              "roman d'aventure",
-              "jungle"
-            ],
-            "en_US": [
-              "adventure novel",
-              "jungle"
-            ]
-          },
-          "title": {
-            "fr_FR": "Tarzan chez les singes",
-            "en_US": "Tarzan of the Apes"
-          },
-          "pages": {
-            "fr_FR": 288,
-            "en_US": 272
-          },
-          "publisher": {
-            "fr_FR": "Hachette",
-            "en_US": "A. C. McClurg"
-          }
-        },
-        {
           "year": 1914,
           "genre": {
             "fr_FR": [
-              "roman d'aventure",
+              "roman d'aventures",
               "science-fiction",
               "monde perdu"
             ],
@@ -3429,7 +3427,7 @@
           "year": 1918,
           "genre": {
             "fr_FR": [
-              "roman d'aventure",
+              "roman d'aventures",
               "science-fiction",
               "monde perdu"
             ],
@@ -3687,7 +3685,7 @@
           },
           "publisher": {
             "fr_FR": "Éditions Charpentier",
-            "en_US": "Bibliothèque Charpentier"
+            "en_US": null
           },
           "wikidata_id": "Q942810"
         }
@@ -3710,7 +3708,7 @@
             ],
             "en_US": [
               "gothic novel",
-              "tragedy"
+              "tragic"
             ]
           },
           "title": {
@@ -3762,6 +3760,115 @@
             "en_US": "Cambridge University Press"
           },
           "wikidata_id": "Q220002"
+        }
+      ]
+    },
+    {
+      "name": "Eric Vuillard",
+      "nationality": {
+        "fr_FR": "français",
+        "en_US": "French"
+      },
+      "books": [
+        {
+          "year": 2014,
+          "genre": {
+            "fr_FR": [
+              "récit",
+              "histoire"
+            ],
+            "en_US": [
+              "narrative",
+              "history"
+            ]
+          },
+          "title": {
+            "fr_FR": "Tristesse de la terre",
+            "en_US": "Sadness of the Earth"
+          },
+          "pages": {
+            "fr_FR": 158,
+            "en_US": 176
+          },
+          "publisher": {
+            "fr_FR": "Actes Sud",
+            "en_US": "The Other Press"
+          }
+        },
+        {
+          "year": 2017,
+          "genre": {
+            "fr_FR": [
+              "récit",
+              "histoire"
+            ],
+            "en_US": [
+              "narrative",
+              "history"
+            ]
+          },
+          "title": {
+            "fr_FR": "L'Ordre du jour",
+            "en_US": "The Order of the Day"
+          },
+          "pages": {
+            "fr_FR": 160,
+            "en_US": 176
+          },
+          "publisher": {
+            "fr_FR": "Actes Sud",
+            "en_US": "The Other Press"
+          }
+        },
+        {
+          "year": 2019,
+          "genre": {
+            "fr_FR": [
+              "récit",
+              "histoire"
+            ],
+            "en_US": [
+              "narrative",
+              "history"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Guerre des pauvres",
+            "en_US": "The War of the Poor"
+          },
+          "pages": {
+            "fr_FR": 80,
+            "en_US": 96
+          },
+          "publisher": {
+            "fr_FR": "Actes Sud",
+            "en_US": "The Other Press"
+          }
+        },
+        {
+          "year": 2022,
+          "genre": {
+            "fr_FR": [
+              "récit",
+              "histoire"
+            ],
+            "en_US": [
+              "narrative",
+              "history"
+            ]
+          },
+          "title": {
+            "fr_FR": "Une sortie honorable",
+            "en_US": "An Honorable Exit"
+          },
+          "pages": {
+            "fr_FR": 208,
+            "en_US": 224
+          },
+          "publisher": {
+            "fr_FR": "Actes Sud",
+            "en_US": "The Other Press"
+          }
         }
       ]
     },
@@ -4248,11 +4355,11 @@
           "genre": {
             "fr_FR": [
               "roman contemporain",
-              "jeunesse"
+              "roman d'apprentissage"
             ],
             "en_US": [
               "contemporary novel",
-              "youth"
+              "Bildungsroman"
             ]
           },
           "title": {
@@ -4445,7 +4552,7 @@
           "genre": {
             "fr_FR": [
               "roman policier",
-              "énigme"
+              "mystère"
             ],
             "en_US": [
               "detective novel",
@@ -4577,273 +4684,6 @@
       ]
     },
     {
-      "name": "Geoffrey Chaucer",
-      "wikidata_id": "Q5683",
-      "nationality": {
-        "fr_FR": "britannique",
-        "en_US": "British"
-      },
-      "books": [
-        {
-          "year": 1387,
-          "genre": {
-            "fr_FR": [
-              "poésie"
-            ],
-            "en_US": [
-              "poetry"
-            ]
-          },
-          "title": {
-            "fr_FR": "Les Contes de Cantorbéry",
-            "en_US": "The Canterbury Tales"
-          },
-          "pages": {
-            "fr_FR": null,
-            "en_US": 1328
-          },
-          "publisher": {
-            "fr_FR": null,
-            "en_US": "William Caxton"
-          },
-          "wikidata_id": "Q191663"
-        }
-      ]
-    },
-    {
-      "name": "George Sand",
-      "wikidata_id": "Q3816",
-      "nationality": {
-        "fr_FR": "français",
-        "en_US": "French"
-      },
-      "books": [
-        {
-          "year": 1846,
-          "genre": {
-            "fr_FR": [
-              "roman pastoral"
-            ],
-            "en_US": [
-              "pastoral novel"
-            ]
-          },
-          "title": {
-            "fr_FR": "La Mare au Diable",
-            "en_US": "La Mare au diable"
-          },
-          "pages": null,
-          "publisher": {
-            "fr_FR": "Maison Quantin",
-            "en_US": "Little, Brown and Company"
-          },
-          "wikidata_id": "Q3210542"
-        },
-        {
-          "year": 1849,
-          "genre": {
-            "fr_FR": [
-              "roman"
-            ],
-            "en_US": [
-              "novel"
-            ]
-          },
-          "title": {
-            "fr_FR": "La Petite Fadette",
-            "en_US": "La Petite Fadette"
-          },
-          "pages": null,
-          "publisher": null,
-          "wikidata_id": "Q2735124"
-        }
-      ]
-    },
-    {
-      "name": "Graham Masterton",
-      "nationality": {
-        "fr_FR": "britannique",
-        "en_US": "British"
-      },
-      "books": [
-        {
-          "year": 1975,
-          "genre": {
-            "fr_FR": [
-              "horreur",
-              "occulte"
-            ],
-            "en_US": [
-              "horror",
-              "occult"
-            ]
-          },
-          "title": {
-            "fr_FR": "Le Manitou",
-            "en_US": "The Manitou"
-          },
-          "pages": {
-            "fr_FR": 256,
-            "en_US": 240
-          },
-          "publisher": {
-            "fr_FR": "Pocket",
-            "en_US": "Pinnacle Books"
-          }
-        },
-        {
-          "year": 1978,
-          "genre": {
-            "fr_FR": [
-              "horreur",
-              "surnaturel"
-            ],
-            "en_US": [
-              "horror",
-              "supernatural"
-            ]
-          },
-          "title": {
-            "fr_FR": "Le Djinn",
-            "en_US": "The Djinn"
-          },
-          "pages": {
-            "fr_FR": 288,
-            "en_US": 272
-          },
-          "publisher": {
-            "fr_FR": "Pocket",
-            "en_US": "Tor Books"
-          }
-        },
-        {
-          "year": 1981,
-          "genre": {
-            "fr_FR": [
-              "horreur",
-              "démoniaque"
-            ],
-            "en_US": [
-              "horror",
-              "demonic"
-            ]
-          },
-          "title": {
-            "fr_FR": "Charnel House",
-            "en_US": "Charnel House"
-          },
-          "pages": {
-            "fr_FR": 272,
-            "en_US": 256
-          },
-          "publisher": {
-            "fr_FR": "Pocket",
-            "en_US": "Tor Books"
-          }
-        },
-        {
-          "year": 1983,
-          "genre": {
-            "fr_FR": [
-              "horreur",
-              "maison hantée"
-            ],
-            "en_US": [
-              "horror",
-              "haunted house"
-            ]
-          },
-          "title": {
-            "fr_FR": "La Maison de nulle part",
-            "en_US": "House of a Thousand Doors"
-          },
-          "pages": {
-            "fr_FR": 256,
-            "en_US": 240
-          },
-          "publisher": {
-            "fr_FR": "Pocket",
-            "en_US": "Tor Books"
-          }
-        },
-        {
-          "year": 1988,
-          "genre": {
-            "fr_FR": [
-              "horreur",
-              "apocalyptique"
-            ],
-            "en_US": [
-              "horror",
-              "apocalyptic"
-            ]
-          },
-          "title": {
-            "fr_FR": "Plague",
-            "en_US": "Plague"
-          },
-          "pages": {
-            "fr_FR": 288,
-            "en_US": 272
-          },
-          "publisher": {
-            "fr_FR": "Pocket",
-            "en_US": "Dorchester Publishing"
-          }
-        },
-        {
-          "year": 1991,
-          "genre": {
-            "fr_FR": [
-              "thriller",
-              "police"
-            ],
-            "en_US": [
-              "thriller",
-              "crime"
-            ]
-          },
-          "title": {
-            "fr_FR": "Chair de poule pour Katie Maguire",
-            "en_US": "A Terrible Beauty"
-          },
-          "pages": {
-            "fr_FR": 304,
-            "en_US": 288
-          },
-          "publisher": {
-            "fr_FR": "Pocket",
-            "en_US": "Dorchester Publishing"
-          }
-        },
-        {
-          "year": 2013,
-          "genre": {
-            "fr_FR": [
-              "thriller",
-              "police"
-            ],
-            "en_US": [
-              "thriller",
-              "crime"
-            ]
-          },
-          "title": {
-            "fr_FR": "L'Os rouge de Katie Maguire",
-            "en_US": "Red Bones"
-          },
-          "pages": {
-            "fr_FR": 320,
-            "en_US": 304
-          },
-          "publisher": {
-            "fr_FR": "Pocket",
-            "en_US": "Dorchester Publishing"
-          }
-        }
-      ]
-    },
-    {
       "name": "Gabriel García Márquez",
       "nationality": {
         "fr_FR": "colombien",
@@ -4874,6 +4714,40 @@
             "fr_FR": "Editorial Oveja Negra",
             "en_US": "Harper & Row"
           }
+        }
+      ]
+    },
+    {
+      "name": "Geoffrey Chaucer",
+      "wikidata_id": "Q5683",
+      "nationality": {
+        "fr_FR": "britannique",
+        "en_US": "British"
+      },
+      "books": [
+        {
+          "year": 1387,
+          "genre": {
+            "fr_FR": [
+              "poésie"
+            ],
+            "en_US": [
+              "poetry"
+            ]
+          },
+          "title": {
+            "fr_FR": "Les Contes de Cantorbéry",
+            "en_US": "The Canterbury Tales"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 1328
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "William Caxton"
+          },
+          "wikidata_id": "Q191663"
         }
       ]
     },
@@ -5046,6 +4920,55 @@
       ]
     },
     {
+      "name": "George Sand",
+      "wikidata_id": "Q3816",
+      "nationality": {
+        "fr_FR": "français",
+        "en_US": "French"
+      },
+      "books": [
+        {
+          "year": 1846,
+          "genre": {
+            "fr_FR": [
+              "roman pastoral"
+            ],
+            "en_US": [
+              "pastoral novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Mare au Diable",
+            "en_US": "La Mare au diable"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": "Maison Quantin",
+            "en_US": "Little, Brown and Company"
+          },
+          "wikidata_id": "Q3210542"
+        },
+        {
+          "year": 1849,
+          "genre": {
+            "fr_FR": [
+              "roman"
+            ],
+            "en_US": [
+              "novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Petite Fadette",
+            "en_US": "La Petite Fadette"
+          },
+          "pages": null,
+          "publisher": null,
+          "wikidata_id": "Q2735124"
+        }
+      ]
+    },
+    {
       "name": "Georges Simenon",
       "nationality": {
         "fr_FR": "belge",
@@ -5109,6 +5032,190 @@
           "publisher": {
             "fr_FR": "Casa editrice",
             "en_US": "Oxford University Press"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Graham Masterton",
+      "nationality": {
+        "fr_FR": "britannique",
+        "en_US": "British"
+      },
+      "books": [
+        {
+          "year": 1975,
+          "genre": {
+            "fr_FR": [
+              "horreur",
+              "occulte"
+            ],
+            "en_US": [
+              "horror",
+              "occult"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Manitou",
+            "en_US": "The Manitou"
+          },
+          "pages": {
+            "fr_FR": 256,
+            "en_US": 240
+          },
+          "publisher": {
+            "fr_FR": "Pocket",
+            "en_US": "Pinnacle Books"
+          }
+        },
+        {
+          "year": 1978,
+          "genre": {
+            "fr_FR": [
+              "horreur",
+              "surnaturel"
+            ],
+            "en_US": [
+              "horror",
+              "supernatural"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Djinn",
+            "en_US": "The Djinn"
+          },
+          "pages": {
+            "fr_FR": 288,
+            "en_US": 272
+          },
+          "publisher": {
+            "fr_FR": "Pocket",
+            "en_US": "Tor Books"
+          }
+        },
+        {
+          "year": 1981,
+          "genre": {
+            "fr_FR": [
+              "horreur",
+              "démoniaque"
+            ],
+            "en_US": [
+              "horror",
+              "demonic"
+            ]
+          },
+          "title": {
+            "fr_FR": "Charnel House",
+            "en_US": "Charnel House"
+          },
+          "pages": {
+            "fr_FR": 272,
+            "en_US": 256
+          },
+          "publisher": {
+            "fr_FR": "Pocket",
+            "en_US": "Tor Books"
+          }
+        },
+        {
+          "year": 1983,
+          "genre": {
+            "fr_FR": [
+              "horreur",
+              "maison hantée"
+            ],
+            "en_US": [
+              "horror",
+              "haunted house"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Maison de nulle part",
+            "en_US": "House of a Thousand Doors"
+          },
+          "pages": {
+            "fr_FR": 256,
+            "en_US": 240
+          },
+          "publisher": {
+            "fr_FR": "Pocket",
+            "en_US": "Tor Books"
+          }
+        },
+        {
+          "year": 1988,
+          "genre": {
+            "fr_FR": [
+              "horreur",
+              "apocalyptique"
+            ],
+            "en_US": [
+              "horror",
+              "apocalyptic"
+            ]
+          },
+          "title": {
+            "fr_FR": "Plague",
+            "en_US": "Plague"
+          },
+          "pages": {
+            "fr_FR": 288,
+            "en_US": 272
+          },
+          "publisher": {
+            "fr_FR": "Pocket",
+            "en_US": "Dorchester Publishing"
+          }
+        },
+        {
+          "year": 1991,
+          "genre": {
+            "fr_FR": [
+              "thriller",
+              "polar"
+            ],
+            "en_US": [
+              "thriller",
+              "crime"
+            ]
+          },
+          "title": {
+            "fr_FR": "Chair de poule pour Katie Maguire",
+            "en_US": "A Terrible Beauty"
+          },
+          "pages": {
+            "fr_FR": 304,
+            "en_US": 288
+          },
+          "publisher": {
+            "fr_FR": "Pocket",
+            "en_US": "Dorchester Publishing"
+          }
+        },
+        {
+          "year": 2013,
+          "genre": {
+            "fr_FR": [
+              "thriller",
+              "polar"
+            ],
+            "en_US": [
+              "thriller",
+              "crime"
+            ]
+          },
+          "title": {
+            "fr_FR": "L'Os rouge de Katie Maguire",
+            "en_US": "Red Bones"
+          },
+          "pages": {
+            "fr_FR": 320,
+            "en_US": 304
+          },
+          "publisher": {
+            "fr_FR": "Pocket",
+            "en_US": "Dorchester Publishing"
           }
         }
       ]
@@ -5229,7 +5336,7 @@
             ],
             "en_US": [
               "contemporary novel",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -5417,7 +5524,7 @@
           },
           "publisher": {
             "fr_FR": "Mercure de France",
-            "en_US": "Project Gutenberg"
+            "en_US": "William Heinemann"
           },
           "wikidata_id": "Q213019"
         },
@@ -5441,7 +5548,7 @@
           },
           "publisher": {
             "fr_FR": null,
-            "en_US": "Project Gutenberg"
+            "en_US": "C. Arthur Pearson"
           },
           "wikidata_id": "Q1539509"
         }
@@ -5995,6 +6102,115 @@
       ]
     },
     {
+      "name": "Hervé Le Tellier",
+      "nationality": {
+        "fr_FR": "français",
+        "en_US": "French"
+      },
+      "books": [
+        {
+          "year": 2011,
+          "genre": {
+            "fr_FR": [
+              "roman contemporain",
+              "récit"
+            ],
+            "en_US": [
+              "contemporary novel",
+              "narrative"
+            ]
+          },
+          "title": {
+            "fr_FR": "Eléctrico W",
+            "en_US": "Eléctrico W"
+          },
+          "pages": {
+            "fr_FR": 320,
+            "en_US": 320
+          },
+          "publisher": {
+            "fr_FR": "Jean-Claude Lattès",
+            "en_US": "Jean-Claude Lattès"
+          }
+        },
+        {
+          "year": 2017,
+          "genre": {
+            "fr_FR": [
+              "récit",
+              "roman contemporain"
+            ],
+            "en_US": [
+              "narrative",
+              "contemporary novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Toutes les familles heureuses",
+            "en_US": "All Happy Families"
+          },
+          "pages": {
+            "fr_FR": 256,
+            "en_US": 272
+          },
+          "publisher": {
+            "fr_FR": "Jean-Claude Lattès",
+            "en_US": "The Other Press"
+          }
+        },
+        {
+          "year": 2020,
+          "genre": {
+            "fr_FR": [
+              "roman contemporain",
+              "speculative"
+            ],
+            "en_US": [
+              "contemporary novel",
+              "speculative"
+            ]
+          },
+          "title": {
+            "fr_FR": "L'Anomalie",
+            "en_US": "The Anomaly"
+          },
+          "pages": {
+            "fr_FR": 336,
+            "en_US": 352
+          },
+          "publisher": {
+            "fr_FR": "Gallimard",
+            "en_US": "The Other Press"
+          }
+        },
+        {
+          "year": 2024,
+          "genre": {
+            "fr_FR": [
+              "récit",
+              "roman historique"
+            ],
+            "en_US": [
+              "narrative",
+              "historical novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Nom sur le mur",
+            "en_US": "The Name on the Wall"
+          },
+          "pages": {
+            "fr_FR": 288,
+            "en_US": 288
+          },
+          "publisher": {
+            "fr_FR": "Gallimard",
+            "en_US": "Gallimard"
+          }
+        }
+      ]
+    },
+    {
       "name": "Homère",
       "nationality": {
         "fr_FR": "grec",
@@ -6370,7 +6586,7 @@
             ],
             "en_US": [
               "philosophical novel",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -6531,7 +6747,7 @@
             ],
             "en_US": [
               "fantasy",
-              "youth"
+              "children's literature"
             ]
           },
           "title": {
@@ -6556,7 +6772,7 @@
             ],
             "en_US": [
               "fantasy",
-              "youth"
+              "children's literature"
             ]
           },
           "title": {
@@ -6581,7 +6797,7 @@
             ],
             "en_US": [
               "fantasy",
-              "youth"
+              "children's literature"
             ]
           },
           "title": {
@@ -6606,7 +6822,7 @@
             ],
             "en_US": [
               "fantasy",
-              "youth"
+              "children's literature"
             ]
           },
           "title": {
@@ -6631,7 +6847,7 @@
             ],
             "en_US": [
               "fantasy",
-              "youth"
+              "children's literature"
             ]
           },
           "title": {
@@ -6656,7 +6872,7 @@
             ],
             "en_US": [
               "fantasy",
-              "youth"
+              "children's literature"
             ]
           },
           "title": {
@@ -6681,7 +6897,7 @@
             ],
             "en_US": [
               "fantasy",
-              "youth"
+              "children's literature"
             ]
           },
           "title": {
@@ -6736,11 +6952,11 @@
           "genre": {
             "fr_FR": [
               "beat generation",
-              "romanesque"
+              "roman"
             ],
             "en_US": [
               "beat generation",
-              "fiction"
+              "novel"
             ]
           },
           "title": {
@@ -8395,12 +8611,10 @@
           "year": 2011,
           "genre": {
             "fr_FR": [
-              "roman historique",
-              "américain"
+              "roman historique"
             ],
             "en_US": [
-              "historical novel",
-              "american"
+              "historical novel"
             ]
           },
           "title": {
@@ -8444,6 +8658,65 @@
       ]
     },
     {
+      "name": "Kamel Daoud",
+      "nationality": {
+        "fr_FR": "algérien",
+        "en_US": "Algerian"
+      },
+      "books": [
+        {
+          "year": 2014,
+          "genre": {
+            "fr_FR": [
+              "roman",
+              "réécriture"
+            ],
+            "en_US": [
+              "novel",
+              "literary fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "Meursault, contre-enquête",
+            "en_US": "The Meursault Investigation"
+          },
+          "pages": {
+            "fr_FR": 192,
+            "en_US": 176
+          },
+          "publisher": {
+            "fr_FR": "Actes Sud",
+            "en_US": "Other Press"
+          }
+        },
+        {
+          "year": 2017,
+          "genre": {
+            "fr_FR": [
+              "roman",
+              "conte"
+            ],
+            "en_US": [
+              "novel",
+              "tale"
+            ]
+          },
+          "title": {
+            "fr_FR": "Zabor ou les psaumes de la nuit",
+            "en_US": "Zabor, or the Psalms of the Night"
+          },
+          "pages": {
+            "fr_FR": 328,
+            "en_US": 320
+          },
+          "publisher": {
+            "fr_FR": "Actes Sud",
+            "en_US": "Other Press"
+          }
+        }
+      ]
+    },
+    {
       "name": "Ken Follett",
       "nationality": {
         "fr_FR": "britannique",
@@ -8459,7 +8732,7 @@
             ],
             "en_US": [
               "thriller",
-              "espionage"
+              "spy fiction"
             ]
           },
           "title": {
@@ -8483,7 +8756,7 @@
               "thriller"
             ],
             "en_US": [
-              "espionage",
+              "spy fiction",
               "thriller"
             ]
           },
@@ -8759,7 +9032,7 @@
           "year": 1865,
           "genre": {
             "fr_FR": [
-              "fantaisie",
+              "fantasy",
               "jeunesse"
             ],
             "en_US": [
@@ -8784,7 +9057,7 @@
           "year": 1871,
           "genre": {
             "fr_FR": [
-              "fantaisie",
+              "fantasy",
               "jeunesse"
             ],
             "en_US": [
@@ -9070,7 +9343,7 @@
           "genre": {
             "fr_FR": [
               "scénario",
-              "romanesque"
+              "romance"
             ],
             "en_US": [
               "screenplay",
@@ -9154,7 +9427,7 @@
           "genre": {
             "fr_FR": [
               "roman",
-              "romanesque"
+              "romance"
             ],
             "en_US": [
               "novel",
@@ -9688,7 +9961,7 @@
           "genre": {
             "fr_FR": [
               "roman contemporain",
-              "avion"
+              "aviation"
             ],
             "en_US": [
               "contemporary novel",
@@ -9758,7 +10031,7 @@
           "genre": {
             "fr_FR": [
               "philosophie",
-              "historie des idées"
+              "histoire des idées"
             ],
             "en_US": [
               "philosophy",
@@ -10143,7 +10416,7 @@
             ],
             "en_US": [
               "satirical novel",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -10236,7 +10509,7 @@
             ],
             "en_US": [
               "science fiction",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -10656,12 +10929,10 @@
           "year": 1997,
           "genre": {
             "fr_FR": [
-              "roman contemporain",
-              "américain"
+              "roman contemporain"
             ],
             "en_US": [
-              "contemporary novel",
-              "American"
+              "contemporary novel"
             ]
           },
           "title": {
@@ -10793,6 +11064,115 @@
           "publisher": {
             "fr_FR": "Julliard",
             "en_US": "Julliard"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pierre Lemaitre",
+      "nationality": {
+        "fr_FR": "français",
+        "en_US": "French"
+      },
+      "books": [
+        {
+          "year": 2011,
+          "genre": {
+            "fr_FR": [
+              "thriller",
+              "roman policier"
+            ],
+            "en_US": [
+              "thriller",
+              "detective novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Alex",
+            "en_US": "Alex"
+          },
+          "pages": {
+            "fr_FR": 384,
+            "en_US": 384
+          },
+          "publisher": {
+            "fr_FR": "Albin Michel",
+            "en_US": "MacLehose Press"
+          }
+        },
+        {
+          "year": 2013,
+          "genre": {
+            "fr_FR": [
+              "roman historique",
+              "roman"
+            ],
+            "en_US": [
+              "historical novel",
+              "novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Au revoir là-haut",
+            "en_US": "The Great Swindle"
+          },
+          "pages": {
+            "fr_FR": 576,
+            "en_US": 576
+          },
+          "publisher": {
+            "fr_FR": "Albin Michel",
+            "en_US": "MacLehose Press"
+          }
+        },
+        {
+          "year": 2018,
+          "genre": {
+            "fr_FR": [
+              "roman historique",
+              "roman"
+            ],
+            "en_US": [
+              "historical novel",
+              "novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Couleurs de l'incendie",
+            "en_US": "The Colours of the Fire"
+          },
+          "pages": {
+            "fr_FR": 534,
+            "en_US": 560
+          },
+          "publisher": {
+            "fr_FR": "Albin Michel",
+            "en_US": "MacLehose Press"
+          }
+        },
+        {
+          "year": 2022,
+          "genre": {
+            "fr_FR": [
+              "roman historique",
+              "roman"
+            ],
+            "en_US": [
+              "historical novel",
+              "novel"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Grand Monde",
+            "en_US": "The Great World"
+          },
+          "pages": {
+            "fr_FR": 592,
+            "en_US": 624
+          },
+          "publisher": {
+            "fr_FR": "Calmann-Lévy",
+            "en_US": "MacLehose Press"
           }
         }
       ]
@@ -11064,6 +11444,165 @@
       ]
     },
     {
+      "name": "René Barjavel",
+      "nationality": {
+        "fr_FR": "français",
+        "en_US": "French"
+      },
+      "books": [
+        {
+          "year": 1943,
+          "genre": {
+            "fr_FR": [
+              "science-fiction",
+              "anticipation"
+            ],
+            "en_US": [
+              "science fiction",
+              "anticipation"
+            ]
+          },
+          "title": {
+            "fr_FR": "Ravage",
+            "en_US": "Ravage"
+          },
+          "pages": {
+            "fr_FR": 320,
+            "en_US": 304
+          },
+          "publisher": {
+            "fr_FR": "Denoël",
+            "en_US": "Denoël"
+          }
+        },
+        {
+          "year": 1944,
+          "genre": {
+            "fr_FR": [
+              "roman",
+              "romance"
+            ],
+            "en_US": [
+              "novel",
+              "romance"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Voyageur imprudent",
+            "en_US": "The Imprudent Traveller"
+          },
+          "pages": {
+            "fr_FR": 256,
+            "en_US": 240
+          },
+          "publisher": {
+            "fr_FR": "Denoël",
+            "en_US": "Denoël"
+          }
+        },
+        {
+          "year": 1948,
+          "genre": {
+            "fr_FR": [
+              "récit",
+              "poétique"
+            ],
+            "en_US": [
+              "narrative",
+              "poetic"
+            ]
+          },
+          "title": {
+            "fr_FR": "Tarendol",
+            "en_US": "Tarendol"
+          },
+          "pages": {
+            "fr_FR": 256,
+            "en_US": 240
+          },
+          "publisher": {
+            "fr_FR": "Denoël",
+            "en_US": "Denoël"
+          }
+        },
+        {
+          "year": 1958,
+          "genre": {
+            "fr_FR": [
+              "science-fiction",
+              "anticipation"
+            ],
+            "en_US": [
+              "science fiction",
+              "anticipation"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Nuit des temps",
+            "en_US": "The Ice People"
+          },
+          "pages": {
+            "fr_FR": 384,
+            "en_US": 352
+          },
+          "publisher": {
+            "fr_FR": "Presses de la Cité",
+            "en_US": "Denoël"
+          }
+        },
+        {
+          "year": 1969,
+          "genre": {
+            "fr_FR": [
+              "essai",
+              "politique"
+            ],
+            "en_US": [
+              "essay",
+              "political"
+            ]
+          },
+          "title": {
+            "fr_FR": "La Faim du lion",
+            "en_US": "The Hunger of the Lion"
+          },
+          "pages": {
+            "fr_FR": 224,
+            "en_US": 208
+          },
+          "publisher": {
+            "fr_FR": "Denoël",
+            "en_US": "Denoël"
+          }
+        },
+        {
+          "year": 1984,
+          "genre": {
+            "fr_FR": [
+              "roman",
+              "humour"
+            ],
+            "en_US": [
+              "novel",
+              "humor"
+            ]
+          },
+          "title": {
+            "fr_FR": "L'Enchanteur",
+            "en_US": "The Enchanter"
+          },
+          "pages": {
+            "fr_FR": 288,
+            "en_US": 272
+          },
+          "publisher": {
+            "fr_FR": "Denoël",
+            "en_US": "Denoël"
+          }
+        }
+      ]
+    },
+    {
       "name": "René Descartes",
       "wikidata_id": "Q9191",
       "nationality": {
@@ -11104,6 +11643,83 @@
         "en_US": "American"
       },
       "books": [
+        {
+          "year": 1928,
+          "genre": {
+            "fr_FR": [
+              "heroic fantasy",
+              "épée et sorcellerie"
+            ],
+            "en_US": [
+              "heroic fantasy",
+              "sword and sorcery"
+            ]
+          },
+          "title": {
+            "fr_FR": "Kull de Valusie",
+            "en_US": "Kull of Atlantis"
+          },
+          "pages": {
+            "fr_FR": 288,
+            "en_US": 272
+          },
+          "publisher": {
+            "fr_FR": "Pocket",
+            "en_US": "Weird Tales"
+          }
+        },
+        {
+          "year": 1928,
+          "genre": {
+            "fr_FR": [
+              "horreur",
+              "épée et sorcellerie"
+            ],
+            "en_US": [
+              "horror",
+              "sword and sorcery"
+            ]
+          },
+          "title": {
+            "fr_FR": "Des crânes dans les étoiles",
+            "en_US": "Skulls in the Stars"
+          },
+          "pages": {
+            "fr_FR": 192,
+            "en_US": 176
+          },
+          "publisher": {
+            "fr_FR": "Pocket",
+            "en_US": "Weird Tales"
+          }
+        },
+        {
+          "year": 1929,
+          "genre": {
+            "fr_FR": [
+              "horreur",
+              "aventure",
+              "occulte"
+            ],
+            "en_US": [
+              "horror",
+              "adventure",
+              "occult"
+            ]
+          },
+          "title": {
+            "fr_FR": "Solomon Kane",
+            "en_US": "Solomon Kane"
+          },
+          "pages": {
+            "fr_FR": 256,
+            "en_US": 240
+          },
+          "publisher": {
+            "fr_FR": "Pocket",
+            "en_US": "Weird Tales"
+          }
+        },
         {
           "year": 1932,
           "genre": {
@@ -11203,83 +11819,6 @@
             "fr_FR": "Pocket",
             "en_US": "Weird Tales"
           }
-        },
-        {
-          "year": 1928,
-          "genre": {
-            "fr_FR": [
-              "heroic fantasy",
-              "épée et sorcellerie"
-            ],
-            "en_US": [
-              "heroic fantasy",
-              "sword and sorcery"
-            ]
-          },
-          "title": {
-            "fr_FR": "Kull de Valusie",
-            "en_US": "Kull of Atlantis"
-          },
-          "pages": {
-            "fr_FR": 288,
-            "en_US": 272
-          },
-          "publisher": {
-            "fr_FR": "Pocket",
-            "en_US": "Weird Tales"
-          }
-        },
-        {
-          "year": 1928,
-          "genre": {
-            "fr_FR": [
-              "horreur",
-              "épée et sorcellerie"
-            ],
-            "en_US": [
-              "horror",
-              "sword and sorcery"
-            ]
-          },
-          "title": {
-            "fr_FR": "Les Ombres de Kampala",
-            "en_US": "Skulls in the Stars"
-          },
-          "pages": {
-            "fr_FR": 192,
-            "en_US": 176
-          },
-          "publisher": {
-            "fr_FR": "Pocket",
-            "en_US": "Weird Tales"
-          }
-        },
-        {
-          "year": 1929,
-          "genre": {
-            "fr_FR": [
-              "horreur",
-              "aventure",
-              "occulte"
-            ],
-            "en_US": [
-              "horror",
-              "adventure",
-              "occult"
-            ]
-          },
-          "title": {
-            "fr_FR": "Solomon Kane",
-            "en_US": "Solomon Kane"
-          },
-          "pages": {
-            "fr_FR": 256,
-            "en_US": 240
-          },
-          "publisher": {
-            "fr_FR": "Pocket",
-            "en_US": "Weird Tales"
-          }
         }
       ]
     },
@@ -11324,7 +11863,7 @@
             ],
             "en_US": [
               "gothic",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -11574,165 +12113,6 @@
           "publisher": {
             "fr_FR": "Macmillan",
             "en_US": "Macmillan"
-          }
-        }
-      ]
-    },
-    {
-      "name": "René Barjavel",
-      "nationality": {
-        "fr_FR": "français",
-        "en_US": "French"
-      },
-      "books": [
-        {
-          "year": 1943,
-          "genre": {
-            "fr_FR": [
-              "science-fiction",
-              "anticipation"
-            ],
-            "en_US": [
-              "science fiction",
-              "anticipation"
-            ]
-          },
-          "title": {
-            "fr_FR": "Ravage",
-            "en_US": "Ravage"
-          },
-          "pages": {
-            "fr_FR": 320,
-            "en_US": 304
-          },
-          "publisher": {
-            "fr_FR": "Denoël",
-            "en_US": "Denoël"
-          }
-        },
-        {
-          "year": 1944,
-          "genre": {
-            "fr_FR": [
-              "roman",
-              "amour"
-            ],
-            "en_US": [
-              "novel",
-              "romance"
-            ]
-          },
-          "title": {
-            "fr_FR": "Le Voyageur imprudent",
-            "en_US": "The Imprudent Traveller"
-          },
-          "pages": {
-            "fr_FR": 256,
-            "en_US": 240
-          },
-          "publisher": {
-            "fr_FR": "Denoël",
-            "en_US": "Denoël"
-          }
-        },
-        {
-          "year": 1948,
-          "genre": {
-            "fr_FR": [
-              "récit",
-              "poétique"
-            ],
-            "en_US": [
-              "narrative",
-              "poetic"
-            ]
-          },
-          "title": {
-            "fr_FR": "Tarendol",
-            "en_US": "Tarendol"
-          },
-          "pages": {
-            "fr_FR": 256,
-            "en_US": 240
-          },
-          "publisher": {
-            "fr_FR": "Denoël",
-            "en_US": "Denoël"
-          }
-        },
-        {
-          "year": 1958,
-          "genre": {
-            "fr_FR": [
-              "science-fiction",
-              "anticipation"
-            ],
-            "en_US": [
-              "science fiction",
-              "anticipation"
-            ]
-          },
-          "title": {
-            "fr_FR": "La Nuit des temps",
-            "en_US": "The Ice People"
-          },
-          "pages": {
-            "fr_FR": 384,
-            "en_US": 352
-          },
-          "publisher": {
-            "fr_FR": "Presses de la Cité",
-            "en_US": "Denoël"
-          }
-        },
-        {
-          "year": 1969,
-          "genre": {
-            "fr_FR": [
-              "essai",
-              "politique"
-            ],
-            "en_US": [
-              "essay",
-              "political"
-            ]
-          },
-          "title": {
-            "fr_FR": "La Faim du lion",
-            "en_US": "The Hunger of the Lion"
-          },
-          "pages": {
-            "fr_FR": 224,
-            "en_US": 208
-          },
-          "publisher": {
-            "fr_FR": "Denoël",
-            "en_US": "Denoël"
-          }
-        },
-        {
-          "year": 1984,
-          "genre": {
-            "fr_FR": [
-              "roman",
-              "humour"
-            ],
-            "en_US": [
-              "novel",
-              "humor"
-            ]
-          },
-          "title": {
-            "fr_FR": "L'Enchanteur",
-            "en_US": "The Enchanter"
-          },
-          "pages": {
-            "fr_FR": 288,
-            "en_US": 272
-          },
-          "publisher": {
-            "fr_FR": "Denoël",
-            "en_US": "Denoël"
           }
         }
       ]
@@ -12148,7 +12528,7 @@
             ],
             "en_US": [
               "horror",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -12173,7 +12553,7 @@
             ],
             "en_US": [
               "horror",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -12198,7 +12578,7 @@
             ],
             "en_US": [
               "horror",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -12223,7 +12603,7 @@
             ],
             "en_US": [
               "horror",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -12248,7 +12628,7 @@
             ],
             "en_US": [
               "horror",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -12273,7 +12653,7 @@
             ],
             "en_US": [
               "horror",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -12298,7 +12678,7 @@
             ],
             "en_US": [
               "horror",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -12323,7 +12703,7 @@
             ],
             "en_US": [
               "horror",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -12348,7 +12728,7 @@
             ],
             "en_US": [
               "horror",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -12373,7 +12753,7 @@
             ],
             "en_US": [
               "horror",
-              "fantasy"
+              "supernatural fiction"
             ]
           },
           "title": {
@@ -12545,12 +12925,10 @@
           "year": -400,
           "genre": {
             "fr_FR": [
-              "histoire",
-              "guerre du Péloponnèse"
+              "histoire"
             ],
             "en_US": [
-              "history",
-              "Peloponnesian War"
+              "history"
             ]
           },
           "title": {
@@ -12852,10 +13230,7 @@
             "fr_FR": 363,
             "en_US": 172
           },
-          "publisher": {
-            "fr_FR": "Gustave Simon",
-            "en_US": null
-          },
+          "publisher": null,
           "wikidata_id": "Q2496854"
         },
         {
@@ -13217,7 +13592,7 @@
           },
           "publisher": {
             "fr_FR": "Florent Massot",
-            "en_US": " Grove Press"
+            "en_US": "Grove Press"
           }
         },
         {
@@ -13634,6 +14009,99 @@
       ]
     },
     {
+      "name": "William Faulkner",
+      "nationality": {
+        "fr_FR": "américain",
+        "en_US": "American"
+      },
+      "books": [
+        {
+          "year": 1930,
+          "genre": {
+            "fr_FR": [
+              "roman sudiste",
+              "moderniste"
+            ],
+            "en_US": [
+              "southern novel",
+              "modernist"
+            ]
+          },
+          "title": {
+            "fr_FR": "Le Bruit et la fureur",
+            "en_US": "The Sound and the Fury"
+          },
+          "pages": {
+            "fr_FR": 320,
+            "en_US": 304
+          },
+          "publisher": {
+            "fr_FR": "Random House",
+            "en_US": "Random House"
+          }
+        }
+      ]
+    },
+    {
+      "name": "William Gibson",
+      "nationality": {
+        "fr_FR": "américain",
+        "en_US": "American"
+      },
+      "books": [
+        {
+          "year": 1984,
+          "genre": {
+            "fr_FR": [
+              "cyberpunk",
+              "science-fiction"
+            ],
+            "en_US": [
+              "cyberpunk",
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "Neuromancien",
+            "en_US": "Neuromancer"
+          },
+          "pages": {
+            "fr_FR": 320,
+            "en_US": 288
+          },
+          "publisher": {
+            "fr_FR": "Ace Books",
+            "en_US": "Ace Books"
+          }
+        },
+        {
+          "year": 1986,
+          "genre": {
+            "fr_FR": [
+              "cyberpunk",
+              "science-fiction"
+            ],
+            "en_US": [
+              "cyberpunk",
+              "science fiction"
+            ]
+          },
+          "title": {
+            "fr_FR": "Count Zero",
+            "en_US": "Count Zero"
+          },
+          "pages": {
+            "fr_FR": 304,
+            "en_US": 288
+          },
+          "publisher": {
+            "fr_FR": "Ace Books",
+            "en_US": "Ace Books"
+          }
+        }
+      ]
+    },
+    {
       "name": "William Shakespeare",
       "nationality": {
         "fr_FR": "britannique",
@@ -13666,7 +14134,7 @@
           "genre": {
             "fr_FR": [
               "tragédie",
-              "romanesque"
+              "romance"
             ],
             "en_US": [
               "tragedy",
@@ -13755,6 +14223,29 @@
             "en_US": "Yale University Press"
           },
           "wikidata_id": "Q495954"
+        },
+        {
+          "year": 1599,
+          "genre": {
+            "fr_FR": [
+              "comédie"
+            ],
+            "en_US": [
+              "comedy"
+            ]
+          },
+          "title": {
+            "fr_FR": "Beaucoup de bruit pour rien",
+            "en_US": "Much Ado About Nothing"
+          },
+          "pages": {
+            "fr_FR": 224,
+            "en_US": 256
+          },
+          "publisher": {
+            "fr_FR": "Gallimard",
+            "en_US": "Penguin Classics"
+          }
         },
         {
           "year": 1600,
@@ -13874,34 +14365,11 @@
           }
         },
         {
-          "year": 1599,
-          "genre": {
-            "fr_FR": [
-              "comédie"
-            ],
-            "en_US": [
-              "comedy"
-            ]
-          },
-          "title": {
-            "fr_FR": "Beaucoup de bruit pour rien",
-            "en_US": "Much Ado About Nothing"
-          },
-          "pages": {
-            "fr_FR": 224,
-            "en_US": 256
-          },
-          "publisher": {
-            "fr_FR": "Gallimard",
-            "en_US": "Penguin Classics"
-          }
-        },
-        {
           "year": 1611,
           "genre": {
             "fr_FR": [
               "comédie",
-              "romanesque"
+              "romance"
             ],
             "en_US": [
               "comedy",
@@ -14012,485 +14480,6 @@
         }
       ],
       "wikidata_id": "Q692"
-    },
-    {
-      "name": "William Faulkner",
-      "nationality": {
-        "fr_FR": "américain",
-        "en_US": "American"
-      },
-      "books": [
-        {
-          "year": 1930,
-          "genre": {
-            "fr_FR": [
-              "roman sudiste",
-              "moderniste"
-            ],
-            "en_US": [
-              "southern novel",
-              "modernist"
-            ]
-          },
-          "title": {
-            "fr_FR": "Le Bruit et la fureur",
-            "en_US": "The Sound and the Fury"
-          },
-          "pages": {
-            "fr_FR": 320,
-            "en_US": 304
-          },
-          "publisher": {
-            "fr_FR": "Random House",
-            "en_US": "Random House"
-          }
-        }
-      ]
-    },
-    {
-      "name": "William Gibson",
-      "nationality": {
-        "fr_FR": "américain",
-        "en_US": "American"
-      },
-      "books": [
-        {
-          "year": 1984,
-          "genre": {
-            "fr_FR": [
-              "cyberpunk",
-              "science-fiction"
-            ],
-            "en_US": [
-              "cyberpunk",
-              "science fiction"
-            ]
-          },
-          "title": {
-            "fr_FR": "Neuromancien",
-            "en_US": "Neuromancer"
-          },
-          "pages": {
-            "fr_FR": 320,
-            "en_US": 288
-          },
-          "publisher": {
-            "fr_FR": "Ace Books",
-            "en_US": "Ace Books"
-          }
-        },
-        {
-          "year": 1986,
-          "genre": {
-            "fr_FR": [
-              "cyberpunk",
-              "science-fiction"
-            ],
-            "en_US": [
-              "cyberpunk",
-              "science fiction"
-            ]
-          },
-          "title": {
-            "fr_FR": "Count Zero",
-            "en_US": "Count Zero"
-          },
-          "pages": {
-            "fr_FR": 304,
-            "en_US": 288
-          },
-          "publisher": {
-            "fr_FR": "Ace Books",
-            "en_US": "Ace Books"
-          }
-        }
-      ]
-    },
-    {
-      "name": "Kamel Daoud",
-      "nationality": {
-        "fr_FR": "algérien",
-        "en_US": "Algerian"
-      },
-      "books": [
-        {
-          "year": 2014,
-          "genre": {
-            "fr_FR": [
-              "roman",
-              "réécriture"
-            ],
-            "en_US": [
-              "novel",
-              "literary fiction"
-            ]
-          },
-          "title": {
-            "fr_FR": "Meursault, contre-enquête",
-            "en_US": "The Meursault Investigation"
-          },
-          "pages": {
-            "fr_FR": 192,
-            "en_US": 176
-          },
-          "publisher": {
-            "fr_FR": "Actes Sud",
-            "en_US": "Other Press"
-          }
-        },
-        {
-          "year": 2017,
-          "genre": {
-            "fr_FR": [
-              "roman",
-              "conte"
-            ],
-            "en_US": [
-              "novel",
-              "fiction"
-            ]
-          },
-          "title": {
-            "fr_FR": "Zabor ou les psaumes de la nuit",
-            "en_US": "Zabor, or the Psalms of the Night"
-          },
-          "pages": {
-            "fr_FR": 328,
-            "en_US": 320
-          },
-          "publisher": {
-            "fr_FR": "Actes Sud",
-            "en_US": "Other Press"
-          }
-        }
-      ]
-    },
-    {
-      "name": "Hervé Le Tellier",
-      "nationality": {
-        "fr_FR": "français",
-        "en_US": "French"
-      },
-      "books": [
-        {
-          "year": 2011,
-          "genre": {
-            "fr_FR": [
-              "roman contemporain",
-              "récit"
-            ],
-            "en_US": [
-              "contemporary novel",
-              "narrative"
-            ]
-          },
-          "title": {
-            "fr_FR": "Eléctrico W",
-            "en_US": "Eléctrico W"
-          },
-          "pages": {
-            "fr_FR": 320,
-            "en_US": 320
-          },
-          "publisher": {
-            "fr_FR": "Jean-Claude Lattès",
-            "en_US": "Jean-Claude Lattès"
-          }
-        },
-        {
-          "year": 2017,
-          "genre": {
-            "fr_FR": [
-              "récit",
-              "roman contemporain"
-            ],
-            "en_US": [
-              "narrative",
-              "contemporary novel"
-            ]
-          },
-          "title": {
-            "fr_FR": "Toutes les familles heureuses",
-            "en_US": "All Happy Families"
-          },
-          "pages": {
-            "fr_FR": 256,
-            "en_US": 272
-          },
-          "publisher": {
-            "fr_FR": "Jean-Claude Lattès",
-            "en_US": "The Other Press"
-          }
-        },
-        {
-          "year": 2020,
-          "genre": {
-            "fr_FR": [
-              "roman contemporain",
-              "speculative"
-            ],
-            "en_US": [
-              "contemporary novel",
-              "speculative"
-            ]
-          },
-          "title": {
-            "fr_FR": "L'Anomalie",
-            "en_US": "The Anomaly"
-          },
-          "pages": {
-            "fr_FR": 336,
-            "en_US": 352
-          },
-          "publisher": {
-            "fr_FR": "Gallimard",
-            "en_US": "The Other Press"
-          }
-        },
-        {
-          "year": 2024,
-          "genre": {
-            "fr_FR": [
-              "récit",
-              "roman historique"
-            ],
-            "en_US": [
-              "narrative",
-              "historical novel"
-            ]
-          },
-          "title": {
-            "fr_FR": "Le Nom sur le mur",
-            "en_US": "The Name on the Wall"
-          },
-          "pages": {
-            "fr_FR": 288,
-            "en_US": 288
-          },
-          "publisher": {
-            "fr_FR": "Gallimard",
-            "en_US": "Gallimard"
-          }
-        }
-      ]
-    },
-    {
-      "name": "Eric Vuillard",
-      "nationality": {
-        "fr_FR": "français",
-        "en_US": "French"
-      },
-      "books": [
-        {
-          "year": 2014,
-          "genre": {
-            "fr_FR": [
-              "récit",
-              "histoire"
-            ],
-            "en_US": [
-              "narrative nonfiction",
-              "history"
-            ]
-          },
-          "title": {
-            "fr_FR": "Tristesse de la terre",
-            "en_US": "Sadness of the Earth"
-          },
-          "pages": {
-            "fr_FR": 158,
-            "en_US": 176
-          },
-          "publisher": {
-            "fr_FR": "Actes Sud",
-            "en_US": "The Other Press"
-          }
-        },
-        {
-          "year": 2017,
-          "genre": {
-            "fr_FR": [
-              "récit",
-              "histoire"
-            ],
-            "en_US": [
-              "narrative nonfiction",
-              "history"
-            ]
-          },
-          "title": {
-            "fr_FR": "L'Ordre du jour",
-            "en_US": "The Order of the Day"
-          },
-          "pages": {
-            "fr_FR": 160,
-            "en_US": 176
-          },
-          "publisher": {
-            "fr_FR": "Actes Sud",
-            "en_US": "The Other Press"
-          }
-        },
-        {
-          "year": 2019,
-          "genre": {
-            "fr_FR": [
-              "récit",
-              "histoire"
-            ],
-            "en_US": [
-              "narrative nonfiction",
-              "history"
-            ]
-          },
-          "title": {
-            "fr_FR": "La Guerre des pauvres",
-            "en_US": "The War of the Poor"
-          },
-          "pages": {
-            "fr_FR": 80,
-            "en_US": 96
-          },
-          "publisher": {
-            "fr_FR": "Actes Sud",
-            "en_US": "The Other Press"
-          }
-        },
-        {
-          "year": 2022,
-          "genre": {
-            "fr_FR": [
-              "récit",
-              "histoire"
-            ],
-            "en_US": [
-              "narrative nonfiction",
-              "history"
-            ]
-          },
-          "title": {
-            "fr_FR": "Une sortie honorable",
-            "en_US": "An Honorable Exit"
-          },
-          "pages": {
-            "fr_FR": 208,
-            "en_US": 224
-          },
-          "publisher": {
-            "fr_FR": "Actes Sud",
-            "en_US": "The Other Press"
-          }
-        }
-      ]
-    },
-    {
-      "name": "Pierre Lemaitre",
-      "nationality": {
-        "fr_FR": "français",
-        "en_US": "French"
-      },
-      "books": [
-        {
-          "year": 2011,
-          "genre": {
-            "fr_FR": [
-              "thriller",
-              "roman policier"
-            ],
-            "en_US": [
-              "thriller",
-              "crime"
-            ]
-          },
-          "title": {
-            "fr_FR": "Alex",
-            "en_US": "Alex"
-          },
-          "pages": {
-            "fr_FR": 384,
-            "en_US": 384
-          },
-          "publisher": {
-            "fr_FR": "Albin Michel",
-            "en_US": "MacLehose Press"
-          }
-        },
-        {
-          "year": 2013,
-          "genre": {
-            "fr_FR": [
-              "roman historique",
-              "roman"
-            ],
-            "en_US": [
-              "historical novel",
-              "fiction"
-            ]
-          },
-          "title": {
-            "fr_FR": "Au revoir là-haut",
-            "en_US": "The Great Swindle"
-          },
-          "pages": {
-            "fr_FR": 576,
-            "en_US": 576
-          },
-          "publisher": {
-            "fr_FR": "Albin Michel",
-            "en_US": "MacLehose Press"
-          }
-        },
-        {
-          "year": 2018,
-          "genre": {
-            "fr_FR": [
-              "roman historique",
-              "roman"
-            ],
-            "en_US": [
-              "historical novel",
-              "fiction"
-            ]
-          },
-          "title": {
-            "fr_FR": "Couleurs de l'incendie",
-            "en_US": "The Colours of the Fire"
-          },
-          "pages": {
-            "fr_FR": 534,
-            "en_US": 560
-          },
-          "publisher": {
-            "fr_FR": "Albin Michel",
-            "en_US": "MacLehose Press"
-          }
-        },
-        {
-          "year": 2022,
-          "genre": {
-            "fr_FR": [
-              "roman historique",
-              "roman"
-            ],
-            "en_US": [
-              "historical novel",
-              "fiction"
-            ]
-          },
-          "title": {
-            "fr_FR": "Le Grand Monde",
-            "en_US": "The Great World"
-          },
-          "pages": {
-            "fr_FR": 592,
-            "en_US": 624
-          },
-          "publisher": {
-            "fr_FR": "Calmann-Lévy",
-            "en_US": "MacLehose Press"
-          }
-        }
-      ]
     }
   ]
 }

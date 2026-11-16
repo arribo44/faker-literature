@@ -122,7 +122,7 @@ print(f"First 15: {all_genres[:15]}")
 
 ### Bundled catalogue
 - `literature.json`: ~320 KB (14,500 lines)
-- 190 authors, 518 books, ~220 unique genres per locale
+- 190 authors, 518 books, ~210 unique genres per locale
 
 ### Sources
 Every record carries a `source` field (`builtin`, `wikidata`, ...).
@@ -180,7 +180,7 @@ from faker_literature import LiteratureProvider
 fake_fr = Faker('fr_FR')
 fake_fr.add_provider(LiteratureProvider)
 print(fake_fr.genre())  # E.g., "philosophique", "drame romantique"
-print(fake_fr.all_genres()[:5])  # ['adolescence', 'amitié', 'américain', 'anthologie', 'anthropologie']
+print(fake_fr.all_genres()[:5])  # ['absurde', 'adolescence', 'ambitieux', 'amitié', 'amour']
 
 # English locale - genres in English
 fake_en = Faker('en_US')

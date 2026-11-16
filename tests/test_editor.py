@@ -224,8 +224,39 @@ def test_author_names_match_regardless_of_spacing_and_punctuation(catalogue):
     entry = editor.find_author(catalogue, "Q79904", ["J. D. Salinger"])
 
     assert entry is not None and entry["name"] == "J.D. Salinger"
-    assert editor.find_author(catalogue, "Q1", ["h.p. LOVECRAFT"])["name"] == "H. P. Lovecraft"
-    assert editor.find_author(catalogue, "Q1", ["Emile Zola"])["name"] == "Émile Zola"
+    assert editor.find_author(catalogue, None, ["h.p. LOVECRAFT"])["name"] == "H. P. Lovecraft"
+    assert editor.find_author(catalogue, None, ["Emile Zola"])["name"] == "Émile Zola"
+
+
+def test_homonyms_with_another_wikidata_id_are_different_authors(catalogue):
+    # Lovecraft is Q169566 in the catalogue: an other Q-id with the same name is someone else
+    assert editor.find_author(catalogue, "Q1", ["H. P. Lovecraft"]) is None
+    assert editor.find_author(catalogue, "Q169566", ["H. P. Lovecraft"])["name"] == "H. P. Lovecraft"
+
+
+def test_homonym_gets_its_own_entry(catalogue):
+    before = len(catalogue["authors"])
+    homonym = _author(wikidata_id="Q1", name={"fr_FR": "Émile Zola", "en_US": "Émile Zola"})
+
+    _, created = editor.add_book(catalogue, homonym, _book())
+
+    assert created and len(catalogue["authors"]) == before + 1
+
+
+@pytest.mark.parametrize("title, key", [
+    ("L'Iliade", "iliade"),
+    ("l’Odyssée", "odyssee"),
+    ("The Iliad", "iliad"),
+    ("A Study in Scarlet", "studyinscarlet"),
+    ("Les Misérables", "miserables"),
+    ("Anna Karénine", "annakarenine"),
+    ("Theogony", "theogony"),
+    ("Lettres persanes", "lettrespersanes"),
+    ("Antigone", "antigone"),
+    ("Une", "une"),
+])
+def test_title_key_only_removes_whole_leading_articles(title, key):
+    assert editor._title_key(title) == key
 
 
 def test_titles_differing_by_an_article_are_duplicates(catalogue):

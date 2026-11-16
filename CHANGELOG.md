@@ -4,6 +4,19 @@ Toutes les évolutions notables de `faker-literature` sont documentées dans ce 
 
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0/) et les versions suivent [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [Non publié]
+
+### Ajouté
+
+- Tests de cohérence du catalogue (`tests/test_catalogue.py`) : traduction unique de chaque genre et de chaque nationalité, pas de nationalité utilisée comme genre, casse, espaces parasites, tri des auteurs et des livres, unicité des identifiants Wikidata, des noms d'auteurs et des titres.
+
+### Corrigé
+
+- Catalogue : un genre n'a plus qu'une traduction par langue, ce qui permet aux filtres par genre de trouver tous les livres concernés (« fantastique » ≠ « fantasy », « polar » / « crime », « roman » / « novel », « roman d'aventures »…). Faux genres supprimés (« américain », « capitaine Alatriste », « guerre du Péloponnèse ») et coquille « historie des idées » corrigée.
+- Catalogue : titre français de *Skulls in the Stars* (« Des crânes dans les étoiles »), éditeurs erronés corrigés ou retirés (Project Gutenberg, Gustave Simon…), espace parasite dans « Grove Press », auteurs et livres remis dans l'ordre.
+- Éditeur : la détection des doublons ne coupe plus le début des titres commençant comme un article (« Anna Karénine », « Theogony », « Lettres persanes »).
+- Éditeur : un homonyme ayant un autre identifiant Wikidata n'est plus confondu avec l'auteur déjà présent au catalogue.
+
 ## [0.3.0] - 2026-10-31
 
 ### Ajouté

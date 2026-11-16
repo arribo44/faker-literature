@@ -253,7 +253,8 @@ def _name_key(name):
     return "".join(c for c in _sort_name(name) if c.isalnum())
 
 
-LEADING_ARTICLE = re.compile(r"^(?:le|la|les|l['’]|un|une|the|a|an)\s*(?=\S)", re.IGNORECASE)
+# An article is a whole word ("The Iliad", "L'Iliade"), never the start of one ("Anna", "Theogony")
+LEADING_ARTICLE = re.compile(r"^(?:(?:le|la|les|un|une|the|a|an)\s+|l['’]\s*)(?=\S)", re.IGNORECASE)
 
 
 def _title_key(title):
@@ -262,12 +263,20 @@ def _title_key(title):
 
 
 def find_author(data, qid, names):
-    """Return the catalogue entry for ``qid``, matched by id or else by name."""
+    """Return the catalogue entry for ``qid``, matched by id or else by name.
+
+    The name fallback only considers entries without a Wikidata id (or with
+    the same one): two homonyms with different ids are different authors.
+    ``qid`` may be ``None`` when the id is unknown.
+    """
     wanted = {_name_key(name) for name in names if name}
+    if qid is not None:
+        for entry in data["authors"]:
+            if entry.get("wikidata_id") == qid:
+                return entry
     for entry in data["authors"]:
-        if entry.get("wikidata_id") == qid:
-            return entry
-    for entry in data["authors"]:
+        if qid is not None and entry.get("wikidata_id") not in (None, qid):
+            continue
         if {_name_key(name) for name in _names(entry["name"])} & wanted:
             return entry
     return None
