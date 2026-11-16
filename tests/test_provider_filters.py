@@ -5,7 +5,7 @@ from collections import Counter
 import pytest
 from faker import Faker
 
-from faker_literature import LiteratureProvider
+from faker_literature import BookFilter, LiteratureProvider
 
 
 @pytest.fixture
@@ -140,3 +140,102 @@ def test_returned_lists_do_not_expose_the_cache(fake_en):
 
     assert "CORROMPU" not in fake_en.all_genres()
     assert fake_en.all_authors()
+
+
+# Filters shared by every drawing method
+
+def test_filters_combine_on_every_drawing_method(fake_en):
+    provider = LiteratureProvider(fake_en)
+    french_19th = [book for book in provider.books if book["nationality"] == "French" and 1801 <= book["year"] <= 1900]
+
+    for _ in range(30):
+        book = fake_en.book(nationality="french", century=19)
+        assert book in french_19th
+    assert fake_en.title(nationality="French", century=19) in {book["title"] for book in french_19th}
+    assert fake_en.publisher(nationality="French", century=19) in {book["publisher"] for book in french_19th}
+    assert fake_en.publication_year(nationality="French", century=19) in range(1801, 1901)
+    assert fake_en.genre(nationality="French", century=19) in {g for book in french_19th for g in book["genre"]}
+    assert fake_en.writer(nationality="French", century=19) in {book["writer"] for book in french_19th}
+    assert fake_en.pages(after=1990, before=1999) in {book["pages"] for book in provider.books
+                                                      if 1990 <= book["year"] <= 1999}
+
+
+def test_author_filter_and_year_bounds(fake_en):
+    assert {fake_en.title(author="victor HUGO") for _ in range(50)} <= {
+        book["title"] for book in fake_en.books_by_author("Victor Hugo")}
+    assert fake_en.book(before=-500)["year"] <= -500
+    assert fake_en.book(after=2000, genre="science fiction")["year"] >= 2000
+
+
+@pytest.mark.parametrize("century, first, last", [(19, 1801, 1900), (1, 1, 100), (-1, -100, -1), (-5, -500, -401)])
+def test_centuries(century, first, last):
+    book_filter = BookFilter(century=century)
+    assert (book_filter.after, book_filter.before) == (first, last)
+
+
+def test_impossible_filters_raise(fake_en):
+    with pytest.raises(ValueError, match="No book found for nationality='Zealander', after=2000"):
+        fake_en.book(nationality="Zealander", after=2000)
+    with pytest.raises(ValueError, match="century 0"):
+        fake_en.book(century=0)
+
+
+# Popularity
+
+@pytest.fixture
+def ranked(tmp_path):
+    """Two books of one nationality: one famous, one obscure."""
+    store = LiteratureProvider.use_database(tmp_path / "db.json")
+    base = {"nationality": {"fr_FR": "zélandais", "en_US": "Zealander"},
+            "genre": {"fr_FR": ["roman"], "en_US": ["novel"]}, "year": 2001}
+    store.replace_source("test", [
+        dict(base, writer="Famous Author", title={"fr_FR": "Célèbre", "en_US": "Famous"}, popularity=900),
+        dict(base, writer="Obscure Author", title={"fr_FR": "Obscur", "en_US": "Obscure"}, popularity=1),
+    ])
+    yield
+    LiteratureProvider.use_database(None)
+
+
+def test_popular_books_are_drawn_more_often(ranked, fake_en):
+    plain = Counter(fake_en.title(nationality="Zealander") for _ in range(1000))
+    popular = Counter(fake_en.title(nationality="Zealander", popular=True) for _ in range(1000))
+
+    assert 400 < plain["Famous"] < 600
+    assert popular["Famous"] > 980
+    assert Counter(fake_en.writer(nationality="Zealander", popular=True) for _ in range(200))["Famous Author"] > 190
+
+
+def test_popularity_stays_internal(ranked, fake_en):
+    assert "popularity" not in fake_en.book(nationality="Zealander")
+    assert "popularity" not in fake_en.books_sample(1, nationality="Zealander")[0]
+    assert any("popularity" in book for book in LiteratureProvider(fake_en).books_flat)
+
+
+def test_books_without_popularity_get_the_median():
+    fake = Faker("en_US")
+    fake.add_provider(LiteratureProvider)
+    provider = LiteratureProvider(fake)
+    books = [{"popularity": 10}, {"popularity": 30}, {"popularity": None}, {}]
+
+    median = provider._weights([{}])[0]
+    assert provider._weights(books) == [100, 900, median, median]
+
+
+# Sampling without replacement
+
+def test_books_sample_draws_distinct_books(fake_en):
+    sample = fake_en.books_sample(50, nationality="*")
+    assert len({(book["writer"], book["title"]) for book in sample}) == 50
+
+    french = fake_en.books_sample(5, nationality="French", century=19, popular=True)
+    assert len({book["title"] for book in french}) == 5 and all(book["nationality"] == "French" for book in french)
+    assert fake_en.books_sample(0) == []
+
+
+def test_books_sample_is_reproducible_and_bounded(fake_en, ranked):
+    fake_en.seed_instance(9)
+    first = fake_en.books_sample(2, nationality="Zealander")
+    fake_en.seed_instance(9)
+    assert fake_en.books_sample(2, nationality="Zealander") == first
+    with pytest.raises(ValueError, match="Cannot draw 3 books: 2 match"):
+        fake_en.books_sample(3, nationality="Zealander")

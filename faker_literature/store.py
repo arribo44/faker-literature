@@ -48,9 +48,10 @@ MAX_PAGES = 100000
 # Fields of the schema; other ("extra") fields such as ``isbn`` are kept as is
 SCHEMA_FIELDS = {
     "writer", "nationality", "title", "title_untranslated", "genre", "year", "pages", "pages_estimated", "publisher",
-    "publisher_estimated", "source", "wikidata_id",
+    "publisher_estimated", "popularity", "source", "wikidata_id",
 }
 MAX_EXTRA_FIELDS = 20
+MAX_POPULARITY = 10**9
 EXTRA_FIELD_NAME = re.compile(r"[A-Za-z_][A-Za-z0-9_]{0,63}")
 WIKIDATA_ID = re.compile(r"Q[1-9][0-9]{0,11}")
 
@@ -181,6 +182,11 @@ def validate_book(book: object) -> None:
                 raise ValueError(f"{flag}: expected true or false")
             if book[flag] and not book.get(field):
                 raise ValueError(f"{flag}: no {'page count' if field == 'pages' else field} to qualify")
+    # How well known the work is: its number of Wikipedia articles for the bundled books
+    popularity = book.get("popularity")
+    if popularity is not None and (isinstance(popularity, bool) or not isinstance(popularity, int)
+                                   or not 0 < popularity <= MAX_POPULARITY):
+        raise ValueError(f"popularity: expected an integer between 1 and {MAX_POPULARITY}")
     _check_string(book.get("source"), "source")
     wikidata_id = book.get("wikidata_id")
     if "wikidata_id" in book and not (isinstance(wikidata_id, str) and WIKIDATA_ID.fullmatch(wikidata_id)):
@@ -208,6 +214,7 @@ def localize_book(book: Mapping[str, Any], locale: str) -> LocalizedBook:
         "year": book["year"],
         "pages": pick(book.get("pages"), locale),
         "publisher": pick(book.get("publisher"), locale),
+        "popularity": book.get("popularity"),
     }
 
 

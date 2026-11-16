@@ -403,6 +403,7 @@ async function addWork(work, inputs, button, details, resultBox) {
     genre: { fr_FR: inputs.genre_fr.value, en_US: inputs.genre_en.value },
     pages: { fr_FR: inputs.pages_fr.value, en_US: inputs.pages_en.value },
     publisher: { fr_FR: inputs.publisher_fr.value, en_US: inputs.publisher_en.value },
+    popularity: work.links,
   };
   button.disabled = true;
   button.textContent = "Ajout…";

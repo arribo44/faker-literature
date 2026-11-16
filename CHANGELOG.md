@@ -8,6 +8,7 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 
 ### Modifié
 
+- `literary_work()` accepte les filtres de `book()` ; le message d'erreur d'un tirage sans résultat nomme tous les filtres (`No writer found for genre='nope', nationality='American'`).
 - `nationality()` tire chaque auteur une fois, quel que soit son nombre de livres (auparavant, les auteurs prolifiques pesaient davantage).
 - `all_authors()` et `writer()` séparent les co-auteurs d'un livre (« A, B ») au lieu de les renvoyer ensemble.
 - Python 3.10 ou plus est requis (Faker et TinyDB n'acceptent plus les versions antérieures, et Python 3.8 / 3.9 ne sont plus maintenus) ; Python 3.13 et 3.14 sont pris en charge.
@@ -15,6 +16,11 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 
 ### Ajouté (provider)
 
+- Filtres communs à `book()`, `title()`, `writer()`, `genre()`, `publication_year()`, `pages()` et `publisher()` : `genre`, `nationality`, `author`, `after`, `before` et `century` (`century=19` pour 1801-1900, `-5` pour 500-401 av. J.-C.), combinés par « et ». Classe `BookFilter` exportée.
+- `popular=True` : tirage pondéré par le carré de la popularité des œuvres, leur nombre d'articles Wikipédia : le dixième le plus connu du catalogue fait environ les trois quarts des tirages. Champ `popularity` dans le schéma ; les livres qui n'en ont pas comptent pour la médiane. Le script `tools/literature_editor/update_popularity.py` remplit la popularité du catalogue et retrouve sur Wikidata les livres saisis à la main ; l'importeur et l'éditeur la renseignent pour les livres qu'ils ajoutent.
+- `books_sample(n, **filtres)` : n livres différents, tirés sans remise (`fake.unique.book()` ne peut pas fonctionner).
+- `edition(**filtres)` : édition cohérente d'une œuvre (éditeur de la locale ou de l'œuvre, année d'édition, format poche / broché / relié, pages et prix selon le format, ISBN-13 valide dont le préfixe est propre à l'éditeur).
+- `citation(style, book=None, **filtres)` : référence bibliographique APA, MLA ou Chicago (particules, initiales, co-auteurs, années av. J.-C.).
 - `LiteratureProvider.register(fake, fallback_locale=None)` : ajoute le provider à chaque locale d'un `Faker` multi-locale, ce que `add_provider()` ne permet pas ; `fallback_locale` (par exemple `"en_US"`) permet d'accepter les locales non prises en charge.
 - `writer(nationality=LiteratureProvider.ANY_NATIONALITY)` (ou `"*"`) : écrivain de n'importe quelle nationalité.
 - Le filtre `nationality` ignore la casse, comme `genre` ; `books_by_author()` ignore la casse, les accents et la ponctuation, et trouve un co-auteur.
@@ -49,6 +55,8 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 
 ### Corrigé
 
+- Recherche d'une œuvre sur Wikidata (import Goodreads, popularité) : une édition qui a son propre auteur ne passe plus pour l'œuvre ; les éditions sans œuvre de rattachement sont ignorées. Sept identifiants du catalogue corrigés (*Divine Comédie*, *Les Fiancés*, *Les Contemplations*, *Feu pâle*…).
+- Import Goodreads : les anthologies (« collected », « best of », « 100 of his… ») sont écartées ; un titre français qui n'est que le titre anglais avec son sous-titre compte comme non traduit.
 - Importeur Wikidata et éditeur : nationalité d'un auteur qui a plusieurs citoyennetés. Celle du pays de naissance l'emporte au lieu du plus petit identifiant Wikidata (P. G. Wodehouse et Roald Dahl étaient américain et norvégien, ils sont britanniques). Les traductions déjà utilisées par le catalogue sont reprises (« British » donnait parfois « anglais » au lieu de « britannique »), un auteur déjà présent garde sa nationalité, et les gentilés anglais ne sont plus mis en minuscules après la première lettre (« South african »).
 - Catalogue : les nombres de pages des 422 livres saisis à la main sont des estimations de la longueur habituelle de l'œuvre, et non ceux d'une édition précise ; ils sont désormais signalés par `"pages_estimated": true` et documentés comme tels. Les livres ajoutés depuis Wikidata gardent les valeurs de leurs éditions.
 - Catalogue : les éditeurs de ces mêmes 422 livres, plausibles mais non vérifiés (et pas forcément ceux de l'édition dont vient le nombre de pages), sont signalés par `"publisher_estimated": true`. L'éditeur local pose les deux marqueurs sur un livre saisi sans identifiant Wikidata.

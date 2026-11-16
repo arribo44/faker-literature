@@ -427,6 +427,10 @@ def build_book(raw):
         # Without a Wikidata source, the page counts and publishers typed by hand are not checked
         if value is not None and not wikidata_id:
             book[f"{field}_estimated"] = True
+    # Number of Wikipedia articles of the work, as found on Wikidata
+    popularity = raw.get("popularity")
+    if wikidata_id and isinstance(popularity, int) and not isinstance(popularity, bool) and popularity > 0:
+        book["popularity"] = popularity
     if wikidata_id:
         book["wikidata_id"] = parse_qid(wikidata_id)
     return book

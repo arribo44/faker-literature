@@ -1,5 +1,6 @@
 import email.message
 import http.client
+import json
 import urllib.error
 import urllib.request
 
@@ -301,3 +302,45 @@ def test_the_form_of_the_work_stands_in_for_missing_genres():
         [no_genre, unknown_genre, known_genre])}
 
     assert records == {"Q1": ["novel"], "Q2": ["novel"], "Q3": ["gothic novel"]}
+
+
+def _author_row(item, work, author, name):
+    entity = "http://www.wikidata.org/entity/"
+    return {"item": {"value": entity + item}, "work": {"value": entity + work},
+            "author": {"value": entity + author}, "name": {"value": name}}
+
+
+def test_the_first_hit_written_by_one_of_the_authors_wins():
+    items = wikidata.parse_item_authors([
+        _author_row("Q1", "Q1", "Q10", "Somebody Else"),
+        _author_row("Q2", "Q20", "Q30", "Michael Crichton"),  # an edition of the work Q20
+        _author_row("Q3", "Q3", "Q30", "Michael Crichton"),
+    ])
+    authors = ["Michael  Crichton", "Illustrator"]
+
+    assert wikidata.match_work(authors, ["Q1", "Q2", "Q3"], items) == ("Q20", "Q30")
+    assert wikidata.match_work(authors, ["Q1", "Q404"], items) is None
+
+
+def test_search_retries_when_the_api_answers_an_error(monkeypatch):
+    answers = iter([{"error": {"code": "ratelimited"}},
+                    {"query": {"search": [{"title": "Q46887"}, {"title": "Q1"}]}}])
+    monkeypatch.setattr(urllib.request, "urlopen",
+                        lambda request, timeout: _Response(json.dumps(next(answers)).encode()))
+
+    assert wikidata.search_items("Harry Potter", sleep=lambda delay: None) == ["Q46887", "Q1"]
+
+
+def test_work_popularity_is_its_number_of_wikipedia_articles():
+    [record] = wikidata.parse_bindings([_row(links="57")])
+    assert record["popularity"] == 57
+    assert "popularity" not in wikidata.parse_bindings([_row()])[0]
+
+
+def test_english_title_with_subtitle_as_french_label_is_untranslated():
+    row = _row(titleFr="Breaking the Spell: Religion as a Natural Phenomenon", titleEn="Breaking the Spell")
+
+    assert wikidata.parse_bindings([row]) == []
+    [record] = wikidata.parse_bindings([row], untranslated_titles=True)
+    assert record["title"] == {"fr_FR": "Breaking the Spell", "en_US": "Breaking the Spell"}
+    assert record["title_untranslated"] is True

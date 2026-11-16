@@ -54,7 +54,17 @@ Wikidata est souvent incomplet, en particulier pour les pages et les éditeurs. 
 - Un auteur est reconnu par son identifiant Wikidata, ou à défaut par son nom, sans tenir compte des accents, de la casse, des espaces ni de la ponctuation (« J. D. Salinger » = « J.D. Salinger »). Cela évite de créer des doublons. Un homonyme qui a un autre identifiant Wikidata est un auteur différent.
 - Le fichier garde exactement sa mise en forme (indentation de 2 espaces, caractères accentués lisibles), donc `git diff` ne montre que les ajouts. L'écriture est atomique : un fichier temporaire est remplacé d'un seul coup, ce qui évite tout fichier à moitié écrit.
 
+- Un livre ajouté depuis Wikidata reçoit sa popularité (`popularity`), son nombre d'articles Wikipédia, qui sert au tirage `popular=True` du provider.
+
 Relisez les ajouts avec `git diff faker_literature/DATAS/literature.json`, puis lancez `pytest` avant de commiter.
+
+## Mettre à jour la popularité
+
+```bash
+python tools/literature_editor/update_popularity.py [--dry-run]
+```
+
+Le script remplace la popularité de chaque livre qui a un identifiant Wikidata par le nombre actuel d'articles Wikipédia de l'œuvre. Il cherche aussi sur Wikidata les livres qui n'ont pas d'identifiant, par titre anglais puis français, et leur donne celui de la première œuvre trouvée du même auteur, sauf si un autre livre du catalogue l'a déjà. Comptez une dizaine de minutes.
 
 ## Sécurité
 

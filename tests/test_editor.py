@@ -328,3 +328,17 @@ def test_french_nationality_and_genres_are_lower_cased(catalogue):
     assert catalogue["genres"]["pillow-book"] == {"fr_FR": "journal intime", "en_US": "pillow book"}
     assert "Nouveau(x) genre(s) : journal intime / pillow book" in message
     assert list(catalogue["genres"]) == sorted(catalogue["genres"])
+
+
+def test_popularity_sent_by_the_page_is_kept_for_wikidata_works(catalogue):
+    editor.add_book(catalogue, _author(), _book(popularity=42))
+    editor.add_book(catalogue, _author(), _book(wikidata_id="", year="1010", popularity=42,
+                                                title={"fr_FR": "Journal", "en_US": "Diary"}))
+    editor.add_book(catalogue, _author(), _book(wikidata_id="Q5", year="1011", popularity="42",
+                                                title={"fr_FR": "Poèmes", "en_US": "Poems"}))
+
+    entry = next(entry for entry in catalogue["authors"] if entry.get("wikidata_id") == "Q999999")
+    genji, diary, poems = entry["books"]
+    assert genji["popularity"] == 42 and list(genji)[-2:] == ["popularity", "wikidata_id"]
+    # Without a Wikidata work, or with a malformed value, nothing is kept
+    assert "popularity" not in diary and "popularity" not in poems

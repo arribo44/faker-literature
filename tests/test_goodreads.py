@@ -42,6 +42,7 @@ def test_candidates_are_popular_works_most_rated_first(tmp_path):
         _line(5, "The Complete Works", "William Shakespeare", 90000),                   # not a work
         "6,Broken,Sam Bass Warner, Jr./Sam B. Warner,4.0,0,0,eng,1,5000,1,1/1/2000,P\n",  # extra column
         _line(7, "Hamlet", "William Shakespeare", 7000),
+        _line(8, "Bradbury Stories: 100 of His Most Celebrated Tales", "Ray Bradbury", 9000),  # an anthology
     ]), encoding="utf-8")
 
     candidates = goodreads.read_candidates(export, per_author=1)
@@ -49,24 +50,6 @@ def test_candidates_are_popular_works_most_rated_first(tmp_path):
     assert [(book["id"], book["title"]) for book in candidates] == [("2", "Congo"), ("7", "Hamlet")]
     assert candidates[0]["authors"] == ["Michael Crichton", "Someone Else"]
     assert len(goodreads.read_candidates(export)) == 3
-
-
-def _author_row(item, work, author, name):
-    entity = "http://www.wikidata.org/entity/"
-    return {"item": {"value": entity + item}, "work": {"value": entity + work},
-            "author": {"value": entity + author}, "name": {"value": name}}
-
-
-def test_the_first_hit_written_by_one_of_the_authors_wins():
-    items = goodreads.parse_authors([
-        _author_row("Q1", "Q1", "Q10", "Somebody Else"),
-        _author_row("Q2", "Q20", "Q30", "Michael Crichton"),  # an edition of the work Q20
-        _author_row("Q3", "Q3", "Q30", "Michael Crichton"),
-    ])
-    book = {"authors": ["Michael  Crichton", "Illustrator"]}
-
-    assert goodreads.match_work(book, ["Q1", "Q2", "Q3"], items) == ("Q20", "Q30")
-    assert goodreads.match_work(book, ["Q1", "Q404"], items) is None
 
 
 def test_vocabulary_is_extended_once_and_unused_new_genres_are_dropped(catalogue):

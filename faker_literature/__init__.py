@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import copy
-from collections.abc import Callable, Hashable
+import datetime
+import itertools
+import statistics
+from collections.abc import Callable, Hashable, Iterable, Sequence
 from typing import Any, TypeVar
 
 from faker.providers import BaseProvider
@@ -11,13 +14,18 @@ from tinydb import Query
 from tinydb.queries import QueryLike
 from tinydb.table import Table
 
+from faker_literature.citation import format_citation
+from faker_literature.edition import CURRENCIES, FORMATS, make_isbn13, round_price
 from faker_literature.matching import name_key
 from faker_literature.store import LOCALES, BookStore, LocalizedBook, PathLike, Record, default_db_path, pick
 
 __version__ = "0.3.0"
-__all__ = ["LiteratureProvider", "BookStore", "default_db_path", "__version__"]
+__all__ = ["LiteratureProvider", "BookFilter", "BookStore", "default_db_path", "__version__"]
 
 T = TypeVar("T")
+
+# Editions of older works are drawn from this year on
+EARLIEST_EDITION_YEAR = 1950
 
 # Books written together list their authors in one string: "Author A, Author B"
 CO_AUTHOR_SEPARATOR = ", "
@@ -30,6 +38,58 @@ def _authors(writer: str) -> list[str]:
 
 def _has_genre(book: LocalizedBook, genre: str | None) -> bool:
     return genre is None or genre.casefold() in (g.casefold() for g in book["genre"])
+
+
+def _median_popularity(books: Sequence[LocalizedBook]) -> float:
+    """Popularity given to the books that have none: the median of the others, or 1."""
+    known = [book["popularity"] for book in books if book.get("popularity")]
+    return float(statistics.median(known)) if known else 1.0
+
+
+class BookFilter:
+    """The filters shared by the drawing methods (see :meth:`LiteratureProvider.book`)."""
+
+    def __init__(
+        self,
+        genre: str | None = None,
+        nationality: str | None = None,
+        author: str | None = None,
+        after: int | None = None,
+        before: int | None = None,
+        century: int | None = None,
+    ) -> None:
+        if century is not None:
+            if century == 0:
+                raise ValueError("century: there is no century 0 (use 1 for years 1-100, -1 for 100-1 BC)")
+            # 19 -> 1801..1900, -5 -> 500..401 BC
+            first, last = (century * 100 - 99, century * 100) if century > 0 else (century * 100, century * 100 + 99)
+            after = first if after is None else max(after, first)
+            before = last if before is None else min(before, last)
+        self.description = {name: value for name, value in (
+            ("genre", genre), ("nationality", nationality), ("author", author),
+            ("after", after), ("before", before)) if value is not None}
+        self.genre = None if genre is None else genre.casefold()
+        any_nationality = nationality == LiteratureProvider.ANY_NATIONALITY
+        self.nationality = None if nationality is None or any_nationality else nationality.casefold()
+        self.author = None if author is None else name_key(author)
+        self.after = after
+        self.before = before
+        # Cache key of the pools drawn with these filters
+        self.key = (self.genre, self.nationality, self.author, after, before)
+
+    def matches(self, book: LocalizedBook) -> bool:
+        year = book["year"]
+        return (
+            (self.after is None or year >= self.after)
+            and (self.before is None or year <= self.before)
+            and (self.nationality is None or book["nationality"].casefold() == self.nationality)
+            and (self.genre is None or _has_genre(book, self.genre))
+            and (self.author is None or any(
+                name_key(name) == self.author for name in [book["writer"], *_authors(book["writer"])]))
+        )
+
+    def __str__(self) -> str:
+        return ", ".join(f"{name}={value!r}" for name, value in self.description.items()) or "no filter"
 
 
 class LiteratureProvider(BaseProvider):
@@ -137,8 +197,10 @@ class LiteratureProvider(BaseProvider):
 
     @staticmethod
     def _export(book: LocalizedBook) -> LocalizedBook:
-        """Return a caller-owned copy of a localized record."""
-        return dict(book, genre=list(book["genre"]))
+        """Return a caller-owned copy of a localized record, without the internal popularity."""
+        exported = dict(book, genre=list(book["genre"]))
+        exported.pop("popularity", None)
+        return exported
 
     @property
     def books(self) -> tuple[LocalizedBook, ...]:
@@ -206,73 +268,238 @@ class LiteratureProvider(BaseProvider):
         """Check if a book's genre includes the given genre (case-insensitive)."""
         return _has_genre(book, genre_name)
 
-    def book(self) -> LocalizedBook:
-        """Return a coherent fake book record."""
-        return self._export(self.random_element(self._catalogue))
+    def _weights(self, books: Sequence[LocalizedBook]) -> list[float]:
+        """Return the drawing weights of ``books``: the square of their popularity.
 
-    def writer(self, nationality: str | None = None, genre: str | None = None) -> str:
-        """Return a famous writer, optionally filtered by nationality and/or genre.
+        Squared, the best known tenth of the catalogue makes about three
+        quarters of the draws (less than half in plain proportion, the long
+        tail of little-known books weighing too much).  Books without a
+        popularity count as the median one.
+        """
+        default = self._pool("median_popularity", _median_popularity)
+        return [float(book["popularity"] if book.get("popularity") else default) ** 2 for book in books]
+
+    def _draw(
+        self,
+        what: str,
+        values_of: Callable[[LocalizedBook], Iterable[T]],
+        filters: BookFilter,
+        popular: bool,
+    ) -> T:
+        """Draw one of the values ``values_of`` gives for the books matching ``filters``.
+
+        Each book contributes its values once, or in proportion to its
+        popularity when ``popular`` is true.
+        """
+        def build(books: tuple[LocalizedBook, ...]) -> tuple[tuple[T, ...], tuple[float, ...] | None]:
+            matching = [book for book in books if filters.matches(book)]
+            pairs = [(value, book) for book in matching for value in values_of(book)]
+            values = tuple(value for value, _ in pairs)
+            if not popular:
+                return values, None
+            return values, tuple(itertools.accumulate(self._weights([book for _, book in pairs])))
+
+        values, cum_weights = self._pool((what, filters.key, popular), build)
+        if not values:
+            raise ValueError(f"No {what} found for {filters}")
+        drawn: T
+        if cum_weights is None:
+            drawn = self.random_element(values)
+        else:
+            drawn = self.generator.random.choices(values, cum_weights=cum_weights)[0]
+        return drawn
+
+    def book(
+        self,
+        genre: str | None = None,
+        nationality: str | None = None,
+        author: str | None = None,
+        after: int | None = None,
+        before: int | None = None,
+        century: int | None = None,
+        popular: bool = False,
+    ) -> LocalizedBook:
+        """Return a coherent fake book record, optionally filtered.
+
+        Every drawing method accepts the same filters, combined with "and":
+
+        - ``genre``: one of the book's genres (case-insensitive);
+        - ``nationality``: the author's nationality, in the current locale's
+          language (case-insensitive), or :attr:`ANY_NATIONALITY`;
+        - ``author``: the author or a co-author, ignoring case, accents and
+          punctuation;
+        - ``after`` / ``before``: first publication in or after / before or in
+          that year (negative for BC);
+        - ``century``: first publication in that century (``19`` for 1801-1900,
+          ``-5`` for 500-401 BC).
+
+        With ``popular=True``, well-known books (those having the most
+        Wikipedia articles) are drawn more often.  A ``ValueError`` is raised
+        when no book matches.
+        """
+        filters = BookFilter(genre, nationality, author, after, before, century)
+        return self._export(self._draw("book", lambda book: (book,), filters, popular))
+
+    def literary_work(self, **filters: Any) -> LocalizedBook:
+        """Alias for :meth:`book` suitable for generated datasets."""
+        return self.book(**filters)
+
+    def books_sample(self, n: int, popular: bool = False, **filters: Any) -> list[LocalizedBook]:
+        """Return ``n`` different books, drawn without replacement (see :meth:`book` for the filters).
+
+        ``fake.unique.book()`` cannot work, a book being a dictionary: use this
+        method to fill a table with distinct books.  With ``popular=True``,
+        well-known books are more likely to be drawn.  A ``ValueError`` is
+        raised when fewer than ``n`` books match.
+        """
+        book_filter = BookFilter(**filters)
+        books = self._pool(("matching", book_filter.key),
+                           lambda catalogue: tuple(book for book in catalogue if book_filter.matches(book)))
+        if not 0 <= n <= len(books):
+            raise ValueError(f"Cannot draw {n} books: {len(books)} match {book_filter}")
+        rng = self.generator.random
+        if popular:
+            # Weighted sampling without replacement (Efraimidis-Spirakis): the n highest u ** (1 / weight)
+            keys = [rng.random() ** (1 / weight) for weight in self._weights(books)]
+            chosen = [books[i] for i in sorted(range(len(books)), key=keys.__getitem__, reverse=True)[:n]]
+        else:
+            chosen = rng.sample(books, n)
+        return [self._export(book) for book in chosen]
+
+    def edition(self, popular: bool = False, **filters: Any) -> dict[str, Any]:
+        """Return a coherent edition of a catalogue work (see :meth:`book` for the filters).
+
+        The edition keeps the work's fields (``writer``, ``nationality``,
+        ``title``, ``genre``, ``year`` of first publication) and adds:
+
+        - ``publisher``: the work's publisher, or a publisher of the locale's
+          own writers (French publishers for a French edition);
+        - ``edition_year``: between the first publication (or 1950 for older
+          works) and the current year;
+        - ``format``: pocket, paperback or hardcover, in the locale's language;
+        - ``pages``: the work's page count adjusted to the format;
+        - ``price`` and ``currency``: a shop price for that format (EUR or USD);
+        - ``isbn``: a valid ISBN-13 whose prefix belongs to the publisher.
+        """
+        book = self.book(popular=popular, **filters)
+        rng = self.generator.random
+        locale = self.provider_locale
+        publisher = book["publisher"]
+        if not publisher or rng.random() < 0.5:
+            # Another publisher of the locale's own writers: French publishers for a French edition
+            try:
+                publisher = self.publisher(nationality=self.LOCALE_DEFAULT_NATIONALITY[locale])
+            except ValueError:
+                publisher = self.publisher()
+        current_year = datetime.date.today().year
+        first_year = min(max(book["year"], EARLIEST_EDITION_YEAR), current_year)
+        edition_format = rng.choice(FORMATS[locale])
+        base_pages = book["pages"] if book["pages"] is not None else self.pages()
+        price = rng.uniform(edition_format.min_price, edition_format.max_price)
+        edition = dict(book)
+        edition.update({
+            "publisher": publisher,
+            "edition_year": rng.randint(first_year, current_year),
+            "format": edition_format.name,
+            "pages": max(1, round(base_pages * edition_format.page_ratio)),
+            "price": round_price(price, locale),
+            "currency": CURRENCIES[locale],
+            "isbn": make_isbn13(publisher, locale, rng.randrange(10000)),
+        })
+        return edition
+
+    def citation(self, style: str = "apa", book: LocalizedBook | None = None, **filters: Any) -> str:
+        """Return the bibliographic reference of a book, in the ``apa``, ``mla`` or ``chicago`` style.
+
+        The book is drawn with ``filters`` (see :meth:`book`) unless given.
+        Titles are not italicized (plain text); years BC read "800 BC" in
+        English, "800 av. J.-C." in French.
+        """
+        if book is None:
+            book = self.book(**filters)
+        elif filters:
+            raise TypeError("citation(): pass either a book or filters, not both")
+        return format_citation(book, style, self.provider_locale)
+
+    def writer(
+        self,
+        nationality: str | None = None,
+        genre: str | None = None,
+        after: int | None = None,
+        before: int | None = None,
+        century: int | None = None,
+        popular: bool = False,
+    ) -> str:
+        """Return a famous writer, optionally filtered (see :meth:`book` for the filters).
 
         By default, nationality is derived from the current locale
         (e.g. ``fr_FR`` -> French writers, ``en_US`` -> American writers).
         Pass ``nationality`` to target a different nationality (in the current
         locale's language, case-insensitively), or :attr:`ANY_NATIONALITY`
-        (``"*"``) for writers of every nationality.  Pass ``genre`` to restrict
-        to writers of that genre.  Writers are drawn in proportion to their
-        number of books; the authors of a co-written book are drawn one by one.
+        (``"*"``) for writers of every nationality.  Writers are drawn in
+        proportion to their number of books (or to their books' popularity
+        with ``popular=True``); the authors of a co-written book are drawn one
+        by one.
         """
         if nationality is None:
             nationality = self.LOCALE_DEFAULT_NATIONALITY[self.provider_locale]
-        wanted = None if nationality == self.ANY_NATIONALITY else nationality.casefold()
-
-        def build(books: tuple[LocalizedBook, ...]) -> tuple[str, ...]:
-            return tuple(
-                author for book in books
-                if (wanted is None or book["nationality"].casefold() == wanted) and _has_genre(book, genre)
-                for author in _authors(book["writer"])
-            )
-
-        writers = self._pool(("writers", wanted, None if genre is None else genre.casefold()), build)
-        if not writers:
-            raise ValueError(f"No writer found for nationality={nationality!r}, genre={genre!r}")
-        return self.random_element(writers)
+        filters = BookFilter(genre, nationality, None, after, before, century)
+        drawn: str = self._draw("writer", lambda book: _authors(book["writer"]), filters, popular)
+        return drawn
 
     author = writer
 
-    def title(self, genre: str | None = None) -> str:
-        """Return a well-known literary title, optionally filtered by genre (case-insensitive)."""
-        key = ("titles", None if genre is None else genre.casefold())
-        titles: tuple[str, ...] = self._pool(key, lambda books: tuple(
-            book["title"] for book in books if _has_genre(book, genre)))
-        if not titles:
-            raise ValueError(f"No title found for genre={genre!r}")
-        return self.random_element(titles)
+    def title(
+        self,
+        genre: str | None = None,
+        nationality: str | None = None,
+        author: str | None = None,
+        after: int | None = None,
+        before: int | None = None,
+        century: int | None = None,
+        popular: bool = False,
+    ) -> str:
+        """Return a well-known literary title, optionally filtered (see :meth:`book`)."""
+        filters = BookFilter(genre, nationality, author, after, before, century)
+        drawn: str = self._draw("title", lambda book: (book["title"],), filters, popular)
+        return drawn
 
-    def genre(self) -> str:
-        """Return a literary genre translated for the current locale.
+    def genre(
+        self,
+        nationality: str | None = None,
+        author: str | None = None,
+        after: int | None = None,
+        before: int | None = None,
+        century: int | None = None,
+        popular: bool = False,
+    ) -> str:
+        """Return a literary genre translated for the current locale, optionally filtered (see :meth:`book`).
 
         Genres are drawn in proportion to their number of books.
         """
-        genres: tuple[str, ...] = self._pool("genres", lambda books: tuple(
-            genre for book in books for genre in book["genre"]))
-        return self.random_element(genres)
+        filters = BookFilter(None, nationality, author, after, before, century)
+        drawn: str = self._draw("genre", lambda book: book["genre"], filters, popular)
+        return drawn
 
-    def publication_year(self) -> int:
-        """Return a publication year represented in the catalogue."""
-        years: tuple[int, ...] = self._pool("years", lambda books: tuple(book["year"] for book in books))
-        return self.random_element(years)
+    def publication_year(self, **filters: Any) -> int:
+        """Return a publication year represented in the catalogue, optionally filtered (see :meth:`book`)."""
+        popular = filters.pop("popular", False)
+        drawn: int = self._draw("year", lambda book: (book["year"],), BookFilter(**filters), popular)
+        return drawn
 
-    def pages(self) -> int:
-        """Return a plausible page count from the catalogue."""
-        pages: tuple[int, ...] = self._pool("pages", lambda books: tuple(
-            book["pages"] for book in books if book["pages"] is not None))
-        return self.random_element(pages)
+    def pages(self, **filters: Any) -> int:
+        """Return a plausible page count from the catalogue, optionally filtered (see :meth:`book`)."""
+        popular = filters.pop("popular", False)
+        drawn: int = self._draw("pages", lambda book: () if book["pages"] is None else (book["pages"],),
+                                BookFilter(**filters), popular)
+        return drawn
 
-    def publisher(self) -> str:
-        """Return a publisher represented in the catalogue."""
-        publishers: tuple[str, ...] = self._pool("publishers", lambda books: tuple(
-            book["publisher"] for book in books if book["publisher"]))
-        return self.random_element(publishers)
+    def publisher(self, **filters: Any) -> str:
+        """Return a publisher represented in the catalogue, optionally filtered (see :meth:`book`)."""
+        popular = filters.pop("popular", False)
+        drawn: str = self._draw("publisher", lambda book: (book["publisher"],) if book["publisher"] else (),
+                                BookFilter(**filters), popular)
+        return drawn
 
     def nationality(self) -> str:
         """Return an author nationality for the current locale.
@@ -284,7 +511,3 @@ class LiteratureProvider(BaseProvider):
             return tuple(by_author[author] for author in sorted(by_author))
 
         return self.random_element(self._pool("nationalities", build))
-
-    def literary_work(self) -> LocalizedBook:
-        """Alias for :meth:`book` suitable for generated datasets."""
-        return self.book()

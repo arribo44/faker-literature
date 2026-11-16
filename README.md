@@ -172,7 +172,7 @@ If no writer matches the filters, a `ValueError` is raised:
 
 ```python
 fake.writer(nationality="American", genre="nope")
-# ValueError: No writer found for nationality='American', genre='nope'
+# ValueError: No writer found for genre='nope', nationality='American'
 ```
 
 ---
@@ -210,6 +210,89 @@ The values are drawn from pools computed once per locale and kept until the cata
 
 ---
 
+### 🎯 Filtering Every Draw
+
+`book()`, `title()`, `writer()`, `genre()`, `publication_year()`, `pages()`, `publisher()`, `books_sample()`, `edition()` and `citation()` accept the same filters, combined with "and":
+
+| Filter | Meaning |
+|--------|---------|
+| `genre` | one of the book's genres (current locale, case-insensitive) |
+| `nationality` | the author's nationality (current locale, case-insensitive), or `"*"` for any |
+| `author` | the author or a co-author, ignoring case, accents and punctuation |
+| `after`, `before` | first published in or after / before or in that year (negative for BC) |
+| `century` | first published in that century: `19` for 1801-1900, `-5` for 500-401 BC |
+| `popular` | `True` to draw well-known books more often (see below) |
+
+```python
+fake.book(nationality="French", century=19)       # Balzac, Hugo, Zola, Flaubert...
+fake.title(genre="science fiction", after=2000)   # "The Yiddish Policemen's Union"
+fake.publisher(nationality="Japanese")            # "Chuokoron-Shinsha"
+fake.publication_year(author="Agatha Christie")   # 1926
+fake_fr.book(genre="tragédie", before=-400)       # Eschyle, Sophocle, Euripide
+```
+
+Only `writer()` filters by default, on the locale's nationality (see above). When no book matches, a `ValueError` names the filters.
+
+#### ⭐ Popular books
+
+By default every book of the catalogue has the same chance, so a well-known book is as frequent as an obscure one. With `popular=True`, books are weighted by their **popularity**, their number of Wikipedia articles (*Don Quixote* has more than 100, a recent thriller a handful), squared: the best known tenth of the catalogue then makes about three quarters of the draws.
+
+```python
+fake.title(popular=True)                    # "Pride and Prejudice", "The Iliad", "Fahrenheit 451"...
+fake.writer(nationality="*", popular=True)  # "Leo Tolstoy", "Honoré de Balzac"...
+```
+
+Your own datasets may give their books a `popularity` (a positive integer); books without one count as the median popularity of the catalogue.
+
+#### 🎲 Distinct books
+
+`fake.unique.book()` cannot work, a book being a dictionary. `books_sample()` draws books **without replacement**:
+
+```python
+fake.books_sample(20)                                      # 20 different books
+fake.books_sample(5, nationality="Russian", popular=True)  # 5 well-known Russian books
+```
+
+---
+
+### 📕 Editions
+
+`edition()` turns a catalogue work into a coherent **edition**, ready for a bookshop or a library database:
+
+```python
+fake_fr.edition()
+# {'writer': 'Baruch Spinoza', 'nationality': 'néerlandais', 'title': 'Traité théologico-politique',
+#  'genre': ['traité'], 'year': 1670,
+#  'publisher': 'Gallimard', 'edition_year': 1989, 'format': 'poche', 'pages': 331,
+#  'price': 11.7, 'currency': 'EUR', 'isbn': '978-2-1748-4121-4'}
+```
+
+- `edition_year` lies between the first publication (1950 for older works) and the current year;
+- `format` is pocket, paperback or hardcover, in the locale's language, and changes the page count (more pages in pocket) and the price range;
+- `publisher` is the work's own publisher, or a publisher of the locale's writers (French publishers for a French edition);
+- `isbn` is a valid ISBN-13 (French group `2`, English groups `0` and `1`) whose prefix belongs to the publisher: two editions from the same publisher share it.
+
+It accepts the filters above: `fake.edition(author="Jules Verne", popular=True)`.
+
+---
+
+### 📝 Citations
+
+`citation()` formats the bibliographic reference of a book in the **APA**, **MLA** or **Chicago** style (plain text, titles not italicized):
+
+```python
+fake.citation("apa", author="J.R.R. Tolkien")
+# 'Tolkien, J. R. R. (1954). The Fellowship of the Ring.'
+fake.citation("chicago", genre="novel")
+# 'Hugo, Victor. Les Misérables. A. Lacroix, Verboeckhoven & Cie, 1862.'
+fake_fr.citation("mla", book=fake_fr.book())
+# 'Balzac, Honoré de. Le Père Goriot. Edmond Werdet, 1835.'
+```
+
+Names are inverted ("Balzac, Honoré de"), abbreviated in APA ("Sartre, J.-P."), co-authors are joined with "&" / "and" (or "et" in French), and years BC read "800 BC" / "800 av. J.-C.". The surname is the last word of the name: compound Spanish surnames ("Reinaldo Arenas Fuentes") come out as "Fuentes, Reinaldo Arenas".
+
+---
+
 ### 🔎 Querying the Catalogue
 
 The provider also exposes query methods that return **every** matching book (as a list of `book()`-like dictionaries) instead of a random one:
@@ -223,12 +306,12 @@ fake.books_by_author("Victor Hugo")
 #  {'title': 'Les Misérables', 'year': 1862, ...}, ...]
 
 # All books of a genre (case-insensitive, current locale)
-fake.books_by_genre("horror")           # 26 books
+fake.books_by_genre("horror")           # 92 books
 fake_fr.books_by_genre("roman policier")
 
 # All books published in a year, or within a range (inclusive)
 fake.books_by_year(1862)                # [{'writer': 'Victor Hugo', 'title': 'Les Misérables', ...}]
-fake.books_by_year_range(1940, 1960)    # 53 books
+fake.books_by_year_range(1940, 1960)    # 189 books
 fake.books_by_year_range(-500, 0)       # Ancient Greek works
 ```
 

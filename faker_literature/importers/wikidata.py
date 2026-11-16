@@ -36,6 +36,8 @@ Log = Callable[[str], object]
 
 SOURCE = "wikidata"
 ENDPOINT = "https://query.wikidata.org/sparql"
+SEARCH_API = "https://www.wikidata.org/w/api.php"
+SEARCH_RESULTS = 5
 USER_AGENT = "faker-literature (https://github.com/arribo44/faker-literature)"
 TIMEOUT = 90
 MAX_RESPONSE_BYTES = 20 * 1024 * 1024
@@ -77,11 +79,12 @@ DATES_PATTERN = """
 """
 
 DETAILS_QUERY = """
-SELECT ?work ?titleFr ?titleEn ?author ?writerFr ?writerEn ?date ?datePrecision ?inception ?inceptionPrecision
+SELECT ?work ?links ?titleFr ?titleEn ?author ?writerFr ?writerEn ?date ?datePrecision ?inception ?inceptionPrecision
        ?pages ?genreFr ?genreEn ?formFr ?formEn ?country ?demonymFr ?demonymEn ?birthCountry ?publisherFr ?publisherEn
 WHERE {
   VALUES ?work { %(works)s }
-  ?work wdt:P50 ?author .
+  ?work wdt:P50 ?author ;
+        wikibase:sitelinks ?links .
   %(dates)s
   FILTER(BOUND(?date) || BOUND(?inception))
   ?work rdfs:label ?titleEn . FILTER(LANG(?titleEn) = "en")
@@ -305,6 +308,7 @@ def parse_bindings(
             "forms": {},
             "demonyms": {},
             "birth_countries": set(),
+            "links": int(value["links"]) if value.get("links", "").isdigit() else 0,
             "publisher": None,
         })
         work["writers"].setdefault(value["author"], (value["writerFr"], value["writerEn"]))
@@ -334,7 +338,8 @@ def parse_bindings(
         years = work["years"] or work["inceptions"]
         genres = map_genres(work["genres"].items(), vocabulary) or map_genres(work["forms"].items(), vocabulary)
         title = work["title"]
-        untranslated = title["fr_FR"] is None
+        # A French label that is the English title plus its subtitle is no translation either
+        untranslated = title["fr_FR"] is None or title["fr_FR"].startswith(title["en_US"] + ":")
         if untranslated:
             if not untranslated_titles:
                 continue
@@ -359,8 +364,79 @@ def parse_bindings(
         }
         if untranslated:
             record["title_untranslated"] = True
+        # How well known the work is: its number of Wikipedia articles
+        if work["links"]:
+            record["popularity"] = work["links"]
         records.append(record)
     return records
+
+
+# Finding a work from its title and author
+
+# Items found by a search, or the work they are an edition of (P629), with the names of their authors
+ITEM_AUTHORS_QUERY = """
+SELECT ?item ?work ?author ?name WHERE {
+  VALUES ?item { %s }
+  # An edition leads to its work; an edition without one (P31 Q3331189) is no work
+  { ?item wdt:P50 ?author . FILTER NOT EXISTS { ?item wdt:P629 [] } FILTER NOT EXISTS { ?item wdt:P31 wd:Q3331189 }
+    BIND(?item AS ?work) }
+  UNION { ?item wdt:P629 ?work . ?work wdt:P50 ?author . }
+  { ?author rdfs:label ?name . FILTER(LANG(?name) IN ("en", "mul", "fr")) }
+  UNION { ?author skos:altLabel ?name . FILTER(LANG(?name) IN ("en", "mul")) }
+}
+"""
+
+# {item: (work, {author: {name keys}})}
+ItemAuthors = dict[str, tuple[str, dict[str, set[str]]]]
+
+
+def search_items(
+    text: str, limit: int = SEARCH_RESULTS, attempts: int = MAX_ATTEMPTS, sleep: Callable[[float], object] = time.sleep
+) -> list[str]:
+    """Return the ids of the items whose label matches ``text`` and that have an author (P50)."""
+    params = {"action": "query", "list": "search", "srsearch": f"{text} haswbstatement:P50",
+              "srlimit": limit, "srnamespace": 0, "format": "json"}
+    request = urllib.request.Request(f"{SEARCH_API}?{urllib.parse.urlencode(params)}",
+                                     headers={"User-Agent": USER_AGENT})
+    for attempt in range(1, attempts + 1):
+        try:
+            with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
+                payload = json.loads(response.read(MAX_RESPONSE_BYTES).decode("utf-8"))
+            # A busy API answers {"error": {...}} with HTTP 200
+            if "query" not in payload:
+                raise ValueError(f"Wikidata search failed: {payload.get('error', payload)}")
+            return [str(hit["title"]) for hit in payload["query"]["search"]]
+        except (OSError, ValueError, http.client.HTTPException):
+            if attempt == attempts:
+                raise
+            sleep(float(min(2 ** attempt, MAX_RETRY_DELAY)))
+    raise ValueError("attempts must be at least 1")
+
+
+def parse_item_authors(rows: Iterable[Binding]) -> ItemAuthors:
+    """Return ``{item: (work, {author: {name keys}})}`` from the rows of ``ITEM_AUTHORS_QUERY``."""
+    items: ItemAuthors = {}
+    for row in rows:
+        item = _entity_id(row["item"]["value"])
+        _, authors = items.setdefault(item, (_entity_id(row["work"]["value"]), {}))
+        authors.setdefault(_entity_id(row["author"]["value"]), set()).add(name_key(row["name"]["value"]))
+    return items
+
+
+def match_work(author_names: Iterable[str], hits: Iterable[str], items: ItemAuthors) -> tuple[str, str] | None:
+    """Return ``(work, author)`` for the first search hit written by one of ``author_names``.
+
+    Names are compared ignoring case, accents and punctuation.
+    """
+    wanted = {name_key(name) for name in author_names}
+    for item in hits:
+        if item not in items:
+            continue
+        work, authors = items[item]
+        for author, names in authors.items():
+            if names & wanted:
+                return work, author
+    return None
 
 
 def exclude_known(records: Iterable[Record], known_books: Iterable[Mapping[str, Any]]) -> list[Record]:

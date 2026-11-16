@@ -24,8 +24,6 @@ import json
 import re
 import sys
 import time
-import urllib.parse
-import urllib.request
 from collections import Counter
 from pathlib import Path
 
@@ -38,17 +36,18 @@ import editor
 from faker_literature.importers.wikidata import (
     DATES_PATTERN,
     DETAILS_QUERY,
-    USER_AGENT,
+    ITEM_AUTHORS_QUERY,
     _entity_id,
     known_nationalities,
+    match_work,
     parse_bindings,
+    parse_item_authors,
     run_query,
+    search_items,
 )
 from faker_literature.matching import YEAR_TOLERANCE, DuplicateIndex, name_key, title_key
 from faker_literature.vocabulary import GenreVocabulary
 
-SEARCH_API = "https://www.wikidata.org/w/api.php"
-SEARCH_RESULTS = 5
 BATCH_SIZE = 40
 PAUSE = 1.0
 SEARCH_PAUSE = 0.2
@@ -63,7 +62,8 @@ LOOKUPS_PER_AUTHOR = 2 * MAX_PER_AUTHOR
 # Box sets, omnibus editions, reading guides and the like are not works
 NOT_A_WORK = re.compile(
     r"box(ed)? set|collection|omnibus|complete|companion|guide|cliffsnotes|sparknotes|study|vol\.|volume|"
-    r"#\d+-\d+|books? \d+-\d+|anthology|selected|treasury|trilogy|quartet|reader",
+    r"#\d+-\d+|books? \d+-\d+|anthology|selected|treasury|trilogy|quartet|reader|"
+    r"\bcollected\b|\bbest of\b|\bessential\b|\bmost celebrated\b|\b\d+ of (his|her|their)\b",
     re.IGNORECASE,
 )
 
@@ -95,18 +95,6 @@ NEW_GENRES = {
                     "aliases": {"fr_FR": ["littérature pour jeunes adultes", "fiction Young Adult"],
                                 "en_US": ["young adult literature", "young adult fiction"]}},
 }
-
-# Items found by the search, or the work they are an edition of, with the names of their authors
-AUTHORS_QUERY = """
-SELECT ?item ?work ?author ?name WHERE {
-  VALUES ?item { %s }
-  { ?item wdt:P50 ?author . BIND(?item AS ?work) }
-  UNION { ?item wdt:P629 ?work . ?work wdt:P50 ?author . }
-  { ?author rdfs:label ?name . FILTER(LANG(?name) IN ("en", "mul", "fr")) }
-  UNION { ?author skos:altLabel ?name . FILTER(LANG(?name) IN ("en", "mul")) }
-}
-"""
-
 
 # Reading the export
 
@@ -152,48 +140,6 @@ def read_candidates(path, min_ratings=MIN_RATINGS, per_author=LOOKUPS_PER_AUTHOR
 
 
 # Looking the works up
-
-def search(title):
-    """Return the items whose label matches ``title`` and that have an author (P50)."""
-    params = {"action": "query", "list": "search", "srsearch": f"{title} haswbstatement:P50",
-              "srlimit": SEARCH_RESULTS, "srnamespace": 0, "format": "json"}
-    request = urllib.request.Request(f"{SEARCH_API}?{urllib.parse.urlencode(params)}",
-                                     headers={"User-Agent": USER_AGENT})
-    for attempt in range(1, 5):
-        try:
-            with urllib.request.urlopen(request, timeout=30) as response:
-                payload = json.load(response)
-            # A busy API answers {"error": {...}} with HTTP 200
-            if "query" not in payload:
-                raise ValueError(f"Wikidata search failed: {payload.get('error', payload)}")
-            return [hit["title"] for hit in payload["query"]["search"]]
-        except (OSError, ValueError):
-            if attempt == 4:
-                raise
-            time.sleep(2 ** attempt)
-    return []
-
-
-def parse_authors(rows):
-    """Return ``{item: (work, {author: {name keys}})}`` from the rows of ``AUTHORS_QUERY``."""
-    items = {}
-    for row in rows:
-        item = _entity_id(row["item"]["value"])
-        work, authors = items.setdefault(item, (_entity_id(row["work"]["value"]), {}))
-        authors.setdefault(_entity_id(row["author"]["value"]), set()).add(name_key(row["name"]["value"]))
-    return items
-
-
-def match_work(book, hits, items):
-    """Return ``(work, author)`` for the first search hit written by one of the book's authors."""
-    wanted = {name_key(author) for author in book["authors"]}
-    for item in hits:
-        work, authors = items.get(item, (None, {}))
-        for author, names in authors.items():
-            if names & wanted:
-                return work, author
-    return None
-
 
 # Writing the catalogue
 
@@ -261,6 +207,7 @@ def add_records(data, records, authors, max_per_author=MAX_PER_AUTHOR, log=print
         raw_book = {key: record[key] for key in ("wikidata_id", "title", "year", "genre")}
         raw_book["pages"] = record["pages"] or {}
         raw_book["publisher"] = record["publisher"] or {}
+        raw_book["popularity"] = record.get("popularity")
         try:
             editor.add_book(data, raw_author, raw_book)
         except ValueError as error:
@@ -300,7 +247,7 @@ def lookup(candidates, cache, log=print):
     """Search, check the authors and fetch the details; return ``(rows, {work: author}, ordered works)``."""
     for count, book in enumerate(candidates, 1):
         if book["id"] not in cache["search"]:
-            cache["search"][book["id"]] = search(book["title"])
+            cache["search"][book["id"]] = search_items(book["title"])
             time.sleep(SEARCH_PAUSE)
             if count % 100 == 0:
                 cache.save()
@@ -309,8 +256,7 @@ def lookup(candidates, cache, log=print):
 
     items = sorted({item for book in candidates for item in cache["search"][book["id"]]} - set(cache["authors"]))
     for batch in _batches(items):
-        rows = run_query(AUTHORS_QUERY % " ".join("wd:" + item for item in batch))
-        found = parse_authors(rows)
+        found = parse_item_authors(run_query(ITEM_AUTHORS_QUERY % " ".join("wd:" + item for item in batch)))
         for item in batch:
             work, names = found.get(item, (None, {}))
             cache["authors"][item] = [work, {author: sorted(keys) for author, keys in names.items()}]
@@ -321,7 +267,7 @@ def lookup(candidates, cache, log=print):
 
     authors, ordered = {}, []
     for book in candidates:
-        match = match_work(book, cache["search"][book["id"]], items)
+        match = match_work(book["authors"], cache["search"][book["id"]], items)
         if match and match[0] not in authors:
             authors[match[0]] = match[1]
             ordered.append(match[0])

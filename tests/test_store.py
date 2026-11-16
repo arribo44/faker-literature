@@ -196,24 +196,35 @@ def test_database_permissions_are_kept(tmp_path):
     assert not [path.name for path in tmp_path.iterdir() if path.suffix == ".tmp"]
 
 
-def _replace_repeatedly(db_path, source, rounds):
-    store = BookStore(db_path)
+def _small_builtin(tmp_path):
+    """A bundled catalogue cut down to three authors: the locks are tested, not the catalogue size."""
+    data = json.loads(BUILTIN_DATA.read_text(encoding="utf-8"))
+    data["authors"] = data["authors"][:3]
+    path = tmp_path / "builtin.json"
+    path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+    return path
+
+
+def _replace_repeatedly(db_path, builtin_path, source, rounds):
+    store = BookStore(db_path, builtin_path)
     for round_ in range(rounds):
         store.replace_source(source, [_imported_book(year=-700 - round_)])
 
 
 def test_concurrent_processes_do_not_lose_updates(tmp_path):
     db_path = tmp_path / "db.json"
-    BookStore(db_path).close()
+    builtin = _small_builtin(tmp_path)
+    BookStore(db_path, builtin).close()
     context = multiprocessing.get_context("spawn")
-    workers = [context.Process(target=_replace_repeatedly, args=(db_path, source, 8)) for source in ("a", "b", "c")]
+    workers = [context.Process(target=_replace_repeatedly, args=(db_path, builtin, source, 8))
+               for source in ("a", "b", "c")]
     for worker in workers:
         worker.start()
     for worker in workers:
         worker.join(60)
 
     assert [worker.exitcode for worker in workers] == [0, 0, 0]
-    sources = BookStore(db_path).sources()
+    sources = BookStore(db_path, builtin).sources()
     assert (sources["a"], sources["b"], sources["c"]) == (1, 1, 1)
 
 
