@@ -1,7 +1,8 @@
 # Faker Literature Provider
 
 [![PyPI version](https://badge.fury.io/py/faker-literature.svg)](https://badge.fury.io/py/faker-literature)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![CI](https://github.com/arribo44/faker-literature/actions/workflows/ci.yml/badge.svg)](https://github.com/arribo44/faker-literature/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 **A custom [Faker](https://faker.readthedocs.io/) provider for generating realistic literature data: writers, books, genres, publishers and more.**
@@ -13,13 +14,13 @@ Every record comes from a real catalogue of well-known works, so a generated boo
 
 | | Count |
 |---|---|
-| Authors | 190 |
-| Books | 518 |
-| Genres | ~220 per locale |
-| Nationalities | 24 |
+| Authors | 1,006 |
+| Books | 2,255 |
+| Genres | 220 per locale |
+| Nationalities | 56 |
 | Years covered | 800 BC → 2024 |
 
-Classics, philosophy, crime fiction, science fiction, fantasy, horror, poetry, drama, essays and contemporary novels by French, American, British, Italian, Greek, Roman, Russian, German, Japanese, Latin-American writers, and more.
+Classics, philosophy, crime fiction, science fiction, fantasy, horror, poetry, drama, essays and contemporary novels by French, American, British, Italian, Greek, Roman, Russian, German, Japanese, Latin-American writers, and more. 422 books were entered by hand; the others come from Wikidata, most of them picked among the most rated books of a Goodreads export (see [tools/goodreads_import](tools/goodreads_import/README.md)). Writers from English-speaking countries account for about three quarters of the books; 638 works never translated into French keep their original title in both locales (`"title_untranslated": true` in their raw record).
 
 ---
 
@@ -36,7 +37,23 @@ Titles, genres, nationalities, publishers and page counts are **localized**: the
 >
 > **Regional variants** fall back on their language: `fr_CA`, `fr_BE`, `fr_CH` → `fr_FR`; `en_GB`, `en_AU`, `en_CA` → `en_US`.
 >
-> **Any other locale** (e.g. `de_DE`) raises a `ValueError`, so unsupported data is never silently mixed into a dataset.
+> **Any other locale** (e.g. `de_DE`) raises a `ValueError`, so unsupported data is never silently mixed into a dataset — unless you ask for a fallback, see below.
+
+### Several Locales at Once
+
+Faker does not support `add_provider()` on a multi-locale `Faker`. Use `LiteratureProvider.register()`, which adds the provider to every locale (it also works with a single locale):
+
+```python
+fake = Faker(["fr_FR", "en_US"])
+LiteratureProvider.register(fake)
+
+fake.book()             # French or English record, picked at random like any Faker value
+fake["fr_FR"].title()   # "Le Meilleur des mondes"
+
+# Unsupported locales: refused by default, or mapped onto a supported one
+fake = Faker(["de_DE", "fr_FR"])
+LiteratureProvider.register(fake, fallback_locale="en_US")   # de_DE draws English data
+```
 
 ---
 
@@ -54,7 +71,7 @@ cd faker-literature
 pip install -e .
 ```
 
-**Requirements**: Python 3.8+, `faker>=20.0.0`, `tinydb>=4.0.0`.
+**Requirements**: Python 3.10+, `faker>=20.0.0`, `tinydb>=4.0.0`. The package ships type hints (`py.typed`).
 
 ---
 
@@ -97,7 +114,7 @@ book_fr = fake_fr.book()
 # {
 #     'writer': 'Robert E. Howard',
 #     'nationality': 'américain',
-#     'title': 'Les Ombres de Kampala',
+#     'title': 'Des crânes dans les étoiles',
 #     'genre': ['horreur', 'épée et sorcellerie'],
 #     'year': 1928,
 #     'pages': 192,
@@ -115,10 +132,12 @@ work = fake.literary_work()  # same as fake.book()
 | `title` | `str` | Title, localized (translated title in `fr_FR`, English title in `en_US`) |
 | `genre` | `list[str]` | One or more genres, localized |
 | `year` | `int` | Year of first publication (negative for BC: `-800` for Homer) |
-| `pages` | `int` or `None` | Page count of a typical edition in that locale |
+| `pages` | `int` or `None` | Page count in that locale: of a real edition for books imported from Wikidata, otherwise an **estimate** of the usual length (see below) |
 | `publisher` | `str` or `None` | Publisher of a typical edition in that locale |
 
 Each call returns a **new dictionary**: you can modify it freely without affecting the catalogue.
+
+> **About page counts and publishers.** Most bundled books were entered by hand, with a page count that *estimates* the usual length of the work in each language (French editions are often a little longer), and a plausible publisher (often the first or a common one) that was not checked against a source. These values are realistic enough for test data but do not describe a specific edition, and the page count and the publisher of a book may come from different editions: their raw records carry `"pages_estimated": true` and `"publisher_estimated": true` (see `provider.books_flat`). Books imported from Wikidata carry the page count and publisher of a real edition when Wikidata has them, and `None` otherwise.
 
 ---
 
@@ -129,9 +148,12 @@ Each call returns a **new dictionary**: you can modify it freely without affecti
 writer = fake.writer()     # "Dashiell Hammett" (en_US -> American writers)
 writer = fake_fr.writer()  # "Daniel Pennac"    (fr_FR -> French writers)
 
-# Writer of a given nationality (spelled in the current locale)
+# Writer of a given nationality (spelled in the current locale, case-insensitive)
 british = fake.writer(nationality="British")         # "Arthur C. Clarke"
 britannique = fake_fr.writer(nationality="britannique")  # "William Shakespeare"
+
+# Writer of any nationality
+anyone = fake.writer(nationality=LiteratureProvider.ANY_NATIONALITY)  # or nationality="*"
 
 # Writer of a given genre (case-insensitive, in the current locale)
 horror = fake.writer(genre="horror")                 # "Stephen King"
@@ -144,13 +166,13 @@ fake.writer(nationality="American", genre="horror")  # "Stephen King", "H. P. Lo
 author = fake.author(nationality="British")
 ```
 
-> Writers are drawn **in proportion to their number of books**: prolific authors appear more often.
+> Writers are drawn **in proportion to their number of books**: prolific authors appear more often. The authors of a co-written book are drawn one by one, never as `"A, B"`.
 
 If no writer matches the filters, a `ValueError` is raised:
 
 ```python
 fake.writer(nationality="American", genre="nope")
-# ValueError: No writer found for nationality='American', genre='nope'
+# ValueError: No writer found for genre='nope', nationality='American'
 ```
 
 ---
@@ -176,13 +198,98 @@ fake.title(genre="nope")
 
 ```python
 genre = fake.genre()                 # "utopia" (en_US), "poésie" (fr_FR)
-nationality = fake.nationality()     # "French" (en_US), "français" (fr_FR) — any nationality
+nationality = fake.nationality()     # "French" (en_US), "français" (fr_FR) — any nationality, each author counting once
 year = fake.publication_year()       # 1978
 pages = fake.pages()                 # 112
 publisher = fake.publisher()         # "Penguin Classics" (en_US), "Gallimard" (fr_FR)
 ```
 
-Each of these methods is an **independent** random draw from the catalogue. Use `book()` when the values must belong together.
+Each of these methods is an **independent** random draw from the catalogue. Use `book()` when the values must belong together. Genres, years, page counts and publishers are drawn in proportion to their number of books.
+
+The values are drawn from pools computed once per locale and kept until the catalogue changes, so generating large datasets stays fast (a few microseconds per value).
+
+---
+
+### 🎯 Filtering Every Draw
+
+`book()`, `title()`, `writer()`, `genre()`, `publication_year()`, `pages()`, `publisher()`, `books_sample()`, `edition()` and `citation()` accept the same filters, combined with "and":
+
+| Filter | Meaning |
+|--------|---------|
+| `genre` | one of the book's genres (current locale, case-insensitive) |
+| `nationality` | the author's nationality (current locale, case-insensitive), or `"*"` for any |
+| `author` | the author or a co-author, ignoring case, accents and punctuation |
+| `after`, `before` | first published in or after / before or in that year (negative for BC) |
+| `century` | first published in that century: `19` for 1801-1900, `-5` for 500-401 BC |
+| `popular` | `True` to draw well-known books more often (see below) |
+
+```python
+fake.book(nationality="French", century=19)       # Balzac, Hugo, Zola, Flaubert...
+fake.title(genre="science fiction", after=2000)   # "The Yiddish Policemen's Union"
+fake.publisher(nationality="Japanese")            # "Chuokoron-Shinsha"
+fake.publication_year(author="Agatha Christie")   # 1926
+fake_fr.book(genre="tragédie", before=-400)       # Eschyle, Sophocle, Euripide
+```
+
+Only `writer()` filters by default, on the locale's nationality (see above). When no book matches, a `ValueError` names the filters.
+
+#### ⭐ Popular books
+
+By default every book of the catalogue has the same chance, so a well-known book is as frequent as an obscure one. With `popular=True`, books are weighted by their **popularity**, their number of Wikipedia articles (*Don Quixote* has more than 100, a recent thriller a handful), squared: the best known tenth of the catalogue then makes about three quarters of the draws.
+
+```python
+fake.title(popular=True)                    # "Pride and Prejudice", "The Iliad", "Fahrenheit 451"...
+fake.writer(nationality="*", popular=True)  # "Leo Tolstoy", "Honoré de Balzac"...
+```
+
+Your own datasets may give their books a `popularity` (a positive integer); books without one count as the median popularity of the catalogue.
+
+#### 🎲 Distinct books
+
+`fake.unique.book()` cannot work, a book being a dictionary. `books_sample()` draws books **without replacement**:
+
+```python
+fake.books_sample(20)                                      # 20 different books
+fake.books_sample(5, nationality="Russian", popular=True)  # 5 well-known Russian books
+```
+
+---
+
+### 📕 Editions
+
+`edition()` turns a catalogue work into a coherent **edition**, ready for a bookshop or a library database:
+
+```python
+fake_fr.edition()
+# {'writer': 'Baruch Spinoza', 'nationality': 'néerlandais', 'title': 'Traité théologico-politique',
+#  'genre': ['traité'], 'year': 1670,
+#  'publisher': 'Gallimard', 'edition_year': 1989, 'format': 'poche', 'pages': 331,
+#  'price': 11.7, 'currency': 'EUR', 'isbn': '978-2-1748-4121-4'}
+```
+
+- `edition_year` lies between the first publication (1950 for older works) and the current year;
+- `format` is pocket, paperback or hardcover, in the locale's language, and changes the page count (more pages in pocket) and the price range;
+- `publisher` is the work's own publisher, or a publisher of the locale's writers (French publishers for a French edition);
+- `isbn` is a valid ISBN-13 (French group `2`, English groups `0` and `1`) whose prefix belongs to the publisher: two editions from the same publisher share it.
+
+It accepts the filters above: `fake.edition(author="Jules Verne", popular=True)`.
+
+---
+
+### 📝 Citations
+
+`citation()` formats the bibliographic reference of a book in the **APA**, **MLA** or **Chicago** style (plain text, titles not italicized):
+
+```python
+fake.citation("apa", author="J.R.R. Tolkien")
+# 'Tolkien, J. R. R. (1954). The Fellowship of the Ring.'
+fake.citation("chicago", genre="novel")
+# 'Hugo, Victor. Les Misérables. A. Lacroix, Verboeckhoven & Cie, 1862.'
+fake_fr.citation("mla", book=fake_fr.book())
+# 'Balzac, Honoré de. Le Père Goriot. Edmond Werdet, 1835.'
+```
+
+Names are inverted ("Balzac, Honoré de"), abbreviated in APA ("Sartre, J.-P."), co-authors are joined with "&" / "and" (or "et" in French), and years BC read "800 BC" / "800 av. J.-C.". The surname is the last word of the name: compound Spanish surnames ("Reinaldo Arenas Fuentes") come out as "Fuentes, Reinaldo Arenas".
 
 ---
 
@@ -191,26 +298,27 @@ Each of these methods is an **independent** random draw from the catalogue. Use 
 The provider also exposes query methods that return **every** matching book (as a list of `book()`-like dictionaries) instead of a random one:
 
 ```python
-# All books by an author (name as spelled in the current locale)
+# All books by an author (as spelled in the current locale, ignoring case, accents
+# and punctuation: "emile zola", "j d salinger"); a co-author finds the books written together
 fake.books_by_author("Victor Hugo")
 # [{'title': 'The Hunchback of Notre-Dame', 'year': 1831, ...},
 #  {'title': 'The Rays and the Shadows', 'year': 1840, ...},
 #  {'title': 'Les Misérables', 'year': 1862, ...}, ...]
 
 # All books of a genre (case-insensitive, current locale)
-fake.books_by_genre("horror")           # 26 books
+fake.books_by_genre("horror")           # 92 books
 fake_fr.books_by_genre("roman policier")
 
 # All books published in a year, or within a range (inclusive)
 fake.books_by_year(1862)                # [{'writer': 'Victor Hugo', 'title': 'Les Misérables', ...}]
-fake.books_by_year_range(1940, 1960)    # 53 books
+fake.books_by_year_range(1940, 1960)    # 189 books
 fake.books_by_year_range(-500, 0)       # Ancient Greek works
 ```
 
 Catalogue overview:
 
 ```python
-fake.all_authors()        # ['Agatha Christie', 'Alain Damasio', ...]  (190, sorted)
+fake.all_authors()        # ['A. A. Milne', 'A. S. Byatt', ...]  (sorted; co-authors listed separately)
 fake.all_genres()         # ['absurd novel', 'absurdism', 'adolescence', ...]  (sorted, localized)
 fake.all_nationalities()  # ['Algerian', 'American', 'Ancient Greek', 'Argentine', ...]
 fake_fr.all_nationalities()  # ['algérien', 'allemand', 'américain', 'argentin', ...]
@@ -230,21 +338,6 @@ first = fake.book()
 
 Faker.seed(42)
 assert fake.book() == first
-```
-
----
-
-### 🌐 Multiple Locales at Once
-
-Faker's multi-locale mode does not proxy `add_provider()`, so add the provider to each locale:
-
-```python
-fake = Faker(["fr_FR", "en_US"])
-for locale in ("fr_FR", "en_US"):
-    fake[locale].add_provider(LiteratureProvider)
-
-fake["fr_FR"].title()  # "L'Appel de Cthulhu"
-fake["en_US"].title()  # "The Symposium"
 ```
 
 ---
@@ -289,7 +382,7 @@ By default the bundled catalogue is loaded **in memory** and nothing is written 
 Import well-known literary works from Wikidata (CC0 licence) into a database stored in your user cache directory:
 
 ```bash
-python -m faker_literature import-wikidata --limit 500 --min-sitelinks 30
+faker-literature import-wikidata --limit 500 --min-sitelinks 30
 ```
 
 | Option | Default | Description |
@@ -300,7 +393,7 @@ python -m faker_literature import-wikidata --limit 500 --min-sitelinks 30
 
 ```bash
 # Import into a specific file
-python -m faker_literature --db ./my_catalogue.json import-wikidata --limit 1000 --min-sitelinks 20
+faker-literature --db ./my_catalogue.json import-wikidata --limit 1000 --min-sitelinks 20
 ```
 
 Default database location:
@@ -312,13 +405,17 @@ Default database location:
 
 What the importer does:
 
-- ranks works by number of Wikipedia articles and keeps those having a French **and** an English title, an author, a date, at least one genre and an author nationality;
+- ranks works by number of Wikipedia articles and keeps those having a French **and** an English title, an author, a date precise to the decade at least, at least one known genre (or, failing that, a known form: novel, play...) and an author nationality;
+- reads years as historical years (no year 0: Wikidata's 37 BC is `-37`), whereas the query service counts 1 BC as year 0;
+- maps Wikidata genres onto the catalogue's genre vocabulary (*crime fiction* → *crime* / *polar*), so that a genre always has the same translation; genres missing from the vocabulary are dropped;
 - localizes author names (*Evgueni Zamiatine* / *Yevgeny Zamyatin*, *Platon* / *Plato*);
-- skips works already present in the bundled catalogue (same title, year ± 2);
+- picks, for an author with several citizenships, the one of their country of birth (P. G. Wodehouse is British), and reuses the translations of the catalogue's nationalities (*British* is always *britannique*); an author already in the catalogue keeps their nationality;
+- skips works already present in the bundled catalogue (same Wikidata id, or same title ignoring case, accents and a leading article, year ± 2);
 - validates every record before writing anything;
-- **replaces** the previously imported Wikidata books when run again (no duplicates).
+- **replaces** the previously imported Wikidata books when run again (no duplicates);
+- retries, with an increasing delay, when the query service is busy (HTTP 429 / 5xx, cut responses, network errors).
 
-> It needs network access to `query.wikidata.org` and takes about 20 seconds for 200 works.
+> It needs network access to `query.wikidata.org` and takes one to a few minutes: the first query, which lists the candidate works, alone lasts about 40 seconds, close to the 60-second limit of the service (it is retried if the service cuts it).
 
 ### Using the Enlarged Catalogue
 
@@ -335,7 +432,9 @@ fake.book()   # now drawn from bundled + imported books
 
 `use_database()` applies to **every** provider instance in the process. Call `LiteratureProvider.use_database(None)` to go back to the bundled in-memory catalogue.
 
-When a new version of the package ships an updated bundled catalogue, the persistent database refreshes its bundled books automatically and **keeps** imported ones.
+When a new version of the package ships an updated bundled catalogue, the persistent database refreshes its bundled books automatically and **keeps** imported ones, except those the bundled catalogue now contains (same rules as the importer).
+
+Several processes can share the persistent database (for example an import running while tests generate data): every write replaces the file atomically, under a lock held through `<database>.lock`. A process keeps the books it loaded until it reopens the database. On opening, every record is validated again: a database damaged or edited by hand raises a `ValueError` naming the faulty record, instead of producing broken data. Delete the file and import your datasets again to start afresh.
 
 ### Injecting Your Own Dataset
 
@@ -368,12 +467,15 @@ Record schema:
 | `writer` | ✅ | string, or `{"fr_FR": str, "en_US": str}` |
 | `nationality` | ✅ | `{"fr_FR": str, "en_US": str}` |
 | `title` | ✅ | `{"fr_FR": str, "en_US": str}` |
+| `title_untranslated` | ❌ | `true` when the work was never translated into French: both titles are the original one |
 | `genre` | ✅ | `{"fr_FR": [str, ...], "en_US": [str, ...]}` (1 to 20 genres) |
 | `year` | ✅ | integer between -3000 and 2100 |
 | `pages` | ❌ | `None`, or `{"fr_FR": int, "en_US": int}` (1 to 100000, each may be `None`) |
+| `pages_estimated` | ❌ | `true` when `pages` is an estimate rather than the count of a known edition |
 | `publisher` | ❌ | `None`, or `{"fr_FR": str, "en_US": str}` (each may be `None`) |
+| `publisher_estimated` | ❌ | `true` when `publisher` is plausible but was not checked against a source |
 
-Strings must be non-empty and at most 300 characters. Extra fields (e.g. `isbn`, `wikidata_id`) are stored as is. If **any** record is invalid, `replace_source()` raises a `ValueError` naming the record and the field, and the database is left unchanged.
+Strings must be non-empty and at most 300 characters. The genres of your own datasets are free: they are not checked against the bundled genre vocabulary. `wikidata_id`, when present, must be a Wikidata id such as `Q35160`. Up to 20 extra fields (e.g. `isbn`, `copies`) are stored as is: their names must be identifiers, and their values a string (300 characters at most), a number, a boolean or `None`. If **any** record is invalid, `replace_source()` raises a `ValueError` naming the record and the field, and the database is left unchanged.
 
 > The `builtin` source is managed by the package: do not replace it yourself.
 
@@ -411,13 +513,14 @@ store.books.search((Book.year < 1900) & (Book.source == "wikidata"))
 Run the built-in demo to see every feature:
 
 ```bash
-python -m faker_literature
+faker-literature            # or: python -m faker_literature
+faker-literature --version
 ```
 
 Or with an enlarged catalogue:
 
 ```bash
-python -m faker_literature --db ~/.cache/faker-literature/literature_db.json demo
+faker-literature --db ~/.cache/faker-literature/literature_db.json demo
 ```
 
 Quick tour of both locales:
@@ -448,24 +551,34 @@ git clone https://github.com/arribo44/faker-literature.git
 cd faker-literature
 python -m venv .venv
 source .venv/bin/activate
-pip install -e ".[test]"
+pip install -e ".[dev]"      # tests, ruff, mypy, build and twine
 
 pytest                       # run the test suite (no network needed)
 pytest --cov=faker_literature
+ruff check .                 # lint
+mypy                         # type check (strict)
 python -m build              # build the distributions
 ```
+
+The version is defined once, in `faker_literature/__init__.py` (`__version__`); the packaging metadata lives in `pyproject.toml`. GitHub Actions runs the same checks on every push and pull request: lint and type check, the test suite on Python 3.10 to 3.14 (and on Windows), then a build of the package checked with `twine check` and installed from the wheel.
 
 Project layout:
 
 ```
 faker_literature/
 ├── __init__.py          # LiteratureProvider
-├── __main__.py          # CLI: demo and import-wikidata
+├── __main__.py          # CLI (faker-literature): demo and import-wikidata
 ├── store.py             # BookStore: TinyDB storage, validation, localization
+├── vocabulary.py        # GenreVocabulary: one translation per genre, aliases
+├── matching.py          # name/title normalization, duplicate detection
+├── _storage.py          # atomic JSON storage and inter-process lock
 ├── importers/
 │   └── wikidata.py      # Wikidata importer
 └── DATAS/
-    └── literature.json  # bundled catalogue
+    └── literature.json  # bundled catalogue: genre vocabulary + authors and books
+tools/
+├── literature_editor/   # local web page to add books to literature.json from Wikidata
+└── goodreads_import/    # adds the works of a Goodreads export to literature.json, through Wikidata
 ```
 
 ---
@@ -474,7 +587,7 @@ faker_literature/
 
 Contributions are welcome! Open a PR or issue to add authors and books to `literature.json`, write importers for new datasets (Open Library, Project Gutenberg, data.bnf.fr...), add new locales, or fix bugs.
 
-When adding books, please provide both `fr_FR` and `en_US` values for every field and run `pytest` before submitting.
+When adding books, please provide both `fr_FR` and `en_US` values for every field, refer to genres by their id in the `genres` vocabulary at the top of `literature.json` (add a new entry there if needed), and run `pytest` before submitting: `tests/test_catalogue.py` checks the consistency of the catalogue.
 
 ---
 

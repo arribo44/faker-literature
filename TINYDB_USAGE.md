@@ -27,16 +27,22 @@ The literature data has been migrated from a simple Python tuple to an optimized
 ### Optimized Structure (By Author)
 ```json
 {
+  "genres": {
+    "classic": {"fr_FR": "classique", "en_US": "classic"},
+    "historical-novel": {"fr_FR": "roman historique", "en_US": "historical novel"},
+    "crime": {
+      "fr_FR": "polar", "en_US": "crime",
+      "aliases": {"fr_FR": ["police"], "en_US": ["crime fiction"]}
+    },
+    ...
+  },
   "authors": [
     {
       "name": "Victor Hugo",
       "books": [
         {
           "year": 1862,
-          "genre": {
-            "fr_FR": ["roman historique", "classique"],
-            "en_US": ["historical novel", "classic"]
-          },
+          "genre": ["historical-novel", "classic"],
           "title": {"fr_FR": "Les Misérables", "en_US": "Les Misérables"},
           "pages": {"fr_FR": 1463, "en_US": 1463},
           "publisher": {"fr_FR": "...", "en_US": "..."}
@@ -52,6 +58,7 @@ The literature data has been migrated from a simple Python tuple to an optimized
 ## Benefits
 
 ✅ **Reduced Redundancy** - Author name appears once per author instead of once per book  
+✅ **Consistent Genres** - Each genre is defined once in `genres`, with a single translation per locale; books refer to it by id, and aliases ("police", "crime fiction") map other spellings onto it  
 ✅ **Better Organization** - Data grouped logically by author  
 ✅ **Faster Queries** - TinyDB enables efficient filtering and searching  
 ✅ **Advanced Methods** - Built-in query methods for complex data retrieval
@@ -122,7 +129,7 @@ print(f"First 15: {all_genres[:15]}")
 
 ### Bundled catalogue
 - `literature.json`: ~320 KB (14,500 lines)
-- 190 authors, 518 books, ~220 unique genres per locale
+- 190 authors, 518 books, ~210 unique genres per locale
 
 ### Sources
 Every record carries a `source` field (`builtin`, `wikidata`, ...).
@@ -180,7 +187,7 @@ from faker_literature import LiteratureProvider
 fake_fr = Faker('fr_FR')
 fake_fr.add_provider(LiteratureProvider)
 print(fake_fr.genre())  # E.g., "philosophique", "drame romantique"
-print(fake_fr.all_genres()[:5])  # ['adolescence', 'amitié', 'américain', 'anthologie', 'anthropologie']
+print(fake_fr.all_genres()[:5])  # ['absurde', 'adolescence', 'ambitieux', 'amitié', 'amour']
 
 # English locale - genres in English
 fake_en = Faker('en_US')
@@ -207,7 +214,7 @@ faker>=20.0.0
 
 Install with:
 ```bash
-pip install tinydb faker
+pip install faker-literature   # installs faker and tinydb
 ```
 
 ## Query Performance

@@ -1,13 +1,8 @@
 import copy
 import json
-import sys
-from pathlib import Path
 
+import editor
 import pytest
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools" / "literature_editor"))
-
-import editor  # noqa: E402
 
 
 def _cells(**values):
@@ -61,7 +56,8 @@ def test_parse_qid_rejects_anything_else(text):
 
 def test_parse_author_picks_one_country_and_falls_back_on_the_other_name():
     rows = [
-        _cells(nameEn="Victor Hugo", country="http://www.wikidata.org/entity/Q142", demonymFr="Française", demonymEn="French"),
+        _cells(nameEn="Victor Hugo", country="http://www.wikidata.org/entity/Q142",
+               demonymFr="Française", demonymEn="French"),
         _cells(country="http://www.wikidata.org/entity/Q142", demonymFr="Français", demonymEn="French"),
     ]
 
@@ -105,9 +101,22 @@ def test_add_book_creates_a_sorted_author(catalogue):
     assert names[index - 1] <= names[index] <= names[index + 1]
     book = catalogue["authors"][index]["books"][0]
     assert book["year"] == 1008
-    assert book["genre"]["fr_FR"] == ["roman", "classique"]
+    assert book["genre"] == ["novel", "classic"]
     assert book["pages"] == {"fr_FR": 1400, "en_US": None}
     assert book["publisher"] == {"fr_FR": "Verdier", "en_US": None}
+    assert "pages_estimated" not in book and "publisher_estimated" not in book
+
+
+def test_values_typed_without_wikidata_are_flagged_as_estimates(catalogue):
+    editor.add_book(catalogue, _author(), _book(wikidata_id=""))
+    editor.add_book(catalogue, _author(), _book(wikidata_id="", year="1010", pages={"fr_FR": "", "en_US": ""},
+                                                title={"fr_FR": "Journal", "en_US": "Diary"}))
+
+    genji, diary = next(entry for entry in catalogue["authors"] if entry.get("wikidata_id") == "Q999999")["books"]
+    assert list(genji) == ["year", "genre", "title", "pages", "pages_estimated", "publisher", "publisher_estimated"]
+    assert genji["pages_estimated"] is genji["publisher_estimated"] is True
+    # Nothing to qualify without a page count
+    assert diary["pages"] is None and "pages_estimated" not in diary and diary["publisher_estimated"] is True
 
 
 def test_add_book_appends_to_an_existing_author_by_year(catalogue):
@@ -131,7 +140,8 @@ def test_add_book_rejects_duplicates_and_invalid_books(catalogue):
     with pytest.raises(ValueError, match="déjà"):
         editor.add_book(catalogue, _author(), _book(wikidata_id="Q2"))
     with pytest.raises(ValueError, match="Année manquante"):
-        editor.add_book(catalogue, _author(), _book(wikidata_id="Q3", title={"fr_FR": "A", "en_US": "B"}, year="vers 1000"))
+        editor.add_book(catalogue, _author(),
+                        _book(wikidata_id="Q3", title={"fr_FR": "A", "en_US": "B"}, year="vers 1000"))
     with pytest.raises(ValueError, match=r"Titre \(anglais\) : champ obligatoire"):
         editor.add_book(catalogue, _author(), _book(wikidata_id="Q4", title={"fr_FR": "Seulement FR", "en_US": ""}))
 
@@ -176,8 +186,9 @@ def test_annotate_flags_known_works(catalogue):
 
 def test_multilingual_labels_fill_missing_names_and_titles():
     author = editor.parse_author("Q535", [_cells(nameMul="Victor Hugo")])
-    works = editor.parse_works([_cells(work=WORK, links="5", titleMul="Hernani", titleFr="Hernani ou l'Honneur castillan",
-                                       inception="1829-01-01T00:00:00Z", date="1830-02-25T00:00:00Z", pages="940512")], [])
+    works = editor.parse_works([_cells(work=WORK, links="5", titleMul="Hernani",
+                                       titleFr="Hernani ou l'Honneur castillan", inception="1829-01-01T00:00:00Z",
+                                       date="1830-02-25T00:00:00Z", pages="940512")], [])
 
     assert author["name"] == {"fr_FR": "Victor Hugo", "en_US": "Victor Hugo"}
     assert works[0]["title"] == {"fr_FR": "Hernani ou l'Honneur castillan", "en_US": "Hernani"}
@@ -186,8 +197,46 @@ def test_multilingual_labels_fill_missing_names_and_titles():
 
 
 def test_genre_errors_are_explained_in_french(catalogue):
-    with pytest.raises(ValueError, match=r"Genres \(français\) : au moins un genre"):
-        editor.add_book(catalogue, _author(), _book(genre={"fr_FR": " , ", "en_US": "novel"}))
+    with pytest.raises(ValueError, match=r"Genres : au moins un genre"):
+        editor.add_book(catalogue, _author(), _book(genre={"fr_FR": " , ", "en_US": ""}))
+
+
+def test_known_genres_are_stored_by_id_from_either_language(catalogue):
+    editor.add_book(catalogue, _author(), _book(genre={"fr_FR": "", "en_US": "crime fiction, Novel"}))
+
+    entry = editor.find_author(catalogue, "Q999999", [])
+    assert entry["books"][0]["genre"] == ["crime", "novel"]
+
+
+def test_unknown_genres_need_a_translation(catalogue):
+    before = copy.deepcopy(catalogue)
+
+    with pytest.raises(ValueError, match="traduction en anglais"):
+        editor.add_book(catalogue, _author(), _book(genre={"fr_FR": "roman, monogatari", "en_US": "novel"}))
+    assert catalogue == before
+
+
+def test_rejected_book_adds_no_genre(catalogue):
+    before = copy.deepcopy(catalogue)
+
+    with pytest.raises(ValueError, match="Année"):
+        editor.add_book(catalogue, _author(), _book(year="", genre={"fr_FR": "monogatari", "en_US": "monogatari"}))
+    assert catalogue == before
+
+
+def test_genre_without_letters_is_refused(catalogue):
+    with pytest.raises(ValueError, match="ne peut pas devenir un nouveau genre"):
+        editor.add_book(catalogue, _author(), _book(genre={"fr_FR": "?", "en_US": "?"}))
+
+
+def test_wikidata_genres_are_replaced_by_catalogue_labels(catalogue):
+    author = {"wikidata_id": "Q999999", "name": {"fr_FR": "Murasaki Shikibu", "en_US": "Murasaki Shikibu"}}
+    works = [{"title": {"fr_FR": "Inédit", "en_US": "Unpublished"},
+              "genre": {"fr_FR": ["fiction gothique", "monogatari"], "en_US": ["gothic fiction", "monogatari"]}}]
+
+    editor.annotate(catalogue, author, works)
+
+    assert works[0]["genre"] == {"fr_FR": ["roman gothique", "monogatari"], "en_US": ["gothic novel", "monogatari"]}
 
 
 def test_parse_influences_separates_people_from_works():
@@ -200,7 +249,9 @@ def test_parse_influences_separates_people_from_works():
 
     influences = editor.parse_influences(rows)
 
-    assert [influence["name"] for influence in influences] == ["Élise ou la vraie vie", "Franz Kafka", "Simone de Beauvoir"]
+    assert [influence["name"] for influence in influences] == [
+        "Élise ou la vraie vie", "Franz Kafka", "Simone de Beauvoir",
+    ]
     assert [influence["person"] for influence in influences] == [False, True, True]
     assert influences[1]["description"] == "écrivain"
 
@@ -224,8 +275,39 @@ def test_author_names_match_regardless_of_spacing_and_punctuation(catalogue):
     entry = editor.find_author(catalogue, "Q79904", ["J. D. Salinger"])
 
     assert entry is not None and entry["name"] == "J.D. Salinger"
-    assert editor.find_author(catalogue, "Q1", ["h.p. LOVECRAFT"])["name"] == "H. P. Lovecraft"
-    assert editor.find_author(catalogue, "Q1", ["Emile Zola"])["name"] == "Émile Zola"
+    assert editor.find_author(catalogue, None, ["h.p. LOVECRAFT"])["name"] == "H. P. Lovecraft"
+    assert editor.find_author(catalogue, None, ["Emile Zola"])["name"] == "Émile Zola"
+
+
+def test_homonyms_with_another_wikidata_id_are_different_authors(catalogue):
+    # Lovecraft is Q169566 in the catalogue: an other Q-id with the same name is someone else
+    assert editor.find_author(catalogue, "Q1", ["H. P. Lovecraft"]) is None
+    assert editor.find_author(catalogue, "Q169566", ["H. P. Lovecraft"])["name"] == "H. P. Lovecraft"
+
+
+def test_homonym_gets_its_own_entry(catalogue):
+    before = len(catalogue["authors"])
+    homonym = _author(wikidata_id="Q1", name={"fr_FR": "Émile Zola", "en_US": "Émile Zola"})
+
+    _, created = editor.add_book(catalogue, homonym, _book())
+
+    assert created and len(catalogue["authors"]) == before + 1
+
+
+@pytest.mark.parametrize("title, key", [
+    ("L'Iliade", "iliade"),
+    ("l’Odyssée", "odyssee"),
+    ("The Iliad", "iliad"),
+    ("A Study in Scarlet", "studyinscarlet"),
+    ("Les Misérables", "miserables"),
+    ("Anna Karénine", "annakarenine"),
+    ("Theogony", "theogony"),
+    ("Lettres persanes", "lettrespersanes"),
+    ("Antigone", "antigone"),
+    ("Une", "une"),
+])
+def test_title_key_only_removes_whole_leading_articles(title, key):
+    assert editor._title_key(title) == key
 
 
 def test_titles_differing_by_an_article_are_duplicates(catalogue):
@@ -237,9 +319,26 @@ def test_titles_differing_by_an_article_are_duplicates(catalogue):
 
 
 def test_french_nationality_and_genres_are_lower_cased(catalogue):
-    editor.add_book(catalogue, _author(nationality={"fr_FR": "Japonais", "en_US": "Japanese"}),
-                    _book(genre={"fr_FR": "Roman, roman, Classique", "en_US": "Novel, classic"}))
+    message, _ = editor.add_book(catalogue, _author(nationality={"fr_FR": "Japonais", "en_US": "Japanese"}),
+                                 _book(genre={"fr_FR": "Roman, roman, Journal intime", "en_US": "Novel, pillow book"}))
 
     entry = editor.find_author(catalogue, "Q999999", [])
     assert entry["nationality"]["fr_FR"] == "japonais"
-    assert entry["books"][0]["genre"] == {"fr_FR": ["roman", "classique"], "en_US": ["Novel", "classic"]}
+    assert entry["books"][0]["genre"] == ["novel", "pillow-book"]
+    assert catalogue["genres"]["pillow-book"] == {"fr_FR": "journal intime", "en_US": "pillow book"}
+    assert "Nouveau(x) genre(s) : journal intime / pillow book" in message
+    assert list(catalogue["genres"]) == sorted(catalogue["genres"])
+
+
+def test_popularity_sent_by_the_page_is_kept_for_wikidata_works(catalogue):
+    editor.add_book(catalogue, _author(), _book(popularity=42))
+    editor.add_book(catalogue, _author(), _book(wikidata_id="", year="1010", popularity=42,
+                                                title={"fr_FR": "Journal", "en_US": "Diary"}))
+    editor.add_book(catalogue, _author(), _book(wikidata_id="Q5", year="1011", popularity="42",
+                                                title={"fr_FR": "Poèmes", "en_US": "Poems"}))
+
+    entry = next(entry for entry in catalogue["authors"] if entry.get("wikidata_id") == "Q999999")
+    genji, diary, poems = entry["books"]
+    assert genji["popularity"] == 42 and list(genji)[-2:] == ["popularity", "wikidata_id"]
+    # Without a Wikidata work, or with a malformed value, nothing is kept
+    assert "popularity" not in diary and "popularity" not in poems

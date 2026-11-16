@@ -4,19 +4,23 @@ Run the demo with:       python -m faker_literature
 Import from Wikidata:    python -m faker_literature import-wikidata --limit 500
 """
 
+from __future__ import annotations
+
 import argparse
 import json
+from collections.abc import Sequence
 
 from faker import Faker
 
-from faker_literature import LiteratureProvider, default_db_path
+from faker_literature import LiteratureProvider, __version__, default_db_path
+from faker_literature.store import PathLike
 
 
-def _section(title):
+def _section(title: str) -> None:
     print(f"\n--- {title} ---")
 
 
-def demo(db_path=None):
+def demo(db_path: PathLike | None = None) -> None:
     if db_path is not None:
         LiteratureProvider.use_database(db_path)
     fake = Faker("en_US")
@@ -49,7 +53,7 @@ def demo(db_path=None):
     _section("Filtered writers & titles")
     print(f"writer(nationality='British')        -> {fake.writer(nationality='British')}")
     print(f"writer(genre='horror')              -> {fake.writer(genre='horror')}")
-    print(f"writer(nationality='American', genre='horror')")
+    print("writer(nationality='American', genre='horror')")
     print(f"                                    -> {fake.writer(nationality='American', genre='horror')}")
     print(f"title(genre='horror')               -> {fake.title(genre='horror')}")
     print(f"title(genre='science fiction')      -> {fake.title(genre='science fiction')}")
@@ -91,7 +95,7 @@ def demo(db_path=None):
     print("=" * 60)
 
 
-def import_wikidata(db_path, limit, min_sitelinks):
+def import_wikidata(db_path: PathLike, limit: int, min_sitelinks: int) -> None:
     from faker_literature.importers import wikidata
 
     store = LiteratureProvider.use_database(db_path)
@@ -100,8 +104,11 @@ def import_wikidata(db_path, limit, min_sitelinks):
     print(f"Books per source: {store.sources()}")
 
 
-def main(argv=None):
-    parser = argparse.ArgumentParser(prog="python -m faker_literature")
+def main(argv: Sequence[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(
+        prog="faker-literature", description="Demo and catalogue tools of faker-literature."
+    )
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     parser.add_argument(
         "--db", metavar="PATH",
         help="persistent catalogue to use (the demo uses the bundled one by default)",
