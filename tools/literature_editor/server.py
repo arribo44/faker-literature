@@ -3,16 +3,21 @@
 Run with:  python tools/literature_editor/server.py [--port 8765]
 
 The server only listens on 127.0.0.1 and rejects requests coming from other
-sites (Host / Origin checks), so no web page can write to the catalogue.
+sites (Host / Origin checks), so no web page can write to the catalogue.  The
+API also requires a session cookie, set by the page itself and never sent with
+requests initiated by other sites (SameSite=Strict).
 """
 
 import argparse
+import hmac
 import json
+import secrets
 import threading
 import traceback
 import urllib.error
 import webbrowser
 from http import HTTPStatus
+from http.cookies import CookieError, SimpleCookie
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
@@ -23,6 +28,9 @@ import editor
 INDEX = Path(__file__).with_name("index.html")
 MAX_BODY = 64 * 1024
 WRITE_LOCK = threading.Lock()
+SESSION_COOKIE = "editor_session"
+# New at each start: a page opened before a restart must be reloaded
+SESSION = secrets.token_urlsafe(32)
 
 SECURITY_HEADERS = {
     "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; "
@@ -38,11 +46,16 @@ class EditorHandler(BaseHTTPRequestHandler):
     server_version = "LiteratureEditor"
 
     def handle_one_request(self):
-        # An unexpected error must answer the page instead of dropping the connection
+        # An unexpected error must answer the page instead of dropping the connection,
+        # unless a response has already started: a second one would corrupt it
+        self._responded = False
         try:
             super().handle_one_request()
         except Exception:
             traceback.print_exc()
+            if self._responded:
+                self.close_connection = True
+                return
             try:
                 self._error(HTTPStatus.INTERNAL_SERVER_ERROR, "Erreur interne du serveur : voir le terminal où il tourne.")
             except OSError:
@@ -52,9 +65,12 @@ class EditorHandler(BaseHTTPRequestHandler):
         port = self.server.server_address[1]
         return {f"127.0.0.1:{port}", f"localhost:{port}"}
 
-    def _send(self, status, body, content_type):
+    def _send(self, status, body, content_type, headers=()):
+        self._responded = True
         self.send_response(status)
         self.send_header("Content-Type", content_type)
+        for name, value in headers:
+            self.send_header(name, value)
         self.send_header("Content-Length", str(len(body)))
         for name, value in SECURITY_HEADERS.items():
             self.send_header(name, value)
@@ -74,12 +90,29 @@ class EditorHandler(BaseHTTPRequestHandler):
             return False
         return True
 
+    def _check_session(self):
+        # Requests forged by other sites (<img>, forms, fetch) do not carry this cookie
+        try:
+            cookie = SimpleCookie(self.headers.get("Cookie", ""))
+        except CookieError:
+            cookie = {}
+        value = cookie[SESSION_COOKIE].value if SESSION_COOKIE in cookie else ""
+        if not hmac.compare_digest(value.encode(), SESSION.encode()):
+            self._error(HTTPStatus.FORBIDDEN, "Session absente ou expirée : rechargez la page.")
+            return False
+        return True
+
     def do_GET(self):
         if not self._check_host():
             return
         url = urlsplit(self.path)
         if url.path == "/":
-            self._send(HTTPStatus.OK, INDEX.read_bytes(), "text/html; charset=utf-8")
+            cookie = f"{SESSION_COOKIE}={SESSION}; Path=/; HttpOnly; SameSite=Strict"
+            self._send(HTTPStatus.OK, INDEX.read_bytes(), "text/html; charset=utf-8", [("Set-Cookie", cookie)])
+        elif not url.path.startswith("/api/"):
+            self._error(HTTPStatus.NOT_FOUND, "Page introuvable.")
+        elif not self._check_session():
+            return
         elif url.path == "/api/catalogue":
             self._json(HTTPStatus.OK, editor.catalogue_info(editor.load_catalogue()))
         elif url.path == "/api/author":
@@ -109,6 +142,8 @@ class EditorHandler(BaseHTTPRequestHandler):
         # A JSON content type forces a CORS preflight that this server never accepts
         if self.headers.get("Content-Type", "").split(";")[0].strip() != "application/json":
             self._error(HTTPStatus.UNSUPPORTED_MEDIA_TYPE, "JSON attendu.")
+            return
+        if not self._check_session():
             return
         if urlsplit(self.path).path != "/api/books":
             self._error(HTTPStatus.NOT_FOUND, "Page introuvable.")

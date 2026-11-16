@@ -338,6 +338,8 @@ fake.book()   # now drawn from bundled + imported books
 
 When a new version of the package ships an updated bundled catalogue, the persistent database refreshes its bundled books automatically and **keeps** imported ones, except those the bundled catalogue now contains (same rules as the importer).
 
+Several processes can share the persistent database (for example an import running while tests generate data): every write replaces the file atomically, under a lock held through `<database>.lock`. A process keeps the books it loaded until it reopens the database. On opening, every record is validated again: a database damaged or edited by hand raises a `ValueError` naming the faulty record, instead of producing broken data. Delete the file and import your datasets again to start afresh.
+
 ### Injecting Your Own Dataset
 
 Books are grouped by **source**. `replace_source()` replaces all the books of one source with a new list:
@@ -374,7 +376,7 @@ Record schema:
 | `pages` | ❌ | `None`, or `{"fr_FR": int, "en_US": int}` (1 to 100000, each may be `None`) |
 | `publisher` | ❌ | `None`, or `{"fr_FR": str, "en_US": str}` (each may be `None`) |
 
-Strings must be non-empty and at most 300 characters. The genres of your own datasets are free: they are not checked against the bundled genre vocabulary. Extra fields (e.g. `isbn`, `wikidata_id`) are stored as is. If **any** record is invalid, `replace_source()` raises a `ValueError` naming the record and the field, and the database is left unchanged.
+Strings must be non-empty and at most 300 characters. The genres of your own datasets are free: they are not checked against the bundled genre vocabulary. `wikidata_id`, when present, must be a Wikidata id such as `Q35160`. Up to 20 extra fields (e.g. `isbn`, `copies`) are stored as is: their names must be identifiers, and their values a string (300 characters at most), a number, a boolean or `None`. If **any** record is invalid, `replace_source()` raises a `ValueError` naming the record and the field, and the database is left unchanged.
 
 > The `builtin` source is managed by the package: do not replace it yourself.
 

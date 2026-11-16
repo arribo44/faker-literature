@@ -3,6 +3,7 @@
 import json
 import os
 import re
+import stat
 import sys
 import tempfile
 from pathlib import Path
@@ -229,10 +230,13 @@ def save_catalogue(data, path=None):
     """Write ``data`` atomically, in the same layout as the bundled file."""
     path = Path(path or CATALOGUE_PATH)
     content = json.dumps(data, indent=2, ensure_ascii=False) + "\n"
+    # mkstemp creates the file readable by its owner only: keep the permissions of the original
+    mode = stat.S_IMODE(path.stat().st_mode) if path.exists() else 0o644
     fd, temp = tempfile.mkstemp(dir=path.parent, prefix=".literature-", suffix=".json")
     try:
         with os.fdopen(fd, "w", encoding="utf-8") as file:
             file.write(content)
+        os.chmod(temp, mode)
         os.replace(temp, path)
     except BaseException:
         os.unlink(temp)

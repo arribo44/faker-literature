@@ -8,12 +8,16 @@ catalogue and be replaced independently of it.
 
 import hashlib
 import json
+import math
 import os
+import re
+import threading
 from pathlib import Path
 
 from tinydb import Query, TinyDB
 from tinydb.storages import MemoryStorage
 
+from faker_literature._storage import AtomicJSONStorage, FileLock
 from faker_literature.matching import YEAR_TOLERANCE, DuplicateIndex
 from faker_literature.vocabulary import GenreVocabulary
 
@@ -27,6 +31,12 @@ MAX_TEXT_LENGTH = 300
 MAX_GENRES = 20
 MIN_YEAR, MAX_YEAR = -3000, 2100
 MAX_PAGES = 100000
+
+# Fields of the schema; other ("extra") fields such as ``isbn`` are kept as is
+SCHEMA_FIELDS = {"writer", "nationality", "title", "genre", "year", "pages", "publisher", "source", "wikidata_id"}
+MAX_EXTRA_FIELDS = 20
+EXTRA_FIELD_NAME = re.compile(r"[A-Za-z_][A-Za-z0-9_]{0,63}")
+WIKIDATA_ID = re.compile(r"Q[1-9][0-9]{0,11}")
 
 
 def default_db_path():
@@ -107,6 +117,24 @@ def _check_optional_string(value, field):
         _check_string(value, field)
 
 
+def _check_extra_fields(book):
+    extras = [name for name in book if name not in SCHEMA_FIELDS]
+    if len(extras) > MAX_EXTRA_FIELDS:
+        raise ValueError(f"book: more than {MAX_EXTRA_FIELDS} extra fields")
+    for name in extras:
+        if not isinstance(name, str) or not EXTRA_FIELD_NAME.fullmatch(name):
+            raise ValueError(f"{name!r}: extra field names are identifiers of at most 64 characters")
+        value = book[name]
+        if isinstance(value, str):
+            if len(value) > MAX_TEXT_LENGTH:
+                raise ValueError(f"{name}: longer than {MAX_TEXT_LENGTH} characters")
+        elif isinstance(value, float):
+            if not math.isfinite(value):
+                raise ValueError(f"{name}: expected a finite number")
+        elif value is not None and not isinstance(value, (bool, int)):
+            raise ValueError(f"{name}: extra fields hold a string, a number, a boolean or None")
+
+
 def validate_book(book):
     """Raise ``ValueError`` if ``book`` does not follow the catalogue schema."""
     if not isinstance(book, dict):
@@ -123,6 +151,9 @@ def validate_book(book):
     if book.get("publisher") is not None:
         _check_localized(book["publisher"], "publisher", _check_optional_string)
     _check_string(book.get("source"), "source")
+    if "wikidata_id" in book and not (isinstance(book["wikidata_id"], str) and WIKIDATA_ID.fullmatch(book["wikidata_id"])):
+        raise ValueError(f"wikidata_id: expected an id such as Q1234, got {book['wikidata_id']!r}")
+    _check_extra_fields(book)
 
 
 # Localization
@@ -154,21 +185,43 @@ class BookStore:
     Without ``path`` the database lives in memory and nothing touches the disk.
     With ``path`` it is persisted there: the bundled books are re-synced
     whenever the bundled JSON changes, while imported books are kept.
+
+    A persistent database may be shared by several processes: every write
+    replaces the file atomically, under a lock held through ``<path>.lock``.
+    Each store caches its localized books until its own next write, so a
+    process does not see the books another one imports until it reopens the
+    database.  On opening, every record is validated again, so a database
+    edited by hand or damaged is reported instead of producing broken data.
     """
 
     def __init__(self, path=None, builtin_path=BUILTIN_DATA):
         self.path = None if path is None else Path(path)
         if self.path is None:
             self._db = TinyDB(storage=MemoryStorage)
+            self._lock = threading.RLock()
         else:
             self._db = TinyDB(
-                str(self.path), create_dirs=True, encoding="utf-8",
+                str(self.path), storage=AtomicJSONStorage, create_dirs=True,
                 indent=2, ensure_ascii=False,
             )
+            self._lock = FileLock(self.path.with_name(self.path.name + ".lock"))
         self._localized = {}
         # Imported books dropped by the last re-sync of the bundled catalogue
         self.removed_duplicates = 0
-        self._sync_builtin(builtin_path)
+        with self._lock:
+            self._sync_builtin(builtin_path)
+            if self.path is not None:
+                self._validate_stored()
+
+    def _validate_stored(self):
+        for book in self.books.all():
+            try:
+                validate_book(book)
+            except ValueError as error:
+                raise ValueError(
+                    f"{self.path}: invalid record #{book.doc_id} ({error}); "
+                    "delete the file and import your datasets again"
+                ) from None
 
     @property
     def books(self):
@@ -208,9 +261,10 @@ class BookStore:
                 validate_book(book)
             except ValueError as error:
                 raise ValueError(f"{source} book #{index}: {error}") from None
-        self.books.remove(Query().source == source)
-        self.books.insert_multiple(books)
-        self._localized.clear()
+        with self._lock:
+            self.books.remove(Query().source == source)
+            self.books.insert_multiple(books)
+            self._localized.clear()
         return len(books)
 
     def sources(self):

@@ -6,6 +6,14 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 
 ## [Non publié]
 
+### Sécurité
+
+- Éditeur : l'API exige un cookie de session (`HttpOnly`, `SameSite=Strict`) posé par la page, qu'aucun autre site ne peut joindre à ses requêtes.
+- Éditeur : l'enregistrement de `literature.json` conserve ses droits d'accès (il passait en `600`), et une erreur survenant après le début d'une réponse ne produit plus de seconde réponse.
+- Base persistante : écriture atomique (fichier temporaire renommé) et verrou inter-processus (`<base>.lock`), pour qu'aucune mise à jour ne soit perdue ni aucun fichier lu à moitié écrit quand plusieurs processus la partagent. Ses droits d'accès sont conservés.
+- Base persistante : chaque enregistrement est revalidé à l'ouverture ; une base endommagée ou modifiée à la main est signalée par une `ValueError`.
+- Schéma : `wikidata_id` doit être un identifiant Wikidata, et les champs supplémentaires sont limités (20 au plus, noms identifiants, valeurs scalaires de 300 caractères au plus).
+
 ### Ajouté
 
 - Vocabulaire contrôlé des genres : `literature.json` définit chaque genre une seule fois, sous `genres`, avec un libellé par langue et des alias ; les livres y font référence par identifiant. Le format des enregistrements du `BookStore` et les résultats du provider sont inchangés.

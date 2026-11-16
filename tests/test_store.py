@@ -1,10 +1,14 @@
 import json
+import multiprocessing
+import os
+import stat
 
 import pytest
 from faker import Faker
 
 from faker_literature import LiteratureProvider
 from faker_literature.store import BUILTIN_DATA, BookStore, validate_book
+from faker_literature._storage import FileLock
 
 
 @pytest.fixture
@@ -80,6 +84,13 @@ def test_invalid_record_leaves_the_store_unchanged():
     ({"pages": {"fr_FR": -3, "en_US": 10}}, "page count"),
     ({"publisher": {"fr_FR": "x" * 1000, "en_US": "x"}}, "longer than"),
     ({"year": True}, "year"),
+    ({"wikidata_id": "Q12 OR 1=1"}, "wikidata_id"),
+    ({"wikidata_id": 42}, "wikidata_id"),
+    ({"isbn": {"nested": "value"}}, "extra fields hold"),
+    ({"isbn": "x" * 1000}, "longer than"),
+    ({"bad name": 1}, "extra field names"),
+    ({"score": float("nan")}, "finite"),
+    ({f"field{i}": i for i in range(21)}, "extra fields"),
 ])
 def test_validate_book_rejects_malformed_records(overrides, message):
     with pytest.raises(ValueError, match=message):
@@ -139,3 +150,78 @@ def test_imported_books_added_later_to_the_bundled_catalogue_are_dropped(tmp_pat
 
     assert reopened.sources()["wikidata"] == 1
     assert reopened.removed_duplicates == 1
+
+
+def test_scalar_extra_fields_are_accepted():
+    validate_book(dict(_imported_book(isbn="978-2-07-036024-5", copies=3, rating=4.5, lent=False, note=None),
+                       wikidata_id="Q35160", source="test"))
+
+
+def test_damaged_database_is_reported(tmp_path):
+    db_path = tmp_path / "db.json"
+    db_path.write_text('{"books": {"1": {"title": ', encoding="utf-8")
+
+    with pytest.raises(ValueError, match="corrupted database"):
+        BookStore(db_path)
+
+
+def test_records_edited_by_hand_are_validated_on_opening(tmp_path):
+    db_path = tmp_path / "db.json"
+    BookStore(db_path).replace_source("wikidata", [_imported_book()])
+    data = json.loads(db_path.read_text(encoding="utf-8"))
+    imported = next(record for record in data["books"].values() if record["source"] == "wikidata")
+    imported["year"] = "an 1000"
+    db_path.write_text(json.dumps(data), encoding="utf-8")
+
+    with pytest.raises(ValueError, match=r"invalid record #\d+ \(year"):
+        BookStore(db_path)
+
+
+def test_database_permissions_are_kept(tmp_path):
+    db_path = tmp_path / "db.json"
+    store = BookStore(db_path)
+    os.chmod(db_path, 0o640)
+
+    store.replace_source("wikidata", [_imported_book()])
+
+    assert stat.S_IMODE(db_path.stat().st_mode) == 0o640
+    assert not [path.name for path in tmp_path.iterdir() if path.suffix == ".tmp"]
+
+
+def _replace_repeatedly(db_path, source, rounds):
+    store = BookStore(db_path)
+    for round_ in range(rounds):
+        store.replace_source(source, [_imported_book(year=-700 - round_)])
+
+
+def test_concurrent_processes_do_not_lose_updates(tmp_path):
+    db_path = tmp_path / "db.json"
+    BookStore(db_path).close()
+    context = multiprocessing.get_context("spawn")
+    workers = [context.Process(target=_replace_repeatedly, args=(db_path, source, 8)) for source in ("a", "b", "c")]
+    for worker in workers:
+        worker.start()
+    for worker in workers:
+        worker.join(60)
+
+    assert [worker.exitcode for worker in workers] == [0, 0, 0]
+    sources = BookStore(db_path).sources()
+    assert (sources["a"], sources["b"], sources["c"]) == (1, 1, 1)
+
+
+def test_file_lock_is_reentrant_and_exclusive(tmp_path):
+    lock = FileLock(tmp_path / "db.json.lock")
+    with lock, lock:
+        context = multiprocessing.get_context("spawn")
+        worker = context.Process(target=_hold, args=(tmp_path / "db.json.lock",))
+        worker.start()
+        worker.join(0.5)
+        # Still waiting for the lock held here
+        assert worker.is_alive()
+    worker.join(10)
+    assert worker.exitcode == 0
+
+
+def _hold(path):
+    with FileLock(path):
+        pass

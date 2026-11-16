@@ -59,5 +59,6 @@ Relisez les ajouts avec `git diff faker_literature/DATAS/literature.json`, puis 
 
 - Le serveur n'écoute que sur `127.0.0.1` : il est inaccessible depuis le réseau.
 - Il refuse les requêtes dont l'en-tête `Host` ou `Origin` ne correspond pas à sa propre adresse. Une page web ouverte dans un autre onglet ne peut donc pas écrire dans le catalogue, même par rebinding DNS.
-- Les écritures n'acceptent que du JSON, limité à 64 Ko, et chaque livre est validé avec le schéma du paquet avant d'être enregistré.
+- Les appels à l'API exigent un cookie de session, tiré au hasard à chaque démarrage du serveur et posé par la page elle-même (`HttpOnly`, `SameSite=Strict`). Le navigateur ne l'envoie jamais avec une requête déclenchée par un autre site (image, formulaire, script) : une autre page ne peut donc pas non plus lancer de recherches Wikidata en votre nom. Après un redémarrage du serveur, rechargez la page.
+- Les écritures n'acceptent que du JSON, limité à 64 Ko, et chaque livre est validé avec le schéma du paquet avant d'être enregistré. Le fichier garde ses droits d'accès d'origine.
 - Les textes venant de Wikidata sont insérés dans la page comme texte, jamais comme HTML. Une politique de sécurité du contenu (CSP) bloque en plus tout script externe.
