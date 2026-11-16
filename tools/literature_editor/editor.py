@@ -11,7 +11,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from faker_literature.importers.wikidata import DATES_PATTERN, _entity_id, _parse_year, _pick_demonym, run_query
+from faker_literature.importers.wikidata import (
+    DATES_PATTERN,
+    _entity_id,
+    _parse_year,
+    choose_nationality,
+    known_nationalities,
+    run_query,
+)
 from faker_literature.matching import DuplicateIndex, name_key, sort_key, title_key
 from faker_literature.matching import names as _names
 from faker_literature.store import LOCALES, MAX_PAGES, validate_book
@@ -27,7 +34,7 @@ QID_PATTERN = re.compile(
 )
 
 AUTHOR_QUERY = """
-SELECT ?nameFr ?nameEn ?nameMul ?descFr ?country ?demonymFr ?demonymEn WHERE {
+SELECT ?nameFr ?nameEn ?nameMul ?descFr ?country ?demonymFr ?demonymEn ?birthCountry WHERE {
   BIND(wd:%(qid)s AS ?author)
   OPTIONAL { ?author rdfs:label ?nameFr . FILTER(LANG(?nameFr) = "fr") }
   OPTIONAL { ?author rdfs:label ?nameEn . FILTER(LANG(?nameEn) = "en") }
@@ -38,6 +45,7 @@ SELECT ?nameFr ?nameEn ?nameMul ?descFr ?country ?demonymFr ?demonymEn WHERE {
     OPTIONAL { ?country wdt:P1549 ?demonymFr . FILTER(LANG(?demonymFr) = "fr") }
     OPTIONAL { ?country wdt:P1549 ?demonymEn . FILTER(LANG(?demonymEn) = "en") }
   }
+  OPTIONAL { ?author wdt:P19/wdt:P17 ?birthCountry }
 }
 """
 
@@ -114,11 +122,16 @@ def _values(rows):
 
 # Wikidata
 
-def parse_author(qid, rows):
-    """Merge the author rows into names and a suggested nationality."""
+def parse_author(qid, rows, nationalities=None):
+    """Merge the author rows into names and a suggested nationality.
+
+    The nationality follows the importer rules (country of birth among several
+    citizenships, translations already used in ``nationalities``, by default
+    those of the bundled catalogue).
+    """
     author = {"wikidata_id": qid, "name": {"fr_FR": "", "en_US": ""}, "description": "",
               "nationality": {"fr_FR": "", "en_US": ""}}
-    demonyms = {}
+    demonyms, birth_countries = {}, set()
     for value in _values(rows):
         # Names identical in every language are now stored once, as "mul" labels
         author["name"]["fr_FR"] = author["name"]["fr_FR"] or value.get("nameFr") or value.get("nameMul", "")
@@ -128,9 +141,11 @@ def parse_author(qid, rows):
             fr, en = demonyms.setdefault(_entity_id(value["country"]), (set(), set()))
             fr.add(value["demonymFr"])
             en.add(value["demonymEn"])
+        if "birthCountry" in value:
+            birth_countries.add(_entity_id(value["birthCountry"]))
     if demonyms:
-        fr, en = demonyms[min(demonyms, key=lambda q: int(q[1:]))]
-        author["nationality"] = {"fr_FR": _pick_demonym(fr, "fr_FR"), "en_US": _pick_demonym(en, "en_US")}
+        known = known_nationalities() if nationalities is None else nationalities
+        author["nationality"] = choose_nationality(demonyms, birth_countries, known)
     if not (author["name"]["fr_FR"] or author["name"]["en_US"]):
         raise ValueError(f"Aucun élément Wikidata nommé {qid} en français ou en anglais.")
     author["name"]["fr_FR"] = author["name"]["fr_FR"] or author["name"]["en_US"]

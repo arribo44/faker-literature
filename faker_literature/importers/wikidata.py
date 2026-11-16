@@ -17,8 +17,16 @@ import urllib.request
 from collections.abc import Callable, Iterable, Mapping
 from typing import Any
 
-from faker_literature.matching import YEAR_TOLERANCE, DuplicateIndex
-from faker_literature.store import MAX_PAGES, BookStore, Record, load_vocabulary, validate_book
+from faker_literature.matching import YEAR_TOLERANCE, DuplicateIndex, name_key
+from faker_literature.store import (
+    MAX_PAGES,
+    BookStore,
+    Record,
+    load_builtin_books,
+    load_vocabulary,
+    pick,
+    validate_book,
+)
 from faker_literature.vocabulary import GenreVocabulary
 
 # One SPARQL result row: {variable: {"type": ..., "value": ...}}
@@ -70,7 +78,7 @@ DATES_PATTERN = """
 
 DETAILS_QUERY = """
 SELECT ?work ?titleFr ?titleEn ?author ?writerFr ?writerEn ?date ?datePrecision ?inception ?inceptionPrecision
-       ?pages ?genreFr ?genreEn ?country ?demonymFr ?demonymEn ?publisherFr ?publisherEn
+       ?pages ?genreFr ?genreEn ?country ?demonymFr ?demonymEn ?birthCountry ?publisherFr ?publisherEn
 WHERE {
   VALUES ?work { %(works)s }
   ?work wdt:P50 ?author .
@@ -95,6 +103,8 @@ WHERE {
     ?country wdt:P1549 ?demonymFr . FILTER(LANG(?demonymFr) = "fr")
     ?country wdt:P1549 ?demonymEn . FILTER(LANG(?demonymEn) = "en")
   }
+  # Several citizenships: the one of the country of birth wins
+  OPTIONAL { ?author wdt:P19/wdt:P17 ?birthCountry }
   OPTIONAL { ?work wdt:P1104 ?pages }
   OPTIONAL {
     ?work wdt:P123 ?publisher .
@@ -179,6 +189,14 @@ def _parse_year(value: str, precision: str | None = None) -> int | None:
 
 EN_ADJECTIVE_SUFFIXES = ("ish", "ian", "an", "ese", "ch", "ic", "i")
 
+# Citizenship -> (French demonyms, English demonyms) listed by Wikidata
+Demonyms = dict[str, tuple[set[str], set[str]]]
+
+
+def _capitalize(value: str) -> str:
+    """Upper-case the first letter only: "South African", not "South african"."""
+    return value[:1].upper() + value[1:]
+
 
 def _pick_demonym(values: Iterable[str], locale: str) -> str:
     """Choose one demonym among the gendered / plural forms Wikidata lists.
@@ -193,8 +211,43 @@ def _pick_demonym(values: Iterable[str], locale: str) -> str:
     if locale == "en_US":
         singular = [value for value in values if not value.endswith("s")] or list(values)
         adjectives = [value for value in singular if value.lower().endswith(EN_ADJECTIVE_SUFFIXES)]
-        return min(adjectives or singular, key=shortest).capitalize()
+        return _capitalize(min(adjectives or singular, key=shortest))
     return min(values, key=shortest).lower()
+
+
+def known_nationalities(books: Iterable[Mapping[str, Any]] | None = None) -> dict[str, str]:
+    """Return the ``{English: French}`` nationalities of ``books`` (by default the bundled catalogue)."""
+    if books is None:
+        books = load_builtin_books()[0]
+    return {book["nationality"]["en_US"]: book["nationality"]["fr_FR"] for book in books}
+
+
+def choose_nationality(
+    demonyms: Demonyms, birth_countries: Iterable[str] = (), known: Mapping[str, str] | None = None
+) -> dict[str, str] | None:
+    """Return the ``{locale: demonym}`` nationality of an author, ``None`` without citizenship.
+
+    Among several citizenships, the one of the country of birth wins (P. G.
+    Wodehouse, born in England, later American, is British); otherwise the
+    lowest Q-id, usually the best known country.  The translations already
+    used in ``known`` (``{English: French}``) are preferred, so that a
+    nationality keeps a single translation ("British" is "britannique", not
+    "anglais").
+    """
+    if not demonyms:
+        return None
+    born = [country for country in demonyms if country in set(birth_countries)]
+    country = min(born or demonyms, key=lambda q: int(q[1:]))
+    fr_values, en_values = demonyms[country]
+    known = known or {}
+    english = sorted(en for en in map(_capitalize, en_values) if en in known)
+    if english:
+        return {"fr_FR": known[english[0]], "en_US": english[0]}
+    by_french = {fr: en for en, fr in known.items()}
+    french = sorted(fr for fr in (value.lower() for value in fr_values) if fr in by_french)
+    if french:
+        return {"fr_FR": french[0], "en_US": by_french[french[0]]}
+    return {"fr_FR": _pick_demonym(fr_values, "fr_FR"), "en_US": _pick_demonym(en_values, "en_US")}
 
 
 def map_genres(labels: Iterable[tuple[str, str]], vocabulary: GenreVocabulary) -> list[str]:
@@ -212,13 +265,21 @@ def map_genres(labels: Iterable[tuple[str, str]], vocabulary: GenreVocabulary) -
     return ids
 
 
-def parse_bindings(bindings: Iterable[Binding], vocabulary: GenreVocabulary | None = None) -> list[Record]:
+def parse_bindings(
+    bindings: Iterable[Binding],
+    vocabulary: GenreVocabulary | None = None,
+    nationalities: Mapping[str, str] | None = None,
+) -> list[Record]:
     """Group SPARQL rows by work and return catalogue records.
 
-    Genres are mapped onto ``vocabulary`` (by default the bundled one).  Works
-    lacking a known genre, a nationality or a usable date are left out.
+    Genres are mapped onto ``vocabulary`` (by default the bundled one), and
+    nationalities use the translations of ``nationalities`` (``{English:
+    French}``, by default those of the bundled catalogue).  Works lacking a
+    known genre, a nationality or a usable date are left out.
     """
     vocabulary = vocabulary or load_vocabulary()
+    if nationalities is None:
+        nationalities = known_nationalities()
     works: dict[str, dict[str, Any]] = {}
     for row in bindings:
         value = {key: cell["value"] for key, cell in row.items()}
@@ -230,6 +291,7 @@ def parse_bindings(bindings: Iterable[Binding], vocabulary: GenreVocabulary | No
             "pages": set(),
             "genres": {},
             "demonyms": {},
+            "birth_countries": set(),
             "publisher": None,
         })
         work["writers"].setdefault(value["author"], (value["writerFr"], value["writerEn"]))
@@ -246,6 +308,8 @@ def parse_bindings(bindings: Iterable[Binding], vocabulary: GenreVocabulary | No
             fr, en = work["demonyms"].setdefault(_entity_id(value["country"]), (set(), set()))
             fr.add(value["demonymFr"])
             en.add(value["demonymEn"])
+        if "birthCountry" in value:
+            work["birth_countries"].add(_entity_id(value["birthCountry"]))
         if "publisherFr" in value and work["publisher"] is None:
             work["publisher"] = {"fr_FR": value["publisherFr"], "en_US": value["publisherEn"]}
 
@@ -254,10 +318,9 @@ def parse_bindings(bindings: Iterable[Binding], vocabulary: GenreVocabulary | No
         # Publication date first, creation date only when it is missing
         years = work["years"] or work["inceptions"]
         genres = map_genres(work["genres"].items(), vocabulary)
-        if not (genres and work["demonyms"] and years):
+        nationality = choose_nationality(work["demonyms"], work["birth_countries"], nationalities)
+        if not (genres and nationality and years):
             continue
-        # Several citizenships: the lowest Q-id is usually the best known country
-        demonyms_fr, demonyms_en = work["demonyms"][min(work["demonyms"], key=lambda q: int(q[1:]))]
         writers = list(work["writers"].values())
         pages = min(work["pages"]) if work["pages"] else None
         records.append({
@@ -266,10 +329,7 @@ def parse_bindings(bindings: Iterable[Binding], vocabulary: GenreVocabulary | No
                 "fr_FR": ", ".join(fr for fr, _ in writers),
                 "en_US": ", ".join(en for _, en in writers),
             },
-            "nationality": {
-                "fr_FR": _pick_demonym(demonyms_fr, "fr_FR"),
-                "en_US": _pick_demonym(demonyms_en, "en_US"),
-            },
+            "nationality": nationality,
             "title": work["title"],
             "genre": vocabulary.resolve(genres),
             "year": min(years),
@@ -288,6 +348,21 @@ def exclude_known(records: Iterable[Record], known_books: Iterable[Mapping[str, 
     """
     index = DuplicateIndex(known_books, year_tolerance=YEAR_TOLERANCE)
     return [record for record in records if record not in index]
+
+
+def align_authors(records: Iterable[Record], known_books: Iterable[Mapping[str, Any]]) -> list[Record]:
+    """Give the authors already in ``known_books`` their known name and nationality.
+
+    Authors are matched on their English name, ignoring case, accents and
+    punctuation, so that an author keeps a single nationality.
+    """
+    known = {name_key(pick(book["writer"], "en_US")): book for book in known_books}
+    aligned = []
+    for record in records:
+        book = known.get(name_key(pick(record["writer"], "en_US")))
+        aligned.append(record if book is None else dict(record, writer=book["writer"],
+                                                         nationality=book["nationality"]))
+    return aligned
 
 
 def fetch_works(
@@ -334,5 +409,6 @@ def import_into(store: BookStore, limit: int = 500, min_sitelinks: int = 30, log
     builtin = [book for book in store.books.all() if book["source"] != SOURCE]
     vocabulary = load_vocabulary()
     records = exclude_known(fetch_works(limit, min_sitelinks, log=log, vocabulary=vocabulary), builtin)
+    records = align_authors(records, builtin)
     return store.replace_source(SOURCE, records)
 

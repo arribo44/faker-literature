@@ -218,3 +218,61 @@ def test_known_works_are_matched_by_wikidata_id_or_normalized_title():
     other_year = dict(same_title, year=-500)
 
     assert wikidata.exclude_known([same_id, same_title, other_year], known) == [other_year]
+
+
+UK, USA, NORWAY = "Q145", "Q30", "Q20"
+
+
+def test_country_of_birth_wins_among_several_citizenships():
+    demonyms = {UK: ({"britannique"}, {"British"}), USA: ({"américain"}, {"American"})}
+
+    # P. G. Wodehouse, born in England, American citizen later on
+    assert wikidata.choose_nationality(demonyms, {UK}, {})["en_US"] == "British"
+    # Without a country of birth among the citizenships: the lowest Q-id
+    assert wikidata.choose_nationality(demonyms, {NORWAY}, {})["en_US"] == "American"
+    assert wikidata.choose_nationality({}, {UK}) is None
+
+
+def test_translations_already_in_the_catalogue_are_preferred():
+    known = wikidata.known_nationalities()
+    assert known["British"] == "britannique"
+    uk = {UK: ({"anglais", "britannique", "Britanniques"}, {"British", "Briton", "English"})}
+
+    assert wikidata.choose_nationality(uk, (), known) == {"fr_FR": "britannique", "en_US": "British"}
+    # Matched on the French demonym when the English one is new
+    norway = {NORWAY: ({"norvégien", "Norvégienne"}, {"Norse"})}
+    assert wikidata.choose_nationality(norway, (), {"Norwegian": "norvégien"}) == {
+        "fr_FR": "norvégien", "en_US": "Norwegian"}
+
+
+def test_unknown_nationalities_are_capitalized_on_their_first_letter_only():
+    demonyms = {"Q258": ({"sud-africain", "sud-africaine"}, {"South African", "South Africans"})}
+
+    # str.capitalize() gave "South african"
+    assert wikidata.choose_nationality(demonyms, (), {}) == {"fr_FR": "sud-africain", "en_US": "South African"}
+    assert wikidata._pick_demonym(["south African"], "en_US") == "South African"
+
+
+def test_birth_country_is_read_from_the_rows():
+    rows = [
+        _row(country="http://www.wikidata.org/entity/Q30", demonymFr="Américain", demonymEn="American",
+             birthCountry="http://www.wikidata.org/entity/Q145"),
+        _row(birthCountry="http://www.wikidata.org/entity/Q145"),
+    ]
+
+    [record] = wikidata.parse_bindings(rows)
+
+    assert record["nationality"] == {"fr_FR": "britannique", "en_US": "British"}
+
+
+def test_authors_already_in_the_catalogue_keep_their_name_and_nationality():
+    known = [{"writer": "Milan Kundera", "nationality": {"fr_FR": "tchèque", "en_US": "Czech"}}]
+    record = dict(wikidata.parse_bindings([_row(writerFr="milan kundera", writerEn="Milan  Kundera",
+                                                demonymFr="Français", demonymEn="French")])[0])
+    other = wikidata.parse_bindings([_row(work="Q2")])[0]
+
+    kundera, wilde = wikidata.align_authors([record, other], known)
+
+    assert kundera["writer"] == "Milan Kundera"
+    assert kundera["nationality"] == {"fr_FR": "tchèque", "en_US": "Czech"}
+    assert wilde == other
