@@ -1228,29 +1228,6 @@
           "wikidata_id": "Q845889"
         },
         {
-          "year": 1936,
-          "genre": [
-            "detective-novel",
-            "race-against-time"
-          ],
-          "title": {
-            "fr_FR": "Dix Petits Nègres",
-            "en_US": "And Then There Were None"
-          },
-          "pages": {
-            "fr_FR": 288,
-            "en_US": 272
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Le Livre de poche",
-            "en_US": "William Collins, Sons"
-          },
-          "publisher_estimated": true,
-          "popularity": 53,
-          "wikidata_id": "Q214132"
-        },
-        {
           "year": 1937,
           "genre": [
             "detective-novel",
@@ -1297,6 +1274,29 @@
           "wikidata_id": "Q381756"
         },
         {
+          "year": 1939,
+          "genre": [
+            "detective-novel",
+            "race-against-time"
+          ],
+          "title": {
+            "fr_FR": "Dix Petits Nègres",
+            "en_US": "And Then There Were None"
+          },
+          "pages": {
+            "fr_FR": 288,
+            "en_US": 272
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Le Livre de poche",
+            "en_US": "William Collins, Sons"
+          },
+          "publisher_estimated": true,
+          "popularity": 53,
+          "wikidata_id": "Q214132"
+        },
+        {
           "year": 1942,
           "genre": [
             "detective-novel",
@@ -1320,7 +1320,7 @@
           "wikidata_id": "Q1215982"
         },
         {
-          "year": 1958,
+          "year": 1953,
           "genre": [
             "detective-novel",
             "four-hours"
@@ -1343,7 +1343,7 @@
           "wikidata_id": "Q5227523"
         },
         {
-          "year": 1971,
+          "year": 1975,
           "genre": [
             "detective-novel",
             "final-case"
@@ -1375,7 +1375,7 @@
       },
       "books": [
         {
-          "year": 2013,
+          "year": 2004,
           "genre": [
             "science-fiction",
             "poetic"
@@ -2017,7 +2017,7 @@
           "wikidata_id": "Q191838"
         },
         {
-          "year": 1848,
+          "year": 1845,
           "genre": [
             "historical-novel",
             "adventure"
@@ -2040,7 +2040,7 @@
           "wikidata_id": "Q2020094"
         },
         {
-          "year": 1849,
+          "year": 1846,
           "genre": [
             "historical-novel",
             "adventure"
@@ -2063,7 +2063,7 @@
           "wikidata_id": "Q4155630"
         },
         {
-          "year": 1850,
+          "year": 1847,
           "genre": [
             "historical-novel",
             "adventure"
@@ -2586,7 +2586,7 @@
           "wikidata_id": "Q1638148"
         },
         {
-          "year": 2005,
+          "year": 2002,
           "genre": [
             "contemporary-novel",
             "symbolic"
@@ -3736,6 +3736,29 @@
       },
       "books": [
         {
+          "year": 1981,
+          "genre": [
+            "memoirs",
+            "autobiography"
+          ],
+          "title": {
+            "fr_FR": "La Femme gelée",
+            "en_US": "The Frozen Woman"
+          },
+          "pages": {
+            "fr_FR": 208,
+            "en_US": 192
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Gallimard",
+            "en_US": "Seven Stories Press"
+          },
+          "publisher_estimated": true,
+          "popularity": 1,
+          "wikidata_id": "Q28025318"
+        },
+        {
           "year": 1983,
           "genre": [
             "memoirs",
@@ -3798,6 +3821,46 @@
         {
           "year": 2000,
           "genre": [
+            "novel"
+          ],
+          "title": {
+            "fr_FR": "L'Événement",
+            "en_US": "Happening"
+          },
+          "pages": {
+            "fr_FR": 128,
+            "en_US": null
+          },
+          "publisher": null,
+          "popularity": 7,
+          "wikidata_id": "Q30742322"
+        },
+        {
+          "year": 2001,
+          "genre": [
+            "memoirs",
+            "autobiography"
+          ],
+          "title": {
+            "fr_FR": "Se perdre",
+            "en_US": "I Lost My Body"
+          },
+          "pages": {
+            "fr_FR": 176,
+            "en_US": 160
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Gallimard",
+            "en_US": "Seven Stories Press"
+          },
+          "publisher_estimated": true,
+          "popularity": 2,
+          "wikidata_id": "Q114458509"
+        },
+        {
+          "year": 2008,
+          "genre": [
             "memoirs",
             "autobiography"
           ],
@@ -3819,31 +3882,14 @@
           "wikidata_id": "Q3230588"
         },
         {
-          "year": 2000,
-          "genre": [
-            "novel"
-          ],
-          "title": {
-            "fr_FR": "L'Événement",
-            "en_US": "Happening"
-          },
-          "pages": {
-            "fr_FR": 128,
-            "en_US": null
-          },
-          "publisher": null,
-          "popularity": 7,
-          "wikidata_id": "Q30742322"
-        },
-        {
-          "year": 2016,
+          "year": 2011,
           "genre": [
             "memoirs",
             "autobiography"
           ],
           "title": {
-            "fr_FR": "L'Éventrement",
-            "en_US": "The Frozen Woman"
+            "fr_FR": "L'Autre fille",
+            "en_US": "The Other Daughter"
           },
           "pages": {
             "fr_FR": 208,
@@ -3856,21 +3902,21 @@
           },
           "publisher_estimated": true,
           "popularity": 1,
-          "wikidata_id": "Q28025318"
+          "wikidata_id": "Q60834406"
         },
         {
-          "year": 2019,
+          "year": 2016,
           "genre": [
             "memoirs",
             "autobiography"
           ],
           "title": {
-            "fr_FR": "Se perdre",
-            "en_US": "I Lost My Body"
+            "fr_FR": "Mémoire de fille",
+            "en_US": "A Girl's Story"
           },
           "pages": {
-            "fr_FR": 176,
-            "en_US": 160
+            "fr_FR": 208,
+            "en_US": 192
           },
           "pages_estimated": true,
           "publisher": {
@@ -3878,8 +3924,8 @@
             "en_US": "Seven Stories Press"
           },
           "publisher_estimated": true,
-          "popularity": 2,
-          "wikidata_id": "Q114458509"
+          "popularity": 3,
+          "wikidata_id": "Q50413747"
         },
         {
           "year": 2021,
@@ -3903,52 +3949,6 @@
           "publisher_estimated": true,
           "popularity": 2,
           "wikidata_id": "Q114570838"
-        },
-        {
-          "year": 2022,
-          "genre": [
-            "memoirs",
-            "autobiography"
-          ],
-          "title": {
-            "fr_FR": "Mémoire de fille",
-            "en_US": "A Girl's Story"
-          },
-          "pages": {
-            "fr_FR": 208,
-            "en_US": 192
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Gallimard",
-            "en_US": "Seven Stories Press"
-          },
-          "publisher_estimated": true,
-          "popularity": 3,
-          "wikidata_id": "Q50413747"
-        },
-        {
-          "year": 2023,
-          "genre": [
-            "memoirs",
-            "autobiography"
-          ],
-          "title": {
-            "fr_FR": "L'Autre fille",
-            "en_US": "The Other Daughter"
-          },
-          "pages": {
-            "fr_FR": 208,
-            "en_US": 192
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Gallimard",
-            "en_US": "Seven Stories Press"
-          },
-          "publisher_estimated": true,
-          "popularity": 1,
-          "wikidata_id": "Q60834406"
         }
       ],
       "wikidata_id": "Q1153825"
@@ -4477,29 +4477,6 @@
           "year": 1968,
           "genre": [
             "science-fiction",
-            "space-opera"
-          ],
-          "title": {
-            "fr_FR": "Rama",
-            "en_US": "Rendezvous with Rama"
-          },
-          "pages": {
-            "fr_FR": 320,
-            "en_US": 304
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Harcourt Brace Jovanovich",
-            "en_US": "Harcourt Brace Jovanovich"
-          },
-          "publisher_estimated": true,
-          "popularity": 31,
-          "wikidata_id": "Q741222"
-        },
-        {
-          "year": 1968,
-          "genre": [
-            "science-fiction",
             "anticipation"
           ],
           "title": {
@@ -4518,6 +4495,29 @@
           "publisher_estimated": true,
           "popularity": 31,
           "wikidata_id": "Q835341"
+        },
+        {
+          "year": 1973,
+          "genre": [
+            "science-fiction",
+            "space-opera"
+          ],
+          "title": {
+            "fr_FR": "Rama",
+            "en_US": "Rendezvous with Rama"
+          },
+          "pages": {
+            "fr_FR": 320,
+            "en_US": 304
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Harcourt Brace Jovanovich",
+            "en_US": "Harcourt Brace Jovanovich"
+          },
+          "publisher_estimated": true,
+          "popularity": 31,
+          "wikidata_id": "Q741222"
         },
         {
           "year": 2001,
@@ -4770,6 +4770,29 @@
       },
       "books": [
         {
+          "year": 1988,
+          "genre": [
+            "adventure-novel",
+            "nautical"
+          ],
+          "title": {
+            "fr_FR": "Le Hussard",
+            "en_US": "The Fencing Master"
+          },
+          "pages": {
+            "fr_FR": 288,
+            "en_US": 272
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Le Seuil",
+            "en_US": "Harcourt"
+          },
+          "publisher_estimated": true,
+          "popularity": 11,
+          "wikidata_id": "Q2666171"
+        },
+        {
           "year": 1990,
           "genre": [
             "detective-novel",
@@ -4795,16 +4818,16 @@
         {
           "year": 1993,
           "genre": [
-            "adventure-novel",
-            "nautical"
+            "detective-novel",
+            "masonic"
           ],
           "title": {
-            "fr_FR": "Le Hussard",
-            "en_US": "The Fencing Master"
+            "fr_FR": "Le Club Dumas",
+            "en_US": "The Club Dumas"
           },
           "pages": {
-            "fr_FR": 288,
-            "en_US": 272
+            "fr_FR": 448,
+            "en_US": 432
           },
           "pages_estimated": true,
           "publisher": {
@@ -4812,8 +4835,8 @@
             "en_US": "Harcourt"
           },
           "publisher_estimated": true,
-          "popularity": 11,
-          "wikidata_id": "Q2666171"
+          "popularity": 13,
+          "wikidata_id": "Q1192798"
         },
         {
           "year": 1995,
@@ -4850,29 +4873,6 @@
           "publisher_estimated": true,
           "popularity": 8,
           "wikidata_id": "Q2311434"
-        },
-        {
-          "year": 2000,
-          "genre": [
-            "detective-novel",
-            "masonic"
-          ],
-          "title": {
-            "fr_FR": "Le Club Dumas",
-            "en_US": "The Club Dumas"
-          },
-          "pages": {
-            "fr_FR": 448,
-            "en_US": 432
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Le Seuil",
-            "en_US": "Harcourt"
-          },
-          "publisher_estimated": true,
-          "popularity": 13,
-          "wikidata_id": "Q1192798"
         }
       ],
       "wikidata_id": "Q155106"
@@ -5504,9 +5504,10 @@
             "non-fiction"
           ],
           "title": {
-            "fr_FR": "The Paradox of Choice: Why More Is Less",
+            "fr_FR": "The Paradox of Choice",
             "en_US": "The Paradox of Choice"
           },
+          "title_untranslated": true,
           "pages": null,
           "publisher": {
             "fr_FR": "Harper Perennial",
@@ -5816,7 +5817,7 @@
           "wikidata_id": "Q212495"
         },
         {
-          "year": 1939,
+          "year": 1949,
           "genre": [
             "drama",
             "epic"
@@ -5839,7 +5840,7 @@
           "wikidata_id": "Q62407"
         },
         {
-          "year": 1941,
+          "year": 1957,
           "genre": [
             "drama",
             "satire"
@@ -6731,7 +6732,7 @@
       },
       "books": [
         {
-          "year": 1976,
+          "year": 1981,
           "genre": [
             "science-fiction",
             "space"
@@ -7537,6 +7538,29 @@
           "wikidata_id": "Q164974"
         },
         {
+          "year": 1850,
+          "genre": [
+            "social-novel",
+            "victorian"
+          ],
+          "title": {
+            "fr_FR": "Les Aventures de David Copperfield",
+            "en_US": "David Copperfield"
+          },
+          "pages": {
+            "fr_FR": 768,
+            "en_US": 720
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Bradbury & Evans",
+            "en_US": "Penguin Classics"
+          },
+          "publisher_estimated": true,
+          "popularity": 68,
+          "wikidata_id": "Q189811"
+        },
+        {
           "year": 1853,
           "genre": [
             "detective-novel"
@@ -7586,29 +7610,6 @@
           },
           "popularity": 28,
           "wikidata_id": "Q565638"
-        },
-        {
-          "year": 1859,
-          "genre": [
-            "social-novel",
-            "victorian"
-          ],
-          "title": {
-            "fr_FR": "Les Aventures de David Copperfield",
-            "en_US": "David Copperfield"
-          },
-          "pages": {
-            "fr_FR": 768,
-            "en_US": 720
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Bradbury & Evans",
-            "en_US": "Penguin Classics"
-          },
-          "publisher_estimated": true,
-          "popularity": 68,
-          "wikidata_id": "Q189811"
         }
       ],
       "wikidata_id": "Q5686"
@@ -9540,7 +9541,7 @@
       },
       "books": [
         {
-          "year": 1989,
+          "year": 1985,
           "genre": [
             "science-fiction",
             "horror"
@@ -9699,9 +9700,10 @@
             "essay"
           ],
           "title": {
-            "fr_FR": "Breaking the Spell: Religion as a Natural Phenomenon",
+            "fr_FR": "Breaking the Spell",
             "en_US": "Breaking the Spell"
           },
+          "title_untranslated": true,
           "pages": null,
           "publisher": null,
           "popularity": 10,
@@ -11055,7 +11057,7 @@
       },
       "books": [
         {
-          "year": 2004,
+          "year": 2008,
           "genre": [
             "contemporary-novel",
             "psychological"
@@ -11077,7 +11079,28 @@
           "wikidata_id": "Q141757147"
         },
         {
-          "year": 2007,
+          "year": 2010,
+          "genre": [
+            "contemporary-novel",
+            "friendship"
+          ],
+          "title": {
+            "fr_FR": "Trois jours et une vie",
+            "en_US": "Trois jours et une vie"
+          },
+          "pages": {
+            "fr_FR": 336,
+            "en_US": 304
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Éditions JC Lattès",
+            "en_US": "Other Press"
+          },
+          "publisher_estimated": true
+        },
+        {
+          "year": 2011,
           "genre": [
             "contemporary-novel",
             "family"
@@ -11098,27 +11121,6 @@
           "publisher_estimated": true,
           "popularity": 2,
           "wikidata_id": "Q2405249"
-        },
-        {
-          "year": 2010,
-          "genre": [
-            "contemporary-novel",
-            "friendship"
-          ],
-          "title": {
-            "fr_FR": "Trois jours et une vie",
-            "en_US": "Trois jours et une vie"
-          },
-          "pages": {
-            "fr_FR": 336,
-            "en_US": 304
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Éditions JC Lattès",
-            "en_US": "Other Press"
-          },
-          "publisher_estimated": true
         }
       ]
     },
@@ -12041,7 +12043,7 @@
       },
       "books": [
         {
-          "year": 2000,
+          "year": 1994,
           "genre": [
             "contemporary-novel",
             "drama"
@@ -12064,7 +12066,7 @@
           "wikidata_id": "Q3389587"
         },
         {
-          "year": 2003,
+          "year": 1997,
           "genre": [
             "political-novel",
             "thriller"
@@ -12087,7 +12089,7 @@
           "wikidata_id": "Q3203769"
         },
         {
-          "year": 2006,
+          "year": 2001,
           "genre": [
             "contemporary-novel",
             "adventure"
@@ -12563,30 +12565,6 @@
           "wikidata_id": "Q655296"
         },
         {
-          "year": 1913,
-          "genre": [
-            "adventure-novel",
-            "science-fiction",
-            "planetary-romance"
-          ],
-          "title": {
-            "fr_FR": "Les Dieux de Mars",
-            "en_US": "The Gods of Mars"
-          },
-          "pages": {
-            "fr_FR": 240,
-            "en_US": 224
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Hachette",
-            "en_US": "A. C. McClurg"
-          },
-          "publisher_estimated": true,
-          "popularity": 14,
-          "wikidata_id": "Q673493"
-        },
-        {
           "year": 1914,
           "genre": [
             "adventure-novel",
@@ -12651,6 +12629,30 @@
           },
           "popularity": 13,
           "wikidata_id": "Q2441302"
+        },
+        {
+          "year": 1918,
+          "genre": [
+            "adventure-novel",
+            "science-fiction",
+            "planetary-romance"
+          ],
+          "title": {
+            "fr_FR": "Les Dieux de Mars",
+            "en_US": "The Gods of Mars"
+          },
+          "pages": {
+            "fr_FR": 240,
+            "en_US": 224
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Hachette",
+            "en_US": "A. C. McClurg"
+          },
+          "publisher_estimated": true,
+          "popularity": 14,
+          "wikidata_id": "Q673493"
         },
         {
           "year": 1918,
@@ -13350,7 +13352,7 @@
       },
       "books": [
         {
-          "year": 1963,
+          "year": 1969,
           "genre": [
             "detective-novel",
             "noir"
@@ -13476,29 +13478,6 @@
         {
           "year": 1883,
           "genre": [
-            "naturalism",
-            "social-novel"
-          ],
-          "title": {
-            "fr_FR": "L'Œuvre",
-            "en_US": "The Masterpiece"
-          },
-          "pages": {
-            "fr_FR": 368,
-            "en_US": 352
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "G. Charpentier",
-            "en_US": "Penguin Classics"
-          },
-          "publisher_estimated": true,
-          "popularity": 13,
-          "wikidata_id": "Q1446938"
-        },
-        {
-          "year": 1883,
-          "genre": [
             "naturalism"
           ],
           "title": {
@@ -13535,6 +13514,29 @@
           "publisher_estimated": true,
           "popularity": 43,
           "wikidata_id": "Q137869"
+        },
+        {
+          "year": 1886,
+          "genre": [
+            "naturalism",
+            "social-novel"
+          ],
+          "title": {
+            "fr_FR": "L'Œuvre",
+            "en_US": "The Masterpiece"
+          },
+          "pages": {
+            "fr_FR": 368,
+            "en_US": 352
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "G. Charpentier",
+            "en_US": "Penguin Classics"
+          },
+          "publisher_estimated": true,
+          "popularity": 13,
+          "wikidata_id": "Q1446938"
         },
         {
           "year": 1890,
@@ -14574,7 +14576,7 @@
       },
       "books": [
         {
-          "year": 1930,
+          "year": 1947,
           "genre": [
             "drama",
             "lyrical"
@@ -15327,6 +15329,28 @@
         {
           "year": 1915,
           "genre": [
+            "horror",
+            "epic",
+            "absurdism"
+          ],
+          "title": {
+            "fr_FR": "La Métamorphose",
+            "en_US": "The Metamorphosis"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 218
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "W. W. Norton & Company"
+          },
+          "popularity": 85,
+          "wikidata_id": "Q184222"
+        },
+        {
+          "year": 1925,
+          "genre": [
             "absurd-novel",
             "modernist"
           ],
@@ -15346,28 +15370,6 @@
           "publisher_estimated": true,
           "popularity": 73,
           "wikidata_id": "Q36097"
-        },
-        {
-          "year": 1915,
-          "genre": [
-            "horror",
-            "epic",
-            "absurdism"
-          ],
-          "title": {
-            "fr_FR": "La Métamorphose",
-            "en_US": "The Metamorphosis"
-          },
-          "pages": {
-            "fr_FR": null,
-            "en_US": 218
-          },
-          "publisher": {
-            "fr_FR": null,
-            "en_US": "W. W. Norton & Company"
-          },
-          "popularity": 85,
-          "wikidata_id": "Q184222"
         },
         {
           "year": 1927,
@@ -15395,29 +15397,6 @@
       },
       "books": [
         {
-          "year": 1991,
-          "genre": [
-            "detective-novel",
-            "historical"
-          ],
-          "title": {
-            "fr_FR": "Les quatre fleuves",
-            "en_US": "The Four Rivers"
-          },
-          "pages": {
-            "fr_FR": 256,
-            "en_US": 240
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Éditions du Masque",
-            "en_US": "Harvill Secker"
-          },
-          "publisher_estimated": true,
-          "popularity": 2,
-          "wikidata_id": "Q3235017"
-        },
-        {
           "year": 1995,
           "genre": [
             "detective-novel",
@@ -15439,6 +15418,29 @@
           "publisher_estimated": true,
           "popularity": 6,
           "wikidata_id": "Q1091320"
+        },
+        {
+          "year": 2000,
+          "genre": [
+            "detective-novel",
+            "historical"
+          ],
+          "title": {
+            "fr_FR": "Les quatre fleuves",
+            "en_US": "The Four Rivers"
+          },
+          "pages": {
+            "fr_FR": 256,
+            "en_US": 240
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Éditions du Masque",
+            "en_US": "Harvill Secker"
+          },
+          "publisher_estimated": true,
+          "popularity": 2,
+          "wikidata_id": "Q3235017"
         },
         {
           "year": 2001,
@@ -16864,7 +16866,7 @@
       },
       "books": [
         {
-          "year": 1881,
+          "year": 1889,
           "genre": [
             "realism",
             "nature"
@@ -17164,7 +17166,7 @@
           "wikidata_id": "Q138565924"
         },
         {
-          "year": 1981,
+          "year": 1978,
           "genre": [
             "horror",
             "demonic"
@@ -17466,7 +17468,7 @@
           "publisher_estimated": true
         },
         {
-          "year": 2015,
+          "year": 2018,
           "genre": [
             "contemporary-novel",
             "psychological-thriller"
@@ -17544,7 +17546,7 @@
           "wikidata_id": "Q193417"
         },
         {
-          "year": 1869,
+          "year": 1862,
           "genre": [
             "realism",
             "historical-novel"
@@ -17567,7 +17569,7 @@
           "wikidata_id": "Q117182"
         },
         {
-          "year": 1877,
+          "year": 1869,
           "genre": [
             "psychological-novel",
             "realism"
@@ -17824,23 +17826,7 @@
           "publisher_estimated": true
         },
         {
-          "year": 1929,
-          "genre": [
-            "horror",
-            "weird-fiction",
-            "science-fiction"
-          ],
-          "title": {
-            "fr_FR": "L'Abomination de Dunwich",
-            "en_US": "The Dunwich Horror"
-          },
-          "pages": null,
-          "publisher": null,
-          "popularity": 19,
-          "wikidata_id": "Q2468877"
-        },
-        {
-          "year": 1931,
+          "year": 1928,
           "genre": [
             "horror",
             "cosmic"
@@ -17861,6 +17847,22 @@
           "publisher_estimated": true,
           "popularity": 34,
           "wikidata_id": "Q1141815"
+        },
+        {
+          "year": 1929,
+          "genre": [
+            "horror",
+            "weird-fiction",
+            "science-fiction"
+          ],
+          "title": {
+            "fr_FR": "L'Abomination de Dunwich",
+            "en_US": "The Dunwich Horror"
+          },
+          "pages": null,
+          "publisher": null,
+          "popularity": 19,
+          "wikidata_id": "Q2468877"
         },
         {
           "year": 1931,
@@ -19175,30 +19177,7 @@
           "wikidata_id": "Q2631465"
         },
         {
-          "year": 1831,
-          "genre": [
-            "realist-novel",
-            "social"
-          ],
-          "title": {
-            "fr_FR": "Le Père Goriot",
-            "en_US": "Father Goriot"
-          },
-          "pages": {
-            "fr_FR": 320,
-            "en_US": 304
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Société des Bibliophiles",
-            "en_US": "Penguin Classics"
-          },
-          "publisher_estimated": true,
-          "popularity": 61,
-          "wikidata_id": "Q240617"
-        },
-        {
-          "year": 1832,
+          "year": 1829,
           "genre": [
             "realist-novel",
             "drama"
@@ -19244,6 +19223,29 @@
           "wikidata_id": "Q1373644"
         },
         {
+          "year": 1835,
+          "genre": [
+            "realist-novel",
+            "social"
+          ],
+          "title": {
+            "fr_FR": "Le Père Goriot",
+            "en_US": "Father Goriot"
+          },
+          "pages": {
+            "fr_FR": 320,
+            "en_US": 304
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Société des Bibliophiles",
+            "en_US": "Penguin Classics"
+          },
+          "publisher_estimated": true,
+          "popularity": 61,
+          "wikidata_id": "Q240617"
+        },
+        {
           "year": 1836,
           "genre": [
             "novel"
@@ -19284,7 +19286,7 @@
           "wikidata_id": "Q2092894"
         },
         {
-          "year": 1844,
+          "year": 1838,
           "genre": [
             "realist-novel",
             "splendor"
@@ -20237,7 +20239,7 @@
       },
       "books": [
         {
-          "year": 1952,
+          "year": 1957,
           "genre": [
             "philosophical-novel",
             "supernatural-fiction"
@@ -21699,7 +21701,7 @@
           "wikidata_id": "Q1761597"
         },
         {
-          "year": 1987,
+          "year": 1990,
           "genre": [
             "noir-novel",
             "detective"
@@ -21807,6 +21809,29 @@
           "wikidata_id": "Q1898036"
         },
         {
+          "year": 1823,
+          "genre": [
+            "adventure-novel",
+            "maritime"
+          ],
+          "title": {
+            "fr_FR": "Le Pilote",
+            "en_US": "The Pilot"
+          },
+          "pages": {
+            "fr_FR": 384,
+            "en_US": 368
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Gallimard",
+            "en_US": "Penguin Classics"
+          },
+          "publisher_estimated": true,
+          "popularity": 5,
+          "wikidata_id": "Q4864923"
+        },
+        {
           "year": 1826,
           "genre": [
             "adventure-novel",
@@ -21828,29 +21853,6 @@
           "publisher_estimated": true,
           "popularity": 52,
           "wikidata_id": "Q493574"
-        },
-        {
-          "year": 1840,
-          "genre": [
-            "adventure-novel",
-            "maritime"
-          ],
-          "title": {
-            "fr_FR": "Le Pilote",
-            "en_US": "The Pilot"
-          },
-          "pages": {
-            "fr_FR": 384,
-            "en_US": 368
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Gallimard",
-            "en_US": "Penguin Classics"
-          },
-          "publisher_estimated": true,
-          "popularity": 5,
-          "wikidata_id": "Q4864923"
         }
       ]
     },
@@ -23099,7 +23101,7 @@
       },
       "books": [
         {
-          "year": 1939,
+          "year": 1951,
           "genre": [
             "pastoral-novel",
             "nature"
@@ -26291,7 +26293,7 @@
           "wikidata_id": "Q1196790"
         },
         {
-          "year": 1941,
+          "year": 1944,
           "genre": [
             "short-story",
             "philosophical"
@@ -26496,9 +26498,10 @@
             "non-fiction"
           ],
           "title": {
-            "fr_FR": "Founding Brothers: The Revolutionary Generation",
+            "fr_FR": "Founding Brothers",
             "en_US": "Founding Brothers"
           },
+          "title_untranslated": true,
           "pages": null,
           "publisher": {
             "fr_FR": "Alfred A. Knopf",
@@ -26966,6 +26969,52 @@
           "wikidata_id": "Q622634"
         },
         {
+          "year": 1864,
+          "genre": [
+            "science-fiction",
+            "adventure"
+          ],
+          "title": {
+            "fr_FR": "Voyage au centre de la Terre",
+            "en_US": "Journey to the Center of the Earth"
+          },
+          "pages": {
+            "fr_FR": 416,
+            "en_US": 384
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "J. Hetzel",
+            "en_US": "Penguin Classics"
+          },
+          "publisher_estimated": true,
+          "popularity": 64,
+          "wikidata_id": "Q219457"
+        },
+        {
+          "year": 1865,
+          "genre": [
+            "science-fiction",
+            "adventure"
+          ],
+          "title": {
+            "fr_FR": "De la Terre à la Lune",
+            "en_US": "From the Earth to the Moon"
+          },
+          "pages": {
+            "fr_FR": 432,
+            "en_US": 400
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "J. Hetzel",
+            "en_US": "Signet Classics"
+          },
+          "publisher_estimated": true,
+          "popularity": 45,
+          "wikidata_id": "Q53592"
+        },
+        {
           "year": 1870,
           "genre": [
             "science-fiction",
@@ -27011,29 +27060,6 @@
           "wikidata_id": "Q1219561"
         },
         {
-          "year": 1873,
-          "genre": [
-            "science-fiction",
-            "adventure"
-          ],
-          "title": {
-            "fr_FR": "Voyage au centre de la Terre",
-            "en_US": "Journey to the Center of the Earth"
-          },
-          "pages": {
-            "fr_FR": 416,
-            "en_US": 384
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "J. Hetzel",
-            "en_US": "Penguin Classics"
-          },
-          "publisher_estimated": true,
-          "popularity": 64,
-          "wikidata_id": "Q219457"
-        },
-        {
           "year": 1874,
           "genre": [
             "science-fiction",
@@ -27057,27 +27083,27 @@
           "wikidata_id": "Q1121567"
         },
         {
-          "year": 1875,
+          "year": 1874,
           "genre": [
+            "adventure",
             "science-fiction",
-            "adventure"
+            "robinsonade",
+            "fantasy"
           ],
           "title": {
-            "fr_FR": "De la Terre à la Lune",
-            "en_US": "From the Earth to the Moon"
+            "fr_FR": "L'Île mystérieuse",
+            "en_US": "The Mysterious Island"
           },
           "pages": {
-            "fr_FR": 432,
-            "en_US": 400
+            "fr_FR": 616,
+            "en_US": 600
           },
-          "pages_estimated": true,
           "publisher": {
-            "fr_FR": "J. Hetzel",
-            "en_US": "Signet Classics"
+            "fr_FR": "Pierre-Jules Hetzel",
+            "en_US": "Hetzel éds"
           },
-          "publisher_estimated": true,
-          "popularity": 45,
-          "wikidata_id": "Q53592"
+          "popularity": 53,
+          "wikidata_id": "Q471005"
         },
         {
           "year": 1879,
@@ -27112,29 +27138,6 @@
           },
           "popularity": 30,
           "wikidata_id": "Q978723"
-        },
-        {
-          "year": 1888,
-          "genre": [
-            "adventure",
-            "science-fiction",
-            "robinsonade",
-            "fantasy"
-          ],
-          "title": {
-            "fr_FR": "L'Île mystérieuse",
-            "en_US": "The Mysterious Island"
-          },
-          "pages": {
-            "fr_FR": 616,
-            "en_US": 600
-          },
-          "publisher": {
-            "fr_FR": "Pierre-Jules Hetzel",
-            "en_US": "Hetzel éds"
-          },
-          "popularity": 53,
-          "wikidata_id": "Q471005"
         }
       ],
       "wikidata_id": "Q33977"
@@ -27342,7 +27345,7 @@
       },
       "books": [
         {
-          "year": 1997,
+          "year": 2002,
           "genre": [
             "novel",
             "japanese-american"
@@ -30714,6 +30717,20 @@
         {
           "year": 1904,
           "genre": [
+            "novel"
+          ],
+          "title": {
+            "fr_FR": "Feu Mathias Pascal",
+            "en_US": "Il fu Mattia Pascal"
+          },
+          "pages": null,
+          "publisher": null,
+          "popularity": 12,
+          "wikidata_id": "Q1632269"
+        },
+        {
+          "year": 1921,
+          "genre": [
             "modern-novel",
             "philosophical"
           ],
@@ -30733,20 +30750,6 @@
           "publisher_estimated": true,
           "popularity": 33,
           "wikidata_id": "Q641651"
-        },
-        {
-          "year": 1904,
-          "genre": [
-            "novel"
-          ],
-          "title": {
-            "fr_FR": "Feu Mathias Pascal",
-            "en_US": "Il fu Mattia Pascal"
-          },
-          "pages": null,
-          "publisher": null,
-          "popularity": 12,
-          "wikidata_id": "Q1632269"
         },
         {
           "year": 1926,
@@ -33376,6 +33379,29 @@
           "wikidata_id": "Q1081911"
         },
         {
+          "year": 1996,
+          "genre": [
+            "detective-novel",
+            "legal"
+          ],
+          "title": {
+            "fr_FR": "Le Poète",
+            "en_US": "The Poet"
+          },
+          "pages": {
+            "fr_FR": 512,
+            "en_US": 496
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Le Seuil",
+            "en_US": "Little, Brown"
+          },
+          "publisher_estimated": true,
+          "popularity": 6,
+          "wikidata_id": "Q3795179"
+        },
+        {
           "year": 1998,
           "genre": [
             "detective-novel",
@@ -33397,29 +33423,6 @@
           "publisher_estimated": true,
           "popularity": 7,
           "wikidata_id": "Q1088165"
-        },
-        {
-          "year": 2005,
-          "genre": [
-            "detective-novel",
-            "legal"
-          ],
-          "title": {
-            "fr_FR": "Le Poète",
-            "en_US": "The Poet"
-          },
-          "pages": {
-            "fr_FR": 512,
-            "en_US": 496
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Le Seuil",
-            "en_US": "Little, Brown"
-          },
-          "publisher_estimated": true,
-          "popularity": 6,
-          "wikidata_id": "Q3795179"
         },
         {
           "year": 2011,
@@ -33592,7 +33595,7 @@
           "wikidata_id": "Q580361"
         },
         {
-          "year": 1999,
+          "year": 1996,
           "genre": [
             "contemporary-novel",
             "aviation"
@@ -33739,9 +33742,10 @@
             "non-fiction"
           ],
           "title": {
-            "fr_FR": "Moneyball: The Art of Winning an Unfair Game",
+            "fr_FR": "Moneyball",
             "en_US": "Moneyball"
           },
+          "title_untranslated": true,
           "pages": null,
           "publisher": {
             "fr_FR": "W. W. Norton & Company",
@@ -34054,7 +34058,7 @@
       },
       "books": [
         {
-          "year": 2001,
+          "year": 1998,
           "genre": [
             "science-fiction",
             "satire"
@@ -34258,6 +34262,20 @@
         {
           "year": 1984,
           "genre": [
+            "philosophical-novel"
+          ],
+          "title": {
+            "fr_FR": "L'Insoutenable Légèreté de l'être",
+            "en_US": "The Unbearable Lightness of Being"
+          },
+          "pages": null,
+          "publisher": null,
+          "popularity": 56,
+          "wikidata_id": "Q917055"
+        },
+        {
+          "year": 1990,
+          "genre": [
             "science-fiction",
             "philosophical"
           ],
@@ -34277,20 +34295,6 @@
           "publisher_estimated": true,
           "popularity": 16,
           "wikidata_id": "Q2736195"
-        },
-        {
-          "year": 1984,
-          "genre": [
-            "philosophical-novel"
-          ],
-          "title": {
-            "fr_FR": "L'Insoutenable Légèreté de l'être",
-            "en_US": "The Unbearable Lightness of Being"
-          },
-          "pages": null,
-          "publisher": null,
-          "popularity": 56,
-          "wikidata_id": "Q917055"
         },
         {
           "year": 1998,
@@ -35035,52 +35039,6 @@
       },
       "books": [
         {
-          "year": 1988,
-          "genre": [
-            "fantasy",
-            "mythology"
-          ],
-          "title": {
-            "fr_FR": "Coraline",
-            "en_US": "Coraline"
-          },
-          "pages": {
-            "fr_FR": 208,
-            "en_US": 192
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "HarperCollins",
-            "en_US": "HarperCollins"
-          },
-          "publisher_estimated": true,
-          "popularity": 34,
-          "wikidata_id": "Q475125"
-        },
-        {
-          "year": 1990,
-          "genre": [
-            "fantasy",
-            "mythology"
-          ],
-          "title": {
-            "fr_FR": "American Gods",
-            "en_US": "American Gods"
-          },
-          "pages": {
-            "fr_FR": 624,
-            "en_US": 608
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "HarperCollins",
-            "en_US": "HarperCollins"
-          },
-          "publisher_estimated": true,
-          "popularity": 33,
-          "wikidata_id": "Q430514"
-        },
-        {
           "year": 1996,
           "genre": [
             "fantasy"
@@ -35122,6 +35080,52 @@
           "publisher": null,
           "popularity": 25,
           "wikidata_id": "Q1166201"
+        },
+        {
+          "year": 2001,
+          "genre": [
+            "fantasy",
+            "mythology"
+          ],
+          "title": {
+            "fr_FR": "American Gods",
+            "en_US": "American Gods"
+          },
+          "pages": {
+            "fr_FR": 624,
+            "en_US": 608
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "HarperCollins",
+            "en_US": "HarperCollins"
+          },
+          "publisher_estimated": true,
+          "popularity": 33,
+          "wikidata_id": "Q430514"
+        },
+        {
+          "year": 2002,
+          "genre": [
+            "fantasy",
+            "mythology"
+          ],
+          "title": {
+            "fr_FR": "Coraline",
+            "en_US": "Coraline"
+          },
+          "pages": {
+            "fr_FR": 208,
+            "en_US": 192
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "HarperCollins",
+            "en_US": "HarperCollins"
+          },
+          "publisher_estimated": true,
+          "popularity": 34,
+          "wikidata_id": "Q475125"
         }
       ],
       "wikidata_id": "Q210059"
@@ -35276,7 +35280,7 @@
       },
       "books": [
         {
-          "year": 1513,
+          "year": 1532,
           "genre": [
             "political",
             "philosophy"
@@ -36240,13 +36244,27 @@
           "wikidata_id": "Q5219975"
         },
         {
-          "year": 1952,
+          "year": 1959,
+          "genre": [
+            "poetry"
+          ],
+          "title": {
+            "fr_FR": "La Centaine d'amour",
+            "en_US": "Cien Sonetos de Amor"
+          },
+          "pages": null,
+          "publisher": null,
+          "popularity": 7,
+          "wikidata_id": "Q5119635"
+        },
+        {
+          "year": 1974,
           "genre": [
             "poetry",
             "political"
           ],
           "title": {
-            "fr_FR": "Confieso que he vivido",
+            "fr_FR": "J'avoue que j'ai vécu",
             "en_US": "I Confess I Have Lived"
           },
           "pages": {
@@ -36261,20 +36279,6 @@
           "publisher_estimated": true,
           "popularity": 7,
           "wikidata_id": "Q1636678"
-        },
-        {
-          "year": 1959,
-          "genre": [
-            "poetry"
-          ],
-          "title": {
-            "fr_FR": "La Centaine d'amour",
-            "en_US": "Cien Sonetos de Amor"
-          },
-          "pages": null,
-          "publisher": null,
-          "popularity": 7,
-          "wikidata_id": "Q5119635"
         },
         {
           "year": 1974,
@@ -36542,7 +36546,7 @@
           "wikidata_id": "Q3204109"
         },
         {
-          "year": 1952,
+          "year": 1955,
           "genre": [
             "detective-novel",
             "psychological"
@@ -36978,7 +36982,7 @@
           "wikidata_id": "Q48758783"
         },
         {
-          "year": 2023,
+          "year": 2014,
           "genre": [
             "essay",
             "autobiographical"
@@ -37985,7 +37989,7 @@
           "wikidata_id": "Q470057"
         },
         {
-          "year": 2000,
+          "year": 2004,
           "genre": [
             "contemporary-novel",
             "historical"
@@ -39285,7 +39289,7 @@
           "wikidata_id": "Q3515660"
         },
         {
-          "year": 1958,
+          "year": 1968,
           "genre": [
             "science-fiction",
             "anticipation"
@@ -41938,30 +41942,7 @@
           "wikidata_id": "Q2896867"
         },
         {
-          "year": 1962,
-          "genre": [
-            "philosophical-novel",
-            "combat"
-          ],
-          "title": {
-            "fr_FR": "La Vie devant soi",
-            "en_US": "The Life Before Us"
-          },
-          "pages": {
-            "fr_FR": 224,
-            "en_US": 192
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Gallimard",
-            "en_US": "Harper & Row"
-          },
-          "publisher_estimated": true,
-          "popularity": 16,
-          "wikidata_id": "Q700288"
-        },
-        {
-          "year": 1975,
+          "year": 1960,
           "genre": [
             "autobiographical-novel",
             "essay"
@@ -41982,6 +41963,29 @@
           "publisher_estimated": true,
           "popularity": 10,
           "wikidata_id": "Q822690"
+        },
+        {
+          "year": 1975,
+          "genre": [
+            "philosophical-novel",
+            "combat"
+          ],
+          "title": {
+            "fr_FR": "La Vie devant soi",
+            "en_US": "The Life Before Us"
+          },
+          "pages": {
+            "fr_FR": 224,
+            "en_US": 192
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Gallimard",
+            "en_US": "Harper & Row"
+          },
+          "publisher_estimated": true,
+          "popularity": 16,
+          "wikidata_id": "Q700288"
         }
       ]
     },
@@ -42094,7 +42098,7 @@
       },
       "books": [
         {
-          "year": 1956,
+          "year": 1949,
           "genre": [
             "detective-novel",
             "noir"
@@ -44675,6 +44679,52 @@
             "supernatural-fiction"
           ],
           "title": {
+            "fr_FR": "La Tour sombre",
+            "en_US": "The Dark Tower: The Gunslinger"
+          },
+          "pages": {
+            "fr_FR": 224,
+            "en_US": 208
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Scribner",
+            "en_US": "Scribner"
+          },
+          "publisher_estimated": true,
+          "popularity": 26,
+          "wikidata_id": "Q1422318"
+        },
+        {
+          "year": 1984,
+          "genre": [
+            "horror",
+            "supernatural-fiction"
+          ],
+          "title": {
+            "fr_FR": "Le Talisman",
+            "en_US": "The Talisman"
+          },
+          "pages": {
+            "fr_FR": 704,
+            "en_US": 688
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Viking",
+            "en_US": "Viking"
+          },
+          "publisher_estimated": true,
+          "popularity": 22,
+          "wikidata_id": "Q462454"
+        },
+        {
+          "year": 1986,
+          "genre": [
+            "horror",
+            "supernatural-fiction"
+          ],
+          "title": {
             "fr_FR": "Ça",
             "en_US": "It"
           },
@@ -44690,29 +44740,6 @@
           "publisher_estimated": true,
           "popularity": 49,
           "wikidata_id": "Q602288"
-        },
-        {
-          "year": 1983,
-          "genre": [
-            "horror",
-            "supernatural-fiction"
-          ],
-          "title": {
-            "fr_FR": "Misery",
-            "en_US": "Misery"
-          },
-          "pages": {
-            "fr_FR": 336,
-            "en_US": 320
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Viking",
-            "en_US": "Viking"
-          },
-          "publisher_estimated": true,
-          "popularity": 38,
-          "wikidata_id": "Q596874"
         },
         {
           "year": 1986,
@@ -44738,6 +44765,29 @@
           "wikidata_id": "Q471926"
         },
         {
+          "year": 1987,
+          "genre": [
+            "horror",
+            "supernatural-fiction"
+          ],
+          "title": {
+            "fr_FR": "Misery",
+            "en_US": "Misery"
+          },
+          "pages": {
+            "fr_FR": 336,
+            "en_US": 320
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Viking",
+            "en_US": "Viking"
+          },
+          "publisher_estimated": true,
+          "popularity": 38,
+          "wikidata_id": "Q596874"
+        },
+        {
           "year": 1994,
           "genre": [
             "horror",
@@ -44759,52 +44809,6 @@
           "publisher_estimated": true,
           "popularity": 21,
           "wikidata_id": "Q468121"
-        },
-        {
-          "year": 1996,
-          "genre": [
-            "horror",
-            "supernatural-fiction"
-          ],
-          "title": {
-            "fr_FR": "Le Talisman",
-            "en_US": "The Talisman"
-          },
-          "pages": {
-            "fr_FR": 704,
-            "en_US": 688
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Viking",
-            "en_US": "Viking"
-          },
-          "publisher_estimated": true,
-          "popularity": 22,
-          "wikidata_id": "Q462454"
-        },
-        {
-          "year": 2001,
-          "genre": [
-            "horror",
-            "supernatural-fiction"
-          ],
-          "title": {
-            "fr_FR": "La Tour sombre",
-            "en_US": "The Dark Tower: The Gunslinger"
-          },
-          "pages": {
-            "fr_FR": 224,
-            "en_US": 208
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Scribner",
-            "en_US": "Scribner"
-          },
-          "publisher_estimated": true,
-          "popularity": 26,
-          "wikidata_id": "Q1422318"
         }
       ]
     },
@@ -46553,29 +46557,6 @@
         {
           "year": 1912,
           "genre": [
-            "psychological-novel",
-            "modernist"
-          ],
-          "title": {
-            "fr_FR": "La Montagne magique",
-            "en_US": "The Magic Mountain"
-          },
-          "pages": {
-            "fr_FR": 720,
-            "en_US": 672
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "S. Fischer Verlag",
-            "en_US": "Alfred A. Knopf"
-          },
-          "publisher_estimated": true,
-          "popularity": 46,
-          "wikidata_id": "Q212898"
-        },
-        {
-          "year": 1912,
-          "genre": [
             "short-story",
             "psychological"
           ],
@@ -46595,6 +46576,29 @@
           "publisher_estimated": true,
           "popularity": 46,
           "wikidata_id": "Q828296"
+        },
+        {
+          "year": 1924,
+          "genre": [
+            "psychological-novel",
+            "modernist"
+          ],
+          "title": {
+            "fr_FR": "La Montagne magique",
+            "en_US": "The Magic Mountain"
+          },
+          "pages": {
+            "fr_FR": 720,
+            "en_US": 672
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "S. Fischer Verlag",
+            "en_US": "Alfred A. Knopf"
+          },
+          "publisher_estimated": true,
+          "popularity": 46,
+          "wikidata_id": "Q212898"
         },
         {
           "year": 1939,
@@ -47969,7 +47973,7 @@
       },
       "books": [
         {
-          "year": 1966,
+          "year": 1969,
           "genre": [
             "science-fiction",
             "anthropology"
@@ -48258,7 +48262,30 @@
           "wikidata_id": "Q3235093"
         },
         {
-          "year": 1845,
+          "year": 1852,
+          "genre": [
+            "poetry",
+            "lyrical"
+          ],
+          "title": {
+            "fr_FR": "Les Châtiments",
+            "en_US": "The Punishments"
+          },
+          "pages": {
+            "fr_FR": 420,
+            "en_US": 384
+          },
+          "pages_estimated": true,
+          "publisher": {
+            "fr_FR": "Pagnerre",
+            "en_US": "Oxford University Press"
+          },
+          "publisher_estimated": true,
+          "popularity": 8,
+          "wikidata_id": "Q3231547"
+        },
+        {
+          "year": 1856,
           "genre": [
             "historical-novel",
             "drama"
@@ -48302,29 +48329,6 @@
           "publisher_estimated": true,
           "popularity": 98,
           "wikidata_id": "Q180736"
-        },
-        {
-          "year": 1866,
-          "genre": [
-            "poetry",
-            "lyrical"
-          ],
-          "title": {
-            "fr_FR": "Les Châtiments",
-            "en_US": "The Punishments"
-          },
-          "pages": {
-            "fr_FR": 420,
-            "en_US": 384
-          },
-          "pages_estimated": true,
-          "publisher": {
-            "fr_FR": "Pagnerre",
-            "en_US": "Oxford University Press"
-          },
-          "publisher_estimated": true,
-          "popularity": 8,
-          "wikidata_id": "Q3231547"
         },
         {
           "year": 1866,
@@ -48640,14 +48644,14 @@
           "wikidata_id": "Q2879977"
         },
         {
-          "year": 1999,
+          "year": 1998,
           "genre": [
             "contemporary-novel",
             "rock"
           ],
           "title": {
-            "fr_FR": "Les Chiennes savantes",
-            "en_US": "Les Jolies Choses"
+            "fr_FR": "Les Jolies Choses",
+            "en_US": "Pretty Things"
           },
           "pages": {
             "fr_FR": 288,
@@ -50135,7 +50139,7 @@
           "wikidata_id": "Q206400"
         },
         {
-          "year": 1605,
+          "year": 1608,
           "genre": [
             "tragedy"
           ],
@@ -50157,7 +50161,28 @@
           "wikidata_id": "Q181598"
         },
         {
-          "year": 1606,
+          "year": 1622,
+          "genre": [
+            "theater",
+            "tragedy"
+          ],
+          "title": {
+            "fr_FR": "Othello",
+            "en_US": "Othello"
+          },
+          "pages": {
+            "fr_FR": null,
+            "en_US": 145
+          },
+          "publisher": {
+            "fr_FR": "Pagnerre éditeur",
+            "en_US": "Yale University Press"
+          },
+          "popularity": 94,
+          "wikidata_id": "Q26833"
+        },
+        {
+          "year": 1623,
           "genre": [
             "tragedy"
           ],
@@ -50179,7 +50204,7 @@
           "wikidata_id": "Q130283"
         },
         {
-          "year": 1611,
+          "year": 1623,
           "genre": [
             "comedy",
             "romance"
@@ -50200,27 +50225,6 @@
           "publisher_estimated": true,
           "popularity": 71,
           "wikidata_id": "Q86440"
-        },
-        {
-          "year": 1622,
-          "genre": [
-            "theater",
-            "tragedy"
-          ],
-          "title": {
-            "fr_FR": "Othello",
-            "en_US": "Othello"
-          },
-          "pages": {
-            "fr_FR": null,
-            "en_US": 145
-          },
-          "publisher": {
-            "fr_FR": "Pagnerre éditeur",
-            "en_US": "Yale University Press"
-          },
-          "popularity": 94,
-          "wikidata_id": "Q26833"
         },
         {
           "year": 1623,

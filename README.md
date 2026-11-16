@@ -342,21 +342,6 @@ assert fake.book() == first
 
 ---
 
-### 🌐 Multiple Locales at Once
-
-Faker's multi-locale mode does not proxy `add_provider()`, so add the provider to each locale:
-
-```python
-fake = Faker(["fr_FR", "en_US"])
-for locale in ("fr_FR", "en_US"):
-    fake[locale].add_provider(LiteratureProvider)
-
-fake["fr_FR"].title()  # "L'Appel de Cthulhu"
-fake["en_US"].title()  # "The Symposium"
-```
-
----
-
 ### 🗂️ Generating a Dataset
 
 ```python
