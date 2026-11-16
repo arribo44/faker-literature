@@ -8,8 +8,10 @@ details are fetched in small batches.
 
 from __future__ import annotations
 
+import http.client
 import json
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from collections.abc import Callable, Iterable, Mapping
@@ -32,6 +34,16 @@ MAX_RESPONSE_BYTES = 20 * 1024 * 1024
 BATCH_SIZE = 100
 MAX_LIMIT = 5000
 
+# Overloaded or rate-limited endpoint: retried, with an exponential back-off
+RETRY_STATUSES = {429, 500, 502, 503, 504}
+MAX_ATTEMPTS = 4
+MAX_RETRY_DELAY = 60
+
+# Dates of a precision coarser than a decade ("8th century BC") give no usable year
+MIN_DATE_PRECISION = 8
+
+# Well-known novels, plays or poems are "literary works" (Q7725634), their form being given by P7937:
+# querying "novel" (Q8261) and the like as well finds no work with 30 sitelinks or more
 CANDIDATES_QUERY = """
 SELECT ?work ?links WHERE {
   ?work wdt:P31 wd:Q7725634 ;
@@ -40,14 +52,29 @@ SELECT ?work ?links WHERE {
 }
 """
 
+# Publication (P577) and creation (P571) dates with their precision, deprecated statements left out
+DATES_PATTERN = """
+  OPTIONAL {
+    ?work p:P577 ?dateStatement .
+    ?dateStatement psv:P577 [ wikibase:timeValue ?date ; wikibase:timePrecision ?datePrecision ] ;
+                   wikibase:rank ?dateRank .
+    FILTER(?dateRank != wikibase:DeprecatedRank)
+  }
+  OPTIONAL {
+    ?work p:P571 ?inceptionStatement .
+    ?inceptionStatement psv:P571 [ wikibase:timeValue ?inception ; wikibase:timePrecision ?inceptionPrecision ] ;
+                        wikibase:rank ?inceptionRank .
+    FILTER(?inceptionRank != wikibase:DeprecatedRank)
+  }
+"""
+
 DETAILS_QUERY = """
-SELECT ?work ?titleFr ?titleEn ?author ?writerFr ?writerEn ?date ?inception ?pages
-       ?genreFr ?genreEn ?country ?demonymFr ?demonymEn ?publisherFr ?publisherEn
+SELECT ?work ?titleFr ?titleEn ?author ?writerFr ?writerEn ?date ?datePrecision ?inception ?inceptionPrecision
+       ?pages ?genreFr ?genreEn ?country ?demonymFr ?demonymEn ?publisherFr ?publisherEn
 WHERE {
   VALUES ?work { %(works)s }
   ?work wdt:P50 ?author .
-  OPTIONAL { ?work wdt:P577 ?date }
-  OPTIONAL { ?work wdt:P571 ?inception }
+  %(dates)s
   FILTER(BOUND(?date) || BOUND(?inception))
   ?work rdfs:label ?titleFr . FILTER(LANG(?titleFr) = "fr")
   ?work rdfs:label ?titleEn . FILTER(LANG(?titleEn) = "en")
@@ -78,8 +105,38 @@ WHERE {
 """
 
 
-def run_query(query: str) -> list[Binding]:
-    """POST ``query`` to the Wikidata endpoint and return the result bindings."""
+def _retry_delay(error: urllib.error.HTTPError, attempt: int) -> float:
+    """Seconds to wait before the next attempt: ``Retry-After`` when given, else 2, 4, 8..."""
+    retry_after = error.headers.get("Retry-After", "") if error.headers else ""
+    delay = int(retry_after) if retry_after.isdigit() else 2 ** attempt
+    return float(min(delay, MAX_RETRY_DELAY))
+
+
+def run_query(
+    query: str, attempts: int = MAX_ATTEMPTS, sleep: Callable[[float], object] = time.sleep
+) -> list[Binding]:
+    """POST ``query`` to the Wikidata endpoint and return the result bindings.
+
+    Network errors, timeouts and the "busy" answers of the endpoint (429, 5xx)
+    are retried up to ``attempts`` times; other errors are raised at once.
+    """
+    for attempt in range(1, attempts + 1):
+        try:
+            return _post_query(query)
+        except urllib.error.HTTPError as error:
+            if error.code not in RETRY_STATUSES or attempt == attempts:
+                raise
+            delay = _retry_delay(error, attempt)
+        # IncompleteRead (an HTTPException): the endpoint cut a response at its 60 s limit
+        except (urllib.error.URLError, http.client.HTTPException, TimeoutError, ConnectionError):
+            if attempt == attempts:
+                raise
+            delay = float(min(2 ** attempt, MAX_RETRY_DELAY))
+        sleep(delay)
+    raise ValueError("attempts must be at least 1")
+
+
+def _post_query(query: str) -> list[Binding]:
     request = urllib.request.Request(
         ENDPOINT,
         data=urllib.parse.urlencode({"query": query}).encode("utf-8"),
@@ -103,12 +160,21 @@ def _entity_id(uri: str) -> str:
     return entity
 
 
-def _parse_year(value: str) -> int | None:
-    """Extract the year of an ``xsd:dateTime`` such as ``-0800-01-01T00:00:00Z``."""
+def _parse_year(value: str, precision: str | None = None) -> int | None:
+    """Return the historical year of a SPARQL ``xsd:dateTime`` such as ``-0036-01-01T00:00:00Z``.
+
+    The Wikidata endpoint follows XSD 1.1, where year 0 is 1 BC: the Georgics,
+    stored as 37 BC, come as ``-0036``.  Years are returned without year 0,
+    negative for BC (-37).  ``None`` when the date is malformed or coarser than
+    a decade (``precision`` 9 = year, 8 = decade, 7 = century).
+    """
+    if precision is not None and not (precision.isdigit() and int(precision) >= MIN_DATE_PRECISION):
+        return None
     try:
-        return int(value[:value.index("-", 1)])
+        year = int(value[:value.index("-", 1)])
     except ValueError:
         return None
+    return year - 1 if year <= 0 else year
 
 
 EN_ADJECTIVE_SUFFIXES = ("ish", "ian", "an", "ese", "ch", "ic", "i")
@@ -168,7 +234,7 @@ def parse_bindings(bindings: Iterable[Binding], vocabulary: GenreVocabulary | No
         })
         work["writers"].setdefault(value["author"], (value["writerFr"], value["writerEn"]))
         for key, years in (("date", work["years"]), ("inception", work["inceptions"])):
-            year = _parse_year(value[key]) if key in value else None
+            year = _parse_year(value[key], value.get(key + "Precision")) if key in value else None
             if year is not None:
                 years.add(year)
         # Page counts contain typos such as 940512: keep plausible ones
@@ -247,7 +313,8 @@ def fetch_works(
         batch = entities[start:start + BATCH_SIZE]
         if start:
             time.sleep(pause)
-        rows = run_query(DETAILS_QUERY % {"works": " ".join("wd:" + entity for entity in batch)})
+        works = " ".join("wd:" + entity for entity in batch)
+        rows = run_query(DETAILS_QUERY % {"works": works, "dates": DATES_PATTERN})
         records.extend(parse_bindings(rows, vocabulary))
         log(f"  batch {start // BATCH_SIZE + 1}: {len(records)} usable works so far")
 

@@ -1,3 +1,10 @@
+import email.message
+import http.client
+import urllib.error
+import urllib.request
+
+import pytest
+
 from faker_literature.importers import wikidata
 from faker_literature.store import BookStore, validate_book
 
@@ -43,9 +50,87 @@ def test_rows_are_grouped_into_one_valid_record():
 
 
 def test_negative_years_are_parsed():
-    [record] = wikidata.parse_bindings([_row(date="-0800-01-01T00:00:00Z")])
+    # The endpoint follows XSD 1.1 (year 0 = 1 BC): 37 BC comes as -0036
+    [record] = wikidata.parse_bindings([_row(date="-0036-01-01T00:00:00Z", datePrecision="9")])
 
-    assert record["year"] == -800
+    assert record["year"] == -37
+
+
+@pytest.mark.parametrize("value, precision, year", [
+    ("1890-06-20T00:00:00Z", "11", 1890),
+    ("1950-01-01T00:00:00Z", "8", 1950),
+    ("0001-01-01T00:00:00Z", "9", 1),
+    ("0000-01-01T00:00:00Z", "9", -1),
+    ("-0800-01-01T00:00:00Z", "7", None),
+    ("1500-01-01T00:00:00Z", "6", None),
+    ("1890-06-20T00:00:00Z", None, 1890),
+    ("garbage", "9", None),
+])
+def test_parse_year_handles_precision_and_bc_years(value, precision, year):
+    assert wikidata._parse_year(value, precision) == year
+
+
+def test_imprecise_dates_give_way_to_precise_ones():
+    rows = [_row(date="1800-01-01T00:00:00Z", datePrecision="7"), _row(date="1890-06-20T00:00:00Z", datePrecision="11")]
+    [record] = wikidata.parse_bindings(rows)
+    assert record["year"] == 1890
+
+    # Only a century: no usable year, the work is left out
+    assert wikidata.parse_bindings([_row(date="1800-01-01T00:00:00Z", datePrecision="7")]) == []
+
+
+class _Response:
+    def __init__(self, body):
+        self.body = body
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc_info):
+        return False
+
+    def read(self, size):
+        return self.body
+
+
+def _http_error(code, retry_after=None):
+    headers = email.message.Message()
+    if retry_after is not None:
+        headers["Retry-After"] = retry_after
+    return urllib.error.HTTPError(wikidata.ENDPOINT, code, "error", headers, None)
+
+
+def test_busy_endpoint_is_retried_with_back_off(monkeypatch):
+    answers = iter([_http_error(429, "7"), urllib.error.URLError("reset"), http.client.IncompleteRead(b""),
+                    _Response(b'{"results": {"bindings": [{"x": {"value": "1"}}]}}')])
+
+    def urlopen(request, timeout):
+        answer = next(answers)
+        if isinstance(answer, Exception):
+            raise answer
+        return answer
+
+    monkeypatch.setattr(urllib.request, "urlopen", urlopen)
+    delays = []
+
+    assert wikidata.run_query("SELECT", sleep=delays.append) == [{"x": {"value": "1"}}]
+    # Retry-After first, then 2 ** attempt
+    assert delays == [7, 4, 8]
+
+
+@pytest.mark.parametrize("error, calls", [(_http_error(400), 1), (_http_error(503), 3)])
+def test_client_errors_are_not_retried_and_attempts_are_bounded(monkeypatch, error, calls):
+    count = []
+
+    def urlopen(request, timeout):
+        count.append(1)
+        raise error
+
+    monkeypatch.setattr(urllib.request, "urlopen", urlopen)
+
+    with pytest.raises(urllib.error.HTTPError):
+        wikidata.run_query("SELECT", attempts=3, sleep=lambda delay: None)
+    assert len(count) == calls
 
 
 def test_works_without_genre_or_nationality_are_skipped():

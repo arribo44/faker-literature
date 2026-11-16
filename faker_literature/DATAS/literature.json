@@ -10189,7 +10189,7 @@
           }
         },
         {
-          "year": -359,
+          "year": -360,
           "genre": [
             "philosophical-dialogue"
           ],
@@ -11954,24 +11954,7 @@
       },
       "books": [
         {
-          "year": -50,
-          "genre": [
-            "epic",
-            "epic-poetry"
-          ],
-          "title": {
-            "fr_FR": "Énéide",
-            "en_US": "Aeneid"
-          },
-          "pages": null,
-          "publisher": {
-            "fr_FR": null,
-            "en_US": "Longman"
-          },
-          "wikidata_id": "Q60220"
-        },
-        {
-          "year": -40,
+          "year": -41,
           "genre": [
             "pastoral-poetry"
           ],
@@ -11987,7 +11970,7 @@
           "wikidata_id": "Q546203"
         },
         {
-          "year": -36,
+          "year": -37,
           "genre": [
             "didactic-poetry"
           ],
@@ -12004,6 +11987,23 @@
             "en_US": "Longman"
           },
           "wikidata_id": "Q674439"
+        },
+        {
+          "year": -19,
+          "genre": [
+            "epic",
+            "epic-poetry"
+          ],
+          "title": {
+            "fr_FR": "Énéide",
+            "en_US": "Aeneid"
+          },
+          "pages": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "Longman"
+          },
+          "wikidata_id": "Q60220"
         }
       ]
     },

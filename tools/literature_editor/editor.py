@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from faker_literature.importers.wikidata import _entity_id, _parse_year, _pick_demonym, run_query
+from faker_literature.importers.wikidata import DATES_PATTERN, _entity_id, _parse_year, _pick_demonym, run_query
 from faker_literature.matching import DuplicateIndex, name_key, sort_key, title_key
 from faker_literature.matching import names as _names
 from faker_literature.store import LOCALES, MAX_PAGES, validate_book
@@ -42,8 +42,8 @@ SELECT ?nameFr ?nameEn ?nameMul ?descFr ?country ?demonymFr ?demonymEn WHERE {
 """
 
 WORKS_QUERY = """
-SELECT ?work ?links ?titleFr ?titleEn ?titleMul ?typeFr ?date ?inception ?pages
-       ?genreFr ?genreEn ?publisherFr ?publisherEn WHERE {
+SELECT ?work ?links ?titleFr ?titleEn ?titleMul ?typeFr ?date ?datePrecision ?inception ?inceptionPrecision
+       ?pages ?genreFr ?genreEn ?publisherFr ?publisherEn WHERE {
   ?work wdt:P50 wd:%(qid)s ;
         wikibase:sitelinks ?links .
   FILTER NOT EXISTS { ?work wdt:P31 wd:Q13442814 }
@@ -51,8 +51,7 @@ SELECT ?work ?links ?titleFr ?titleEn ?titleMul ?typeFr ?date ?inception ?pages
   OPTIONAL { ?work rdfs:label ?titleEn . FILTER(LANG(?titleEn) = "en") }
   OPTIONAL { ?work rdfs:label ?titleMul . FILTER(LANG(?titleMul) = "mul") }
   OPTIONAL { ?work wdt:P31 ?type . ?type rdfs:label ?typeFr . FILTER(LANG(?typeFr) = "fr") }
-  OPTIONAL { ?work wdt:P577 ?date }
-  OPTIONAL { ?work wdt:P571 ?inception }
+  %(dates)s
   OPTIONAL { ?work wdt:P1104 ?pages }
   OPTIONAL {
     ?work wdt:P136 ?genre .
@@ -169,7 +168,7 @@ def parse_works(rows, edition_rows):
         if value.get("typeFr") and value["typeFr"] not in work["types"]:
             work["types"].append(value["typeFr"])
         for key, years in (("date", work["years"]), ("inception", work["inceptions"])):
-            year = _parse_year(value[key]) if key in value else None
+            year = _parse_year(value[key], value.get(key + "Precision")) if key in value else None
             if year is not None:
                 years.add(year)
         if _valid_pages(value.get("pages")):
@@ -217,7 +216,8 @@ def fetch_author(qid):
     qid = parse_qid(qid)
     author = parse_author(qid, run_query(AUTHOR_QUERY % {"qid": qid}))
     author["influences"] = parse_influences(run_query(INFLUENCES_QUERY % {"qid": qid}))
-    works = parse_works(run_query(WORKS_QUERY % {"qid": qid}), run_query(EDITIONS_QUERY % {"qid": qid}))
+    works = parse_works(run_query(WORKS_QUERY % {"qid": qid, "dates": DATES_PATTERN}),
+                        run_query(EDITIONS_QUERY % {"qid": qid}))
     return author, works[:MAX_WORKS], len(works)
 
 

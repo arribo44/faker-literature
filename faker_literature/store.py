@@ -14,10 +14,10 @@ import math
 import os
 import re
 import threading
-from collections.abc import Callable, Iterable, Mapping
+from collections.abc import Callable, Hashable, Iterable, Mapping
 from contextlib import AbstractContextManager
 from pathlib import Path
-from typing import Any
+from typing import Any, TypeVar
 
 from tinydb import Query, TinyDB
 from tinydb.queries import QueryLike
@@ -33,6 +33,7 @@ Record = dict[str, Any]
 # A record resolved for one locale, as returned by the provider
 LocalizedBook = dict[str, Any]
 PathLike = str | os.PathLike[str]
+T = TypeVar("T")
 
 LOCALES = ("fr_FR", "en_US")
 SCHEMA_VERSION = 1
@@ -227,6 +228,7 @@ class BookStore:
             )
             self._lock = FileLock(self.path.with_name(self.path.name + ".lock"))
         self._localized: dict[str, tuple[LocalizedBook, ...]] = {}
+        self._derived: dict[tuple[str, Hashable], Any] = {}
         # Imported books dropped by the last re-sync of the bundled catalogue
         self.removed_duplicates = 0
         with self._lock:
@@ -267,7 +269,7 @@ class BookStore:
                       if book["source"] != BUILTIN_SOURCE and book in index]
         if duplicates:
             self.books.remove(doc_ids=duplicates)
-            self._localized.clear()
+            self._invalidate()
         return len(duplicates)
 
     def replace_source(self, source: str, books: Iterable[Mapping[str, Any]]) -> int:
@@ -285,7 +287,7 @@ class BookStore:
         with self._lock:
             self.books.remove(Query().source == source)
             self.books.insert_multiple(books)
-            self._localized.clear()
+            self._invalidate()
         return len(books)
 
     def sources(self) -> dict[str, int]:
@@ -294,6 +296,21 @@ class BookStore:
         for book in self.books.all():
             counts[book["source"]] = counts.get(book["source"], 0) + 1
         return counts
+
+    def _invalidate(self) -> None:
+        self._localized.clear()
+        self._derived.clear()
+
+    def derived(self, locale: str, key: Hashable, build: Callable[[tuple[LocalizedBook, ...]], T]) -> T:
+        """Return ``build(self.localized(locale))``, computed once per ``locale`` and ``key``.
+
+        Used for values derived from the whole catalogue, such as the pools
+        random values are drawn from; recomputed after the next write.
+        """
+        if (locale, key) not in self._derived:
+            self._derived[locale, key] = build(self.localized(locale))
+        value: T = self._derived[locale, key]
+        return value
 
     def localized(self, locale: str) -> tuple[LocalizedBook, ...]:
         """Return every book localized for ``locale`` (cached until the next write)."""

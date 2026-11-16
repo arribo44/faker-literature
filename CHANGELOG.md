@@ -8,8 +8,17 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 
 ### Modifié
 
+- `nationality()` tire chaque auteur une fois, quel que soit son nombre de livres (auparavant, les auteurs prolifiques pesaient davantage).
+- `all_authors()` et `writer()` séparent les co-auteurs d'un livre (« A, B ») au lieu de les renvoyer ensemble.
 - Python 3.10 ou plus est requis (Faker et TinyDB n'acceptent plus les versions antérieures, et Python 3.8 / 3.9 ne sont plus maintenus) ; Python 3.13 et 3.14 sont pris en charge.
 - Le paquet est décrit par `pyproject.toml`, qui remplace `setup.py` et `requirements.txt` ; la version est définie une seule fois (`faker_literature.__version__`).
+
+### Ajouté (provider)
+
+- `LiteratureProvider.register(fake, fallback_locale=None)` : ajoute le provider à chaque locale d'un `Faker` multi-locale, ce que `add_provider()` ne permet pas ; `fallback_locale` (par exemple `"en_US"`) permet d'accepter les locales non prises en charge.
+- `writer(nationality=LiteratureProvider.ANY_NATIONALITY)` (ou `"*"`) : écrivain de n'importe quelle nationalité.
+- Le filtre `nationality` ignore la casse, comme `genre` ; `books_by_author()` ignore la casse, les accents et la ponctuation, et trouve un co-auteur.
+- Les listes dans lesquelles les valeurs sont tirées sont calculées une fois par locale et mises en cache jusqu'à la prochaine modification du catalogue : `writer()`, `title()`, `genre()`, `pages()`... sont 5 à 18 fois plus rapides.
 
 ### Outillage
 
@@ -41,6 +50,8 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 - Catalogue : titre français de *Skulls in the Stars* (« Des crânes dans les étoiles »), éditeurs erronés corrigés ou retirés (Project Gutenberg, Gustave Simon…), espace parasite dans « Grove Press », auteurs et livres remis dans l'ordre.
 - Éditeur : la détection des doublons ne coupe plus le début des titres commençant comme un article (« Anna Karénine », « Theogony », « Lettres persanes »).
 - Éditeur : un homonyme ayant un autre identifiant Wikidata n'est plus confondu avec l'auteur déjà présent au catalogue.
+- Importeur Wikidata et éditeur : les années av. J.-C. étaient décalées d'un an (le service SPARQL compte 1 av. J.-C. comme l'année 0) ; les dates moins précises que la décennie (« VIIIe siècle av. J.-C. ») ne donnent plus d'année trompeuse. Catalogue corrigé en conséquence : *Timée* (-360), *Bucoliques* (-41), *Géorgiques* (-37), *Énéide* (-19).
+- Importeur Wikidata et éditeur : nouvelles tentatives, avec un délai croissant (ou celui de `Retry-After`), quand le service est saturé (429, 5xx), coupe une réponse ou que le réseau échoue.
 - Importeur Wikidata : les genres sont ramenés au vocabulaire du catalogue (les genres inconnus sont ignorés), et les œuvres déjà présentes sont aussi reconnues par leur identifiant Wikidata et par leur titre normalisé (accents, ponctuation, article initial).
 - Base persistante : quand le catalogue intégré est mis à jour, les livres importés qu'il contient désormais sont supprimés au lieu de faire doublon.
 

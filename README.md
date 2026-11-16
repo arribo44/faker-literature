@@ -37,7 +37,23 @@ Titles, genres, nationalities, publishers and page counts are **localized**: the
 >
 > **Regional variants** fall back on their language: `fr_CA`, `fr_BE`, `fr_CH` → `fr_FR`; `en_GB`, `en_AU`, `en_CA` → `en_US`.
 >
-> **Any other locale** (e.g. `de_DE`) raises a `ValueError`, so unsupported data is never silently mixed into a dataset.
+> **Any other locale** (e.g. `de_DE`) raises a `ValueError`, so unsupported data is never silently mixed into a dataset — unless you ask for a fallback, see below.
+
+### Several Locales at Once
+
+Faker does not support `add_provider()` on a multi-locale `Faker`. Use `LiteratureProvider.register()`, which adds the provider to every locale (it also works with a single locale):
+
+```python
+fake = Faker(["fr_FR", "en_US"])
+LiteratureProvider.register(fake)
+
+fake.book()             # French or English record, picked at random like any Faker value
+fake["fr_FR"].title()   # "Le Meilleur des mondes"
+
+# Unsupported locales: refused by default, or mapped onto a supported one
+fake = Faker(["de_DE", "fr_FR"])
+LiteratureProvider.register(fake, fallback_locale="en_US")   # de_DE draws English data
+```
 
 ---
 
@@ -132,9 +148,12 @@ Each call returns a **new dictionary**: you can modify it freely without affecti
 writer = fake.writer()     # "Dashiell Hammett" (en_US -> American writers)
 writer = fake_fr.writer()  # "Daniel Pennac"    (fr_FR -> French writers)
 
-# Writer of a given nationality (spelled in the current locale)
+# Writer of a given nationality (spelled in the current locale, case-insensitive)
 british = fake.writer(nationality="British")         # "Arthur C. Clarke"
 britannique = fake_fr.writer(nationality="britannique")  # "William Shakespeare"
+
+# Writer of any nationality
+anyone = fake.writer(nationality=LiteratureProvider.ANY_NATIONALITY)  # or nationality="*"
 
 # Writer of a given genre (case-insensitive, in the current locale)
 horror = fake.writer(genre="horror")                 # "Stephen King"
@@ -147,7 +166,7 @@ fake.writer(nationality="American", genre="horror")  # "Stephen King", "H. P. Lo
 author = fake.author(nationality="British")
 ```
 
-> Writers are drawn **in proportion to their number of books**: prolific authors appear more often.
+> Writers are drawn **in proportion to their number of books**: prolific authors appear more often. The authors of a co-written book are drawn one by one, never as `"A, B"`.
 
 If no writer matches the filters, a `ValueError` is raised:
 
@@ -179,13 +198,15 @@ fake.title(genre="nope")
 
 ```python
 genre = fake.genre()                 # "utopia" (en_US), "poésie" (fr_FR)
-nationality = fake.nationality()     # "French" (en_US), "français" (fr_FR) — any nationality
+nationality = fake.nationality()     # "French" (en_US), "français" (fr_FR) — any nationality, each author counting once
 year = fake.publication_year()       # 1978
 pages = fake.pages()                 # 112
 publisher = fake.publisher()         # "Penguin Classics" (en_US), "Gallimard" (fr_FR)
 ```
 
-Each of these methods is an **independent** random draw from the catalogue. Use `book()` when the values must belong together.
+Each of these methods is an **independent** random draw from the catalogue. Use `book()` when the values must belong together. Genres, years, page counts and publishers are drawn in proportion to their number of books.
+
+The values are drawn from pools computed once per locale and kept until the catalogue changes, so generating large datasets stays fast (a few microseconds per value).
 
 ---
 
@@ -194,7 +215,8 @@ Each of these methods is an **independent** random draw from the catalogue. Use 
 The provider also exposes query methods that return **every** matching book (as a list of `book()`-like dictionaries) instead of a random one:
 
 ```python
-# All books by an author (name as spelled in the current locale)
+# All books by an author (as spelled in the current locale, ignoring case, accents
+# and punctuation: "emile zola", "j d salinger"); a co-author finds the books written together
 fake.books_by_author("Victor Hugo")
 # [{'title': 'The Hunchback of Notre-Dame', 'year': 1831, ...},
 #  {'title': 'The Rays and the Shadows', 'year': 1840, ...},
@@ -213,7 +235,7 @@ fake.books_by_year_range(-500, 0)       # Ancient Greek works
 Catalogue overview:
 
 ```python
-fake.all_authors()        # ['Agatha Christie', 'Alain Damasio', ...]  (190, sorted)
+fake.all_authors()        # ['Agatha Christie', 'Alain Damasio', ...]  (190, sorted; co-authors listed separately)
 fake.all_genres()         # ['absurd novel', 'absurdism', 'adolescence', ...]  (sorted, localized)
 fake.all_nationalities()  # ['Algerian', 'American', 'Ancient Greek', 'Argentine', ...]
 fake_fr.all_nationalities()  # ['algérien', 'allemand', 'américain', 'argentin', ...]
@@ -315,14 +337,16 @@ Default database location:
 
 What the importer does:
 
-- ranks works by number of Wikipedia articles and keeps those having a French **and** an English title, an author, a date, at least one known genre and an author nationality;
+- ranks works by number of Wikipedia articles and keeps those having a French **and** an English title, an author, a date precise to the decade at least, at least one known genre and an author nationality;
+- reads years as historical years (no year 0: Wikidata's 37 BC is `-37`), whereas the query service counts 1 BC as year 0;
 - maps Wikidata genres onto the catalogue's genre vocabulary (*crime fiction* → *crime* / *polar*), so that a genre always has the same translation; genres missing from the vocabulary are dropped;
 - localizes author names (*Evgueni Zamiatine* / *Yevgeny Zamyatin*, *Platon* / *Plato*);
 - skips works already present in the bundled catalogue (same Wikidata id, or same title ignoring case, accents and a leading article, year ± 2);
 - validates every record before writing anything;
-- **replaces** the previously imported Wikidata books when run again (no duplicates).
+- **replaces** the previously imported Wikidata books when run again (no duplicates);
+- retries, with an increasing delay, when the query service is busy (HTTP 429 / 5xx, cut responses, network errors).
 
-> It needs network access to `query.wikidata.org` and takes about 20 seconds for 200 works.
+> It needs network access to `query.wikidata.org` and takes one to a few minutes: the first query, which lists the candidate works, alone lasts about 40 seconds, close to the 60-second limit of the service (it is retried if the service cuts it).
 
 ### Using the Enlarged Catalogue
 
