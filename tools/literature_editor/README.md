@@ -73,3 +73,19 @@ Le script remplace la popularité de chaque livre qui a un identifiant Wikidata 
 - Les appels à l'API exigent un cookie de session, tiré au hasard à chaque démarrage du serveur et posé par la page elle-même (`HttpOnly`, `SameSite=Strict`). Le navigateur ne l'envoie jamais avec une requête déclenchée par un autre site (image, formulaire, script) : une autre page ne peut donc pas non plus lancer de recherches Wikidata en votre nom. Après un redémarrage du serveur, rechargez la page.
 - Les écritures n'acceptent que du JSON, limité à 64 Ko, et chaque livre est validé avec le schéma du paquet avant d'être enregistré. Le fichier garde ses droits d'accès d'origine.
 - Les textes venant de Wikidata sont insérés dans la page comme texte, jamais comme HTML. Une politique de sécurité du contenu (CSP) bloque en plus tout script externe.
+
+## Mettre à jour la vie des auteurs
+
+```bash
+python tools/literature_editor/update_authors.py [--dry-run]
+```
+
+Le script relie à Wikidata les auteurs qui n'ont pas d'identifiant, par l'auteur (P50) de leurs livres dont le nom correspond, puis renseigne `born` et `died` (années, négatives av. J.-C.) pour chaque auteur, quand Wikidata les donne à l'année ou à la décennie près. Lancez-le après avoir ajouté des auteurs avec l'éditeur.
+
+## Mettre à jour les prix littéraires
+
+```bash
+python tools/literature_editor/update_awards.py [--dry-run]
+```
+
+Le script remplace les prix de chaque livre qui a un identifiant Wikidata par les prix littéraires que son œuvre a reçus (P166, prix rattachés à « prix littéraire »), enregistrés par identifiant dans le vocabulaire `awards`, en tête du fichier. Les prix sans libellé français et anglais, et les palmarès que Wikidata classe parmi les prix (« Modern Library 100 Best Novels »…), sont écartés.

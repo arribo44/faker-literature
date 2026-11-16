@@ -239,3 +239,61 @@ def test_books_sample_is_reproducible_and_bounded(fake_en, ranked):
     assert fake_en.books_sample(2, nationality="Zealander") == first
     with pytest.raises(ValueError, match="Cannot draw 3 books: 2 match"):
         fake_en.books_sample(3, nationality="Zealander")
+
+
+# Writer profiles
+
+def test_writer_profile_by_name(fake_en):
+    hugo = fake_en.writer_profile("victor HUGO")
+
+    assert (hugo["name"], hugo["nationality"], hugo["born"], hugo["died"]) == ("Victor Hugo", "French", 1802, 1885)
+    years = [book["year"] for book in hugo["books"]]
+    assert years == sorted(years) and {"title": "Les Misérables", "year": 1862} in hugo["books"]
+    assert 0 < len(hugo["genres"]) <= 5
+    assert all(hugo["born"] + 12 <= year for year in years)
+
+
+def test_writer_profile_drawn_with_filters_and_living_writers(fake_en, co_written):
+    profile = fake_en.writer_profile(nationality="Zealander")
+    assert profile["name"] in ("Ann Alpha", "Bob Beta")
+    assert profile["born"] is None and profile["died"] is None
+    assert [book["title"] for book in profile["books"]] == ["Written Together"]
+    with pytest.raises(ValueError, match="No writer named"):
+        fake_en.writer_profile("Nobody At All")
+    with pytest.raises(TypeError):
+        fake_en.writer_profile("Victor Hugo", genre="novel")
+
+
+def test_life_years_stay_out_of_book(fake_en):
+    assert not {"writer_born", "writer_died", "popularity"} & set(fake_en.book())
+    raw = next(book for book in LiteratureProvider(fake_en).books_flat if book["title"]["en_US"] == "Les Misérables")
+    assert (raw["writer_born"], raw["writer_died"]) == (1802, 1885)
+
+
+# Literary awards
+
+def test_award_filter_and_queries(fake_en):
+    goncourt = fake_en.books_by_award("GONCOURT")
+    assert goncourt and all(any("goncourt" in award.lower() for award in book_awards(fake_en, book))
+                            for book in goncourt)
+    assert "awards" not in goncourt[0]
+    assert fake_en.book(award="Hugo Award")["title"] in {book["title"] for book in fake_en.books_by_award("hugo")}
+    awarded = {book["title"] for book in fake_en.books_by_award("*")}
+    assert {fake_en.title(award="*") for _ in range(50)} <= awarded
+    assert len(awarded) < len(LiteratureProvider(fake_en).books)
+    with pytest.raises(ValueError, match="award='nope'"):
+        fake_en.book(award="nope")
+
+
+def book_awards(fake, book):
+    raw = next(record for record in LiteratureProvider(fake).books_flat if record["title"]["en_US"] == book["title"])
+    return raw["awards"]["en_US"]
+
+
+def test_award_draws_and_lists(fake_en):
+    awards = fake_en.all_awards()
+    assert awards == sorted(awards, key=str.casefold) and "Prix Goncourt" in awards
+    assert {fake_en.award() for _ in range(50)} <= set(awards)
+    assert fake_en.award(nationality="French", century=20) in awards
+    le_guin = fake_en.writer_profile("Ursula K. Le Guin")
+    assert "Hugo Award for Best Novel" in le_guin["awards"]
