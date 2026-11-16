@@ -80,12 +80,14 @@ def test_genres_are_sorted_by_id(catalogue):
     assert list(catalogue["genres"]) == sorted(catalogue["genres"])
 
 
-def test_page_counts_typed_by_hand_are_flagged_as_estimates(books):
-    # Books added from Wikidata carry its page counts; the others were estimated
+@pytest.mark.parametrize("field", ["pages", "publisher"])
+def test_values_typed_by_hand_are_flagged_as_estimates(books, field):
+    # Books added from Wikidata carry its page counts and publishers; the others were typed by hand
+    flag = f"{field}_estimated"
     unflagged = [_label(author, book) for author, book in books
-                 if "wikidata_id" not in book and book.get("pages") and book.get("pages_estimated") is not True]
+                 if "wikidata_id" not in book and book.get(field) and book.get(flag) is not True]
     wrongly_flagged = [_label(author, book) for author, book in books
-                       if "pages_estimated" in book and (book["pages_estimated"] is not True or not book.get("pages"))]
+                       if flag in book and (book[flag] is not True or not book.get(field))]
     assert not unflagged
     assert not wrongly_flagged
 

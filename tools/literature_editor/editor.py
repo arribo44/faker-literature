@@ -400,15 +400,18 @@ def build_book(raw):
     genre = _clean_localized(raw.get("genre"), _clean_genres)
     # The catalogue writes French genres in lower case ("roman", not "Roman")
     genre["fr_FR"] = list(dict.fromkeys(_lower_first(item) for item in genre["fr_FR"]))
-    book = {
-        "year": year,
-        "genre": genre,
-        "title": _clean_localized(raw.get("title")),
+    wikidata_id = raw.get("wikidata_id")
+    values = {
         "pages": pages if any(value is not None for value in pages.values()) else None,
         "publisher": ({locale: value or None for locale, value in publisher.items()}
                       if any(publisher.values()) else None),
     }
-    wikidata_id = raw.get("wikidata_id")
+    book = {"year": year, "genre": genre, "title": _clean_localized(raw.get("title"))}
+    for field, value in values.items():
+        book[field] = value
+        # Without a Wikidata source, the page counts and publishers typed by hand are not checked
+        if value is not None and not wikidata_id:
+            book[f"{field}_estimated"] = True
     if wikidata_id:
         book["wikidata_id"] = parse_qid(wikidata_id)
     return book

@@ -104,6 +104,19 @@ def test_add_book_creates_a_sorted_author(catalogue):
     assert book["genre"] == ["novel", "classic"]
     assert book["pages"] == {"fr_FR": 1400, "en_US": None}
     assert book["publisher"] == {"fr_FR": "Verdier", "en_US": None}
+    assert "pages_estimated" not in book and "publisher_estimated" not in book
+
+
+def test_values_typed_without_wikidata_are_flagged_as_estimates(catalogue):
+    editor.add_book(catalogue, _author(), _book(wikidata_id=""))
+    editor.add_book(catalogue, _author(), _book(wikidata_id="", year="1010", pages={"fr_FR": "", "en_US": ""},
+                                                title={"fr_FR": "Journal", "en_US": "Diary"}))
+
+    genji, diary = next(entry for entry in catalogue["authors"] if entry.get("wikidata_id") == "Q999999")["books"]
+    assert list(genji) == ["year", "genre", "title", "pages", "pages_estimated", "publisher", "publisher_estimated"]
+    assert genji["pages_estimated"] is genji["publisher_estimated"] is True
+    # Nothing to qualify without a page count
+    assert diary["pages"] is None and "pages_estimated" not in diary and diary["publisher_estimated"] is True
 
 
 def test_add_book_appends_to_an_existing_author_by_year(catalogue):

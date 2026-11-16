@@ -93,6 +93,8 @@ def test_invalid_record_leaves_the_store_unchanged():
     ({"score": float("nan")}, "finite"),
     ({"pages_estimated": "yes"}, "pages_estimated"),
     ({"pages_estimated": True}, "no page count"),
+    ({"publisher_estimated": 1}, "publisher_estimated"),
+    ({"publisher_estimated": True, "publisher": None}, "no publisher"),
     ({f"field{i}": i for i in range(21)}, "extra fields"),
 ])
 def test_validate_book_rejects_malformed_records(overrides, message):

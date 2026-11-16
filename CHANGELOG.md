@@ -46,6 +46,7 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 ### Corrigé
 
 - Catalogue : les nombres de pages des 422 livres saisis à la main sont des estimations de la longueur habituelle de l'œuvre, et non ceux d'une édition précise ; ils sont désormais signalés par `"pages_estimated": true` et documentés comme tels. Les livres ajoutés depuis Wikidata gardent les valeurs de leurs éditions.
+- Catalogue : les éditeurs de ces mêmes 422 livres, plausibles mais non vérifiés (et pas forcément ceux de l'édition dont vient le nombre de pages), sont signalés par `"publisher_estimated": true`. L'éditeur local pose les deux marqueurs sur un livre saisi sans identifiant Wikidata.
 - Catalogue : un genre n'a plus qu'une traduction par langue, ce qui permet aux filtres par genre de trouver tous les livres concernés (« fantastique » ≠ « fantasy », « polar » / « crime », « roman » / « novel », « roman d'aventures »…). Faux genres supprimés (« américain », « capitaine Alatriste », « guerre du Péloponnèse ») et coquille « historie des idées » corrigée.
 - Catalogue : titre français de *Skulls in the Stars* (« Des crânes dans les étoiles »), éditeurs erronés corrigés ou retirés (Project Gutenberg, Gustave Simon…), espace parasite dans « Grove Press », auteurs et livres remis dans l'ordre.
 - Éditeur : la détection des doublons ne coupe plus le début des titres commençant comme un article (« Anna Karénine », « Theogony », « Lettres persanes »).
