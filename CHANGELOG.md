@@ -16,6 +16,7 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 
 ### Ajouté (provider)
 
+- `writer_profile(name=None, **filtres)` : fiche d'un écrivain (années de naissance et de mort, nationalité, livres par ordre chronologique, genres principaux). Les années viennent de Wikidata pour 991 des 1 006 auteurs (`tools/literature_editor/update_authors.py`), qui relie aussi 89 auteurs de plus à Wikidata. Champs `writer_born` et `writer_died` dans le schéma ; un test vérifie qu'aucun livre ne paraît avant les 12 ans de son auteur ni plus de 60 ans après sa mort.
 - Filtres communs à `book()`, `title()`, `writer()`, `genre()`, `publication_year()`, `pages()` et `publisher()` : `genre`, `nationality`, `author`, `after`, `before` et `century` (`century=19` pour 1801-1900, `-5` pour 500-401 av. J.-C.), combinés par « et ». Classe `BookFilter` exportée.
 - `popular=True` : tirage pondéré par le carré de la popularité des œuvres, leur nombre d'articles Wikipédia : le dixième le plus connu du catalogue fait environ les trois quarts des tirages. Champ `popularity` dans le schéma ; les livres qui n'en ont pas comptent pour la médiane. Le script `tools/literature_editor/update_popularity.py` remplit la popularité du catalogue et retrouve sur Wikidata les livres saisis à la main ; l'importeur et l'éditeur la renseignent pour les livres qu'ils ajoutent.
 - `books_sample(n, **filtres)` : n livres différents, tirés sans remise (`fake.unique.book()` ne peut pas fonctionner).

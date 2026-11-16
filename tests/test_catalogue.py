@@ -171,3 +171,24 @@ def test_an_author_has_no_duplicate_title(catalogue):
             keys = Counter(editor._title_key(book["title"][locale]) for book in author["books"])
             duplicates += [(author["name"], key) for key, count in keys.items() if count > 1]
     assert not duplicates
+
+
+# Books written at least at this age, and published at most this long after the author's death
+MIN_AGE = 12
+MAX_POSTHUMOUS_YEARS = 60
+
+
+def test_books_fit_the_life_of_their_author(books):
+    too_early = [_label(author, book) for author, book in books
+                 if "born" in author and book["year"] < author["born"] + MIN_AGE]
+    too_late = [_label(author, book) for author, book in books
+                if "died" in author and book["year"] > author["died"] + MAX_POSTHUMOUS_YEARS]
+    assert not too_early
+    assert not too_late
+
+
+def test_lives_are_consistent(catalogue):
+    wrong = [author["name"] for author in catalogue["authors"]
+             if ("died" in author and ("born" not in author or author["died"] <= author["born"]))
+             or any(not isinstance(author.get(key, 0), int) for key in ("born", "died"))]
+    assert not wrong

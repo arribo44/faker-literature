@@ -168,6 +168,19 @@ author = fake.author(nationality="British")
 
 > Writers are drawn **in proportion to their number of books**: prolific authors appear more often. The authors of a co-written book are drawn one by one, never as `"A, B"`.
 
+`writer_profile()` describes a writer: life, nationality, books and main genres. Pass a name, or the filters of `writer()` to draw one:
+
+```python
+fake.writer_profile("victor hugo")
+# {'name': 'Victor Hugo', 'nationality': 'French', 'born': 1802, 'died': 1885,
+#  'books': [{'title': "Han d'Islande", 'year': 1823}, ..., {'title': 'Ninety-Three', 'year': 1874}],
+#  'genres': ['historical novel', 'novel', 'poetry', 'lyrical', 'romantic drama']}
+
+fake.writer_profile(nationality="Japanese")   # a Japanese writer's profile
+```
+
+`born` and `died` come from Wikidata (negative for BC); `died` is `None` for living writers, and both are `None` when unknown. The catalogue is checked against them: no book is published before its author is 12, nor more than 60 years after their death.
+
 If no writer matches the filters, a `ValueError` is raised:
 
 ```python
@@ -468,6 +481,8 @@ Record schema:
 | `nationality` | ✅ | `{"fr_FR": str, "en_US": str}` |
 | `title` | ✅ | `{"fr_FR": str, "en_US": str}` |
 | `title_untranslated` | ❌ | `true` when the work was never translated into French: both titles are the original one |
+| `writer_born`, `writer_died` | ❌ | years of birth and death of the author (negative for BC), used by `writer_profile()` |
+| `popularity` | ❌ | how well known the work is (a positive integer), used by `popular=True` |
 | `genre` | ✅ | `{"fr_FR": [str, ...], "en_US": [str, ...]}` (1 to 20 genres) |
 | `year` | ✅ | integer between -3000 and 2100 |
 | `pages` | ❌ | `None`, or `{"fr_FR": int, "en_US": int}` (1 to 100000, each may be `None`) |

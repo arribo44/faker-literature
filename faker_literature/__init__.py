@@ -6,6 +6,7 @@ import copy
 import datetime
 import itertools
 import statistics
+from collections import Counter
 from collections.abc import Callable, Hashable, Iterable, Sequence
 from typing import Any, TypeVar
 
@@ -23,6 +24,9 @@ __version__ = "0.3.0"
 __all__ = ["LiteratureProvider", "BookFilter", "BookStore", "default_db_path", "__version__"]
 
 T = TypeVar("T")
+
+# Fields of the localized books used by the provider but left out of book()
+INTERNAL_FIELDS = ("popularity", "writer_born", "writer_died")
 
 # Editions of older works are drawn from this year on
 EARLIEST_EDITION_YEAR = 1950
@@ -197,9 +201,10 @@ class LiteratureProvider(BaseProvider):
 
     @staticmethod
     def _export(book: LocalizedBook) -> LocalizedBook:
-        """Return a caller-owned copy of a localized record, without the internal popularity."""
+        """Return a caller-owned copy of a localized record, without the internal fields."""
         exported = dict(book, genre=list(book["genre"]))
-        exported.pop("popularity", None)
+        for field in INTERNAL_FIELDS:
+            exported.pop(field, None)
         return exported
 
     @property
@@ -500,6 +505,37 @@ class LiteratureProvider(BaseProvider):
         drawn: str = self._draw("publisher", lambda book: (book["publisher"],) if book["publisher"] else (),
                                 BookFilter(**filters), popular)
         return drawn
+
+    def writer_profile(self, name: str | None = None, **filters: Any) -> dict[str, Any]:
+        """Return the profile of a writer: life, nationality, books and main genres.
+
+        ``name`` picks the writer (ignoring case, accents and punctuation);
+        otherwise one is drawn like :meth:`writer`, with the same filters.
+        The profile holds ``name``, ``nationality``, ``born`` and ``died``
+        (years, ``None`` when unknown or for living writers), ``books`` (their
+        ``title`` and ``year``, oldest first) and ``genres`` (the five most
+        frequent).  A ``ValueError`` is raised for an unknown name.
+        """
+        if name is None:
+            name = self.writer(**filters)
+        elif filters:
+            raise TypeError("writer_profile(): pass either a name or filters, not both")
+        wanted = name_key(name)
+        books = sorted((book for book in self._catalogue
+                        if any(name_key(author) == wanted for author in _authors(book["writer"]))),
+                       key=lambda book: (book["year"], book["title"]))
+        if not books:
+            raise ValueError(f"No writer named {name!r}")
+        single = [book for book in books if CO_AUTHOR_SEPARATOR not in book["writer"]] or books
+        genres = Counter(genre for book in books for genre in book["genre"])
+        return {
+            "name": next((author for author in _authors(books[0]["writer"]) if name_key(author) == wanted), name),
+            "nationality": single[0]["nationality"],
+            "born": single[0].get("writer_born"),
+            "died": single[0].get("writer_died"),
+            "books": [{"title": book["title"], "year": book["year"]} for book in books],
+            "genres": [genre for genre, _ in genres.most_common(5)],
+        }
 
     def nationality(self) -> str:
         """Return an author nationality for the current locale.

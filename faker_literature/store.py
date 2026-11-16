@@ -48,7 +48,7 @@ MAX_PAGES = 100000
 # Fields of the schema; other ("extra") fields such as ``isbn`` are kept as is
 SCHEMA_FIELDS = {
     "writer", "nationality", "title", "title_untranslated", "genre", "year", "pages", "pages_estimated", "publisher",
-    "publisher_estimated", "popularity", "source", "wikidata_id",
+    "publisher_estimated", "popularity", "writer_born", "writer_died", "source", "wikidata_id",
 }
 MAX_EXTRA_FIELDS = 20
 MAX_POPULARITY = 10**9
@@ -83,9 +83,11 @@ def load_builtin_books(path: PathLike = BUILTIN_DATA) -> tuple[list[Record], str
     books = []
     for author in data["authors"]:
         for book in author["books"]:
+            life = {f"writer_{key}": author[key] for key in ("born", "died") if key in author}
             books.append({
                 "writer": author["name"],
                 "nationality": author["nationality"],
+                **life,
                 **book,
                 "genre": vocabulary.resolve(book["genre"]),
                 "source": BUILTIN_SOURCE,
@@ -187,6 +189,15 @@ def validate_book(book: object) -> None:
     if popularity is not None and (isinstance(popularity, bool) or not isinstance(popularity, int)
                                    or not 0 < popularity <= MAX_POPULARITY):
         raise ValueError(f"popularity: expected an integer between 1 and {MAX_POPULARITY}")
+    # Years of birth and death of the (single) author
+    for field in ("writer_born", "writer_died"):
+        value = book.get(field)
+        if value is not None and (isinstance(value, bool) or not isinstance(value, int)
+                                  or not MIN_YEAR <= value <= MAX_YEAR):
+            raise ValueError(f"{field}: expected a year between {MIN_YEAR} and {MAX_YEAR}")
+    if book.get("writer_born") is not None and book.get("writer_died") is not None \
+            and book["writer_died"] < book["writer_born"]:
+        raise ValueError("writer_died: before writer_born")
     _check_string(book.get("source"), "source")
     wikidata_id = book.get("wikidata_id")
     if "wikidata_id" in book and not (isinstance(wikidata_id, str) and WIKIDATA_ID.fullmatch(wikidata_id)):
@@ -215,6 +226,8 @@ def localize_book(book: Mapping[str, Any], locale: str) -> LocalizedBook:
         "pages": pick(book.get("pages"), locale),
         "publisher": pick(book.get("publisher"), locale),
         "popularity": book.get("popularity"),
+        "writer_born": book.get("writer_born"),
+        "writer_died": book.get("writer_died"),
     }
 
 

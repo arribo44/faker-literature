@@ -95,6 +95,8 @@ def test_invalid_record_leaves_the_store_unchanged():
     ({"pages_estimated": True}, "no page count"),
     ({"publisher_estimated": 1}, "publisher_estimated"),
     ({"title_untranslated": "yes"}, "title_untranslated"),
+    ({"writer_born": "1802"}, "writer_born"),
+    ({"writer_born": 1900, "writer_died": 1850}, "before writer_born"),
     ({"title_untranslated": True}, "differs"),
     ({"publisher_estimated": True, "publisher": None}, "no publisher"),
     ({f"field{i}": i for i in range(21)}, "extra fields"),
