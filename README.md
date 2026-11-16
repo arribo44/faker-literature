@@ -598,11 +598,20 @@ python -m build              # build the distributions
 
 The version is defined once, in `faker_literature/__init__.py` (`__version__`); the packaging metadata lives in `pyproject.toml`. GitHub Actions runs the same checks on every push and pull request: lint and type check, the test suite on Python 3.10 to 3.14 (and on Windows), then a build of the package checked with `twine check` and installed from the wheel.
 
+Releasing a version:
+
+1. set `__version__` in `faker_literature/__init__.py` and date its section in `CHANGELOG.md` (`## [X.Y.Z] - YYYY-MM-DD`);
+2. merge into `main`, then tag and push: `git tag -a vX.Y.Z -m "Release faker-literature X.Y.Z" && git push origin vX.Y.Z`.
+
+The `Release` workflow then tests and builds the package, checks that the tag matches the version and the changelog, publishes it on PyPI through [Trusted Publishing](https://docs.pypi.org/trusted-publishers/) (no API token stored), and creates the GitHub release with the changelog section as notes. Running the workflow by hand (*Actions → Release → Run workflow*) publishes on TestPyPI instead, as a dry run.
+
 Project layout:
 
 ```
 faker_literature/
 ├── __init__.py          # LiteratureProvider
+├── citation.py          # APA, MLA and Chicago references
+├── edition.py           # edition formats, prices and ISBN-13
 ├── __main__.py          # CLI (faker-literature): demo and import-wikidata
 ├── store.py             # BookStore: TinyDB storage, validation, localization
 ├── vocabulary.py        # GenreVocabulary: one translation per genre, aliases
