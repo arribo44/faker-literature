@@ -45,7 +45,9 @@ MIN_YEAR, MAX_YEAR = -3000, 2100
 MAX_PAGES = 100000
 
 # Fields of the schema; other ("extra") fields such as ``isbn`` are kept as is
-SCHEMA_FIELDS = {"writer", "nationality", "title", "genre", "year", "pages", "publisher", "source", "wikidata_id"}
+SCHEMA_FIELDS = {
+    "writer", "nationality", "title", "genre", "year", "pages", "pages_estimated", "publisher", "source", "wikidata_id",
+}
 MAX_EXTRA_FIELDS = 20
 EXTRA_FIELD_NAME = re.compile(r"[A-Za-z_][A-Za-z0-9_]{0,63}")
 WIKIDATA_ID = re.compile(r"Q[1-9][0-9]{0,11}")
@@ -160,6 +162,12 @@ def validate_book(book: object) -> None:
         raise ValueError(f"year: expected an integer between {MIN_YEAR} and {MAX_YEAR}")
     if book.get("pages") is not None:
         _check_localized(book["pages"], "pages", _check_pages)
+    # True when the page counts are an estimate of the usual length, not those of a known edition
+    if "pages_estimated" in book:
+        if not isinstance(book["pages_estimated"], bool):
+            raise ValueError("pages_estimated: expected true or false")
+        if book["pages_estimated"] and book.get("pages") is None:
+            raise ValueError("pages_estimated: no page count to qualify")
     if book.get("publisher") is not None:
         _check_localized(book["publisher"], "publisher", _check_optional_string)
     _check_string(book.get("source"), "source")

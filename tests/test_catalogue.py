@@ -80,6 +80,16 @@ def test_genres_are_sorted_by_id(catalogue):
     assert list(catalogue["genres"]) == sorted(catalogue["genres"])
 
 
+def test_page_counts_typed_by_hand_are_flagged_as_estimates(books):
+    # Books added from Wikidata carry its page counts; the others were estimated
+    unflagged = [_label(author, book) for author, book in books
+                 if "wikidata_id" not in book and book.get("pages") and book.get("pages_estimated") is not True]
+    wrongly_flagged = [_label(author, book) for author, book in books
+                       if "pages_estimated" in book and (book["pages_estimated"] is not True or not book.get("pages"))]
+    assert not unflagged
+    assert not wrongly_flagged
+
+
 def test_each_nationality_has_a_single_translation(catalogue):
     pairs = [(author["nationality"]["fr_FR"], author["nationality"]["en_US"]) for author in catalogue["authors"]]
     assert _one_to_one(pairs) == {}

@@ -116,10 +116,12 @@ work = fake.literary_work()  # same as fake.book()
 | `title` | `str` | Title, localized (translated title in `fr_FR`, English title in `en_US`) |
 | `genre` | `list[str]` | One or more genres, localized |
 | `year` | `int` | Year of first publication (negative for BC: `-800` for Homer) |
-| `pages` | `int` or `None` | Page count of a typical edition in that locale |
+| `pages` | `int` or `None` | Page count in that locale: of a real edition for books imported from Wikidata, otherwise an **estimate** of the usual length (see below) |
 | `publisher` | `str` or `None` | Publisher of a typical edition in that locale |
 
 Each call returns a **new dictionary**: you can modify it freely without affecting the catalogue.
+
+> **About page counts.** Most bundled books were entered by hand, with a page count that *estimates* the usual length of the work in each language (French editions are often a little longer). These estimates are realistic enough for test data but do not describe a specific edition: their raw records carry `"pages_estimated": true` (see `provider.books_flat`). Books imported from Wikidata carry the page count of a real edition when Wikidata has one, and `None` otherwise.
 
 ---
 
@@ -375,6 +377,7 @@ Record schema:
 | `genre` | ✅ | `{"fr_FR": [str, ...], "en_US": [str, ...]}` (1 to 20 genres) |
 | `year` | ✅ | integer between -3000 and 2100 |
 | `pages` | ❌ | `None`, or `{"fr_FR": int, "en_US": int}` (1 to 100000, each may be `None`) |
+| `pages_estimated` | ❌ | `true` when `pages` is an estimate rather than the count of a known edition |
 | `publisher` | ❌ | `None`, or `{"fr_FR": str, "en_US": str}` (each may be `None`) |
 
 Strings must be non-empty and at most 300 characters. The genres of your own datasets are free: they are not checked against the bundled genre vocabulary. `wikidata_id`, when present, must be a Wikidata id such as `Q35160`. Up to 20 extra fields (e.g. `isbn`, `copies`) are stored as is: their names must be identifiers, and their values a string (300 characters at most), a number, a boolean or `None`. If **any** record is invalid, `replace_source()` raises a `ValueError` naming the record and the field, and the database is left unchanged.

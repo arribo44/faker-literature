@@ -91,6 +91,8 @@ def test_invalid_record_leaves_the_store_unchanged():
     ({"isbn": "x" * 1000}, "longer than"),
     ({"bad name": 1}, "extra field names"),
     ({"score": float("nan")}, "finite"),
+    ({"pages_estimated": "yes"}, "pages_estimated"),
+    ({"pages_estimated": True}, "no page count"),
     ({f"field{i}": i for i in range(21)}, "extra fields"),
 ])
 def test_validate_book_rejects_malformed_records(overrides, message):
