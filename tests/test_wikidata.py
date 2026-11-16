@@ -12,8 +12,9 @@ from faker_literature.store import BookStore, validate_book
 def _row(work="Q1", **values):
     defaults = {
         "work": f"http://www.wikidata.org/entity/{work}",
-        "titleFr": "Le Portrait de Dorian Gray",
-        "titleEn": "The Picture of Dorian Gray",
+        # A work absent from the catalogue
+        "titleFr": "Le Portrait imaginaire",
+        "titleEn": "The Imaginary Portrait",
         "author": "http://www.wikidata.org/entity/Q30875",
         "writerFr": "Oscar Wilde",
         "writerEn": "Oscar Wilde",
@@ -276,3 +277,27 @@ def test_authors_already_in_the_catalogue_keep_their_name_and_nationality():
     assert kundera["writer"] == "Milan Kundera"
     assert kundera["nationality"] == {"fr_FR": "tchèque", "en_US": "Czech"}
     assert wilde == other
+
+
+def test_works_without_french_title_are_kept_only_on_request():
+    row = _row(titleEn="Franny and Zooey")
+    del row["titleFr"]
+
+    assert wikidata.parse_bindings([row]) == []
+    [record] = wikidata.parse_bindings([row], untranslated_titles=True)
+    assert record["title"] == {"fr_FR": "Franny and Zooey", "en_US": "Franny and Zooey"}
+    assert record["title_untranslated"] is True
+    validate_book(dict(record, source="wikidata"))
+    assert "title_untranslated" not in wikidata.parse_bindings([_row()], untranslated_titles=True)[0]
+
+
+def test_the_form_of_the_work_stands_in_for_missing_genres():
+    no_genre = _row(formFr="roman", formEn="novel")
+    del no_genre["genreFr"], no_genre["genreEn"]
+    unknown_genre = _row(work="Q2", genreFr="genre inconnu", genreEn="unknown genre", formFr="roman", formEn="novel")
+    known_genre = _row(work="Q3", formFr="roman", formEn="novel")
+
+    records = {record["wikidata_id"]: record["genre"]["en_US"] for record in wikidata.parse_bindings(
+        [no_genre, unknown_genre, known_genre])}
+
+    assert records == {"Q1": ["novel"], "Q2": ["novel"], "Q3": ["gothic novel"]}

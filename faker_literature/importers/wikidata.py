@@ -78,14 +78,15 @@ DATES_PATTERN = """
 
 DETAILS_QUERY = """
 SELECT ?work ?titleFr ?titleEn ?author ?writerFr ?writerEn ?date ?datePrecision ?inception ?inceptionPrecision
-       ?pages ?genreFr ?genreEn ?country ?demonymFr ?demonymEn ?birthCountry ?publisherFr ?publisherEn
+       ?pages ?genreFr ?genreEn ?formFr ?formEn ?country ?demonymFr ?demonymEn ?birthCountry ?publisherFr ?publisherEn
 WHERE {
   VALUES ?work { %(works)s }
   ?work wdt:P50 ?author .
   %(dates)s
   FILTER(BOUND(?date) || BOUND(?inception))
-  ?work rdfs:label ?titleFr . FILTER(LANG(?titleFr) = "fr")
   ?work rdfs:label ?titleEn . FILTER(LANG(?titleEn) = "en")
+  # Works never translated into French have no French title
+  OPTIONAL { ?work rdfs:label ?titleFr . FILTER(LANG(?titleFr) = "fr") }
   # Names identical in every language are now stored once, as "mul" labels
   OPTIONAL { ?author rdfs:label ?authorFr . FILTER(LANG(?authorFr) = "fr") }
   OPTIONAL { ?author rdfs:label ?authorEn . FILTER(LANG(?authorEn) = "en") }
@@ -97,6 +98,12 @@ WHERE {
     ?work wdt:P136 ?genre .
     ?genre rdfs:label ?genreFr . FILTER(LANG(?genreFr) = "fr")
     ?genre rdfs:label ?genreEn . FILTER(LANG(?genreEn) = "en")
+  }
+  # The form of the work (novel, play...) stands in for missing genres
+  OPTIONAL {
+    ?work wdt:P7937 ?form .
+    ?form rdfs:label ?formFr . FILTER(LANG(?formFr) = "fr")
+    ?form rdfs:label ?formEn . FILTER(LANG(?formEn) = "en")
   }
   OPTIONAL {
     ?author wdt:P27 ?country .
@@ -269,13 +276,18 @@ def parse_bindings(
     bindings: Iterable[Binding],
     vocabulary: GenreVocabulary | None = None,
     nationalities: Mapping[str, str] | None = None,
+    untranslated_titles: bool = False,
 ) -> list[Record]:
     """Group SPARQL rows by work and return catalogue records.
 
-    Genres are mapped onto ``vocabulary`` (by default the bundled one), and
-    nationalities use the translations of ``nationalities`` (``{English:
+    Genres are mapped onto ``vocabulary`` (by default the bundled one); a work
+    without a known genre falls back on its form (novel, play...).
+    Nationalities use the translations of ``nationalities`` (``{English:
     French}``, by default those of the bundled catalogue).  Works lacking a
-    known genre, a nationality or a usable date are left out.
+    known genre or form, a nationality or a usable date are left out, and so
+    are works without a French title unless ``untranslated_titles`` is true:
+    their French title is then the English one, flagged by
+    ``"title_untranslated": true``.
     """
     vocabulary = vocabulary or load_vocabulary()
     if nationalities is None:
@@ -284,12 +296,13 @@ def parse_bindings(
     for row in bindings:
         value = {key: cell["value"] for key, cell in row.items()}
         work = works.setdefault(_entity_id(value["work"]), {
-            "title": {"fr_FR": value["titleFr"], "en_US": value["titleEn"]},
+            "title": {"fr_FR": value.get("titleFr"), "en_US": value["titleEn"]},
             "writers": {},
             "years": set(),
             "inceptions": set(),
             "pages": set(),
             "genres": {},
+            "forms": {},
             "demonyms": {},
             "birth_countries": set(),
             "publisher": None,
@@ -304,6 +317,8 @@ def parse_bindings(
             work["pages"].add(int(value["pages"]))
         if "genreFr" in value:
             work["genres"].setdefault(value["genreFr"], value["genreEn"])
+        if "formFr" in value:
+            work["forms"].setdefault(value["formFr"], value["formEn"])
         if "demonymFr" in value:
             fr, en = work["demonyms"].setdefault(_entity_id(value["country"]), (set(), set()))
             fr.add(value["demonymFr"])
@@ -317,25 +332,34 @@ def parse_bindings(
     for entity, work in works.items():
         # Publication date first, creation date only when it is missing
         years = work["years"] or work["inceptions"]
-        genres = map_genres(work["genres"].items(), vocabulary)
+        genres = map_genres(work["genres"].items(), vocabulary) or map_genres(work["forms"].items(), vocabulary)
+        title = work["title"]
+        untranslated = title["fr_FR"] is None
+        if untranslated:
+            if not untranslated_titles:
+                continue
+            title = {"fr_FR": title["en_US"], "en_US": title["en_US"]}
         nationality = choose_nationality(work["demonyms"], work["birth_countries"], nationalities)
         if not (genres and nationality and years):
             continue
         writers = list(work["writers"].values())
         pages = min(work["pages"]) if work["pages"] else None
-        records.append({
+        record: Record = {
             "wikidata_id": entity,
             "writer": {
                 "fr_FR": ", ".join(fr for fr, _ in writers),
                 "en_US": ", ".join(en for _, en in writers),
             },
             "nationality": nationality,
-            "title": work["title"],
+            "title": title,
             "genre": vocabulary.resolve(genres),
             "year": min(years),
             "pages": None if pages is None else {"fr_FR": pages, "en_US": pages},
             "publisher": work["publisher"],
-        })
+        }
+        if untranslated:
+            record["title_untranslated"] = True
+        records.append(record)
     return records
 
 

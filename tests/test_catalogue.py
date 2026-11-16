@@ -92,6 +92,14 @@ def test_values_typed_by_hand_are_flagged_as_estimates(books, field):
     assert not wrongly_flagged
 
 
+def test_untranslated_titles_are_flagged_wikidata_works(books):
+    # Only books checked on Wikidata, whose French title is the original one, carry the flag
+    wrongly_flagged = [_label(author, book) for author, book in books if "title_untranslated" in book and (
+        book["title_untranslated"] is not True or "wikidata_id" not in book
+        or book["title"]["fr_FR"] != book["title"]["en_US"])]
+    assert not wrongly_flagged
+
+
 def test_each_nationality_has_a_single_translation(catalogue):
     pairs = [(author["nationality"]["fr_FR"], author["nationality"]["en_US"]) for author in catalogue["authors"]]
     assert _one_to_one(pairs) == {}

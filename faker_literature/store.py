@@ -47,8 +47,8 @@ MAX_PAGES = 100000
 
 # Fields of the schema; other ("extra") fields such as ``isbn`` are kept as is
 SCHEMA_FIELDS = {
-    "writer", "nationality", "title", "genre", "year", "pages", "pages_estimated", "publisher", "publisher_estimated",
-    "source", "wikidata_id",
+    "writer", "nationality", "title", "title_untranslated", "genre", "year", "pages", "pages_estimated", "publisher",
+    "publisher_estimated", "source", "wikidata_id",
 }
 MAX_EXTRA_FIELDS = 20
 EXTRA_FIELD_NAME = re.compile(r"[A-Za-z_][A-Za-z0-9_]{0,63}")
@@ -158,6 +158,12 @@ def validate_book(book: object) -> None:
     _check_localized(book.get("writer"), "writer", _check_string, allow_plain=True)
     _check_localized(book.get("nationality"), "nationality", _check_string)
     _check_localized(book.get("title"), "title", _check_string)
+    # True when the work was never translated into French: its French title is the original one
+    if "title_untranslated" in book:
+        if not isinstance(book["title_untranslated"], bool):
+            raise ValueError("title_untranslated: expected true or false")
+        if book["title_untranslated"] and book["title"]["fr_FR"] != book["title"]["en_US"]:
+            raise ValueError("title_untranslated: the French title differs from the English one")
     _check_localized(book.get("genre"), "genre", _check_genres)
     year = book.get("year")
     if isinstance(year, bool) or not isinstance(year, int) or not MIN_YEAR <= year <= MAX_YEAR:

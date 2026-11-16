@@ -52,8 +52,8 @@ version = { attr = "faker_literature.__version__" }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-# The local catalogue editor is a script, not part of the package
-pythonpath = ["tools/literature_editor"]
+# The local catalogue editor and the Goodreads import are scripts, not part of the package
+pythonpath = ["tools/literature_editor", "tools/goodreads_import"]
 
 [tool.ruff]
 line-length = 120
@@ -65,6 +65,7 @@ select = ["E", "F", "W", "I", "UP", "B"]
 [tool.ruff.lint.per-file-ignores]
 # These scripts put the repository on sys.path before importing the package
 "tools/literature_editor/*.py" = ["E402"]
+"tools/goodreads_import/*.py" = ["E402"]
 
 [tool.mypy]
 python_version = "3.10"

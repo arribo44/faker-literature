@@ -94,6 +94,8 @@ def test_invalid_record_leaves_the_store_unchanged():
     ({"pages_estimated": "yes"}, "pages_estimated"),
     ({"pages_estimated": True}, "no page count"),
     ({"publisher_estimated": 1}, "publisher_estimated"),
+    ({"title_untranslated": "yes"}, "title_untranslated"),
+    ({"title_untranslated": True}, "differs"),
     ({"publisher_estimated": True, "publisher": None}, "no publisher"),
     ({f"field{i}": i for i in range(21)}, "extra fields"),
 ])

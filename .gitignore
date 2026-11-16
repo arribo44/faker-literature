@@ -67,6 +67,9 @@ env/
 .DS_Store
 Thumbs.db
 
+# Export Goodreads (licence à vérifier) et cache de son import : jamais publiés
+data/goodreads/
+
 # Base TinyDB générée à l'exécution (régénérée automatiquement depuis literature.json)
 faker_literature/DATAS/.literature_db.json
 

@@ -14,13 +14,13 @@ Every record comes from a real catalogue of well-known works, so a generated boo
 
 | | Count |
 |---|---|
-| Authors | 190 |
-| Books | 518 |
-| Genres | ~210 per locale |
-| Nationalities | 24 |
+| Authors | 1,006 |
+| Books | 2,255 |
+| Genres | 220 per locale |
+| Nationalities | 56 |
 | Years covered | 800 BC → 2024 |
 
-Classics, philosophy, crime fiction, science fiction, fantasy, horror, poetry, drama, essays and contemporary novels by French, American, British, Italian, Greek, Roman, Russian, German, Japanese, Latin-American writers, and more.
+Classics, philosophy, crime fiction, science fiction, fantasy, horror, poetry, drama, essays and contemporary novels by French, American, British, Italian, Greek, Roman, Russian, German, Japanese, Latin-American writers, and more. 422 books were entered by hand; the others come from Wikidata, most of them picked among the most rated books of a Goodreads export (see [tools/goodreads_import](tools/goodreads_import/README.md)). Writers from English-speaking countries account for about three quarters of the books; 638 works never translated into French keep their original title in both locales (`"title_untranslated": true` in their raw record).
 
 ---
 
@@ -235,7 +235,7 @@ fake.books_by_year_range(-500, 0)       # Ancient Greek works
 Catalogue overview:
 
 ```python
-fake.all_authors()        # ['Agatha Christie', 'Alain Damasio', ...]  (190, sorted; co-authors listed separately)
+fake.all_authors()        # ['A. A. Milne', 'A. S. Byatt', ...]  (sorted; co-authors listed separately)
 fake.all_genres()         # ['absurd novel', 'absurdism', 'adolescence', ...]  (sorted, localized)
 fake.all_nationalities()  # ['Algerian', 'American', 'Ancient Greek', 'Argentine', ...]
 fake_fr.all_nationalities()  # ['algérien', 'allemand', 'américain', 'argentin', ...]
@@ -337,10 +337,11 @@ Default database location:
 
 What the importer does:
 
-- ranks works by number of Wikipedia articles and keeps those having a French **and** an English title, an author, a date precise to the decade at least, at least one known genre and an author nationality;
+- ranks works by number of Wikipedia articles and keeps those having a French **and** an English title, an author, a date precise to the decade at least, at least one known genre (or, failing that, a known form: novel, play...) and an author nationality;
 - reads years as historical years (no year 0: Wikidata's 37 BC is `-37`), whereas the query service counts 1 BC as year 0;
 - maps Wikidata genres onto the catalogue's genre vocabulary (*crime fiction* → *crime* / *polar*), so that a genre always has the same translation; genres missing from the vocabulary are dropped;
 - localizes author names (*Evgueni Zamiatine* / *Yevgeny Zamyatin*, *Platon* / *Plato*);
+- picks, for an author with several citizenships, the one of their country of birth (P. G. Wodehouse is British), and reuses the translations of the catalogue's nationalities (*British* is always *britannique*); an author already in the catalogue keeps their nationality;
 - skips works already present in the bundled catalogue (same Wikidata id, or same title ignoring case, accents and a leading article, year ± 2);
 - validates every record before writing anything;
 - **replaces** the previously imported Wikidata books when run again (no duplicates);
@@ -398,6 +399,7 @@ Record schema:
 | `writer` | ✅ | string, or `{"fr_FR": str, "en_US": str}` |
 | `nationality` | ✅ | `{"fr_FR": str, "en_US": str}` |
 | `title` | ✅ | `{"fr_FR": str, "en_US": str}` |
+| `title_untranslated` | ❌ | `true` when the work was never translated into French: both titles are the original one |
 | `genre` | ✅ | `{"fr_FR": [str, ...], "en_US": [str, ...]}` (1 to 20 genres) |
 | `year` | ✅ | integer between -3000 and 2100 |
 | `pages` | ❌ | `None`, or `{"fr_FR": int, "en_US": int}` (1 to 100000, each may be `None`) |
@@ -506,6 +508,9 @@ faker_literature/
 │   └── wikidata.py      # Wikidata importer
 └── DATAS/
     └── literature.json  # bundled catalogue: genre vocabulary + authors and books
+tools/
+├── literature_editor/   # local web page to add books to literature.json from Wikidata
+└── goodreads_import/    # adds the works of a Goodreads export to literature.json, through Wikidata
 ```
 
 ---

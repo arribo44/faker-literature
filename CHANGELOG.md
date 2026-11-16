@@ -38,6 +38,10 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 
 ### Ajouté
 
+- Catalogue : 1 737 livres ajoutés depuis Wikidata (2 255 livres, 1 006 auteurs, 56 nationalités), choisis parmi les livres les plus notés d'un export Goodreads par le nouvel outil `tools/goodreads_import`. L'export ne sert que de liste d'œuvres à chercher : titres, année, genres, nationalité, pages et éditeur viennent de Wikidata (CC0). Au plus 5 livres par auteur, œuvres à plusieurs auteurs écartées.
+- Schéma : `title_untranslated` signale une œuvre jamais traduite en français, dont le titre français est le titre original.
+- Vocabulaire : genres non-fiction, jeunes adultes, uchronie, high fantasy, science fantasy, recueil de nouvelles et novella ; alias pour les libellés Wikidata courants (« historical fiction », « crime literature »…).
+- Importeur Wikidata : la forme de l'œuvre (roman, pièce…) remplace le genre quand aucun genre connu n'est donné ; `parse_bindings(untranslated_titles=True)` garde les œuvres sans titre français.
 - Vocabulaire contrôlé des genres : `literature.json` définit chaque genre une seule fois, sous `genres`, avec un libellé par langue et des alias ; les livres y font référence par identifiant. Le format des enregistrements du `BookStore` et les résultats du provider sont inchangés.
 - Module `faker_literature.matching` : normalisation des noms et des titres et détection des doublons, communes à l'éditeur, à l'importeur et au stockage.
 - Éditeur : les genres saisis ou proposés par Wikidata sont ramenés au vocabulaire (un genre connu peut n'être saisi que dans une langue) ; un genre inconnu saisi dans les deux langues est ajouté au vocabulaire. Un clic sur un genre du panneau l'ajoute avec sa traduction.
