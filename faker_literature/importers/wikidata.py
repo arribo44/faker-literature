@@ -11,7 +11,8 @@ import time
 import urllib.parse
 import urllib.request
 
-from faker_literature.store import MAX_PAGES, validate_book
+from faker_literature.matching import YEAR_TOLERANCE, DuplicateIndex
+from faker_literature.store import MAX_PAGES, load_vocabulary, validate_book
 
 
 SOURCE = "wikidata"
@@ -117,11 +118,28 @@ def _pick_demonym(values, locale):
     return min(values, key=shortest).lower()
 
 
-def parse_bindings(bindings):
+def map_genres(labels, vocabulary):
+    """Return the vocabulary ids of the ``(French, English)`` genre labels.
+
+    Wikidata genres are matched on their French label, then on their English
+    one; genres missing from the vocabulary are dropped, so that imported
+    books only use genres with a single, known translation.
+    """
+    ids = []
+    for fr, en in labels:
+        genre_id = vocabulary.match(fr, "fr_FR") or vocabulary.match(en, "en_US")
+        if genre_id and genre_id not in ids:
+            ids.append(genre_id)
+    return ids
+
+
+def parse_bindings(bindings, vocabulary=None):
     """Group SPARQL rows by work and return catalogue records.
 
-    Works lacking a genre, a nationality or a usable date are left out.
+    Genres are mapped onto ``vocabulary`` (by default the bundled one).  Works
+    lacking a known genre, a nationality or a usable date are left out.
     """
+    vocabulary = vocabulary or load_vocabulary()
     works = {}
     for row in bindings:
         value = {key: cell["value"] for key, cell in row.items()}
@@ -156,7 +174,8 @@ def parse_bindings(bindings):
     for entity, work in works.items():
         # Publication date first, creation date only when it is missing
         years = work["years"] or work["inceptions"]
-        if not (work["genres"] and work["demonyms"] and years):
+        genres = map_genres(work["genres"].items(), vocabulary)
+        if not (genres and work["demonyms"] and years):
             continue
         # Several citizenships: the lowest Q-id is usually the best known country
         demonyms_fr, demonyms_en = work["demonyms"][min(work["demonyms"], key=lambda q: int(q[1:]))]
@@ -173,10 +192,7 @@ def parse_bindings(bindings):
                 "en_US": _pick_demonym(demonyms_en, "en_US"),
             },
             "title": work["title"],
-            "genre": {
-                "fr_FR": list(work["genres"]),
-                "en_US": list(work["genres"].values()),
-            },
+            "genre": vocabulary.resolve(genres),
             "year": min(years),
             "pages": None if pages is None else {"fr_FR": pages, "en_US": pages},
             "publisher": work["publisher"],
@@ -185,20 +201,17 @@ def parse_bindings(bindings):
 
 
 def exclude_known(records, known_books):
-    """Drop records already present in ``known_books`` (same title, year +/- 2)."""
-    known = {}
-    for book in known_books:
-        for title in book["title"].values():
-            known.setdefault(title.casefold(), []).append(book["year"])
-    kept = []
-    for record in records:
-        years = [year for title in record["title"].values() for year in known.get(title.casefold(), ())]
-        if not any(abs(year - record["year"]) <= 2 for year in years):
-            kept.append(record)
-    return kept
+    """Drop records already present in ``known_books``.
+
+    A record is known when it has the same Wikidata id as a known book, or
+    the same title (ignoring case, accents and a leading article) within
+    ``YEAR_TOLERANCE`` years.
+    """
+    index = DuplicateIndex(known_books, year_tolerance=YEAR_TOLERANCE)
+    return [record for record in records if record not in index]
 
 
-def fetch_works(limit=500, min_sitelinks=30, pause=1.0, log=print):
+def fetch_works(limit=500, min_sitelinks=30, pause=1.0, log=print, vocabulary=None):
     """Fetch up to ``limit`` of the most linked literary works and return valid records."""
     limit = max(1, min(int(limit), MAX_LIMIT))
     min_sitelinks = max(0, int(min_sitelinks))
@@ -216,7 +229,7 @@ def fetch_works(limit=500, min_sitelinks=30, pause=1.0, log=print):
         if start:
             time.sleep(pause)
         rows = run_query(DETAILS_QUERY % {"works": " ".join("wd:" + entity for entity in batch)})
-        records.extend(parse_bindings(rows))
+        records.extend(parse_bindings(rows, vocabulary))
         log(f"  batch {start // BATCH_SIZE + 1}: {len(records)} usable works so far")
 
     valid = []
@@ -233,6 +246,7 @@ def fetch_works(limit=500, min_sitelinks=30, pause=1.0, log=print):
 def import_into(store, limit=500, min_sitelinks=30, log=print):
     """Fetch works from Wikidata and replace the store's ``wikidata`` books with them."""
     builtin = [book for book in store.books.all() if book["source"] != SOURCE]
-    records = exclude_known(fetch_works(limit, min_sitelinks, log=log), builtin)
+    vocabulary = load_vocabulary()
+    records = exclude_known(fetch_works(limit, min_sitelinks, log=log, vocabulary=vocabulary), builtin)
     return store.replace_source(SOURCE, records)
 

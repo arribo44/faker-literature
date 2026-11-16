@@ -37,7 +37,7 @@ def test_rows_are_grouped_into_one_valid_record():
     assert record["nationality"] == {"fr_FR": "irlandais", "en_US": "Irish"}
     assert record["genre"] == {
         "fr_FR": ["roman gothique", "roman philosophique"],
-        "en_US": ["Gothic novel", "philosophical novel"],
+        "en_US": ["gothic novel", "philosophical novel"],
     }
     validate_book(dict(record, source="wikidata"))
 
@@ -107,3 +107,29 @@ def test_implausible_page_counts_are_ignored():
     [record] = wikidata.parse_bindings([_row(pages="940512")])
 
     assert record["pages"] is None
+
+
+def test_genres_are_mapped_onto_the_vocabulary():
+    rows = [
+        _row(genreFr="fiction gothique", genreEn="gothic fiction"),
+        _row(genreFr="genre inconnu", genreEn="crime fiction"),
+        _row(genreFr="genre inconnu", genreEn="unknown genre"),
+    ]
+
+    [record] = wikidata.parse_bindings(rows)
+
+    assert record["genre"] == {"fr_FR": ["roman gothique", "polar"], "en_US": ["gothic novel", "crime"]}
+
+
+def test_works_with_only_unknown_genres_are_skipped():
+    assert wikidata.parse_bindings([_row(genreFr="genre inconnu", genreEn="unknown genre")]) == []
+
+
+def test_known_works_are_matched_by_wikidata_id_or_normalized_title():
+    known = [{"wikidata_id": "Q8275", "title": {"fr_FR": "L'Iliade", "en_US": "Iliad"}, "year": -800}]
+    record = wikidata.parse_bindings([_row()])[0]
+    same_id = dict(record, wikidata_id="Q8275")
+    same_title = dict(record, title={"fr_FR": "Iliade", "en_US": "The Iliad"}, year=-799)
+    other_year = dict(same_title, year=-500)
+
+    assert wikidata.exclude_known([same_id, same_title, other_year], known) == [other_year]

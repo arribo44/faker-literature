@@ -105,7 +105,7 @@ def test_add_book_creates_a_sorted_author(catalogue):
     assert names[index - 1] <= names[index] <= names[index + 1]
     book = catalogue["authors"][index]["books"][0]
     assert book["year"] == 1008
-    assert book["genre"]["fr_FR"] == ["roman", "classique"]
+    assert book["genre"] == ["novel", "classic"]
     assert book["pages"] == {"fr_FR": 1400, "en_US": None}
     assert book["publisher"] == {"fr_FR": "Verdier", "en_US": None}
 
@@ -186,8 +186,46 @@ def test_multilingual_labels_fill_missing_names_and_titles():
 
 
 def test_genre_errors_are_explained_in_french(catalogue):
-    with pytest.raises(ValueError, match=r"Genres \(français\) : au moins un genre"):
-        editor.add_book(catalogue, _author(), _book(genre={"fr_FR": " , ", "en_US": "novel"}))
+    with pytest.raises(ValueError, match=r"Genres : au moins un genre"):
+        editor.add_book(catalogue, _author(), _book(genre={"fr_FR": " , ", "en_US": ""}))
+
+
+def test_known_genres_are_stored_by_id_from_either_language(catalogue):
+    editor.add_book(catalogue, _author(), _book(genre={"fr_FR": "", "en_US": "crime fiction, Novel"}))
+
+    entry = editor.find_author(catalogue, "Q999999", [])
+    assert entry["books"][0]["genre"] == ["crime", "novel"]
+
+
+def test_unknown_genres_need_a_translation(catalogue):
+    before = copy.deepcopy(catalogue)
+
+    with pytest.raises(ValueError, match="traduction en anglais"):
+        editor.add_book(catalogue, _author(), _book(genre={"fr_FR": "roman, monogatari", "en_US": "novel"}))
+    assert catalogue == before
+
+
+def test_rejected_book_adds_no_genre(catalogue):
+    before = copy.deepcopy(catalogue)
+
+    with pytest.raises(ValueError, match="Année"):
+        editor.add_book(catalogue, _author(), _book(year="", genre={"fr_FR": "monogatari", "en_US": "monogatari"}))
+    assert catalogue == before
+
+
+def test_genre_without_letters_is_refused(catalogue):
+    with pytest.raises(ValueError, match="ne peut pas devenir un nouveau genre"):
+        editor.add_book(catalogue, _author(), _book(genre={"fr_FR": "?", "en_US": "?"}))
+
+
+def test_wikidata_genres_are_replaced_by_catalogue_labels(catalogue):
+    author = {"wikidata_id": "Q999999", "name": {"fr_FR": "Murasaki Shikibu", "en_US": "Murasaki Shikibu"}}
+    works = [{"title": {"fr_FR": "Inédit", "en_US": "Unpublished"},
+              "genre": {"fr_FR": ["fiction gothique", "monogatari"], "en_US": ["gothic fiction", "monogatari"]}}]
+
+    editor.annotate(catalogue, author, works)
+
+    assert works[0]["genre"] == {"fr_FR": ["roman gothique", "monogatari"], "en_US": ["gothic novel", "monogatari"]}
 
 
 def test_parse_influences_separates_people_from_works():
@@ -268,9 +306,12 @@ def test_titles_differing_by_an_article_are_duplicates(catalogue):
 
 
 def test_french_nationality_and_genres_are_lower_cased(catalogue):
-    editor.add_book(catalogue, _author(nationality={"fr_FR": "Japonais", "en_US": "Japanese"}),
-                    _book(genre={"fr_FR": "Roman, roman, Classique", "en_US": "Novel, classic"}))
+    message, _ = editor.add_book(catalogue, _author(nationality={"fr_FR": "Japonais", "en_US": "Japanese"}),
+                                 _book(genre={"fr_FR": "Roman, roman, Journal intime", "en_US": "Novel, pillow book"}))
 
     entry = editor.find_author(catalogue, "Q999999", [])
     assert entry["nationality"]["fr_FR"] == "japonais"
-    assert entry["books"][0]["genre"] == {"fr_FR": ["roman", "classique"], "en_US": ["Novel", "classic"]}
+    assert entry["books"][0]["genre"] == ["novel", "pillow-book"]
+    assert catalogue["genres"]["pillow-book"] == {"fr_FR": "journal intime", "en_US": "pillow book"}
+    assert "Nouveau(x) genre(s) : journal intime / pillow book" in message
+    assert list(catalogue["genres"]) == sorted(catalogue["genres"])

@@ -8,6 +8,9 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 
 ### Ajouté
 
+- Vocabulaire contrôlé des genres : `literature.json` définit chaque genre une seule fois, sous `genres`, avec un libellé par langue et des alias ; les livres y font référence par identifiant. Le format des enregistrements du `BookStore` et les résultats du provider sont inchangés.
+- Module `faker_literature.matching` : normalisation des noms et des titres et détection des doublons, communes à l'éditeur, à l'importeur et au stockage.
+- Éditeur : les genres saisis ou proposés par Wikidata sont ramenés au vocabulaire (un genre connu peut n'être saisi que dans une langue) ; un genre inconnu saisi dans les deux langues est ajouté au vocabulaire. Un clic sur un genre du panneau l'ajoute avec sa traduction.
 - Tests de cohérence du catalogue (`tests/test_catalogue.py`) : traduction unique de chaque genre et de chaque nationalité, pas de nationalité utilisée comme genre, casse, espaces parasites, tri des auteurs et des livres, unicité des identifiants Wikidata, des noms d'auteurs et des titres.
 
 ### Corrigé
@@ -16,6 +19,8 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 - Catalogue : titre français de *Skulls in the Stars* (« Des crânes dans les étoiles »), éditeurs erronés corrigés ou retirés (Project Gutenberg, Gustave Simon…), espace parasite dans « Grove Press », auteurs et livres remis dans l'ordre.
 - Éditeur : la détection des doublons ne coupe plus le début des titres commençant comme un article (« Anna Karénine », « Theogony », « Lettres persanes »).
 - Éditeur : un homonyme ayant un autre identifiant Wikidata n'est plus confondu avec l'auteur déjà présent au catalogue.
+- Importeur Wikidata : les genres sont ramenés au vocabulaire du catalogue (les genres inconnus sont ignorés), et les œuvres déjà présentes sont aussi reconnues par leur identifiant Wikidata et par leur titre normalisé (accents, ponctuation, article initial).
+- Base persistante : quand le catalogue intégré est mis à jour, les livres importés qu'il contient désormais sont supprimés au lieu de faire doublon.
 
 ## [0.3.0] - 2026-10-31
 

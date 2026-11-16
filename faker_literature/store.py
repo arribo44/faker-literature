@@ -14,6 +14,9 @@ from pathlib import Path
 from tinydb import Query, TinyDB
 from tinydb.storages import MemoryStorage
 
+from faker_literature.matching import YEAR_TOLERANCE, DuplicateIndex
+from faker_literature.vocabulary import GenreVocabulary
+
 
 LOCALES = ("fr_FR", "en_US")
 SCHEMA_VERSION = 1
@@ -35,10 +38,21 @@ def default_db_path():
     return base / "faker-literature" / "literature_db.json"
 
 
+def load_vocabulary(path=BUILTIN_DATA):
+    """Return the :class:`GenreVocabulary` of the bundled JSON."""
+    data = json.loads(Path(path).read_text(encoding="utf-8"))
+    return GenreVocabulary(data["genres"])
+
+
 def load_builtin_books(path=BUILTIN_DATA):
-    """Read the bundled JSON and return ``(flat records, sha256 of the file)``."""
+    """Read the bundled JSON and return ``(flat records, sha256 of the file)``.
+
+    Books refer to genres by id: records get the ``{locale: [labels]}`` of
+    the vocabulary instead.
+    """
     raw = Path(path).read_bytes()
     data = json.loads(raw.decode("utf-8"))
+    vocabulary = GenreVocabulary(data["genres"])
     books = []
     for author in data["authors"]:
         for book in author["books"]:
@@ -46,6 +60,7 @@ def load_builtin_books(path=BUILTIN_DATA):
                 "writer": author["name"],
                 "nationality": author["nationality"],
                 **book,
+                "genre": vocabulary.resolve(book["genre"]),
                 "source": BUILTIN_SOURCE,
             })
     return books, hashlib.sha256(raw).hexdigest()
@@ -151,6 +166,8 @@ class BookStore:
                 indent=2, ensure_ascii=False,
             )
         self._localized = {}
+        # Imported books dropped by the last re-sync of the bundled catalogue
+        self.removed_duplicates = 0
         self._sync_builtin(builtin_path)
 
     @property
@@ -165,8 +182,19 @@ class BookStore:
         if meta.all() == [expected]:
             return
         self.replace_source(BUILTIN_SOURCE, books)
+        self.removed_duplicates = self._drop_builtin_duplicates(books)
         meta.truncate()
         meta.insert(expected)
+
+    def _drop_builtin_duplicates(self, builtin):
+        """Remove imported books that the new bundled catalogue now contains."""
+        index = DuplicateIndex(builtin, year_tolerance=YEAR_TOLERANCE)
+        duplicates = [book.doc_id for book in self.books.all()
+                      if book["source"] != BUILTIN_SOURCE and book in index]
+        if duplicates:
+            self.books.remove(doc_ids=duplicates)
+            self._localized.clear()
+        return len(duplicates)
 
     def replace_source(self, source, books):
         """Replace every book of ``source`` with ``books`` and return their count.

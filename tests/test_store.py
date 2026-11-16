@@ -115,3 +115,27 @@ def test_imported_books_are_generated_with_localized_names(tmp_path, reset_store
     assert "L'Odyssée" in [book["title"] for book in fake_fr.books_by_author("Homère")]
     assert "Greek" in fake_en.all_nationalities()
     assert fake_en.pages() is not None
+
+
+def test_imported_books_added_later_to_the_bundled_catalogue_are_dropped(tmp_path, bundled_copy):
+    original = bundled_copy.read_text(encoding="utf-8")
+    data = json.loads(original)
+    hugo = next(author for author in data["authors"] if author["name"] == "Victor Hugo")
+    miserables = next(book for book in hugo["books"] if book["title"]["fr_FR"] == "Les Misérables")
+    hugo["books"].remove(miserables)
+    bundled_copy.write_text(json.dumps(data), encoding="utf-8")
+
+    db_path = tmp_path / "db.json"
+    store = BookStore(db_path, builtin_path=bundled_copy)
+    # Imported from Wikidata before the bundled catalogue had it
+    store.replace_source("wikidata", [_imported_book(), _imported_book(
+        writer="Victor Hugo", nationality={"fr_FR": "français", "en_US": "French"},
+        title={"fr_FR": "Les Miserables", "en_US": "Les Misérables"}, year=miserables["year"] + 1,
+    )])
+    store.close()
+
+    bundled_copy.write_text(original, encoding="utf-8")
+    reopened = BookStore(db_path, builtin_path=bundled_copy)
+
+    assert reopened.sources()["wikidata"] == 1
+    assert reopened.removed_duplicates == 1

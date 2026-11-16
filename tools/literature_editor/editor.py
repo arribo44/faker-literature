@@ -5,14 +5,15 @@ import os
 import re
 import sys
 import tempfile
-import unicodedata
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from faker_literature.importers.wikidata import _entity_id, _parse_year, _pick_demonym, run_query  # noqa: E402
+from faker_literature.matching import DuplicateIndex, name_key, names as _names, sort_key, title_key  # noqa: E402
 from faker_literature.store import LOCALES, MAX_PAGES, validate_book  # noqa: E402
+from faker_literature.vocabulary import GenreVocabulary  # noqa: E402
 
 
 CATALOGUE_PATH = ROOT / "faker_literature" / "DATAS" / "literature.json"
@@ -238,28 +239,10 @@ def save_catalogue(data, path=None):
         raise
 
 
-def _names(value):
-    return set(value.values()) if isinstance(value, dict) else {value}
-
-
-def _sort_name(value):
-    """Accent-insensitive sort key, so that "Émile Zola" sorts among the E."""
-    name = value.get("fr_FR", "") if isinstance(value, dict) else value
-    return "".join(c for c in unicodedata.normalize("NFKD", name) if not unicodedata.combining(c)).casefold()
-
-
-def _name_key(name):
-    """Compare names regardless of accents, case, spaces and punctuation ("J. D." == "J.D.")."""
-    return "".join(c for c in _sort_name(name) if c.isalnum())
-
-
-# An article is a whole word ("The Iliad", "L'Iliade"), never the start of one ("Anna", "Theogony")
-LEADING_ARTICLE = re.compile(r"^(?:(?:le|la|les|un|une|the|a|an)\s+|l['’]\s*)(?=\S)", re.IGNORECASE)
-
-
-def _title_key(title):
-    """Compare titles regardless of a leading article ("L'Iliade" == "Iliade")."""
-    return _name_key(LEADING_ARTICLE.sub("", title.strip()))
+# Shared with the importer and the store (kept under these names for the tests)
+_sort_name = sort_key
+_name_key = name_key
+_title_key = title_key
 
 
 def find_author(data, qid, names):
@@ -283,17 +266,14 @@ def find_author(data, qid, names):
 
 
 def _is_known(book, entry_books):
-    ids = {known.get("wikidata_id") for known in entry_books} - {None}
-    if book.get("wikidata_id") in ids:
-        return True
-    titles = {_title_key(title) for known in entry_books for title in known["title"].values()}
-    return any(title and _title_key(title) in titles for title in book["title"].values())
+    """Same Wikidata id or same normalized title, whatever the year (one author's books)."""
+    return book in DuplicateIndex(entry_books)
 
 
 def catalogue_info(data):
     """Return the values already used in the catalogue, to suggest consistent ones."""
     info = {"authors": len(data["authors"]), "books": 0}
-    for field in ("nationality", "genre", "publisher"):
+    for field in ("nationality", "publisher"):
         info[field] = {locale: set() for locale in LOCALES}
     for entry in data["authors"]:
         info["books"] += len(entry["books"])
@@ -301,11 +281,13 @@ def catalogue_info(data):
             info["nationality"][locale].add(entry["nationality"][locale])
         for book in entry["books"]:
             for locale in LOCALES:
-                info["genre"][locale].update(book["genre"][locale])
                 if book.get("publisher") and book["publisher"].get(locale):
                     info["publisher"][locale].add(book["publisher"][locale])
-    for field in ("nationality", "genre", "publisher"):
+    for field in ("nationality", "publisher"):
         info[field] = {locale: sorted(values, key=str.casefold) for locale, values in info[field].items()}
+    vocabulary = GenreVocabulary(data["genres"])
+    info["genre"] = {locale: vocabulary.labels(locale) for locale in LOCALES}
+    info["genre_pairs"] = [{locale: genre[locale] for locale in LOCALES} for genre in data["genres"].values()]
     return info
 
 
@@ -316,8 +298,11 @@ def annotate(data, author, works):
             data, influence["wikidata_id"], [influence["name"]]) is not None
     entry = find_author(data, author["wikidata_id"], author["name"].values())
     books = entry["books"] if entry else [book for item in data["authors"] for book in item["books"]]
+    vocabulary = GenreVocabulary(data["genres"])
     for work in works:
         work["in_catalogue"] = _is_known(work, books)
+        if "genre" in work:
+            work["genre"] = suggest_genres(vocabulary, work["genre"])
     if entry is None:
         return None
     return {"name": entry["name"], "nationality": entry["nationality"], "books": len(entry["books"])}
@@ -347,6 +332,54 @@ def _clean_genres(value):
 
 def _lower_first(text):
     return text[:1].lower() + text[1:]
+
+
+def suggest_genres(vocabulary, genre):
+    """Replace the Wikidata genre labels by the catalogue ones when the genre is known.
+
+    Unknown genres are kept as they are, so that the user can add them.
+    """
+    suggested = {locale: [] for locale in LOCALES}
+    for fr, en in zip(genre["fr_FR"], genre["en_US"]):
+        genre_id = vocabulary.match(fr, "fr_FR") or vocabulary.match(en, "en_US")
+        labels = vocabulary.genres[genre_id] if genre_id else {"fr_FR": fr, "en_US": en}
+        for locale in LOCALES:
+            if labels[locale] not in suggested[locale]:
+                suggested[locale].append(labels[locale])
+    return suggested
+
+
+def genre_ids(vocabulary, genre):
+    """Return the ids of the genres typed in the page, adding the new ones to ``vocabulary``.
+
+    Each label is looked up in the vocabulary (labels and aliases, in either
+    language).  Unknown labels make new genres: the n-th unknown French label
+    is paired with the n-th unknown English one, so both lists must contain
+    as many of them.  Returns ``(ids, new genres as "fr / en")``.
+    """
+    ids, unknown = [], {locale: [] for locale in LOCALES}
+    for locale in LOCALES:
+        for label in genre[locale]:
+            genre_id = vocabulary.match(label, locale)
+            if genre_id is None:
+                unknown[locale].append(label)
+            elif genre_id not in ids:
+                ids.append(genre_id)
+    if len(unknown["fr_FR"]) != len(unknown["en_US"]):
+        missing = "anglais" if len(unknown["fr_FR"]) > len(unknown["en_US"]) else "français"
+        labels = ", ".join(f"« {label} »" for locale in LOCALES for label in unknown[locale])
+        raise ValueError(f"Genres : {labels} absent(s) du vocabulaire. Pour créer un nouveau genre, "
+                         f"donnez sa traduction en {missing} à la même position que dans l'autre liste.")
+    new = []
+    for fr, en in zip(unknown["fr_FR"], unknown["en_US"]):
+        try:
+            genre_id = vocabulary.add(fr, en)
+        except ValueError as error:
+            raise ValueError(f"Genres : « {fr} » / « {en} » ne peut pas devenir un nouveau genre ({error}).") from None
+        if genre_id not in ids:
+            ids.append(genre_id)
+            new.append(f"{fr} / {en}")
+    return ids, new
 
 
 def build_book(raw):
@@ -413,12 +446,19 @@ def add_book(data, raw_author, raw_book):
     book = build_book(raw_book)
     entry = find_author(data, qid, names.values())
     created = entry is None
+    # New genres go to a copy of the vocabulary until the book is accepted
+    genres = dict(data["genres"])
+    vocabulary = GenreVocabulary(genres)
+    if not (book["genre"]["fr_FR"] or book["genre"]["en_US"]):
+        raise ValueError("Genres : au moins un genre est requis, en français ou en anglais, séparés par des virgules.")
+    book["genre"], new_genres = genre_ids(vocabulary, book["genre"])
 
     if created:
         name = names["fr_FR"] if names["fr_FR"] == names["en_US"] else names
         entry = {"name": name, "wikidata_id": qid, "nationality": nationality, "books": []}
     try:
-        validate_book({"writer": entry["name"], "nationality": entry["nationality"], **book, "source": "builtin"})
+        validate_book({"writer": entry["name"], "nationality": entry["nationality"], **book,
+                       "genre": vocabulary.resolve(book["genre"]), "source": "builtin"})
     except ValueError as error:
         raise ValueError(explain_error(error)) from None
     if _is_known(book, entry["books"]):
@@ -432,8 +472,11 @@ def add_book(data, raw_author, raw_book):
         entry.setdefault("wikidata_id", qid)
     position = next((index for index, other in enumerate(entry["books"]) if other["year"] > book["year"]), len(entry["books"]))
     entry["books"].insert(position, book)
+    data["genres"] = dict(sorted(genres.items()))
 
     title = book["title"]["fr_FR"]
-    if created:
-        return f"« {title} » ajouté, avec le nouvel auteur {names['fr_FR']}.", True
-    return f"« {title} » ajouté à {names['fr_FR']} ({len(entry['books'])} livres).", False
+    message = (f"« {title} » ajouté, avec le nouvel auteur {names['fr_FR']}." if created
+               else f"« {title} » ajouté à {names['fr_FR']} ({len(entry['books'])} livres).")
+    if new_genres:
+        message += " Nouveau(x) genre(s) : " + ", ".join(new_genres) + "."
+    return message, created

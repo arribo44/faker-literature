@@ -113,7 +113,7 @@
 
   <section class="panel" id="genres-panel" hidden>
     <details>
-      <summary><strong>Genres déjà utilisés dans le catalogue</strong> <span class="muted small">— cliquez pour l'ajouter au dernier champ « genres » sélectionné</span></summary>
+      <summary><strong>Genres déjà utilisés dans le catalogue</strong> <span class="muted small">— cliquez pour l'ajouter, en français et en anglais, à la dernière œuvre dont vous avez sélectionné un champ « genres »</span></summary>
       <input type="search" id="genre-filter" placeholder="Filtrer les genres…" style="margin-top:10px">
       <div class="cols">
         <div><strong class="small">Français</strong><div class="chips" id="chips-fr"></div></div>
@@ -145,7 +145,8 @@
 const $ = (id) => document.getElementById(id);
 const LOCALES = ["fr_FR", "en_US"];
 const state = { author: null, existing: null, works: [] };
-const lastGenreInput = { fr_FR: null, en_US: null };
+// Genre fields of the last work whose French or English genres were focused
+let lastGenreInputs = null;
 
 function el(tag, attrs = {}, ...children) {
   const node = document.createElement(tag);
@@ -212,16 +213,21 @@ function renderChips() {
   }
 }
 
+// A genre of the vocabulary is added with its translation, so both lists stay paired
 function appendGenre(locale, genre) {
-  const input = lastGenreInput[locale];
-  if (!input || !input.isConnected) {
-    toast("Ouvrez d'abord une œuvre et cliquez dans son champ « genres " + (locale === "fr_FR" ? "français" : "anglais") + " ».", true);
+  if (!lastGenreInputs || !lastGenreInputs.fr_FR.isConnected) {
+    toast("Ouvrez d'abord une œuvre et cliquez dans l'un de ses champs « genres ».", true);
     return;
   }
-  const genres = input.value.split(",").map((g) => g.trim()).filter(Boolean);
-  if (!genres.includes(genre)) genres.push(genre);
-  input.value = genres.join(", ");
-  input.dispatchEvent(new Event("input"));
+  const pair = (state.catalogue?.genre_pairs || []).find((item) => item[locale] === genre) || { [locale]: genre };
+  for (const target of LOCALES) {
+    const input = lastGenreInputs[target];
+    if (!pair[target]) continue;
+    const genres = input.value.split(",").map((g) => g.trim()).filter(Boolean);
+    if (!genres.includes(pair[target])) genres.push(pair[target]);
+    input.value = genres.join(", ");
+    input.dispatchEvent(new Event("input"));
+  }
 }
 
 async function loadCatalogue() {
@@ -335,8 +341,9 @@ function buildWorkForm(work, details) {
     publisher_fr: el("input", { value: work.publisher.fr_FR, list: "publishers-fr", placeholder: "Gallimard" }),
     publisher_en: el("input", { value: work.publisher.en_US, list: "publishers-en", placeholder: "Penguin Classics" }),
   };
-  inputs.genre_fr.addEventListener("focus", () => { lastGenreInput.fr_FR = inputs.genre_fr; });
-  inputs.genre_en.addEventListener("focus", () => { lastGenreInput.en_US = inputs.genre_en; });
+  const genreInputs = { fr_FR: inputs.genre_fr, en_US: inputs.genre_en };
+  inputs.genre_fr.addEventListener("focus", () => { lastGenreInputs = genreInputs; });
+  inputs.genre_en.addEventListener("focus", () => { lastGenreInputs = genreInputs; });
 
   const required = ["title_fr", "title_en", "year", "genre_fr", "genre_en"];
   const refresh = () => required.forEach((key) => inputs[key].classList.toggle("missing", !inputs[key].value.trim()));

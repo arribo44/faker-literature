@@ -312,9 +312,10 @@ Default database location:
 
 What the importer does:
 
-- ranks works by number of Wikipedia articles and keeps those having a French **and** an English title, an author, a date, at least one genre and an author nationality;
+- ranks works by number of Wikipedia articles and keeps those having a French **and** an English title, an author, a date, at least one known genre and an author nationality;
+- maps Wikidata genres onto the catalogue's genre vocabulary (*crime fiction* → *crime* / *polar*), so that a genre always has the same translation; genres missing from the vocabulary are dropped;
 - localizes author names (*Evgueni Zamiatine* / *Yevgeny Zamyatin*, *Platon* / *Plato*);
-- skips works already present in the bundled catalogue (same title, year ± 2);
+- skips works already present in the bundled catalogue (same Wikidata id, or same title ignoring case, accents and a leading article, year ± 2);
 - validates every record before writing anything;
 - **replaces** the previously imported Wikidata books when run again (no duplicates).
 
@@ -335,7 +336,7 @@ fake.book()   # now drawn from bundled + imported books
 
 `use_database()` applies to **every** provider instance in the process. Call `LiteratureProvider.use_database(None)` to go back to the bundled in-memory catalogue.
 
-When a new version of the package ships an updated bundled catalogue, the persistent database refreshes its bundled books automatically and **keeps** imported ones.
+When a new version of the package ships an updated bundled catalogue, the persistent database refreshes its bundled books automatically and **keeps** imported ones, except those the bundled catalogue now contains (same rules as the importer).
 
 ### Injecting Your Own Dataset
 
@@ -373,7 +374,7 @@ Record schema:
 | `pages` | ❌ | `None`, or `{"fr_FR": int, "en_US": int}` (1 to 100000, each may be `None`) |
 | `publisher` | ❌ | `None`, or `{"fr_FR": str, "en_US": str}` (each may be `None`) |
 
-Strings must be non-empty and at most 300 characters. Extra fields (e.g. `isbn`, `wikidata_id`) are stored as is. If **any** record is invalid, `replace_source()` raises a `ValueError` naming the record and the field, and the database is left unchanged.
+Strings must be non-empty and at most 300 characters. The genres of your own datasets are free: they are not checked against the bundled genre vocabulary. Extra fields (e.g. `isbn`, `wikidata_id`) are stored as is. If **any** record is invalid, `replace_source()` raises a `ValueError` naming the record and the field, and the database is left unchanged.
 
 > The `builtin` source is managed by the package: do not replace it yourself.
 
@@ -462,10 +463,12 @@ faker_literature/
 ├── __init__.py          # LiteratureProvider
 ├── __main__.py          # CLI: demo and import-wikidata
 ├── store.py             # BookStore: TinyDB storage, validation, localization
+├── vocabulary.py        # GenreVocabulary: one translation per genre, aliases
+├── matching.py          # name/title normalization, duplicate detection
 ├── importers/
 │   └── wikidata.py      # Wikidata importer
 └── DATAS/
-    └── literature.json  # bundled catalogue
+    └── literature.json  # bundled catalogue: genre vocabulary + authors and books
 ```
 
 ---
@@ -474,7 +477,7 @@ faker_literature/
 
 Contributions are welcome! Open a PR or issue to add authors and books to `literature.json`, write importers for new datasets (Open Library, Project Gutenberg, data.bnf.fr...), add new locales, or fix bugs.
 
-When adding books, please provide both `fr_FR` and `en_US` values for every field and run `pytest` before submitting.
+When adding books, please provide both `fr_FR` and `en_US` values for every field, refer to genres by their id in the `genres` vocabulary at the top of `literature.json` (add a new entry there if needed), and run `pytest` before submitting: `tests/test_catalogue.py` checks the consistency of the catalogue.
 
 ---
 

@@ -1,8 +1,9 @@
 """Consistency checks of the bundled catalogue (``literature.json``).
 
 The schema validation of ``store.validate_book`` checks each record alone;
-these tests check that the records agree with each other, so that filters such
-as ``books_by_genre`` see every matching book in both locales.
+these tests check that the records agree with each other and with the genre
+vocabulary, so that filters such as ``books_by_genre`` see every matching book
+in both locales.
 """
 
 import json
@@ -14,6 +15,7 @@ from pathlib import Path
 import pytest
 
 from faker_literature.store import BUILTIN_DATA, LOCALES, load_builtin_books, validate_book
+from faker_literature.vocabulary import GenreVocabulary
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools" / "literature_editor"))
 
@@ -57,15 +59,31 @@ def test_every_record_follows_the_schema():
         validate_book(record)
 
 
-def test_genre_lists_are_aligned_between_locales(books):
-    misaligned = [_label(author, book) for author, book in books
-                  if len(book["genre"]["fr_FR"]) != len(book["genre"]["en_US"])]
-    assert not misaligned
+def test_genre_vocabulary_is_unambiguous(catalogue):
+    # Raises if a label or alias names two genres in a locale, or an id is malformed
+    vocabulary = GenreVocabulary(catalogue["genres"])
+    assert len(vocabulary.labels("fr_FR")) == len(vocabulary.labels("en_US")) == len(catalogue["genres"])
 
 
-def test_each_genre_has_a_single_translation(books):
-    pairs = [pair for _, book in books for pair in zip(book["genre"]["fr_FR"], book["genre"]["en_US"])]
+def test_each_genre_has_a_single_translation(catalogue):
+    pairs = [(genre["fr_FR"], genre["en_US"]) for genre in catalogue["genres"].values()]
     assert _one_to_one(pairs) == {}
+
+
+def test_books_refer_to_known_genres_once(catalogue, books):
+    wrong = [_label(author, book) for author, book in books
+             if not book["genre"] or len(set(book["genre"])) != len(book["genre"])
+             or not set(book["genre"]) <= set(catalogue["genres"])]
+    assert not wrong
+
+
+def test_every_genre_is_used(catalogue, books):
+    used = {genre_id for _, book in books for genre_id in book["genre"]}
+    assert sorted(set(catalogue["genres"]) - used) == []
+
+
+def test_genres_are_sorted_by_id(catalogue):
+    assert list(catalogue["genres"]) == sorted(catalogue["genres"])
 
 
 def test_each_nationality_has_a_single_translation(catalogue):
@@ -73,29 +91,23 @@ def test_each_nationality_has_a_single_translation(catalogue):
     assert _one_to_one(pairs) == {}
 
 
-def test_genres_are_not_nationalities(catalogue, books):
+def test_genres_are_not_nationalities(catalogue):
     # Compared within each locale: the French genre "roman" is not the English nationality "Roman"
     nationalities = {(locale, value.casefold()) for author in catalogue["authors"]
                      for locale, value in author["nationality"].items()}
-    wrong = {genre for _, book in books for locale in LOCALES for genre in book["genre"][locale]
-             if (locale, genre.casefold()) in nationalities}
+    wrong = {genre[locale] for genre in catalogue["genres"].values() for locale in LOCALES
+             if (locale, genre[locale].casefold()) in nationalities}
     assert not wrong
 
 
-def test_genres_and_french_nationalities_are_lower_case(catalogue, books):
-    genres = {genre for _, book in books for locale in LOCALES for genre in book["genre"][locale]}
-    assert {genre for genre in genres if genre[:1].isupper()} <= CAPITALIZED_GENRES
+def test_genres_and_french_nationalities_are_lower_case(catalogue):
+    labels = {genre[locale] for genre in catalogue["genres"].values() for locale in LOCALES}
+    assert {label for label in labels if label[:1].isupper()} <= CAPITALIZED_GENRES
     assert not [author["nationality"]["fr_FR"] for author in catalogue["authors"]
                 if author["nationality"]["fr_FR"] != author["nationality"]["fr_FR"].lower()]
 
 
-def test_no_genre_appears_twice_in_a_book(books):
-    repeated = [_label(author, book) for author, book in books for locale in LOCALES
-                if len(set(book["genre"][locale])) != len(book["genre"][locale])]
-    assert not repeated
-
-
-def test_text_has_no_stray_spaces(books):
+def test_text_has_no_stray_spaces(catalogue, books):
     def texts(value):
         if isinstance(value, str):
             yield value
@@ -108,6 +120,7 @@ def test_text_has_no_stray_spaces(books):
 
     stray = {text for author, book in books for text in texts([author["name"], author["nationality"], book])
              if text != text.strip() or "  " in text}
+    stray |= {text for text in texts(catalogue["genres"]) if text != text.strip() or "  " in text}
     assert not stray
 
 
