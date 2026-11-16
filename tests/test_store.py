@@ -96,6 +96,8 @@ def test_invalid_record_leaves_the_store_unchanged():
     ({"publisher_estimated": 1}, "publisher_estimated"),
     ({"title_untranslated": "yes"}, "title_untranslated"),
     ({"writer_born": "1802"}, "writer_born"),
+    ({"awards": {"fr_FR": "prix Goncourt", "en_US": []}}, "awards"),
+    ({"awards": {"fr_FR": [""], "en_US": []}}, "awards"),
     ({"writer_born": 1900, "writer_died": 1850}, "before writer_born"),
     ({"title_untranslated": True}, "differs"),
     ({"publisher_estimated": True, "publisher": None}, "no publisher"),

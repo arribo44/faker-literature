@@ -26,7 +26,7 @@ __all__ = ["LiteratureProvider", "BookFilter", "BookStore", "default_db_path", "
 T = TypeVar("T")
 
 # Fields of the localized books used by the provider but left out of book()
-INTERNAL_FIELDS = ("popularity", "writer_born", "writer_died")
+INTERNAL_FIELDS = ("popularity", "writer_born", "writer_died", "awards")
 
 # Editions of older works are drawn from this year on
 EARLIEST_EDITION_YEAR = 1950
@@ -61,6 +61,7 @@ class BookFilter:
         after: int | None = None,
         before: int | None = None,
         century: int | None = None,
+        award: str | None = None,
     ) -> None:
         if century is not None:
             if century == 0:
@@ -71,15 +72,17 @@ class BookFilter:
             before = last if before is None else min(before, last)
         self.description = {name: value for name, value in (
             ("genre", genre), ("nationality", nationality), ("author", author),
-            ("after", after), ("before", before)) if value is not None}
+            ("after", after), ("before", before), ("award", award)) if value is not None}
         self.genre = None if genre is None else genre.casefold()
         any_nationality = nationality == LiteratureProvider.ANY_NATIONALITY
         self.nationality = None if nationality is None or any_nationality else nationality.casefold()
         self.author = None if author is None else name_key(author)
         self.after = after
         self.before = before
+        # "*": any award; otherwise part of an award's name, case-insensitive ("goncourt")
+        self.award = None if award is None else award.casefold()
         # Cache key of the pools drawn with these filters
-        self.key = (self.genre, self.nationality, self.author, after, before)
+        self.key = (self.genre, self.nationality, self.author, after, before, self.award)
 
     def matches(self, book: LocalizedBook) -> bool:
         year = book["year"]
@@ -90,6 +93,8 @@ class BookFilter:
             and (self.genre is None or _has_genre(book, self.genre))
             and (self.author is None or any(
                 name_key(name) == self.author for name in [book["writer"], *_authors(book["writer"])]))
+            and (self.award is None or (bool(book.get("awards")) if self.award == "*" else any(
+                self.award in award.casefold() for award in book.get("awards", ()))))
         )
 
     def __str__(self) -> str:
@@ -243,6 +248,16 @@ class LiteratureProvider(BaseProvider):
             Query().genre.test(lambda genres: wanted in (g.casefold() for g in pick(genres, locale)))
         )
 
+    def books_by_award(self, award: str) -> list[LocalizedBook]:
+        """Return the books that received an award, by part of its name (case-insensitive), or ``"*"`` for any."""
+        book_filter = BookFilter(award=award)
+        return [self._export(book) for book in self._catalogue if book_filter.matches(book)]
+
+    def all_awards(self) -> list[str]:
+        """Return the sorted literary awards of the catalogue, in the current locale."""
+        return list(self._pool("all_awards", lambda books: sorted(
+            {award for book in books for award in book.get("awards", ())}, key=str.casefold)))
+
     def books_by_year(self, year: int) -> list[LocalizedBook]:
         """Query books published in a specific year."""
         return self._search(Query().year == year)
@@ -323,6 +338,7 @@ class LiteratureProvider(BaseProvider):
         before: int | None = None,
         century: int | None = None,
         popular: bool = False,
+        award: str | None = None,
     ) -> LocalizedBook:
         """Return a coherent fake book record, optionally filtered.
 
@@ -336,13 +352,15 @@ class LiteratureProvider(BaseProvider):
         - ``after`` / ``before``: first publication in or after / before or in
           that year (negative for BC);
         - ``century``: first publication in that century (``19`` for 1801-1900,
-          ``-5`` for 500-401 BC).
+          ``-5`` for 500-401 BC);
+        - ``award``: a literary award the work received, by part of its name
+          (``"goncourt"``, ``"hugo"``, case-insensitive), or ``"*"`` for any.
 
         With ``popular=True``, well-known books (those having the most
         Wikipedia articles) are drawn more often.  A ``ValueError`` is raised
         when no book matches.
         """
-        filters = BookFilter(genre, nationality, author, after, before, century)
+        filters = BookFilter(genre, nationality, author, after, before, century, award)
         return self._export(self._draw("book", lambda book: (book,), filters, popular))
 
     def literary_work(self, **filters: Any) -> LocalizedBook:
@@ -434,6 +452,7 @@ class LiteratureProvider(BaseProvider):
         before: int | None = None,
         century: int | None = None,
         popular: bool = False,
+        award: str | None = None,
     ) -> str:
         """Return a famous writer, optionally filtered (see :meth:`book` for the filters).
 
@@ -448,7 +467,7 @@ class LiteratureProvider(BaseProvider):
         """
         if nationality is None:
             nationality = self.LOCALE_DEFAULT_NATIONALITY[self.provider_locale]
-        filters = BookFilter(genre, nationality, None, after, before, century)
+        filters = BookFilter(genre, nationality, None, after, before, century, award)
         drawn: str = self._draw("writer", lambda book: _authors(book["writer"]), filters, popular)
         return drawn
 
@@ -463,9 +482,10 @@ class LiteratureProvider(BaseProvider):
         before: int | None = None,
         century: int | None = None,
         popular: bool = False,
+        award: str | None = None,
     ) -> str:
         """Return a well-known literary title, optionally filtered (see :meth:`book`)."""
-        filters = BookFilter(genre, nationality, author, after, before, century)
+        filters = BookFilter(genre, nationality, author, after, before, century, award)
         drawn: str = self._draw("title", lambda book: (book["title"],), filters, popular)
         return drawn
 
@@ -477,12 +497,13 @@ class LiteratureProvider(BaseProvider):
         before: int | None = None,
         century: int | None = None,
         popular: bool = False,
+        award: str | None = None,
     ) -> str:
         """Return a literary genre translated for the current locale, optionally filtered (see :meth:`book`).
 
         Genres are drawn in proportion to their number of books.
         """
-        filters = BookFilter(None, nationality, author, after, before, century)
+        filters = BookFilter(None, nationality, author, after, before, century, award)
         drawn: str = self._draw("genre", lambda book: book["genre"], filters, popular)
         return drawn
 
@@ -506,6 +527,24 @@ class LiteratureProvider(BaseProvider):
                                 BookFilter(**filters), popular)
         return drawn
 
+    def award(
+        self,
+        genre: str | None = None,
+        nationality: str | None = None,
+        author: str | None = None,
+        after: int | None = None,
+        before: int | None = None,
+        century: int | None = None,
+        popular: bool = False,
+    ) -> str:
+        """Return a literary award received by a catalogue work, optionally filtered (see :meth:`book`).
+
+        Awards are drawn in proportion to their number of awarded books.
+        """
+        filters = BookFilter(genre, nationality, author, after, before, century)
+        drawn: str = self._draw("award", lambda book: book.get("awards", ()), filters, popular)
+        return drawn
+
     def writer_profile(self, name: str | None = None, **filters: Any) -> dict[str, Any]:
         """Return the profile of a writer: life, nationality, books and main genres.
 
@@ -514,7 +553,8 @@ class LiteratureProvider(BaseProvider):
         The profile holds ``name``, ``nationality``, ``born`` and ``died``
         (years, ``None`` when unknown or for living writers), ``books`` (their
         ``title`` and ``year``, oldest first) and ``genres`` (the five most
-        frequent).  A ``ValueError`` is raised for an unknown name.
+        frequent) and ``awards`` (those their books received).  A
+        ``ValueError`` is raised for an unknown name.
         """
         if name is None:
             name = self.writer(**filters)
@@ -535,6 +575,7 @@ class LiteratureProvider(BaseProvider):
             "died": single[0].get("writer_died"),
             "books": [{"title": book["title"], "year": book["year"]} for book in books],
             "genres": [genre for genre, _ in genres.most_common(5)],
+            "awards": sorted({award for book in books for award in book.get("awards", ())}, key=str.casefold),
         }
 
     def nationality(self) -> str:

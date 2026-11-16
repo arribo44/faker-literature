@@ -192,3 +192,14 @@ def test_lives_are_consistent(catalogue):
              if ("died" in author and ("born" not in author or author["died"] <= author["born"]))
              or any(not isinstance(author.get(key, 0), int) for key in ("born", "died"))]
     assert not wrong
+
+
+def test_awards_vocabulary_is_used_and_unambiguous(catalogue, books):
+    vocabulary = catalogue["awards"]
+    used = [award for _, book in books for award in book.get("awards", [])]
+    assert set(used) == set(vocabulary)
+    assert all(len(book["awards"]) == len(set(book["awards"])) and book["awards"]
+               for _, book in books if "awards" in book)
+    assert all("wikidata_id" in book for _, book in books if "awards" in book)
+    pairs = [(award["fr_FR"], award["en_US"]) for award in vocabulary.values()]
+    assert _one_to_one(pairs) == {}

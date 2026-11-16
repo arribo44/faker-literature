@@ -268,3 +268,32 @@ def test_life_years_stay_out_of_book(fake_en):
     assert not {"writer_born", "writer_died", "popularity"} & set(fake_en.book())
     raw = next(book for book in LiteratureProvider(fake_en).books_flat if book["title"]["en_US"] == "Les Misérables")
     assert (raw["writer_born"], raw["writer_died"]) == (1802, 1885)
+
+
+# Literary awards
+
+def test_award_filter_and_queries(fake_en):
+    goncourt = fake_en.books_by_award("GONCOURT")
+    assert goncourt and all(any("goncourt" in award.lower() for award in book_awards(fake_en, book))
+                            for book in goncourt)
+    assert "awards" not in goncourt[0]
+    assert fake_en.book(award="Hugo Award")["title"] in {book["title"] for book in fake_en.books_by_award("hugo")}
+    awarded = {book["title"] for book in fake_en.books_by_award("*")}
+    assert {fake_en.title(award="*") for _ in range(50)} <= awarded
+    assert len(awarded) < len(LiteratureProvider(fake_en).books)
+    with pytest.raises(ValueError, match="award='nope'"):
+        fake_en.book(award="nope")
+
+
+def book_awards(fake, book):
+    raw = next(record for record in LiteratureProvider(fake).books_flat if record["title"]["en_US"] == book["title"])
+    return raw["awards"]["en_US"]
+
+
+def test_award_draws_and_lists(fake_en):
+    awards = fake_en.all_awards()
+    assert awards == sorted(awards, key=str.casefold) and "Prix Goncourt" in awards
+    assert {fake_en.award() for _ in range(50)} <= set(awards)
+    assert fake_en.award(nationality="French", century=20) in awards
+    le_guin = fake_en.writer_profile("Ursula K. Le Guin")
+    assert "Hugo Award for Best Novel" in le_guin["awards"]

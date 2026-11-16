@@ -48,7 +48,7 @@ MAX_PAGES = 100000
 # Fields of the schema; other ("extra") fields such as ``isbn`` are kept as is
 SCHEMA_FIELDS = {
     "writer", "nationality", "title", "title_untranslated", "genre", "year", "pages", "pages_estimated", "publisher",
-    "publisher_estimated", "popularity", "writer_born", "writer_died", "source", "wikidata_id",
+    "publisher_estimated", "popularity", "writer_born", "writer_died", "awards", "source", "wikidata_id",
 }
 MAX_EXTRA_FIELDS = 20
 MAX_POPULARITY = 10**9
@@ -80,6 +80,7 @@ def load_builtin_books(path: PathLike = BUILTIN_DATA) -> tuple[list[Record], str
     raw = Path(path).read_bytes()
     data = json.loads(raw.decode("utf-8"))
     vocabulary = GenreVocabulary(data["genres"])
+    awards = data.get("awards", {})
     books = []
     for author in data["authors"]:
         for book in author["books"]:
@@ -90,6 +91,8 @@ def load_builtin_books(path: PathLike = BUILTIN_DATA) -> tuple[list[Record], str
                 **life,
                 **book,
                 "genre": vocabulary.resolve(book["genre"]),
+                **({"awards": {locale: [awards[award][locale] for award in book["awards"]] for locale in LOCALES}}
+                   if book.get("awards") else {}),
                 "source": BUILTIN_SOURCE,
             })
     return books, hashlib.sha256(raw).hexdigest()
@@ -122,6 +125,13 @@ def _check_genres(value: object, field: str) -> None:
         raise ValueError(f"{field}: expected 1 to {MAX_GENRES} genres")
     for index, genre in enumerate(value):
         _check_string(genre, f"{field}[{index}]")
+
+
+def _check_awards(value: object, field: str) -> None:
+    if not isinstance(value, (list, tuple)) or len(value) > MAX_GENRES:
+        raise ValueError(f"{field}: expected 0 to {MAX_GENRES} awards")
+    for index, award in enumerate(value):
+        _check_string(award, f"{field}[{index}]")
 
 
 def _check_pages(value: object, field: str) -> None:
@@ -175,6 +185,9 @@ def validate_book(book: object) -> None:
         _check_localized(book["pages"], "pages", _check_pages)
     if book.get("publisher") is not None:
         _check_localized(book["publisher"], "publisher", _check_optional_string)
+    # Literary awards received by the work, localized like the genres
+    if book.get("awards") is not None:
+        _check_localized(book["awards"], "awards", _check_awards)
     # True when the page counts estimate the usual length of the work, and when the publishers
     # are plausible but were not checked against a source: neither describes a known edition
     for field in ("pages", "publisher"):
@@ -228,6 +241,7 @@ def localize_book(book: Mapping[str, Any], locale: str) -> LocalizedBook:
         "popularity": book.get("popularity"),
         "writer_born": book.get("writer_born"),
         "writer_died": book.get("writer_died"),
+        "awards": tuple(pick(book.get("awards") or {}, locale) or ()),
     }
 
 

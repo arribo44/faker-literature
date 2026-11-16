@@ -81,3 +81,11 @@ python tools/literature_editor/update_authors.py [--dry-run]
 ```
 
 Le script relie à Wikidata les auteurs qui n'ont pas d'identifiant, par l'auteur (P50) de leurs livres dont le nom correspond, puis renseigne `born` et `died` (années, négatives av. J.-C.) pour chaque auteur, quand Wikidata les donne à l'année ou à la décennie près. Lancez-le après avoir ajouté des auteurs avec l'éditeur.
+
+## Mettre à jour les prix littéraires
+
+```bash
+python tools/literature_editor/update_awards.py [--dry-run]
+```
+
+Le script remplace les prix de chaque livre qui a un identifiant Wikidata par les prix littéraires que son œuvre a reçus (P166, prix rattachés à « prix littéraire »), enregistrés par identifiant dans le vocabulaire `awards`, en tête du fichier. Les prix sans libellé français et anglais, et les palmarès que Wikidata classe parmi les prix (« Modern Library 100 Best Novels »…), sont écartés.

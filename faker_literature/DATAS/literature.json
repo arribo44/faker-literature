@@ -1077,6 +1077,344 @@
       }
     }
   },
+  "awards": {
+    "Q18884": {
+      "fr_FR": "Women's Prize for Fiction",
+      "en_US": "Women's Prize for Fiction"
+    },
+    "Q18945": {
+      "fr_FR": "prix Femina",
+      "en_US": "Prix Femina"
+    },
+    "Q46525": {
+      "fr_FR": "prix Pulitzer",
+      "en_US": "Pulitzer Prize"
+    },
+    "Q159909": {
+      "fr_FR": "prix Goethe de la ville de Francfort",
+      "en_US": "Goethe Prize of the City of Frankfurt"
+    },
+    "Q160082": {
+      "fr_FR": "prix Booker",
+      "en_US": "Booker Prize"
+    },
+    "Q172582": {
+      "fr_FR": "Sahitya Akademi Award",
+      "en_US": "Sahitya Akademi Award"
+    },
+    "Q176441": {
+      "fr_FR": "grand prix de littérature policière",
+      "en_US": "Grand Prix de Littérature Policière"
+    },
+    "Q179810": {
+      "fr_FR": "prix Nero",
+      "en_US": "Nero Award"
+    },
+    "Q187300": {
+      "fr_FR": "prix Goncourt",
+      "en_US": "Prix Goncourt"
+    },
+    "Q221178": {
+      "fr_FR": "prix Bram-Stoker du meilleur roman",
+      "en_US": "Bram Stoker Award for Novel"
+    },
+    "Q243960": {
+      "fr_FR": "prix Mythopoeic",
+      "en_US": "Mythopoeic Awards"
+    },
+    "Q255032": {
+      "fr_FR": "prix Hugo du meilleur roman",
+      "en_US": "Hugo Award for Best Novel"
+    },
+    "Q266012": {
+      "fr_FR": "prix Nebula du meilleur roman",
+      "en_US": "Nebula Award for Best Novel"
+    },
+    "Q289214": {
+      "fr_FR": "prix Pulitzer d'œuvre théâtrale",
+      "en_US": "Pulitzer Prize for Drama"
+    },
+    "Q392586": {
+      "fr_FR": "prix James-Tait-Black",
+      "en_US": "James Tait Black Memorial Prize"
+    },
+    "Q465150": {
+      "fr_FR": "Phoenix Award",
+      "en_US": "Phoenix Award"
+    },
+    "Q572316": {
+      "fr_FR": "National Book Award",
+      "en_US": "National Book Award"
+    },
+    "Q594550": {
+      "fr_FR": "prix Lambda Literary",
+      "en_US": "Lambda Literary Award"
+    },
+    "Q595998": {
+      "fr_FR": "prix Locus du meilleur roman",
+      "en_US": "Locus Award for Best Novel"
+    },
+    "Q607354": {
+      "fr_FR": "prix Locus du meilleur roman de fantasy",
+      "en_US": "Locus Award for Best Fantasy Novel"
+    },
+    "Q622813": {
+      "fr_FR": "médaille Newbery",
+      "en_US": "Newbery Medal"
+    },
+    "Q640922": {
+      "fr_FR": "prix des Deux Magots",
+      "en_US": "Prix des Deux Magots"
+    },
+    "Q673795": {
+      "fr_FR": "prix Shamus",
+      "en_US": "Shamus Award"
+    },
+    "Q708830": {
+      "fr_FR": "prix Arthur C. Clarke",
+      "en_US": "Arthur C. Clarke Award"
+    },
+    "Q731542": {
+      "fr_FR": "prix Strega",
+      "en_US": "Strega Prize"
+    },
+    "Q747089": {
+      "fr_FR": "prix Tähtivaeltaja",
+      "en_US": "Tähtivaeltaja Award"
+    },
+    "Q773755": {
+      "fr_FR": "prix Apollo",
+      "en_US": "Prix Tour-Apollo Award"
+    },
+    "Q833633": {
+      "fr_FR": "prix Pulitzer de la fiction",
+      "en_US": "Pulitzer Prize for Fiction"
+    },
+    "Q848943": {
+      "fr_FR": "prix Bram-Stoker du meilleur premier roman",
+      "en_US": "Bram Stoker Award for Best First Novel"
+    },
+    "Q896335": {
+      "fr_FR": "prix Corine",
+      "en_US": "Corine Literature Prize"
+    },
+    "Q918719": {
+      "fr_FR": "prix de Flore",
+      "en_US": "Prix de Flore"
+    },
+    "Q930356": {
+      "fr_FR": "prix Goncourt des lycéens",
+      "en_US": "Prix Goncourt des Lycéens"
+    },
+    "Q952687": {
+      "fr_FR": "prix du roman Fnac",
+      "en_US": "Prix du roman Fnac"
+    },
+    "Q971363": {
+      "fr_FR": "Guardian Award",
+      "en_US": "Guardian Children's Fiction Prize"
+    },
+    "Q1026417": {
+      "fr_FR": "médaille Caldecott",
+      "en_US": "Caldecott Medal"
+    },
+    "Q1030402": {
+      "fr_FR": "prix John-Wood-Campbell Memorial",
+      "en_US": "John W. Campbell Memorial Award for Best Science Fiction Novel"
+    },
+    "Q1043985": {
+      "fr_FR": "médaille Carnegie",
+      "en_US": "Carnegie Medal"
+    },
+    "Q1056251": {
+      "fr_FR": "prix Hugo de la meilleure nouvelle courte",
+      "en_US": "Hugo Award for Best Short Story"
+    },
+    "Q1079400": {
+      "fr_FR": "prix Sidewise",
+      "en_US": "Sidewise Award for Alternate History"
+    },
+    "Q1086189": {
+      "fr_FR": "prix Nebula du meilleur roman court",
+      "en_US": "Nebula Award for Best Novella"
+    },
+    "Q1136336": {
+      "fr_FR": "prix Costa",
+      "en_US": "Costa Book Awards"
+    },
+    "Q1188661": {
+      "fr_FR": "PEN/Faulkner Award",
+      "en_US": "PEN/Faulkner Award for Fiction"
+    },
+    "Q1227402": {
+      "fr_FR": "Hemingway Foundation PEN Award",
+      "en_US": "Hemingway Foundation/PEN Award"
+    },
+    "Q1320436": {
+      "fr_FR": "prix des Libraires",
+      "en_US": "prix des Libraires"
+    },
+    "Q1341487": {
+      "fr_FR": "prix Philip-K.-Dick",
+      "en_US": "Philip K. Dick Award"
+    },
+    "Q1362723": {
+      "fr_FR": "prix littéraire de Dublin",
+      "en_US": "Dublin Literary Award"
+    },
+    "Q1472266": {
+      "fr_FR": "médaille Kate-Greenaway",
+      "en_US": "Kate Greenaway Medal"
+    },
+    "Q1542826": {
+      "fr_FR": "grand prix du roman de l'Académie française",
+      "en_US": "Grand Prix du roman de l'Académie française"
+    },
+    "Q1616499": {
+      "fr_FR": "prix Martin-Beck",
+      "en_US": "Best Crime Novel in Swedish Translation"
+    },
+    "Q1630979": {
+      "fr_FR": "prix Planeta",
+      "en_US": "Premio Planeta de Novela"
+    },
+    "Q1648933": {
+      "fr_FR": "prix Tanizaki",
+      "en_US": "Tanizaki Prize"
+    },
+    "Q2090893": {
+      "fr_FR": "prix Locus du meilleur premier roman",
+      "en_US": "Locus Award for Best First Novel"
+    },
+    "Q2111282": {
+      "fr_FR": "prix des Critiques",
+      "en_US": "Prix des Critiques"
+    },
+    "Q2111303": {
+      "fr_FR": "prix littéraire de la vocation",
+      "en_US": "Prix littéraire de la vocation"
+    },
+    "Q2425126": {
+      "fr_FR": "CWA International Dagger",
+      "en_US": "CWA International Dagger"
+    },
+    "Q2444343": {
+      "fr_FR": "prix littéraire de Toronto",
+      "en_US": "Toronto Book Awards"
+    },
+    "Q2453329": {
+      "fr_FR": "Prix Trillium",
+      "en_US": "Trillium Book Award"
+    },
+    "Q2576795": {
+      "fr_FR": "prix Locus du meilleur roman de science-fiction",
+      "en_US": "Locus Award for Best Science Fiction Novel"
+    },
+    "Q3114799": {
+      "fr_FR": "grand prix des lectrices de Elle",
+      "en_US": "Grand prix des lectrices de Elle"
+    },
+    "Q3404605": {
+      "fr_FR": "prix François-Mauriac",
+      "en_US": "Prix François-Mauriac"
+    },
+    "Q3404918": {
+      "fr_FR": "prix Le Vaudeville",
+      "en_US": "Le Vaudeville prize"
+    },
+    "Q3405571": {
+      "fr_FR": "prix de la langue française",
+      "en_US": "Prix de la langue française"
+    },
+    "Q3405805": {
+      "fr_FR": "prix du Gouverneur général : romans et nouvelles de langue anglaise",
+      "en_US": "Governor General's Award for English-language fiction"
+    },
+    "Q3873144": {
+      "fr_FR": "National Book Award pour la fiction",
+      "en_US": "National Book Award for Fiction"
+    },
+    "Q3873147": {
+      "fr_FR": "Récompense National Book pour les non fictions",
+      "en_US": "National Book Award for Nonfiction"
+    },
+    "Q4765305": {
+      "fr_FR": "prix Anisfield-Wolf",
+      "en_US": "Anisfield-Wolf Book Awards"
+    },
+    "Q4820684": {
+      "fr_FR": "prix August Derleth",
+      "en_US": "August Derleth Award"
+    },
+    "Q4836602": {
+      "fr_FR": "prix British Science Fiction du meilleur roman",
+      "en_US": "BSFA Award for Best Novel"
+    },
+    "Q5157154": {
+      "fr_FR": "prix Compton-Crook",
+      "en_US": "Compton Crook Award"
+    },
+    "Q6359432": {
+      "fr_FR": "prix Ignotus du meilleur roman étranger",
+      "en_US": "Ignotus Award for Best Foreign Novel"
+    },
+    "Q7575072": {
+      "fr_FR": "Specsavers National Book Awards",
+      "en_US": "The British Book Awards"
+    },
+    "Q11503628": {
+      "fr_FR": "Prix Shinchōsha de littérature",
+      "en_US": "Shinchosha literature award"
+    },
+    "Q11722414": {
+      "fr_FR": "prix Locus du meilleur roman pour jeunes adultes",
+      "en_US": "Locus Award for Best Young Adult Book"
+    },
+    "Q17008972": {
+      "fr_FR": "prix Locus du meilleur roman court",
+      "en_US": "Locus Award for Best Novella"
+    },
+    "Q18693138": {
+      "fr_FR": "prix Kurd-Lasswitz",
+      "en_US": "Kurd Lasswitz Award for Best Foreign Work"
+    },
+    "Q19360203": {
+      "fr_FR": "prix Prometheus - Temple de la renommée",
+      "en_US": "Prometheus Award - Hall of Fame"
+    },
+    "Q20106093": {
+      "fr_FR": "meilleure œuvre étrangère publiée en Espagne",
+      "en_US": "Best foreign work published in Spain"
+    },
+    "Q21711286": {
+      "fr_FR": "prix Renaudot des lycéens",
+      "en_US": "Prix Renaudot des lycéens"
+    },
+    "Q27496509": {
+      "fr_FR": "prix Seiun du meilleur roman étranger",
+      "en_US": "Seiun Award for Best Translated Long Work"
+    },
+    "Q58838460": {
+      "fr_FR": "prix British Science Fiction de la meilleure fiction courte",
+      "en_US": "BSFA Award for Best Short Fiction"
+    },
+    "Q63381160": {
+      "fr_FR": "prix Marguerite-Duras",
+      "en_US": "Prix Marguerite Duras"
+    },
+    "Q109554372": {
+      "fr_FR": "National Book Critics Circle Award for Fiction",
+      "en_US": "National Book Critics Circle Award for Fiction"
+    },
+    "Q115280877": {
+      "fr_FR": "prix Retro-Hugo du meilleur roman",
+      "en_US": "Retro Hugo Award for Best Novel"
+    },
+    "Q115288957": {
+      "fr_FR": "prix Retro Hugo du meilleur roman court",
+      "en_US": "Retro Hugo Award for Best Novella"
+    }
+  },
   "authors": [
     {
       "name": {
@@ -1615,6 +1953,9 @@
           "genre": [
             "historical-novel"
           ],
+          "awards": [
+            "Q4765305"
+          ],
           "title": {
             "fr_FR": "Pleure, ô pays bien-aimé",
             "en_US": "Cry, the Beloved Country"
@@ -1742,6 +2083,9 @@
           "genre": [
             "autobiographical-novel",
             "poetic"
+          ],
+          "awards": [
+            "Q1542826"
           ],
           "title": {
             "fr_FR": "Belle du Seigneur",
@@ -2355,6 +2699,9 @@
             "fantasy",
             "bildungsroman"
           ],
+          "awards": [
+            "Q848943"
+          ],
           "title": {
             "fr_FR": "La Nostalgie de l'ange",
             "en_US": "The Lovely Bones"
@@ -2379,6 +2726,10 @@
           "year": 1982,
           "genre": [
             "epistolary-novel"
+          ],
+          "awards": [
+            "Q3873144",
+            "Q833633"
           ],
           "title": {
             "fr_FR": "La Couleur pourpre",
@@ -2616,6 +2967,9 @@
             "autobiographical-novel",
             "supernatural-fiction"
           ],
+          "awards": [
+            "Q1542826"
+          ],
           "title": {
             "fr_FR": "Stupeur et Tremblements",
             "en_US": "Fear and Trembling"
@@ -2718,6 +3072,9 @@
           "year": 2003,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q159909"
           ],
           "title": {
             "fr_FR": "Une histoire d'amour et de ténèbres",
@@ -3509,6 +3866,9 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q2444343"
+          ],
           "title": {
             "fr_FR": "La Mémoire en fuite",
             "en_US": "Fugitive Pieces"
@@ -3727,6 +4087,9 @@
           "year": 1988,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q833633"
           ],
           "title": {
             "fr_FR": "Leçons de conduite",
@@ -3952,6 +4315,11 @@
           "genre": [
             "memoirs",
             "autobiography"
+          ],
+          "awards": [
+            "Q3404605",
+            "Q63381160",
+            "Q3405571"
           ],
           "title": {
             "fr_FR": "Les Années",
@@ -4231,6 +4599,9 @@
             "adventure",
             "aviation"
           ],
+          "awards": [
+            "Q18945"
+          ],
           "title": {
             "fr_FR": "Vol de nuit",
             "en_US": "Night Flight"
@@ -4254,6 +4625,9 @@
             "narrative",
             "philosophical"
           ],
+          "awards": [
+            "Q1542826"
+          ],
           "title": {
             "fr_FR": "Terre des hommes",
             "en_US": "Wind, Sand and Stars"
@@ -4276,6 +4650,9 @@
           "genre": [
             "poetic",
             "philosophical"
+          ],
+          "awards": [
+            "Q115288957"
           ],
           "title": {
             "fr_FR": "Le Petit Prince",
@@ -4348,6 +4725,9 @@
           "year": 1990,
           "genre": [
             "romance"
+          ],
+          "awards": [
+            "Q160082"
           ],
           "title": {
             "fr_FR": "Possession",
@@ -4565,6 +4945,10 @@
           "genre": [
             "memoirs"
           ],
+          "awards": [
+            "Q20106093",
+            "Q46525"
+          ],
           "title": {
             "fr_FR": "Maus",
             "en_US": "Maus"
@@ -4614,6 +4998,14 @@
           "genre": [
             "science-fiction",
             "space-opera"
+          ],
+          "awards": [
+            "Q4836602",
+            "Q255032",
+            "Q1030402",
+            "Q595998",
+            "Q266012",
+            "Q27496509"
           ],
           "title": {
             "fr_FR": "Rama",
@@ -4847,6 +5239,9 @@
           "genre": [
             "tragedy"
           ],
+          "awards": [
+            "Q289214"
+          ],
           "title": {
             "fr_FR": "Mort d'un commis voyageur",
             "en_US": "Death of a Salesman"
@@ -4921,6 +5316,9 @@
           "genre": [
             "detective-novel",
             "historical-novel"
+          ],
+          "awards": [
+            "Q176441"
           ],
           "title": {
             "fr_FR": "Le Tableau du maître flamand",
@@ -5013,6 +5411,9 @@
           "year": 1997,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q160082"
           ],
           "title": {
             "fr_FR": "Le Dieu des Petits Riens",
@@ -5171,6 +5572,9 @@
           "genre": [
             "science-fiction",
             "fantasy"
+          ],
+          "awards": [
+            "Q7575072"
           ],
           "title": {
             "fr_FR": "Le temps n'est rien",
@@ -5932,6 +6336,10 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q3873144",
+            "Q833633"
+          ],
           "title": {
             "fr_FR": "L'Homme de Kiev",
             "en_US": "The Fixer"
@@ -6068,6 +6476,9 @@
           "year": 1963,
           "genre": [
             "non-fiction"
+          ],
+          "awards": [
+            "Q46525"
           ],
           "title": {
             "fr_FR": "La Femme mystifiée",
@@ -6928,6 +7339,9 @@
             "science-fiction",
             "space"
           ],
+          "awards": [
+            "Q255032"
+          ],
           "title": {
             "fr_FR": "Les Étoiles de la chute",
             "en_US": "Downbelow Station"
@@ -6962,6 +7376,9 @@
           "genre": [
             "historical-novel",
             "crime"
+          ],
+          "awards": [
+            "Q176441"
           ],
           "title": {
             "fr_FR": "L'Aliéniste",
@@ -7938,6 +8355,9 @@
           "genre": [
             "science-fiction"
           ],
+          "awards": [
+            "Q2576795"
+          ],
           "title": {
             "fr_FR": "Accelerando",
             "en_US": "Accelerando"
@@ -7968,6 +8388,9 @@
           "year": 2006,
           "genre": [
             "science-fiction"
+          ],
+          "awards": [
+            "Q18693138"
           ],
           "title": {
             "fr_FR": "Glasshouse",
@@ -8169,6 +8592,9 @@
           "genre": [
             "historical-novel"
           ],
+          "awards": [
+            "Q18884"
+          ],
           "title": {
             "fr_FR": "L'Autre Moitié du soleil",
             "en_US": "Half of a Yellow Sun"
@@ -8258,6 +8684,9 @@
           "year": 2004,
           "genre": [
             "bildungsroman"
+          ],
+          "awards": [
+            "Q1227402"
           ],
           "title": {
             "fr_FR": "GraceLand",
@@ -9198,6 +9627,9 @@
           "genre": [
             "science-fiction"
           ],
+          "awards": [
+            "Q1030402"
+          ],
           "title": {
             "fr_FR": "Lincoln's Dreams",
             "en_US": "Lincoln's Dreams"
@@ -9212,6 +9644,13 @@
           "genre": [
             "science-fiction",
             "time"
+          ],
+          "awards": [
+            "Q255032",
+            "Q6359432",
+            "Q18693138",
+            "Q2576795",
+            "Q266012"
           ],
           "title": {
             "fr_FR": "Le Livre du jugement dernier",
@@ -9235,6 +9674,9 @@
           "genre": [
             "science-fiction"
           ],
+          "awards": [
+            "Q17008972"
+          ],
           "title": {
             "fr_FR": "Bellwether",
             "en_US": "Bellwether"
@@ -9251,6 +9693,9 @@
           "year": 2001,
           "genre": [
             "science-fiction"
+          ],
+          "awards": [
+            "Q2576795"
           ],
           "title": {
             "fr_FR": "Passage",
@@ -9385,6 +9830,12 @@
             "science-fiction",
             "dystopian"
           ],
+          "awards": [
+            "Q6359432",
+            "Q392586",
+            "Q833633",
+            "Q747089"
+          ],
           "title": {
             "fr_FR": "La Route",
             "en_US": "The Road"
@@ -9517,6 +9968,9 @@
           "year": 2003,
           "genre": [
             "anticipation"
+          ],
+          "awards": [
+            "Q2090893"
           ],
           "title": {
             "fr_FR": "Dans la dèche au royaume enchanté",
@@ -9861,6 +10315,9 @@
             "science-fiction",
             "science-fantasy"
           ],
+          "awards": [
+            "Q2576795"
+          ],
           "title": {
             "fr_FR": "L'Éveil d'Endymion",
             "en_US": "The Rise of Endymion"
@@ -9877,6 +10334,9 @@
           "year": 2003,
           "genre": [
             "science-fiction"
+          ],
+          "awards": [
+            "Q2576795"
           ],
           "title": {
             "fr_FR": "Ilium",
@@ -10035,6 +10495,9 @@
           "genre": [
             "science-fiction",
             "epistolary-novel"
+          ],
+          "awards": [
+            "Q1056251"
           ],
           "title": {
             "fr_FR": "Des fleurs pour Algernon",
@@ -11170,6 +11633,9 @@
           "genre": [
             "horror"
           ],
+          "awards": [
+            "Q221178"
+          ],
           "title": {
             "fr_FR": "Creepers",
             "en_US": "Creepers"
@@ -11429,6 +11895,11 @@
             "contemporary-novel",
             "family"
           ],
+          "awards": [
+            "Q3114799",
+            "Q21711286",
+            "Q952687"
+          ],
           "title": {
             "fr_FR": "Rien ne s'oppose à la nuit",
             "en_US": "Nothing Opposes the Night"
@@ -11534,6 +12005,9 @@
           "year": 1994,
           "genre": [
             "crime"
+          ],
+          "awards": [
+            "Q673795"
           ],
           "title": {
             "fr_FR": "Un dernier verre avant la guerre",
@@ -11746,6 +12220,9 @@
           "genre": [
             "fantasy"
           ],
+          "awards": [
+            "Q465150"
+          ],
           "title": {
             "fr_FR": "Le Château de Hurle",
             "en_US": "Howl's Moving Castle"
@@ -11939,6 +12416,9 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q640922"
+          ],
           "title": {
             "fr_FR": "Histoire d'O",
             "en_US": "Story of O"
@@ -11983,6 +12463,9 @@
           "year": 1985,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q3873144"
           ],
           "title": {
             "fr_FR": "Bruits de fond",
@@ -12724,6 +13207,9 @@
           "genre": [
             "historical-novel"
           ],
+          "awards": [
+            "Q1188661"
+          ],
           "title": {
             "fr_FR": "La Marche",
             "en_US": "The March"
@@ -13396,6 +13882,9 @@
           "genre": [
             "historical-novel"
           ],
+          "awards": [
+            "Q833633"
+          ],
           "title": {
             "fr_FR": "Le Monde connu",
             "en_US": "The Known World"
@@ -13477,6 +13966,9 @@
           "year": 2004,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q4765305"
           ],
           "title": {
             "fr_FR": "The Dew Breaker",
@@ -13731,6 +14223,9 @@
           "year": 1978,
           "genre": [
             "mystery"
+          ],
+          "awards": [
+            "Q622813"
           ],
           "title": {
             "fr_FR": "The Westing Game",
@@ -14355,6 +14850,9 @@
             "narrative",
             "history"
           ],
+          "awards": [
+            "Q187300"
+          ],
           "title": {
             "fr_FR": "L'Ordre du jour",
             "en_US": "The Order of the Day"
@@ -14671,6 +15169,9 @@
             "minimalist-novel",
             "adventure"
           ],
+          "awards": [
+            "Q833633"
+          ],
           "title": {
             "fr_FR": "Le Vieil Homme et la Mer",
             "en_US": "The Old Man and the Sea"
@@ -14814,6 +15315,9 @@
           "year": 1956,
           "genre": [
             "autobiography"
+          ],
+          "awards": [
+            "Q289214"
           ],
           "title": {
             "fr_FR": "Le Long Voyage vers la nuit",
@@ -15445,6 +15949,9 @@
             "contemporary-novel",
             "bildungsroman"
           ],
+          "awards": [
+            "Q2111282"
+          ],
           "title": {
             "fr_FR": "Bonjour tristesse",
             "en_US": "Bonjour Tristesse"
@@ -15889,6 +16396,9 @@
           "genre": [
             "detective-novel",
             "atmospheric"
+          ],
+          "awards": [
+            "Q2425126"
           ],
           "title": {
             "fr_FR": "Debout les morts",
@@ -16816,6 +17326,10 @@
             "satire",
             "political"
           ],
+          "awards": [
+            "Q19360203",
+            "Q115288957"
+          ],
           "title": {
             "fr_FR": "La Ferme des animaux",
             "en_US": "Animal Farm"
@@ -16899,6 +17413,10 @@
             "fantasy",
             "epic"
           ],
+          "awards": [
+            "Q6359432",
+            "Q607354"
+          ],
           "title": {
             "fr_FR": "Le Trône de fer - Les rois des sables",
             "en_US": "A Game of Thrones"
@@ -16921,6 +17439,10 @@
           "genre": [
             "fantasy",
             "epic"
+          ],
+          "awards": [
+            "Q6359432",
+            "Q607354"
           ],
           "title": {
             "fr_FR": "Le Trône de fer - Le Donjon rouge",
@@ -16958,6 +17480,10 @@
             "fantasy",
             "epic"
           ],
+          "awards": [
+            "Q6359432",
+            "Q607354"
+          ],
           "title": {
             "fr_FR": "Le Trône de fer - L'Invincible Armure",
             "en_US": "A Storm of Swords"
@@ -16980,6 +17506,9 @@
           "genre": [
             "fantasy",
             "epic"
+          ],
+          "awards": [
+            "Q607354"
           ],
           "title": {
             "fr_FR": "Le Trône de fer - Les Rois de l'orage",
@@ -17350,6 +17879,9 @@
           "year": 2005,
           "genre": [
             "historical-novel"
+          ],
+          "awards": [
+            "Q833633"
           ],
           "title": {
             "fr_FR": "March",
@@ -18770,6 +19302,9 @@
           "genre": [
             "bildungsroman"
           ],
+          "awards": [
+            "Q833633"
+          ],
           "title": {
             "fr_FR": "Ne tirez pas sur l'oiseau moqueur",
             "en_US": "To Kill a Mockingbird"
@@ -19594,6 +20129,9 @@
             "contemporary-novel",
             "speculative"
           ],
+          "awards": [
+            "Q187300"
+          ],
           "title": {
             "fr_FR": "L'Anomalie",
             "en_US": "The Anomaly"
@@ -20037,6 +20575,9 @@
             "science-fiction",
             "space-opera"
           ],
+          "awards": [
+            "Q747089"
+          ],
           "title": {
             "fr_FR": "L'Homme des jeux",
             "en_US": "The Player of Games"
@@ -20050,6 +20591,10 @@
           "year": 1996,
           "genre": [
             "science-fiction"
+          ],
+          "awards": [
+            "Q4836602",
+            "Q18693138"
           ],
           "title": {
             "fr_FR": "Excession",
@@ -20295,6 +20840,9 @@
             "novella",
             "novel"
           ],
+          "awards": [
+            "Q160082"
+          ],
           "title": {
             "fr_FR": "Amsterdam",
             "en_US": "Amsterdam"
@@ -20433,6 +20981,9 @@
           "year": 1978,
           "genre": [
             "philosophical-novel"
+          ],
+          "awards": [
+            "Q160082"
           ],
           "title": {
             "fr_FR": "La Mer, la mer",
@@ -21069,6 +21620,9 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q1362723"
+          ],
           "title": {
             "fr_FR": "Boyhood: Scenes from Provincial Life",
             "en_US": "Boyhood: Scenes from Provincial Life"
@@ -21083,6 +21637,9 @@
           "year": 1999,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q160082"
           ],
           "title": {
             "fr_FR": "Disgrâce",
@@ -21203,6 +21760,9 @@
           "year": 1977,
           "genre": [
             "fantasy"
+          ],
+          "awards": [
+            "Q607354"
           ],
           "title": {
             "fr_FR": "Le Silmarillion",
@@ -21384,6 +21944,9 @@
             "fantasy",
             "children-s-literature"
           ],
+          "awards": [
+            "Q7575072"
+          ],
           "title": {
             "fr_FR": "Harry Potter à l'école des sorciers",
             "en_US": "Harry Potter and the Philosopher's Stone"
@@ -21430,6 +21993,9 @@
             "fantasy",
             "children-s-literature"
           ],
+          "awards": [
+            "Q607354"
+          ],
           "title": {
             "fr_FR": "Harry Potter et le Prisonnier d'Azkaban",
             "en_US": "Harry Potter and the Prisoner of Azkaban"
@@ -21452,6 +22018,9 @@
           "genre": [
             "fantasy",
             "children-s-literature"
+          ],
+          "awards": [
+            "Q255032"
           ],
           "title": {
             "fr_FR": "Harry Potter et la Coupe de feu",
@@ -23347,6 +23916,9 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q833633"
+          ],
           "title": {
             "fr_FR": "L'Exploitation",
             "en_US": "A Thousand Acres"
@@ -24515,6 +25087,9 @@
             "historical-novel",
             "family-saga"
           ],
+          "awards": [
+            "Q833633"
+          ],
           "title": {
             "fr_FR": "Middlesex",
             "en_US": "Middlesex"
@@ -24801,6 +25376,10 @@
           "genre": [
             "short-story-collection"
           ],
+          "awards": [
+            "Q1227402",
+            "Q833633"
+          ],
           "title": {
             "fr_FR": "L'Interprète des maladies",
             "en_US": "Interpreter of Maladies"
@@ -25049,6 +25628,9 @@
           "genre": [
             "memoirs"
           ],
+          "awards": [
+            "Q3873147"
+          ],
           "title": {
             "fr_FR": "L'Année de la pensée magique",
             "en_US": "The Year of Magical Thinking"
@@ -25285,6 +25867,11 @@
           "genre": [
             "science-fiction"
           ],
+          "awards": [
+            "Q255032",
+            "Q595998",
+            "Q266012"
+          ],
           "title": {
             "fr_FR": "La Guerre éternelle",
             "en_US": "The Forever War"
@@ -25298,6 +25885,11 @@
           "year": 1997,
           "genre": [
             "science-fiction"
+          ],
+          "awards": [
+            "Q255032",
+            "Q1030402",
+            "Q266012"
           ],
           "title": {
             "fr_FR": "La Paix éternelle",
@@ -25392,6 +25984,11 @@
           "genre": [
             "contemporary-novel",
             "thriller"
+          ],
+          "awards": [
+            "Q1542826",
+            "Q930356",
+            "Q2111303"
           ],
           "title": {
             "fr_FR": "La Vérité sur l'affaire Harry Quebert",
@@ -25601,6 +26198,9 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q160082"
+          ],
           "title": {
             "fr_FR": "La mer",
             "en_US": "The Sea"
@@ -25727,6 +26327,11 @@
             "science-fiction",
             "dystopian"
           ],
+          "awards": [
+            "Q4836602",
+            "Q255032",
+            "Q773755"
+          ],
           "title": {
             "fr_FR": "Tous à Zanzibar",
             "en_US": "Stand on Zanzibar"
@@ -25792,6 +26397,11 @@
           "year": 1978,
           "genre": [
             "short-story-collection"
+          ],
+          "awards": [
+            "Q572316",
+            "Q109554372",
+            "Q833633"
           ],
           "title": {
             "fr_FR": "The Stories of John Cheever",
@@ -26190,6 +26800,9 @@
           "year": 1980,
           "genre": [
             "tragicomedy"
+          ],
+          "awards": [
+            "Q833633"
           ],
           "title": {
             "fr_FR": "La Conjuration des imbéciles",
@@ -26639,6 +27252,10 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q109554372",
+            "Q833633"
+          ],
           "title": {
             "fr_FR": "Rabbit en paix",
             "en_US": "Rabbit at Rest"
@@ -26844,6 +27461,9 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q4820684"
+          ],
           "title": {
             "fr_FR": "Outside the Dog Museum",
             "en_US": "Outside the Dog Museum"
@@ -26937,6 +27557,9 @@
           "year": 1994,
           "genre": [
             "science-fiction"
+          ],
+          "awards": [
+            "Q2090893"
           ],
           "title": {
             "fr_FR": "Flingue sur fond musical",
@@ -27590,6 +28213,9 @@
           "year": 1995,
           "genre": [
             "horror"
+          ],
+          "awards": [
+            "Q221178"
           ],
           "title": {
             "fr_FR": "Zombi",
@@ -28586,6 +29212,9 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q622813"
+          ],
           "title": {
             "fr_FR": "The Midwife's Apprentice",
             "en_US": "The Midwife's Apprentice"
@@ -29078,6 +29707,9 @@
             "fantasy",
             "children-s-literature"
           ],
+          "awards": [
+            "Q622813"
+          ],
           "title": {
             "fr_FR": "Le Royaume de la rivière",
             "en_US": "Bridge to Terabithia"
@@ -29277,6 +29909,9 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q1136336"
+          ],
           "title": {
             "fr_FR": "Un artiste du monde flottant",
             "en_US": "An Artist of the Floating World"
@@ -29309,6 +29944,9 @@
             "science-fiction",
             "alternate-history",
             "dystopian"
+          ],
+          "awards": [
+            "Q896335"
           ],
           "title": {
             "fr_FR": "Auprès de moi toujours",
@@ -29636,6 +30274,9 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q11503628"
+          ],
           "title": {
             "fr_FR": "Une affaire personnelle",
             "en_US": "A Personal Matter"
@@ -29718,6 +30359,9 @@
           "genre": [
             "science-fiction"
           ],
+          "awards": [
+            "Q2090893"
+          ],
           "title": {
             "fr_FR": "Le Rivage oublié",
             "en_US": "The Wild Shore"
@@ -29745,6 +30389,9 @@
           "year": 1990,
           "genre": [
             "science-fiction"
+          ],
+          "awards": [
+            "Q1030402"
           ],
           "title": {
             "fr_FR": "Lisière du Pacifique",
@@ -29774,6 +30421,9 @@
           "genre": [
             "science-fiction",
             "alternate-history"
+          ],
+          "awards": [
+            "Q2576795"
           ],
           "title": {
             "fr_FR": "Chroniques des années noires",
@@ -30362,6 +31012,9 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q179810"
+          ],
           "title": {
             "fr_FR": "Vol et Volupté",
             "en_US": "The Burglar Who Liked to Quote Kipling"
@@ -30533,6 +31186,9 @@
           "genre": [
             "contemporary-novel",
             "psychological"
+          ],
+          "awards": [
+            "Q187300"
           ],
           "title": {
             "fr_FR": "Chanson douce",
@@ -30786,6 +31442,9 @@
           "genre": [
             "fantasy",
             "children-s-literature"
+          ],
+          "awards": [
+            "Q1472266"
           ],
           "title": {
             "fr_FR": "Les Aventures d'Alice au pays des merveilles",
@@ -31152,6 +31811,9 @@
           "genre": [
             "fantasy"
           ],
+          "awards": [
+            "Q622813"
+          ],
           "title": {
             "fr_FR": "Le Haut Roi",
             "en_US": "The High King"
@@ -31180,6 +31842,9 @@
           "year": 1945,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q622813"
           ],
           "title": {
             "fr_FR": "Strawberry Girl",
@@ -31228,6 +31893,9 @@
             "science-fiction",
             "young-adult",
             "dystopian"
+          ],
+          "awards": [
+            "Q622813"
           ],
           "title": {
             "fr_FR": "Le Passeur",
@@ -31399,6 +32067,10 @@
             "family-saga",
             "young-adult",
             "adventure-novel"
+          ],
+          "awards": [
+            "Q572316",
+            "Q622813"
           ],
           "title": {
             "fr_FR": "Le Passage",
@@ -31726,6 +32398,9 @@
           "year": 2005,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q622813"
           ],
           "title": {
             "fr_FR": "Criss Cross",
@@ -32115,6 +32790,9 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q187300"
+          ],
           "title": {
             "fr_FR": "À l'ombre des jeunes filles en fleurs",
             "en_US": "In the Shadow of Young Girls in Flower"
@@ -32172,6 +32850,10 @@
             "science-fiction",
             "dystopian"
           ],
+          "awards": [
+            "Q708830",
+            "Q3405805"
+          ],
           "title": {
             "fr_FR": "Le Conte du serviteur",
             "en_US": "The Handmaid's Tale"
@@ -32193,6 +32875,9 @@
           "year": 1993,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q2453329"
           ],
           "title": {
             "fr_FR": "La Voleuse d'hommes",
@@ -32427,6 +33112,9 @@
             "narrative",
             "autobiographical"
           ],
+          "awards": [
+            "Q187300"
+          ],
           "title": {
             "fr_FR": "L'Amant",
             "en_US": "The Lover"
@@ -32558,6 +33246,9 @@
           "year": 1968,
           "genre": [
             "historical-novel"
+          ],
+          "awards": [
+            "Q18945"
           ],
           "title": {
             "fr_FR": "L'Œuvre au noir",
@@ -33803,6 +34494,9 @@
           "genre": [
             "fantasy"
           ],
+          "awards": [
+            "Q1026417"
+          ],
           "title": {
             "fr_FR": "Max et les Maximonstres",
             "en_US": "Where the Wild Things Are"
@@ -34284,6 +34978,9 @@
           "genre": [
             "fantasy"
           ],
+          "awards": [
+            "Q594550"
+          ],
           "title": {
             "fr_FR": "Le Prix de la magie",
             "en_US": "Magic's Price"
@@ -34344,6 +35041,9 @@
           "genre": [
             "historical-novel"
           ],
+          "awards": [
+            "Q833633"
+          ],
           "title": {
             "fr_FR": "Les Extraordinaires Aventures de Kavalier & Clay",
             "en_US": "The Amazing Adventures of Kavalier & Clay"
@@ -34363,6 +35063,12 @@
             "fantasy",
             "detective-novel",
             "alternate-history"
+          ],
+          "awards": [
+            "Q255032",
+            "Q6359432",
+            "Q2576795",
+            "Q266012"
           ],
           "title": {
             "fr_FR": "Le Club des policiers yiddish",
@@ -34435,6 +35141,9 @@
           "genre": [
             "detective-novel",
             "courtroom"
+          ],
+          "awards": [
+            "Q176441"
           ],
           "title": {
             "fr_FR": "Créancière",
@@ -34516,6 +35225,9 @@
           "genre": [
             "science-fiction",
             "thriller"
+          ],
+          "awards": [
+            "Q27496509"
           ],
           "title": {
             "fr_FR": "L'Étoile Andromède",
@@ -34868,6 +35580,9 @@
           "genre": [
             "sword-and-sorcery"
           ],
+          "awards": [
+            "Q27496509"
+          ],
           "title": {
             "fr_FR": "Elric des dragons",
             "en_US": "Elric of Melniboné"
@@ -34885,6 +35600,9 @@
           "genre": [
             "science-fiction",
             "fantasy"
+          ],
+          "awards": [
+            "Q1030402"
           ],
           "title": {
             "fr_FR": "Gloriana ou la Reine inassouvie",
@@ -34910,6 +35628,9 @@
           "year": 2000,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q3405805"
           ],
           "title": {
             "fr_FR": "Le Fantôme d'Anil",
@@ -35474,6 +36195,9 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q3405805"
+          ],
           "title": {
             "fr_FR": "Drôle de tendresse",
             "en_US": "A Complicated Kindness"
@@ -35816,6 +36540,10 @@
             "fantasy",
             "alternate-history"
           ],
+          "awards": [
+            "Q5157154",
+            "Q2090893"
+          ],
           "title": {
             "fr_FR": "Les Dragons de Sa Majesté",
             "en_US": "His Majesty's Dragon"
@@ -35830,6 +36558,9 @@
           "genre": [
             "fantasy",
             "alternate-history"
+          ],
+          "awards": [
+            "Q2090893"
           ],
           "title": {
             "fr_FR": "Le Trône de jade",
@@ -35990,6 +36721,9 @@
             "science-fiction",
             "cyberpunk"
           ],
+          "awards": [
+            "Q6359432"
+          ],
           "title": {
             "fr_FR": "Snow Crash",
             "en_US": "Snow Crash"
@@ -36014,6 +36748,10 @@
             "bildungsroman",
             "cyberpunk"
           ],
+          "awards": [
+            "Q255032",
+            "Q2576795"
+          ],
           "title": {
             "fr_FR": "L'Âge de diamant",
             "en_US": "The Diamond Age"
@@ -36029,6 +36767,10 @@
             "science-fiction",
             "historical-novel"
           ],
+          "awards": [
+            "Q2576795",
+            "Q19360203"
+          ],
           "title": {
             "fr_FR": "Cryptonomicon",
             "en_US": "Cryptonomicon"
@@ -36042,6 +36784,9 @@
           "year": 2003,
           "genre": [
             "science-fiction"
+          ],
+          "awards": [
+            "Q708830"
           ],
           "title": {
             "fr_FR": "Quicksilver",
@@ -36057,6 +36802,9 @@
           "genre": [
             "science-fiction",
             "historical-novel"
+          ],
+          "awards": [
+            "Q2576795"
           ],
           "title": {
             "fr_FR": "The Confusion",
@@ -36164,6 +36912,9 @@
           "genre": [
             "fantasy"
           ],
+          "awards": [
+            "Q243960"
+          ],
           "title": {
             "fr_FR": "Stardust",
             "en_US": "Stardust"
@@ -36178,6 +36929,12 @@
           "genre": [
             "fantasy",
             "mythology"
+          ],
+          "awards": [
+            "Q221178",
+            "Q255032",
+            "Q607354",
+            "Q266012"
           ],
           "title": {
             "fr_FR": "American Gods",
@@ -36201,6 +36958,11 @@
           "genre": [
             "fantasy",
             "mythology"
+          ],
+          "awards": [
+            "Q58838460",
+            "Q11722414",
+            "Q1086189"
           ],
           "title": {
             "fr_FR": "Coraline",
@@ -36947,6 +37709,9 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q833633"
+          ],
           "title": {
             "fr_FR": "Le Chant du bourreau",
             "en_US": "The Executioner's Song"
@@ -37098,6 +37863,12 @@
           "year": 1986,
           "genre": [
             "science-fiction"
+          ],
+          "awards": [
+            "Q255032",
+            "Q18693138",
+            "Q2576795",
+            "Q266012"
           ],
           "title": {
             "fr_FR": "La Voix des morts",
@@ -37303,6 +38074,9 @@
           "genre": [
             "crime",
             "mystery"
+          ],
+          "awards": [
+            "Q176441"
           ],
           "title": {
             "fr_FR": "Un certain goût pour la mort",
@@ -37695,6 +38469,9 @@
           "genre": [
             "detective-novel",
             "psychological"
+          ],
+          "awards": [
+            "Q176441"
           ],
           "title": {
             "fr_FR": "Le Talentueux Mr. Ripley",
@@ -38680,6 +39457,10 @@
             "crime",
             "mystery"
           ],
+          "awards": [
+            "Q1616499",
+            "Q176441"
+          ],
           "title": {
             "fr_FR": "saison sèche",
             "en_US": "In a Dry Season"
@@ -38707,6 +39488,9 @@
           "year": 1993,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q607354"
           ],
           "title": {
             "fr_FR": "The Innkeeper's Song",
@@ -38783,6 +39567,9 @@
             "fantasy",
             "horror"
           ],
+          "awards": [
+            "Q4820684"
+          ],
           "title": {
             "fr_FR": "Le Dragon flottant",
             "en_US": "Floating Dragon"
@@ -38797,6 +39584,9 @@
           "genre": [
             "fantasy",
             "horror"
+          ],
+          "awards": [
+            "Q221178"
           ],
           "title": {
             "fr_FR": "Les Enfants perdus",
@@ -38867,6 +39657,10 @@
           "genre": [
             "science-fiction",
             "dystopian"
+          ],
+          "awards": [
+            "Q255032",
+            "Q747089"
           ],
           "title": {
             "fr_FR": "Le Maître du haut château",
@@ -38954,6 +39748,9 @@
             "dystopian",
             "philosophical",
             "science-fiction"
+          ],
+          "awards": [
+            "Q4836602"
           ],
           "title": {
             "fr_FR": "Substance mort",
@@ -39091,6 +39888,9 @@
             "contemporary-novel",
             "jewish-american"
           ],
+          "awards": [
+            "Q3873144"
+          ],
           "title": {
             "fr_FR": "Goodbye, Columbus",
             "en_US": "Goodbye, Columbus"
@@ -39153,6 +39953,9 @@
           "genre": [
             "contemporary-novel"
           ],
+          "awards": [
+            "Q833633"
+          ],
           "title": {
             "fr_FR": "Pastorale américaine",
             "en_US": "American Pastoral"
@@ -39175,6 +39978,9 @@
           "genre": [
             "contemporary-novel",
             "historical"
+          ],
+          "awards": [
+            "Q1079400"
           ],
           "title": {
             "fr_FR": "Le Complot contre l'Amérique",
@@ -39469,6 +40275,9 @@
           "genre": [
             "historical-novel",
             "novel"
+          ],
+          "awards": [
+            "Q187300"
           ],
           "title": {
             "fr_FR": "Au revoir là-haut",
@@ -39955,6 +40764,9 @@
           "genre": [
             "children-s-literature"
           ],
+          "awards": [
+            "Q622813"
+          ],
           "title": {
             "fr_FR": "Hitty, Her First Hundred Years",
             "en_US": "Hitty, Her First Hundred Years"
@@ -40033,6 +40845,10 @@
           "genre": [
             "science-fiction",
             "dystopian"
+          ],
+          "awards": [
+            "Q19360203",
+            "Q115280877"
           ],
           "title": {
             "fr_FR": "Fahrenheit 451",
@@ -40518,6 +41334,9 @@
             "science-fiction",
             "anticipation"
           ],
+          "awards": [
+            "Q1320436"
+          ],
           "title": {
             "fr_FR": "La Nuit des temps",
             "en_US": "The Ice People"
@@ -40740,6 +41559,9 @@
           "year": 1997,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q1630979"
           ],
           "title": {
             "fr_FR": "Argent brûlé",
@@ -41084,6 +41906,10 @@
             "fantasy",
             "children-s-literature"
           ],
+          "awards": [
+            "Q1043985",
+            "Q971363"
+          ],
           "title": {
             "fr_FR": "Les Garennes de Watership Down",
             "en_US": "Watership Down"
@@ -41179,6 +42005,9 @@
             "horror",
             "dystopian"
           ],
+          "awards": [
+            "Q747089"
+          ],
           "title": {
             "fr_FR": "Je suis une légende",
             "en_US": "I Am Legend"
@@ -41272,6 +42101,9 @@
           "genre": [
             "science-fiction"
           ],
+          "awards": [
+            "Q1341487"
+          ],
           "title": {
             "fr_FR": "La Nef des fous",
             "en_US": "Ship of Fools"
@@ -41319,6 +42151,9 @@
           "genre": [
             "children-s-literature",
             "historical-novel"
+          ],
+          "awards": [
+            "Q622813"
           ],
           "title": {
             "fr_FR": "A Year Down Yonder",
@@ -41380,6 +42215,9 @@
           "year": 2006,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q3873144"
           ],
           "title": {
             "fr_FR": "La Chambre aux échos",
@@ -41781,6 +42619,9 @@
           "genre": [
             "philosophical-novel"
           ],
+          "awards": [
+            "Q255032"
+          ],
           "title": {
             "fr_FR": "Étoiles, garde-à-vous !",
             "en_US": "Starship Troopers"
@@ -41795,6 +42636,10 @@
           "genre": [
             "science-fiction",
             "bildungsroman"
+          ],
+          "awards": [
+            "Q255032",
+            "Q19360203"
           ],
           "title": {
             "fr_FR": "En terre étrangère",
@@ -41812,6 +42657,10 @@
           "year": 1966,
           "genre": [
             "science-fiction"
+          ],
+          "awards": [
+            "Q255032",
+            "Q19360203"
           ],
           "title": {
             "fr_FR": "Révolte sur la Lune",
@@ -42249,6 +43098,9 @@
             "autobiography",
             "historical-novel"
           ],
+          "awards": [
+            "Q392586"
+          ],
           "title": {
             "fr_FR": "Moi, Claude",
             "en_US": "I, Claudius"
@@ -42644,6 +43496,9 @@
           "genre": [
             "horror"
           ],
+          "awards": [
+            "Q221178"
+          ],
           "title": {
             "fr_FR": "Le Feu et la Glace",
             "en_US": "Swan Song"
@@ -42691,6 +43546,9 @@
           "genre": [
             "horror"
           ],
+          "awards": [
+            "Q221178"
+          ],
           "title": {
             "fr_FR": "Mine",
             "en_US": "Mine"
@@ -42705,6 +43563,9 @@
           "year": 1991,
           "genre": [
             "mystery"
+          ],
+          "awards": [
+            "Q221178"
           ],
           "title": {
             "fr_FR": "Le Mystère du lac",
@@ -42735,6 +43596,9 @@
           "genre": [
             "science-fiction",
             "dystopian"
+          ],
+          "awards": [
+            "Q1030402"
           ],
           "title": {
             "fr_FR": "Malevil",
@@ -42977,6 +43841,9 @@
           "genre": [
             "fantasy"
           ],
+          "awards": [
+            "Q243960"
+          ],
           "title": {
             "fr_FR": "Sunshine",
             "en_US": "Sunshine"
@@ -43001,6 +43868,9 @@
           "year": 1993,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q160082"
           ],
           "title": {
             "fr_FR": "Paddy Clarke Ha Ha Ha",
@@ -43163,6 +44033,9 @@
             "science-fiction",
             "fantasy"
           ],
+          "awards": [
+            "Q255032"
+          ],
           "title": {
             "fr_FR": "Seigneur de lumière",
             "en_US": "Lord of Light"
@@ -43235,6 +44108,9 @@
             "psychological-novel",
             "combat"
           ],
+          "awards": [
+            "Q187300"
+          ],
           "title": {
             "fr_FR": "Les Racines du ciel",
             "en_US": "The Roots of Heaven"
@@ -43280,6 +44156,9 @@
           "genre": [
             "philosophical-novel",
             "combat"
+          ],
+          "awards": [
+            "Q187300"
           ],
           "title": {
             "fr_FR": "La Vie devant soi",
@@ -43560,6 +44439,9 @@
           "genre": [
             "novel"
           ],
+          "awards": [
+            "Q172582"
+          ],
           "title": {
             "fr_FR": "The Sari Shop",
             "en_US": "The Sari Shop"
@@ -43707,6 +44589,9 @@
           "year": 1975,
           "genre": [
             "historical-novel"
+          ],
+          "awards": [
+            "Q160082"
           ],
           "title": {
             "fr_FR": "Heat and Dust",
@@ -43885,6 +44770,10 @@
           "year": 1981,
           "genre": [
             "historical-novel"
+          ],
+          "awards": [
+            "Q160082",
+            "Q392586"
           ],
           "title": {
             "fr_FR": "Les Enfants de minuit",
@@ -44340,6 +45229,9 @@
           "genre": [
             "picaresque-novel"
           ],
+          "awards": [
+            "Q3873144"
+          ],
           "title": {
             "fr_FR": "Les Aventures d'Augie March",
             "en_US": "The Adventures of Augie March"
@@ -44390,6 +45282,9 @@
           "year": 1975,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q833633"
           ],
           "title": {
             "fr_FR": "Le Don de Humboldt",
@@ -44938,6 +45833,9 @@
           "genre": [
             "historical-novel"
           ],
+          "awards": [
+            "Q1648933"
+          ],
           "title": {
             "fr_FR": "Silence",
             "en_US": "Silence"
@@ -44993,6 +45891,9 @@
           "year": 1986,
           "genre": [
             "children-s-literature"
+          ],
+          "awards": [
+            "Q622813"
           ],
           "title": {
             "fr_FR": "Le Souffre-douleur",
@@ -45208,6 +46109,9 @@
           "year": 1954,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q187300"
           ],
           "title": {
             "fr_FR": "Les Mandarins",
@@ -46133,6 +47037,9 @@
             "horror",
             "supernatural-fiction"
           ],
+          "awards": [
+            "Q4820684"
+          ],
           "title": {
             "fr_FR": "Ça",
             "en_US": "It"
@@ -46178,6 +47085,9 @@
           "genre": [
             "horror",
             "supernatural-fiction"
+          ],
+          "awards": [
+            "Q221178"
           ],
           "title": {
             "fr_FR": "Misery",
@@ -47416,6 +48326,9 @@
           "genre": [
             "theater"
           ],
+          "awards": [
+            "Q289214"
+          ],
           "title": {
             "fr_FR": "Un tramway nommé Désir",
             "en_US": "A Streetcar Named Desire"
@@ -48173,6 +49086,9 @@
             "science-fiction",
             "historical-novel"
           ],
+          "awards": [
+            "Q3873144"
+          ],
           "title": {
             "fr_FR": "L'Arc-en-ciel de la gravité",
             "en_US": "Gravity's Rainbow"
@@ -48344,6 +49260,10 @@
           "year": 1977,
           "genre": [
             "novel"
+          ],
+          "awards": [
+            "Q3405805",
+            "Q2444343"
           ],
           "title": {
             "fr_FR": "The Wars",
@@ -48863,6 +49783,9 @@
           "genre": [
             "historical-novel"
           ],
+          "awards": [
+            "Q833633"
+          ],
           "title": {
             "fr_FR": "Beloved",
             "en_US": "Beloved"
@@ -49017,6 +49940,9 @@
           "year": 1981,
           "genre": [
             "non-fiction"
+          ],
+          "awards": [
+            "Q3873147"
           ],
           "title": {
             "fr_FR": "L'âme d'une nouvelle machine",
@@ -49278,6 +50204,9 @@
             "philosophical-novel",
             "metafiction"
           ],
+          "awards": [
+            "Q731542"
+          ],
           "title": {
             "fr_FR": "Le Nom de la rose",
             "en_US": "The Name of the Rose"
@@ -49485,6 +50414,10 @@
             "science-fiction",
             "anthropology"
           ],
+          "awards": [
+            "Q255032",
+            "Q266012"
+          ],
           "title": {
             "fr_FR": "La Main gauche de la nuit",
             "en_US": "The Left Hand of Darkness"
@@ -49522,6 +50455,9 @@
           "genre": [
             "fantasy"
           ],
+          "awards": [
+            "Q572316"
+          ],
           "title": {
             "fr_FR": "L'Ultime Rivage",
             "en_US": "The Farthest Shore"
@@ -49536,6 +50472,12 @@
           "genre": [
             "science-fiction",
             "utopia"
+          ],
+          "awards": [
+            "Q255032",
+            "Q595998",
+            "Q266012",
+            "Q19360203"
           ],
           "title": {
             "fr_FR": "La Toile du monde",
@@ -49558,6 +50500,10 @@
           "year": 1990,
           "genre": [
             "fantasy"
+          ],
+          "awards": [
+            "Q607354",
+            "Q266012"
           ],
           "title": {
             "fr_FR": "Tehanu",
@@ -50172,6 +51118,9 @@
             "contemporary-novel",
             "rock"
           ],
+          "awards": [
+            "Q918719"
+          ],
           "title": {
             "fr_FR": "Les Jolies Choses",
             "en_US": "Pretty Things"
@@ -50217,6 +51166,9 @@
           "genre": [
             "contemporary-novel",
             "saga"
+          ],
+          "awards": [
+            "Q3404918"
           ],
           "title": {
             "fr_FR": "Vernon Subutex 1",
@@ -50477,6 +51429,11 @@
           "genre": [
             "science-fiction",
             "space-opera"
+          ],
+          "awards": [
+            "Q255032",
+            "Q595998",
+            "Q266012"
           ],
           "title": {
             "fr_FR": "Le Rêve du Dragon",
@@ -51137,6 +52094,12 @@
           "genre": [
             "cyberpunk",
             "science-fiction"
+          ],
+          "awards": [
+            "Q255032",
+            "Q266012",
+            "Q1341487",
+            "Q27496509"
           ],
           "title": {
             "fr_FR": "Neuromancien",
@@ -52065,6 +53028,9 @@
             "fantasy",
             "philosophical-novel",
             "adventure-novel"
+          ],
+          "awards": [
+            "Q160082"
           ],
           "title": {
             "fr_FR": "L'Histoire de Pi",

@@ -234,6 +234,7 @@ The values are drawn from pools computed once per locale and kept until the cata
 | `author` | the author or a co-author, ignoring case, accents and punctuation |
 | `after`, `before` | first published in or after / before or in that year (negative for BC) |
 | `century` | first published in that century: `19` for 1801-1900, `-5` for 500-401 BC |
+| `award` | a literary award the work received, by part of its name (`"goncourt"`, `"hugo"`), or `"*"` for any |
 | `popular` | `True` to draw well-known books more often (see below) |
 
 ```python
@@ -265,6 +266,25 @@ Your own datasets may give their books a `popularity` (a positive integer); book
 fake.books_sample(20)                                      # 20 different books
 fake.books_sample(5, nationality="Russian", popular=True)  # 5 well-known Russian books
 ```
+
+---
+
+### 🏆 Literary Awards
+
+186 works of the catalogue received one of 84 literary awards (Hugo, Pulitzer, Nebula, Booker, Goncourt, Newbery, Femina...), as recorded by Wikidata:
+
+```python
+fake.award()                                  # "Hugo Award for Best Novel"
+fake_fr.award(nationality="français")         # "prix Goncourt"
+fake.book(award="booker")                     # a Booker Prize winner
+fake.title(award="*", century=20)             # any awarded 20th-century work
+fake.books_by_award("Pulitzer Prize for Fiction")
+fake.all_awards()                             # the 84 awards, sorted, localized
+fake.writer_profile("Ursula K. Le Guin")["awards"]
+# ['Hugo Award for Best Novel', 'Locus Award for Best Fantasy Novel', ...]
+```
+
+The `award` filter matches part of the name, case-insensitively: `"goncourt"` also finds the *Goncourt des lycéens*. Awards are not part of `book()`'s record.
 
 ---
 
@@ -483,6 +503,7 @@ Record schema:
 | `title_untranslated` | ❌ | `true` when the work was never translated into French: both titles are the original one |
 | `writer_born`, `writer_died` | ❌ | years of birth and death of the author (negative for BC), used by `writer_profile()` |
 | `popularity` | ❌ | how well known the work is (a positive integer), used by `popular=True` |
+| `awards` | ❌ | `{"fr_FR": [str, ...], "en_US": [str, ...]}`: literary awards received by the work |
 | `genre` | ✅ | `{"fr_FR": [str, ...], "en_US": [str, ...]}` (1 to 20 genres) |
 | `year` | ✅ | integer between -3000 and 2100 |
 | `pages` | ❌ | `None`, or `{"fr_FR": int, "en_US": int}` (1 to 100000, each may be `None`) |
