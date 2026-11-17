@@ -94,7 +94,8 @@ def test_records_are_added_with_their_untranslated_title_flag(catalogue):
     [book] = _entry(catalogue, "Q999999")["books"]
     assert list(book) == ["year", "genre", "title", "title_untranslated", "pages", "publisher", "wikidata_id"]
     assert book["genre"] == ["thriller", "science-fiction"]
-    assert book["publisher"] == {"fr_FR": None, "en_US": "Knopf"}
+    # "Knopf" is an alias of the catalogue's "Alfred A. Knopf"
+    assert book["publisher"] == {"fr_FR": None, "en_US": "alfred-a-knopf"}
 
 
 def test_duplicates_co_written_works_and_prolific_authors_are_skipped(catalogue):

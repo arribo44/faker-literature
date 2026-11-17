@@ -26,7 +26,7 @@ from tinydb.table import Table
 
 from faker_literature._storage import AtomicJSONStorage, FileLock
 from faker_literature.matching import YEAR_TOLERANCE, DuplicateIndex
-from faker_literature.vocabulary import GenreVocabulary
+from faker_literature.vocabulary import GenreVocabulary, PublisherVocabulary
 
 # A raw record: text fields are strings or {locale: value} mappings
 Record = dict[str, Any]
@@ -71,15 +71,22 @@ def load_vocabulary(path: PathLike = BUILTIN_DATA) -> GenreVocabulary:
     return GenreVocabulary(data["genres"])
 
 
+def load_publishers(path: PathLike = BUILTIN_DATA) -> PublisherVocabulary:
+    """Return the :class:`PublisherVocabulary` of the bundled JSON."""
+    data = json.loads(Path(path).read_text(encoding="utf-8"))
+    return PublisherVocabulary(data.get("publishers", {}))
+
+
 def load_builtin_books(path: PathLike = BUILTIN_DATA) -> tuple[list[Record], str]:
     """Read the bundled JSON and return ``(flat records, sha256 of the file)``.
 
-    Books refer to genres by id: records get the ``{locale: [labels]}`` of
-    the vocabulary instead.
+    Books refer to genres and publishers by id: records get the ``{locale:
+    [labels]}`` and ``{locale: name}`` of the vocabularies instead.
     """
     raw = Path(path).read_bytes()
     data = json.loads(raw.decode("utf-8"))
     vocabulary = GenreVocabulary(data["genres"])
+    publishers = PublisherVocabulary(data.get("publishers", {}))
     awards = data.get("awards", {})
     books = []
     for author in data["authors"]:
@@ -91,6 +98,7 @@ def load_builtin_books(path: PathLike = BUILTIN_DATA) -> tuple[list[Record], str
                 **life,
                 **book,
                 "genre": vocabulary.resolve(book["genre"]),
+                "publisher": publishers.resolve(book.get("publisher")),
                 **({"awards": {locale: [awards[award][locale] for award in book["awards"]] for locale in LOCALES}}
                    if book.get("awards") else {}),
                 "source": BUILTIN_SOURCE,

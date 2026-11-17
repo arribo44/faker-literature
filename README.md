@@ -18,6 +18,7 @@ Every record comes from a real catalogue of well-known works, so a generated boo
 | Books | 2,255 |
 | Genres | 220 per locale |
 | Nationalities | 56 |
+| Publishers | 332 |
 | Years covered | 800 BC → 2024 |
 
 Classics, philosophy, crime fiction, science fiction, fantasy, horror, poetry, drama, essays and contemporary novels by French, American, British, Italian, Greek, Roman, Russian, German, Japanese, Latin-American writers, and more. 422 books were entered by hand; the others come from Wikidata, most of them picked among the most rated books of a Goodreads export (see [tools/goodreads_import](tools/goodreads_import/README.md)). Writers from English-speaking countries account for about three quarters of the books; 638 works never translated into French keep their original title in both locales (`"title_untranslated": true` in their raw record).
@@ -240,7 +241,7 @@ The values are drawn from pools computed once per locale and kept until the cata
 ```python
 fake.book(nationality="French", century=19)       # Balzac, Hugo, Zola, Flaubert...
 fake.title(genre="science fiction", after=2000)   # "The Yiddish Policemen's Union"
-fake.publisher(nationality="Japanese")            # "Chuokoron-Shinsha"
+fake.publisher(nationality="Japanese")            # "Chūōkōron Shinsha"
 fake.publication_year(author="Agatha Christie")   # 1926
 fake_fr.book(genre="tragédie", before=-400)       # Eschyle, Sophocle, Euripide
 ```
@@ -614,13 +615,13 @@ faker_literature/
 ├── edition.py           # edition formats, prices and ISBN-13
 ├── __main__.py          # CLI (faker-literature): demo and import-wikidata
 ├── store.py             # BookStore: TinyDB storage, validation, localization
-├── vocabulary.py        # GenreVocabulary: one translation per genre, aliases
+├── vocabulary.py        # GenreVocabulary and PublisherVocabulary: one name per genre or publisher, aliases
 ├── matching.py          # name/title normalization, duplicate detection
 ├── _storage.py          # atomic JSON storage and inter-process lock
 ├── importers/
 │   └── wikidata.py      # Wikidata importer
 └── DATAS/
-    └── literature.json  # bundled catalogue: genre vocabulary + authors and books
+    └── literature.json  # bundled catalogue: genre, award and publisher vocabularies + authors and books
 tools/
 ├── literature_editor/   # local web page to add books to literature.json from Wikidata
 └── goodreads_import/    # adds the works of a Goodreads export to literature.json, through Wikidata
@@ -632,7 +633,7 @@ tools/
 
 Contributions are welcome! Open a PR or issue to add authors and books to `literature.json`, write importers for new datasets (Open Library, Project Gutenberg, data.bnf.fr...), add new locales, or fix bugs.
 
-When adding books, please provide both `fr_FR` and `en_US` values for every field, refer to genres by their id in the `genres` vocabulary at the top of `literature.json` (add a new entry there if needed), and run `pytest` before submitting: `tests/test_catalogue.py` checks the consistency of the catalogue.
+When adding books, please provide both `fr_FR` and `en_US` values for every field, refer to genres and publishers by their id in the `genres` and `publishers` vocabularies at the top of `literature.json` (add a new entry there if needed, or an alias when the publisher is already there under another name), and run `pytest` before submitting: `tests/test_catalogue.py` checks the consistency of the catalogue.
 
 ---
 

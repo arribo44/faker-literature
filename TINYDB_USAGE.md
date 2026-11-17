@@ -36,6 +36,12 @@ The literature data has been migrated from a simple Python tuple to an optimized
     },
     ...
   },
+  "publishers": {
+    "gallimard": {"name": "Gallimard", "aliases": ["Éditions Gallimard"], "country": "FR", "wikidata_id": "Q273819"},
+    "penguin-classics": {"name": "Penguin Classics", "country": "GB", "wikidata_id": "Q11281443"},
+    "the-russian-messenger": {"name": {"fr_FR": "Le Messager russe", "en_US": "The Russian Messenger"}, "country": "RU"},
+    ...
+  },
   "authors": [
     {
       "name": "Victor Hugo",
@@ -45,7 +51,7 @@ The literature data has been migrated from a simple Python tuple to an optimized
           "genre": ["historical-novel", "classic"],
           "title": {"fr_FR": "Les Misérables", "en_US": "Les Misérables"},
           "pages": {"fr_FR": 1463, "en_US": 1463},
-          "publisher": {"fr_FR": "...", "en_US": "..."}
+          "publisher": {"fr_FR": "gallimard", "en_US": "penguin-classics"}
         },
         ...
       ]

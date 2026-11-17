@@ -13,8 +13,9 @@ from collections import Counter, defaultdict
 import editor
 import pytest
 
+from faker_literature.matching import name_key
 from faker_literature.store import BUILTIN_DATA, LOCALES, load_builtin_books, validate_book
-from faker_literature.vocabulary import GenreVocabulary
+from faker_literature.vocabulary import GenreVocabulary, PublisherVocabulary
 
 QID = re.compile(r"Q[1-9][0-9]*")
 
@@ -78,6 +79,79 @@ def test_every_genre_is_used(catalogue, books):
 
 def test_genres_are_sorted_by_id(catalogue):
     assert list(catalogue["genres"]) == sorted(catalogue["genres"])
+
+
+# Words that do not tell a publisher from another ("Éditions Gallimard", "Hodder & Stoughton Limited")
+PUBLISHER_NOISE = re.compile(
+    r"^(?:les |the )?(?:éditions |editions |editorial |editora )?"
+    r"|(?:,? (?:inc\.?|ltd\.?|limited|publishing|publishers|publications|company|co\.?|group|corporation"
+    r"|verlag|éditeur|books|press|& sons|sons))+$", re.IGNORECASE)
+# Distinct publishers whose names differ by such words only
+DISTINCT_PUBLISHERS = [
+    {"bantam-books", "bantam-press"},  # American and British imprints of Bantam
+    {"orion-publishing-group", "the-orion-press"},  # British group, American publisher of the 1960s
+    {"penguin-books", "penguin-group"},  # the imprint and its parent group
+    {"pocket", "pocket-books"},  # French and American paperback publishers
+]
+
+
+def _publisher_key(name):
+    name = name.replace(" and ", " & ")
+    previous = None
+    while previous != name:
+        previous, name = name, PUBLISHER_NOISE.sub("", name).strip()
+    return name_key(name)
+
+
+def test_publisher_vocabulary_is_unambiguous(catalogue):
+    # Raises if a name or alias belongs to two publishers, or an id, country or Wikidata id is malformed
+    vocabulary = PublisherVocabulary(catalogue["publishers"])
+    assert len(vocabulary.names("fr_FR")) == len(catalogue["publishers"])
+
+
+def test_publisher_names_are_not_variants_of_each_other(catalogue):
+    # "Little, Brown" and "Little, Brown and Company" are one publisher, with an alias
+    owners = defaultdict(set)
+    for publisher_id, publisher in catalogue["publishers"].items():
+        name = publisher["name"]
+        for label in [*(name.values() if isinstance(name, dict) else [name]), *publisher.get("aliases", [])]:
+            owners[_publisher_key(label)].add(publisher_id)
+    variants = [ids for ids in owners.values() if len(ids) > 1 and ids not in DISTINCT_PUBLISHERS]
+    assert not variants
+
+
+def test_publisher_wikidata_ids_are_unique(catalogue):
+    ids = Counter(publisher["wikidata_id"] for publisher in catalogue["publishers"].values()
+                  if "wikidata_id" in publisher)
+    assert [qid for qid, count in ids.items() if count > 1] == []
+
+
+def test_books_refer_to_known_publishers(catalogue, books):
+    wrong = [_label(author, book) for author, book in books if book.get("publisher") is not None and (
+        set(book["publisher"]) != set(LOCALES)
+        or not all(value is None or value in catalogue["publishers"] for value in book["publisher"].values())
+        or not any(book["publisher"].values()))]
+    assert not wrong
+
+
+def test_every_publisher_is_used(catalogue, books):
+    used = {value for _, book in books for value in (book.get("publisher") or {}).values() if value}
+    assert sorted(set(catalogue["publishers"]) - used) == []
+
+
+def test_publishers_are_sorted_by_id(catalogue):
+    assert list(catalogue["publishers"]) == sorted(catalogue["publishers"])
+
+
+def test_aliases_do_not_repeat_the_name(catalogue):
+    wrong = []
+    for publisher_id, publisher in catalogue["publishers"].items():
+        name = publisher["name"]
+        names = {name_key(label) for label in (name.values() if isinstance(name, dict) else [name])}
+        aliases = [name_key(alias) for alias in publisher.get("aliases", [])]
+        if len(set(aliases)) != len(aliases) or names & set(aliases):
+            wrong.append(publisher_id)
+    assert not wrong
 
 
 @pytest.mark.parametrize("field", ["pages", "publisher"])

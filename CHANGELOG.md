@@ -4,6 +4,24 @@ Toutes les évolutions notables de `faker-literature` sont documentées dans ce 
 
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0/) et les versions suivent [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [Non publié]
+
+### Ajouté
+
+- Vocabulaire contrôlé des éditeurs : `literature.json` définit chaque éditeur une seule fois, sous `publishers`, avec son nom (traduit seulement quand l'éditeur est connu sous un autre nom, comme « Le Messager russe » / « The Russian Messenger »), ses autres graphies (`aliases`), son pays (code ISO 3166-1) et son identifiant Wikidata ; les livres y font référence par identifiant, un par locale. Classe `PublisherVocabulary` et fonction `store.load_publishers()`. Le format des enregistrements du `BookStore` et les résultats du provider sont inchangés.
+- 318 des 332 éditeurs ont un pays et 265 un identifiant Wikidata, retrouvés d'après les éditeurs des œuvres et de leurs éditions sur Wikidata ; les personnes et les noms de famille que Wikidata donne parfois pour éditeur (Alfred A. Knopf, Victor Gollancz, Gallimard) sont écartés.
+- Tests de cohérence : éditeurs connus du vocabulaire, tous utilisés, sans identifiant Wikidata en double, et aucun nom qui ne serait qu'une variante d'un autre (« Hodder & Stoughton Limited », « Éditions Grasset ») ; les éditeurs distincts aux noms proches (Pocket / Pocket Books, Bantam Books / Bantam Press…) sont listés explicitement.
+
+### Modifié
+
+- Éditeur local et import Goodreads : les éditeurs saisis ou proposés par Wikidata sont ramenés au vocabulaire (« Éditions Gallimard » → Gallimard) ; un éditeur inconnu y est ajouté, et le message de confirmation le signale.
+- Importeur Wikidata : les éditeurs connus du catalogue prennent leur nom du catalogue.
+- `slugify()` translittère les lettres que Unicode ne décompose pas (« Yapı » → `yapi`, « œ » → `oe`).
+
+### Corrigé
+
+- Catalogue : 412 graphies d'éditeurs ramenées à 332 éditeurs. Variantes fusionnées : *Little, Brown* / *Little, Brown and Company*, *Le Livre de Poche* / *Le Livre de poche*, *Éditions Gallimard*, *Éditions Robert Laffont*, *Seuil* / *Le Seuil*, *Kodansha* / *Kōdansha*, *Chapman and Hall*, *Macmillan* / *Macmillan Publishers* / *The Macmillan Company*, *Knopf* / *Alfred A. Knopf*, coquille *Allan Lane*… Le provider tire donc chaque éditeur sous un seul nom, et `edition()` lui donne un seul préfixe ISBN.
+
 ## [0.4.0] - 2026-11-16
 
 ### Modifié
