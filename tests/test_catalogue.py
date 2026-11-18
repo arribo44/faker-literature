@@ -89,6 +89,8 @@ PUBLISHER_NOISE = re.compile(
 # Distinct publishers whose names differ by such words only
 DISTINCT_PUBLISHERS = [
     {"bantam-books", "bantam-press"},  # American and British imprints of Bantam
+    {"dial-books", "dial-press"},  # children's imprint of Penguin, adult imprint of Random House
+    {"walker-books", "walker-company"},  # British children's publisher, American publisher
     {"orion-publishing-group", "the-orion-press"},  # British group, American publisher of the 1960s
     {"penguin-books", "penguin-group"},  # the imprint and its parent group
     {"pocket", "pocket-books"},  # French and American paperback publishers
@@ -152,6 +154,55 @@ def test_aliases_do_not_repeat_the_name(catalogue):
         if len(set(aliases)) != len(aliases) or names & set(aliases):
             wrong.append(publisher_id)
     assert not wrong
+
+
+# Countries whose publishers publish in the language of each locale
+LOCALE_COUNTRIES = {
+    "fr_FR": {"FR", "BE", "CH", "CA", "LU", "MC"},
+    "en_US": {"US", "GB", "CA", "AU", "IE", "NZ", "IN", "ZA"},
+}
+# Publishers working in the language of a locale from another country
+LOCALE_PUBLISHERS = {
+    "en_US": {
+        "olympia-press",  # Paris, in English: Lolita, Naked Lunch
+        "obelisk-press",  # Paris, in English: Tropic of Cancer
+        "shakespeare-and-company",  # Paris, in English: Ulysses
+    },
+}
+# Books whose publisher is not of the locale's language, at most: a ratchet, lowered as the catalogue is
+# corrected (tools/literature_editor/update_editions.py and update_bnf.py), so that it never gets worse
+MAX_FOREIGN_PUBLISHERS = {"fr_FR": 84, "en_US": 64}
+
+
+def _foreign_publishers(catalogue, books, locale):
+    """Return the books whose ``locale`` publisher is from a country of another language."""
+    foreign = []
+    for author, book in books:
+        publisher_id = (book.get("publisher") or {}).get(locale)
+        if not publisher_id or publisher_id in LOCALE_PUBLISHERS.get(locale, ()):
+            continue
+        # A work never translated into French has no French edition: its original one stands in
+        if locale == "fr_FR" and book.get("title_untranslated"):
+            continue
+        country = catalogue["publishers"][publisher_id].get("country")
+        if country is not None and country not in LOCALE_COUNTRIES[locale]:
+            foreign.append(f"{_label(author, book)}: {publisher_id} ({country})")
+    return foreign
+
+
+@pytest.mark.parametrize("locale", LOCALES)
+def test_publishers_publish_in_the_language_of_their_locale(catalogue, books, locale):
+    # "Alfred A. Knopf" as the French publisher of an American novel is the publisher of its original edition
+    foreign = _foreign_publishers(catalogue, books, locale)
+    assert len(foreign) <= MAX_FOREIGN_PUBLISHERS[locale], (
+        f"{len(foreign)} {locale} publishers of another language (at most {MAX_FOREIGN_PUBLISHERS[locale]}): "
+        + "; ".join(foreign[:20]))
+
+
+def test_publishers_have_a_country(catalogue):
+    # Without one, the language of a publisher cannot be checked
+    assert len([publisher_id for publisher_id, publisher in catalogue["publishers"].items()
+                if "country" not in publisher]) <= 33
 
 
 @pytest.mark.parametrize("field", ["pages", "publisher"])

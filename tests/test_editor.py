@@ -137,8 +137,8 @@ def test_annotate_suggests_the_catalogue_name_of_a_publisher(catalogue):
 def test_catalogue_info_lists_the_publishers_of_the_vocabulary(catalogue):
     info = editor.catalogue_info(catalogue)
     assert "Gallimard" in info["publisher"]["fr_FR"]
-    assert "Le Messager russe" in info["publisher"]["fr_FR"]
-    assert "The Russian Messenger" in info["publisher"]["en_US"]
+    assert "Université d'Adélaïde" in info["publisher"]["fr_FR"]
+    assert "University of Adelaide" in info["publisher"]["en_US"]
     assert "Éditions Gallimard" not in info["publisher"]["fr_FR"]
 
 

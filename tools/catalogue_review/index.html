@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revue du catalogue</title>
+<style>
+  :root {
+    --bg: #f6f5f1; --surface: #ffffff; --surface-2: #f0eee8; --text: #1f1d1a; --muted: #6b665e;
+    --border: #dedad1; --accent: #7a3e1d; --accent-text: #ffffff; --ok: #2f6b3a; --ok-bg: #e4f1e5;
+    --warn: #8a5a00; --warn-bg: #fbefd5; --error: #a12a2a; --error-bg: #fbe3e1; --info: #3d5a80; --info-bg: #e3ebf5;
+    --focus: #c2703d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171614; --surface: #211f1c; --surface-2: #2a2824; --text: #ece8e1; --muted: #a39d93;
+      --border: #3a3732; --accent: #e09a6b; --accent-text: #1b1310; --ok: #8fd19a; --ok-bg: #1f3323;
+      --warn: #f0c46a; --warn-bg: #3a2f17; --error: #f19a93; --error-bg: #3d1f1d; --info: #9dbbe3; --info-bg: #1e2a3a;
+      --focus: #e09a6b;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 1400px; margin: 0 auto; padding: 24px 16px 60px; }
+  h1 { font-size: 1.45rem; margin: 0 0 4px; }
+  .muted { color: var(--muted); }
+  a { color: var(--accent); }
+  button, select, input { font: inherit; color: inherit; }
+  select, input[type=search] { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; min-width: 0; }
+  select:focus-visible, input:focus-visible, button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  button { border: 1px solid var(--border); background: var(--surface-2); border-radius: 6px; padding: 6px 12px; cursor: pointer; }
+  button:disabled { opacity: .5; cursor: default; }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-top: 14px; }
+  .tabs { display: flex; gap: 6px; margin-top: 16px; }
+  .tabs button[aria-selected=true] { background: var(--accent); color: var(--accent-text); border-color: var(--accent); font-weight: 600; }
+
+  .summary { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; }
+  .check { text-align: left; display: flex; justify-content: space-between; gap: 8px; align-items: baseline; padding: 8px 10px; }
+  .check .n { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .check.active { outline: 2px solid var(--accent); }
+  .check.error { background: var(--error-bg); color: var(--error); border-color: transparent; }
+  .check.todo { background: var(--warn-bg); color: var(--warn); border-color: transparent; }
+  .check.info { background: var(--info-bg); color: var(--info); border-color: transparent; }
+  .check.zero { opacity: .55; }
+
+  .filters { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px 12px; }
+  .filters label { display: flex; flex-direction: column; gap: 3px; font-size: .8rem; color: var(--muted); }
+  .filters select, .filters input { width: 100%; color: var(--text); }
+  .bar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
+  .bar .count { margin-right: auto; }
+
+  .table-wrap { overflow-x: auto; margin-top: 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: .86rem; }
+  th, td { padding: 6px 8px; border-bottom: 1px solid var(--border); vertical-align: top; text-align: left; }
+  th { position: sticky; top: 0; background: var(--surface-2); font-weight: 600; white-space: nowrap; z-index: 1; }
+  tbody tr:hover { background: var(--surface-2); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .loc { display: block; }
+  .loc::before { content: attr(data-l); font-size: .7rem; color: var(--muted); margin-right: 4px; font-weight: 600; }
+  .bad { color: var(--error); font-weight: 600; }
+  .empty { color: var(--muted); font-style: italic; }
+  .est { font-size: .7rem; color: var(--warn); margin-left: 3px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .tag { font-size: .72rem; padding: 1px 7px; border-radius: 99px; white-space: nowrap; }
+  .tag.error { background: var(--error-bg); color: var(--error); }
+  .tag.todo { background: var(--warn-bg); color: var(--warn); }
+  .tag.info { background: var(--info-bg); color: var(--info); }
+  .tag.ok { background: var(--ok-bg); color: var(--ok); }
+  .pager { display: flex; gap: 8px; align-items: center; justify-content: flex-end; margin-top: 10px; }
+  .loader { margin-top: 16px; }
+  .loader input[type=file] { margin-top: 8px; }
+  .status.error { color: var(--error); }
+  code { font-size: .85em; }
+  @media (max-width: 600px) { .summary { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Revue du catalogue</h1>
+  <p class="muted" id="subtitle">Les données incohérentes d'abord, puis les autres, avec les mêmes règles que <code>tests/test_catalogue.py</code>.</p>
+
+  <section class="panel loader" id="loader">
+    <p id="load-status">Chargement de <code>faker_literature/DATAS/literature.json</code>…</p>
+    <div id="file-picker" hidden>
+      <p class="status error">Le catalogue n'a pas pu être lu directement. Lancez <code>python -m http.server</code> à la racine du dépôt puis ouvrez <code>http://localhost:8000/tools/catalogue_review/</code>, ou choisissez le fichier :</p>
+      <input type="file" id="file" accept=".json,application/json">
+    </div>
+  </section>
+
+  <div id="app" hidden>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="books">Livres</button>
+      <button role="tab" aria-selected="false" data-tab="publishers">Éditeurs</button>
+    </div>
+
+    <section class="panel">
+      <div class="summary" id="summary"></div>
+    </section>
+
+    <section class="panel">
+      <div class="filters" id="filters"></div>
+      <div class="bar">
+        <span class="count" id="count"></span>
+        <button id="reset">Réinitialiser les filtres</button>
+        <button id="export">Exporter en CSV</button>
+      </div>
+      <div class="table-wrap"><table id="table"></table></div>
+      <div class="pager">
+        <button id="prev">Précédent</button><span id="page"></span><button id="next">Suivant</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+"use strict";
+
+// Rules shared with tests/test_catalogue.py: keep both in step
+const LOCALES = ["fr_FR", "en_US"];
+const LOCALE_COUNTRIES = {
+  fr_FR: new Set(["FR", "BE", "CH", "CA", "LU", "MC"]),
+  en_US: new Set(["US", "GB", "CA", "AU", "IE", "NZ", "IN", "ZA"]),
+};
+const LOCALE_PUBLISHERS = { en_US: new Set(["olympia-press", "obelisk-press", "shakespeare-and-company"]), fr_FR: new Set() };
+const MIN_AGE = 12, MAX_POSTHUMOUS_YEARS = 60;
+const PAGE_SIZE = 100;
+const SEVERITY = { error: 3, todo: 2, info: 1 };
+const SEVERITY_LABEL = { error: "Incohérence", todo: "À compléter", info: "À savoir" };
+
+// Each check: id, label, severity, help, test(book) -> bool
+const BOOK_CHECKS = [
+  { id: "fr-publisher-foreign", sev: "error", label: "Éditeur fr d'une autre langue",
+    help: "L'éditeur français vient d'un pays non francophone : c'est en général l'éditeur de l'édition originale.",
+    test: b => foreignPublisher(b, "fr_FR") },
+  { id: "en-publisher-foreign", sev: "error", label: "Éditeur en d'une autre langue",
+    help: "L'éditeur anglais vient d'un pays non anglophone (Gallimard pour une traduction anglaise de Camus…).",
+    test: b => foreignPublisher(b, "en_US") },
+  { id: "lifespan", sev: "error", label: "Année hors de la vie de l'auteur",
+    help: `Publié avant les ${MIN_AGE} ans de l'auteur ou plus de ${MAX_POSTHUMOUS_YEARS} ans après sa mort.`,
+    test: b => (b.born != null && b.year < b.born + MIN_AGE) || (b.died != null && b.year > b.died + MAX_POSTHUMOUS_YEARS) },
+  { id: "pages-ratio", sev: "error", label: "Pages fr / en très différentes",
+    help: "Un nombre de pages fait plus du double de l'autre : édition abrégée, intégrale ou en plusieurs volumes ?",
+    test: b => { const f = pagesOf(b, "fr_FR"), e = pagesOf(b, "en_US");
+                 return f != null && e != null && Math.max(f, e) / Math.min(f, e) > 2; } },
+  { id: "english-fr-title", sev: "error", label: "Titre fr en anglais",
+    help: "Le titre français est le titre anglais, sans le marqueur « non traduit » : traduction manquante ?",
+    test: b => !b.raw.title_untranslated && b.title.fr_FR === b.title.en_US && /^(the|a|an) |\b(of|and|the)\b/i.test(b.title.en_US) },
+  { id: "fr-pages-missing", sev: "todo", label: "Pages fr manquantes", help: "Aucun nombre de pages en français.",
+    test: b => pagesOf(b, "fr_FR") == null },
+  { id: "en-pages-missing", sev: "todo", label: "Pages en manquantes", help: "Aucun nombre de pages en anglais.",
+    test: b => pagesOf(b, "en_US") == null },
+  { id: "fr-publisher-missing", sev: "todo", label: "Éditeur fr manquant", help: "Aucun éditeur en français.",
+    test: b => !publisherIdOf(b, "fr_FR") },
+  { id: "en-publisher-missing", sev: "todo", label: "Éditeur en manquant", help: "Aucun éditeur en anglais.",
+    test: b => !publisherIdOf(b, "en_US") },
+  { id: "untranslated", sev: "todo", label: "Titre « non traduit » à vérifier",
+    help: "Marqué jamais traduit en français : beaucoup l'ont été, sous un titre que Wikidata ignorait.",
+    test: b => !!b.raw.title_untranslated },
+  { id: "publisher-no-country", sev: "todo", label: "Éditeur sans pays",
+    help: "La langue d'un éditeur sans pays ne peut pas être vérifiée.",
+    test: b => LOCALES.some(l => { const p = publisherIdOf(b, l); return p && !state.data.publishers[p]?.country; }) },
+  { id: "pages-estimated", sev: "info", label: "Pages estimées", help: "Saisies à la main, non vérifiées (pages_estimated).",
+    test: b => !!b.raw.pages_estimated },
+  { id: "publisher-estimated", sev: "info", label: "Éditeur estimé", help: "Saisi à la main, non vérifié (publisher_estimated).",
+    test: b => !!b.raw.publisher_estimated },
+  { id: "no-wikidata", sev: "info", label: "Sans identifiant Wikidata", help: "Les outils de mise à jour ne peuvent pas le compléter.",
+    test: b => !b.raw.wikidata_id },
+  { id: "no-popularity", sev: "info", label: "Sans popularité", help: "Tiré avec le poids médian par popular=True.",
+    test: b => !b.raw.popularity },
+];
+
+const PUBLISHER_CHECKS = [
+  { id: "p-no-country", sev: "todo", label: "Sans pays", help: "Pays inconnu : sa langue ne peut pas être vérifiée.",
+    test: p => !p.raw.country },
+  { id: "p-foreign-in-fr", sev: "error", label: "Utilisé en fr hors francophonie",
+    help: "Éditeur non francophone donné comme éditeur français d'un livre traduit.",
+    test: p => p.foreign.fr_FR > 0 },
+  { id: "p-foreign-in-en", sev: "error", label: "Utilisé en en hors anglophonie",
+    help: "Éditeur non anglophone donné comme éditeur anglais.",
+    test: p => p.foreign.en_US > 0 },
+  { id: "p-no-wikidata", sev: "info", label: "Sans identifiant Wikidata", help: "Ajouté à la main ou depuis la BnF.",
+    test: p => !p.raw.wikidata_id },
+];
+
+const state = { data: null, books: [], publishers: [], tab: "books", page: 0, filters: {}, rows: [] };
+
+function localized(value, locale) {
+  if (value == null) return null;
+  return typeof value === "object" ? value[locale] : value;
+}
+function pagesOf(b, l) { return b.raw.pages ? b.raw.pages[l] ?? null : null; }
+function publisherIdOf(b, l) { return b.raw.publisher ? b.raw.publisher[l] ?? null : null; }
+function publisherName(id, l) { const p = state.data.publishers[id]; return p ? localized(p.name, l) : id; }
+function foreignPublisher(b, l) {
+  const id = publisherIdOf(b, l);
+  if (!id || LOCALE_PUBLISHERS[l].has(id)) return false;
+  if (l === "fr_FR" && b.raw.title_untranslated) return false;  // no French edition: the original one stands in
+  const country = state.data.publishers[id]?.country;
+  return country != null && !LOCALE_COUNTRIES[l].has(country);
+}
+function century(year) { return year > 0 ? Math.ceil(year / 100) : -Math.ceil(-year / 100); }
+function centuryLabel(c) {
+  const roman = n => ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV",
+                      "XVI", "XVII", "XVIII", "XIX", "XX", "XXI"][n] || String(n);
+  return c > 0 ? `${roman(c)}e siècle` : `${roman(-c)}e siècle av. J.-C.`;
+}
+function norm(text) { return String(text ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); }
+function el(tag, attrs = {}, ...children) {
+  const node = document.createElement(tag);
+  for (const [key, value] of Object.entries(attrs)) {
+    if (key === "class") node.className = value;
+    else if (key.startsWith("on")) node.addEventListener(key.slice(2), value);
+    else if (value !== false && value != null) node.setAttribute(key, value === true ? "" : value);
+  }
+  for (const child of children.flat()) if (child != null) node.append(child.nodeType ? child : String(child));
+  return node;
+}
+
+// Preparing the data
+
+function prepare(data) {
+  state.data = data;
+  const books = [];
+  for (const author of data.authors) {
+    for (const raw of author.books) {
+      const b = {
+        raw, author, name: localized(author.name, "fr_FR"), nameEn: localized(author.name, "en_US"),
+        nationality: author.nationality.fr_FR, born: author.born ?? null, died: author.died ?? null,
+        title: raw.title, year: raw.year, century: century(raw.year),
+        genres: raw.genre.map(id => data.genres[id]?.fr_FR ?? id),
+        source: raw.pages_estimated || raw.publisher_estimated || !raw.wikidata_id ? "hand" : "wikidata",
+      };
+      b.issues = BOOK_CHECKS.filter(check => check.test(b));
+      b.score = b.issues.reduce((sum, check) => sum + 10 ** SEVERITY[check.sev], 0);
+      b.search = norm([b.name, b.nameEn, b.title.fr_FR, b.title.en_US, raw.wikidata_id].join(" "));
+      books.push(b);
+    }
+  }
+  state.books = books;
+
+  const usage = {};
+  for (const id of Object.keys(data.publishers)) usage[id] = { fr_FR: 0, en_US: 0, foreign: { fr_FR: 0, en_US: 0 } };
+  for (const b of books) for (const l of LOCALES) {
+    const id = publisherIdOf(b, l);
+    if (id && usage[id]) { usage[id][l]++; if (foreignPublisher(b, l)) usage[id].foreign[l]++; }
+  }
+  state.publishers = Object.entries(data.publishers).map(([id, raw]) => {
+    const p = { id, raw, nameFr: localized(raw.name, "fr_FR"), nameEn: localized(raw.name, "en_US"),
+                country: raw.country ?? null, uses: usage[id], foreign: usage[id].foreign };
+    p.issues = PUBLISHER_CHECKS.filter(check => check.test(p));
+    p.score = p.issues.reduce((sum, check) => sum + 10 ** SEVERITY[check.sev], 0);
+    p.search = norm([id, p.nameFr, p.nameEn, ...(raw.aliases || [])].join(" "));
+    return p;
+  });
+}
+
+// Filters
+
+function options(values, labelOf = v => v) {
+  return [...values].sort((a, b) => String(labelOf(a)).localeCompare(String(labelOf(b)), "fr")).map(v => [v, labelOf(v)]);
+}
+
+function filterDefs() {
+  const checks = state.tab === "books" ? BOOK_CHECKS : PUBLISHER_CHECKS;
+  const items = state.tab === "books" ? state.books : state.publishers;
+  const anomaly = [["", "Toutes les lignes"], ["any", "Avec au moins une anomalie"], ["none", "Sans anomalie"],
+    ...["error", "todo", "info"].map(sev => [`sev:${sev}`, `Gravité : ${SEVERITY_LABEL[sev]}`]),
+    ...checks.map(check => [check.id, `${check.label} (${items.filter(i => i.issues.includes(check)).length})`])];
+  if (state.tab === "publishers") {
+    const countries = new Set(state.publishers.map(p => p.country || "—"));
+    return [
+      { id: "anomaly", label: "Anomalie", options: anomaly },
+      { id: "country", label: "Pays", options: [["", "Tous"], ...options(countries)] },
+      { id: "used", label: "Utilisé en", options: [["", "Toutes les locales"], ["fr_FR", "Français"], ["en_US", "Anglais"],
+                                                  ["both", "Les deux"]] },
+      { id: "q", label: "Recherche", type: "search", placeholder: "nom, alias, identifiant" },
+      { id: "sort", label: "Tri", options: [["anomalies", "Anomalies d'abord"], ["name", "Nom"], ["uses", "Nombre de livres"]] },
+    ];
+  }
+  const nationalities = new Set(state.books.map(b => b.nationality));
+  const genres = new Set(state.books.flatMap(b => b.genres));
+  const centuries = new Set(state.books.map(b => b.century));
+  const publishers = new Set(state.books.flatMap(b => LOCALES.map(l => publisherIdOf(b, l)).filter(Boolean)));
+  return [
+    { id: "anomaly", label: "Anomalie", options: anomaly },
+    { id: "source", label: "Source des valeurs", options: [["", "Toutes"], ["hand", "Saisies à la main / sans Wikidata"],
+                                                           ["wikidata", "Wikidata (et BnF)"]] },
+    { id: "nationality", label: "Nationalité de l'auteur", options: [["", "Toutes"], ...options(nationalities)] },
+    { id: "genre", label: "Genre", options: [["", "Tous"], ...options(genres)] },
+    { id: "century", label: "Siècle de parution", options: [["", "Tous"],
+      ...[...centuries].sort((a, b) => a - b).map(c => [String(c), centuryLabel(c)])] },
+    { id: "publisher", label: "Éditeur (fr ou en)", options: [["", "Tous"],
+      ...options(publishers, id => publisherName(id, "fr_FR"))] },
+    { id: "q", label: "Recherche", type: "search", placeholder: "auteur, titre, identifiant Q" },
+    { id: "sort", label: "Tri", options: [["anomalies", "Anomalies d'abord"], ["author", "Auteur"], ["year", "Année"],
+                                          ["popularity", "Popularité"]] },
+  ];
+}
+
+function renderFilters() {
+  const box = document.getElementById("filters");
+  box.replaceChildren();
+  for (const def of filterDefs()) {
+    let control;
+    if (def.type === "search") {
+      control = el("input", { type: "search", placeholder: def.placeholder, value: state.filters[def.id] || "" });
+      control.addEventListener("input", () => { state.filters[def.id] = control.value; state.page = 0; renderRows(); });
+    } else {
+      control = el("select", {}, def.options.map(([value, label]) => el("option", { value }, label)));
+      control.value = state.filters[def.id] ?? def.options[0][0];
+      control.addEventListener("change", () => { state.filters[def.id] = control.value; state.page = 0; renderSummary(); renderRows(); });
+    }
+    box.append(el("label", {}, def.label, control));
+  }
+}
+
+function matchesAnomaly(item, value) {
+  if (!value) return true;
+  if (value === "any") return item.issues.length > 0;
+  if (value === "none") return item.issues.length === 0;
+  if (value.startsWith("sev:")) return item.issues.some(check => check.sev === value.slice(4));
+  return item.issues.some(check => check.id === value);
+}
+
+function filtered() {
+  const f = state.filters, q = norm(f.q || "").trim();
+  if (state.tab === "publishers") {
+    let rows = state.publishers.filter(p => matchesAnomaly(p, f.anomaly)
+      && (!f.country || (p.country || "—") === f.country)
+      && (!f.used || (f.used === "both" ? p.uses.fr_FR && p.uses.en_US : p.uses[f.used] > 0))
+      && (!q || p.search.includes(q)));
+    const sort = f.sort || "anomalies";
+    rows.sort((a, b) => sort === "uses" ? (b.uses.fr_FR + b.uses.en_US) - (a.uses.fr_FR + a.uses.en_US)
+      : sort === "name" ? a.nameFr.localeCompare(b.nameFr, "fr")
+      : b.score - a.score || (b.uses.fr_FR + b.uses.en_US) - (a.uses.fr_FR + a.uses.en_US));
+    return rows;
+  }
+  let rows = state.books.filter(b => matchesAnomaly(b, f.anomaly)
+    && (!f.source || b.source === f.source)
+    && (!f.nationality || b.nationality === f.nationality)
+    && (!f.genre || b.genres.includes(f.genre))
+    && (!f.century || String(b.century) === f.century)
+    && (!f.publisher || LOCALES.some(l => publisherIdOf(b, l) === f.publisher))
+    && (!q || b.search.includes(q)));
+  const sort = f.sort || "anomalies";
+  const byAuthor = (a, b) => a.name.localeCompare(b.name, "fr") || a.year - b.year;
+  rows.sort((a, b) => sort === "year" ? a.year - b.year || byAuthor(a, b)
+    : sort === "author" ? byAuthor(a, b)
+    : sort === "popularity" ? (b.raw.popularity || 0) - (a.raw.popularity || 0)
+    : b.score - a.score || (b.raw.popularity || 0) - (a.raw.popularity || 0));
+  return rows;
+}
+
+// Rendering
+
+function renderSummary() {
+  const checks = state.tab === "books" ? BOOK_CHECKS : PUBLISHER_CHECKS;
+  const items = state.tab === "books" ? state.books : state.publishers;
+  const box = document.getElementById("summary");
+  box.replaceChildren(...checks.map(check => {
+    const n = items.filter(i => i.issues.includes(check)).length;
+    const active = state.filters.anomaly === check.id;
+    return el("button", {
+      class: `check ${check.sev}${n ? "" : " zero"}${active ? " active" : ""}`, title: check.help, "aria-pressed": active,
+      onclick: () => { state.filters.anomaly = active ? "" : check.id; state.page = 0; renderFilters(); renderSummary(); renderRows(); },
+    }, el("span", {}, check.label), el("span", { class: "n" }, n.toLocaleString("fr")));
+  }));
+}
+
+function tags(issues) {
+  if (!issues.length) return el("span", { class: "tag ok" }, "cohérent");
+  return el("div", { class: "tags" }, issues.map(check => el("span", { class: `tag ${check.sev}`, title: check.help }, check.label)));
+}
+function pair(values, render = v => v) {
+  return LOCALES.map(l => el("span", { class: "loc", "data-l": l.slice(0, 2) },
+    values[l] == null || values[l] === "" ? el("span", { class: "empty" }, "—") : render(values[l], l)));
+}
+function wikidata(id) {
+  return id ? el("a", { href: `https://www.wikidata.org/wiki/${id}`, target: "_blank", rel: "noopener" }, id) : el("span", { class: "empty" }, "—");
+}
+
+function bookRow(b) {
+  const pages = {}, publishers = {};
+  for (const l of LOCALES) { pages[l] = pagesOf(b, l); publishers[l] = publisherIdOf(b, l); }
+  const issueIds = new Set(b.issues.map(check => check.id));
+  const life = b.born != null ? ` (${b.born}–${b.died ?? ""})` : "";
+  return el("tr", {},
+    el("td", {}, tags(b.issues)),
+    el("td", {}, el("strong", {}, b.name), el("div", { class: "muted" }, b.nationality + life)),
+    el("td", {}, pair(b.title, (t, l) => el("span", { class: l === "fr_FR" && (issueIds.has("english-fr-title") || issueIds.has("untranslated")) ? "bad" : "" }, t))),
+    el("td", { class: "num" }, el("span", { class: issueIds.has("lifespan") ? "bad" : "" }, b.year < 0 ? `${-b.year} av. J.-C.` : b.year)),
+    el("td", {}, b.genres.join(", ")),
+    el("td", { class: "num" }, pair(pages, p => el("span", { class: issueIds.has("pages-ratio") ? "bad" : "" }, p,
+      b.raw.pages_estimated ? el("span", { class: "est", title: "estimé" }, "est.") : null))),
+    el("td", {}, pair(publishers, (id, l) => {
+      const p = state.data.publishers[id];
+      return el("span", { class: foreignPublisher(b, l) ? "bad" : "" }, publisherName(id, l),
+        el("span", { class: "muted" }, p?.country ? ` · ${p.country}` : " · ?"),
+        b.raw.publisher_estimated ? el("span", { class: "est", title: "estimé" }, "est.") : null);
+    })),
+    el("td", { class: "num" }, b.raw.popularity ?? el("span", { class: "empty" }, "—")),
+    el("td", {}, wikidata(b.raw.wikidata_id)),
+  );
+}
+
+function publisherRow(p) {
+  return el("tr", {},
+    el("td", {}, tags(p.issues)),
+    el("td", {}, el("strong", {}, p.nameFr), p.nameEn !== p.nameFr ? el("div", { class: "muted" }, p.nameEn) : null,
+      el("div", { class: "muted" }, el("code", {}, p.id))),
+    el("td", {}, p.country ?? el("span", { class: "empty" }, "—")),
+    el("td", {}, (p.raw.aliases || []).join(" · ") || el("span", { class: "empty" }, "—")),
+    el("td", { class: "num" }, p.uses.fr_FR, p.foreign.fr_FR ? el("div", { class: "bad" }, `${p.foreign.fr_FR} hors francophonie`) : null),
+    el("td", { class: "num" }, p.uses.en_US, p.foreign.en_US ? el("div", { class: "bad" }, `${p.foreign.en_US} hors anglophonie`) : null),
+    el("td", {}, wikidata(p.raw.wikidata_id)),
+  );
+}
+
+function renderRows() {
+  state.rows = filtered();
+  const pages = Math.max(1, Math.ceil(state.rows.length / PAGE_SIZE));
+  state.page = Math.min(state.page, pages - 1);
+  const slice = state.rows.slice(state.page * PAGE_SIZE, (state.page + 1) * PAGE_SIZE);
+  const total = state.tab === "books" ? state.books.length : state.publishers.length;
+  const withIssues = state.rows.filter(r => r.issues.some(check => check.sev !== "info")).length;
+  document.getElementById("count").textContent =
+    `${state.rows.length.toLocaleString("fr")} lignes sur ${total.toLocaleString("fr")} · ${withIssues.toLocaleString("fr")} avec une incohérence ou un manque`;
+  const head = state.tab === "books"
+    ? ["Anomalies", "Auteur", "Titre", "Année", "Genres", "Pages", "Éditeur · pays", "Pop.", "Wikidata"]
+    : ["Anomalies", "Éditeur", "Pays", "Alias", "Livres fr", "Livres en", "Wikidata"];
+  document.getElementById("table").replaceChildren(
+    el("thead", {}, el("tr", {}, head.map(h => el("th", { scope: "col" }, h)))),
+    el("tbody", {}, slice.map(state.tab === "books" ? bookRow : publisherRow)),
+  );
+  document.getElementById("page").textContent = `Page ${state.page + 1} / ${pages}`;
+  document.getElementById("prev").disabled = state.page === 0;
+  document.getElementById("next").disabled = state.page >= pages - 1;
+}
+
+function exportCsv() {
+  const quote = v => `"${String(v ?? "").replace(/"/g, '""')}"`;
+  const lines = state.tab === "books"
+    ? [["anomalies", "auteur", "titre_fr", "titre_en", "annee", "pages_fr", "pages_en", "editeur_fr", "editeur_en", "wikidata_id"],
+       ...state.rows.map(b => [b.issues.map(c => c.label).join(" | "), b.name, b.title.fr_FR, b.title.en_US, b.year,
+         pagesOf(b, "fr_FR"), pagesOf(b, "en_US"), publisherName(publisherIdOf(b, "fr_FR"), "fr_FR"),
+         publisherName(publisherIdOf(b, "en_US"), "en_US"), b.raw.wikidata_id])]
+    : [["anomalies", "id", "nom", "pays", "livres_fr", "livres_en", "wikidata_id"],
+       ...state.rows.map(p => [p.issues.map(c => c.label).join(" | "), p.id, p.nameFr, p.country, p.uses.fr_FR, p.uses.en_US,
+         p.raw.wikidata_id])];
+  const blob = new Blob(["﻿" + lines.map(line => line.map(quote).join(";")).join("\r\n")], { type: "text/csv" });
+  const link = el("a", { href: URL.createObjectURL(blob), download: `revue-${state.tab}.csv` });
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+
+function switchTab(tab) {
+  state.tab = tab; state.page = 0; state.filters = {};
+  for (const button of document.querySelectorAll("[data-tab]")) button.setAttribute("aria-selected", button.dataset.tab === tab);
+  renderFilters(); renderSummary(); renderRows();
+}
+
+function start(data) {
+  prepare(data);
+  document.getElementById("loader").hidden = true;
+  document.getElementById("app").hidden = false;
+  document.getElementById("subtitle").textContent =
+    `${state.books.length.toLocaleString("fr")} livres, ${state.publishers.length} éditeurs. Les données incohérentes d'abord, ` +
+    "puis les autres, avec les mêmes règles que tests/test_catalogue.py. Survolez une anomalie pour son explication.";
+  switchTab("books");
+}
+
+document.querySelectorAll("[data-tab]").forEach(button => button.addEventListener("click", () => switchTab(button.dataset.tab)));
+document.getElementById("prev").addEventListener("click", () => { state.page--; renderRows(); window.scrollTo({ top: 0 }); });
+document.getElementById("next").addEventListener("click", () => { state.page++; renderRows(); window.scrollTo({ top: 0 }); });
+document.getElementById("reset").addEventListener("click", () => switchTab(state.tab));
+document.getElementById("export").addEventListener("click", exportCsv);
+document.getElementById("file").addEventListener("change", async event => {
+  const file = event.target.files[0];
+  if (!file) return;
+  try { start(JSON.parse(await file.text())); }
+  catch (error) { document.getElementById("load-status").textContent = `Fichier illisible : ${error.message}`; }
+});
+
+fetch("../../faker_literature/DATAS/literature.json", { cache: "no-store" })
+  .then(response => { if (!response.ok) throw new Error(response.status); return response.json(); })
+  .then(start)
+  .catch(() => {
+    document.getElementById("load-status").hidden = true;
+    document.getElementById("file-picker").hidden = false;
+  });
+</script>
+</body>
+</html>

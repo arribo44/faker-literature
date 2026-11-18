@@ -9,8 +9,12 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 ### Ajouté
 
 - Vocabulaire contrôlé des éditeurs : `literature.json` définit chaque éditeur une seule fois, sous `publishers`, avec son nom (traduit seulement quand l'éditeur est connu sous un autre nom, comme « Le Messager russe » / « The Russian Messenger »), ses autres graphies (`aliases`), son pays (code ISO 3166-1) et son identifiant Wikidata ; les livres y font référence par identifiant, un par locale. Classe `PublisherVocabulary` et fonction `store.load_publishers()`. Le format des enregistrements du `BookStore` et les résultats du provider sont inchangés.
-- 318 des 332 éditeurs ont un pays et 265 un identifiant Wikidata, retrouvés d'après les éditeurs des œuvres et de leurs éditions sur Wikidata ; les personnes et les noms de famille que Wikidata donne parfois pour éditeur (Alfred A. Knopf, Victor Gollancz, Gallimard) sont écartés.
+- Pays et identifiant Wikidata des éditeurs (487 et 360 des 520 éditeurs), retrouvés d'après les éditeurs des œuvres et de leurs éditions sur Wikidata, les infobox de Wikipédia et les lieux d'édition de la BnF ; les personnes et les noms de famille que Wikidata donne parfois pour éditeur (Alfred A. Knopf, Victor Gollancz, Gallimard) sont écartés.
 - Tests de cohérence : éditeurs connus du vocabulaire, tous utilisés, sans identifiant Wikidata en double, et aucun nom qui ne serait qu'une variante d'un autre (« Hodder & Stoughton Limited », « Éditions Grasset ») ; les éditeurs distincts aux noms proches (Pocket / Pocket Books, Bantam Books / Bantam Press…) sont listés explicitement.
+- Scripts de complément des pages et des éditeurs (voir Corrigé), dans `tools/literature_editor/` : `update_editions.py` (éditions françaises et anglaises sur Wikidata), `update_wikipedia.py` (infobox des articles de Wikipédia en français et en anglais) et `update_bnf.py` (catalogue général de la BnF, réutilisé sous Licence Ouverte 2.0). Les valeurs ajoutées décrivent une édition réelle, pages et éditeur ensemble ; les valeurs saisies à la main ne sont pas modifiées, sauf un éditeur français qui était étranger.
+- `update_bnf.py --titles` et `--propose-titles` / `--apply-titles`, `update_wikipedia.py --propose-titles` : titres français des livres restés sous leur titre anglais, cherchés par leur titre original, proposés pour relecture puis appliqués.
+- Test de cohérence entre l'éditeur et la locale : l'éditeur d'une locale vient d'un pays de sa langue (hors œuvres jamais traduites et éditeurs anglophones de Paris : Olympia Press, Obelisk Press, Shakespeare and Company). Le nombre d'exceptions restantes est un plafond qui ne peut que baisser.
+- Page de revue du catalogue (`tools/catalogue_review/`) : tableaux des livres et des éditeurs, incohérences d'abord, filtres en listes déroulantes, export CSV.
 
 ### Modifié
 
@@ -21,6 +25,7 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 ### Corrigé
 
 - Catalogue : 412 graphies d'éditeurs ramenées à 332 éditeurs. Variantes fusionnées : *Little, Brown* / *Little, Brown and Company*, *Le Livre de Poche* / *Le Livre de poche*, *Éditions Gallimard*, *Éditions Robert Laffont*, *Seuil* / *Le Seuil*, *Kodansha* / *Kōdansha*, *Chapman and Hall*, *Macmillan* / *Macmillan Publishers* / *The Macmillan Company*, *Knopf* / *Alfred A. Knopf*, coquille *Allan Lane*… Le provider tire donc chaque éditeur sous un seul nom, et `edition()` lui donne un seul préfixe ISBN.
+- Catalogue : nombres de pages et éditeurs d'après une édition réelle dans la langue de chaque locale (Wikidata, puis Wikipédia, puis la BnF pour le français). Nombres de pages manquants : de 1 776 à 805 en français et de 1 760 à 528 en anglais ; éditeurs manquants : de 874 à 391 en français et de 862 à 406 en anglais. Les éditeurs français qui n'étaient que l'éditeur de l'édition originale d'une traduction passent de 609 à 84 (*Shutter Island* chez Payot & Rivages et non William Morrow, *L'Homme qui souriait* au Seuil et non chez Ordfront, *Le Meilleur des mondes* chez Plon et non chez Harper & Brothers…). Les éditions en gros caractères, les clubs de livres et les adaptations (bandes dessinées, versions abrégées) sont écartés. Le vocabulaire compte 520 éditeurs.
 
 ## [0.4.0] - 2026-11-16
 
