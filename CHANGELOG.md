@@ -4,6 +4,21 @@ Toutes les évolutions notables de `faker-literature` sont documentées dans ce 
 
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0/) et les versions suivent [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [Non publié]
+
+### Modifié
+
+- **Résultats du provider** : 393 œuvres traduites reçoivent leur titre français, d'après leurs traductions au catalogue de la BnF (relues une à une) ; elles portaient leur titre anglais en `fr_FR`. Livres dont le titre français est le titre anglais : de 904 à 511 ; œuvres marquées non traduites : de 642 à 303. Leurs éditions françaises donnent ensemble le nombre de pages et l'éditeur : livres sans éditeur `fr_FR`, de 475 à 296 ; sans nombre de pages `fr_FR`, de 807 à 450. 181 éditeurs `fr_FR` qui étaient ceux de l'édition originale étrangère sont remplacés par l'éditeur français.
+- Vocabulaire des éditeurs : 627 éditeurs (48 éditeurs français ajoutés d'après la BnF, avec leur pays, dont Orbit France, distinct de l'Orbit britannique). Le Sénégal et la Côte d'Ivoire comptent parmi les pays d'édition en français.
+
+### Outillage
+
+- `update_bnf.py` : un nom listé dans `BNF_NAMES` désigne son entrée même quand un autre éditeur porte ce nom (« Orbit » à Paris est Orbit France) ; lieux d'édition ajoutés (Nîmes, Herblay, Carouge, Ottawa, Dakar, Abidjan…).
+
+- `tools/release.py` : publication à la main d'une version taguée quand le workflow ne peut pas atteindre PyPI. `build` construit le paquet depuis le tag seul, avec les vérifications du workflow (tag, version, section datée du CHANGELOG, `twine check --strict`) ; `github` vérifie que PyPI sert les mêmes fichiers (SHA-256), puis crée la release GitHub.
+- Workflows : actions GitHub à jour (`checkout` v7, `setup-python` v7, `upload-artifact` v7, `download-artifact` v8), qui tournent sous Node.js 24.
+- `update_all.py` utilise les caches existants de Wikipédia et de la BnF (`wikipedia_cache.json`, `bnf_cache.json`).
+
 ## [0.7.0] - 2026-11-18
 
 ### Ajouté

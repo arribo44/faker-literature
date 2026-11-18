@@ -46,9 +46,9 @@ STEPS = [
     ("series", "update_series", None),
     ("foreign-publishers", "drop_foreign_publishers", None),
     ("editions", "update_editions", ("--rows", "wikidata_editions.json")),
-    ("wikipedia", "update_wikipedia", ("--cache", "wikipedia.json")),
+    ("wikipedia", "update_wikipedia", ("--cache", "wikipedia_cache.json")),
     ("openlibrary", "update_openlibrary", ("--cache", "openlibrary.json")),
-    ("bnf", "update_bnf", ("--cache", "bnf.json")),
+    ("bnf", "update_bnf", ("--cache", "bnf_cache.json")),
 ]
 STEP_NAMES = [name for name, _, _ in STEPS]
 

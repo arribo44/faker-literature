@@ -53,7 +53,7 @@ version = { attr = "faker_literature.__version__" }
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 # The local catalogue editor and the Goodreads import are scripts, not part of the package
-pythonpath = ["tools/literature_editor", "tools/goodreads_import"]
+pythonpath = ["tools", "tools/literature_editor", "tools/goodreads_import"]
 
 [tool.ruff]
 line-length = 120
