@@ -49,7 +49,7 @@ Wikidata est souvent incomplet, en particulier pour les pages et les éditeurs. 
 - Le livre est inséré chez son auteur dans l'ordre chronologique. Un nouvel auteur est inséré dans l'ordre alphabétique, sans tenir compte des accents.
 - L'identifiant Wikidata est enregistré sur l'auteur et sur le livre (`wikidata_id`), ce qui permet de détecter les doublons.
 - Les genres sont enregistrés par leur identifiant dans le vocabulaire `genres`, en tête du fichier. Chaque genre saisi est cherché dans ce vocabulaire (libellés et alias, en français ou en anglais, sans tenir compte de la casse ni des accents) : un genre connu peut donc n'être saisi que dans une langue. Un genre inconnu devient un nouveau genre du vocabulaire, à condition d'être saisi dans les deux langues, à la même position : le n-ième genre inconnu en français est apparié au n-ième genre inconnu en anglais. Le message de confirmation signale les genres créés.
-- Les éditeurs sont enregistrés par leur identifiant dans le vocabulaire `publishers`, en tête du fichier. Chaque éditeur saisi est cherché parmi les noms et les alias du vocabulaire, sans tenir compte de la casse, des accents ni de la ponctuation : « Éditions Gallimard » donne `gallimard`. Les propositions de Wikidata sont remplacées par le nom du catalogue quand l'éditeur est connu. Un éditeur inconnu devient un nouvel éditeur du vocabulaire, sans pays ni identifiant Wikidata (à compléter à la main), et le message de confirmation le signale. Si c'est une autre graphie d'un éditeur déjà présent, ajoutez-la plutôt à ses `aliases`.
+- Les éditeurs sont enregistrés par leur identifiant dans le vocabulaire `publishers`, en tête du fichier. Chaque éditeur saisi est cherché parmi les noms et les alias du vocabulaire, sans tenir compte de la casse, des accents ni de la ponctuation : « Éditions Gallimard » donne `gallimard`. Les propositions de Wikidata sont remplacées par le nom du catalogue quand l'éditeur est connu. Un éditeur inconnu devient un nouvel éditeur du vocabulaire, sans pays ni identifiant Wikidata (à compléter à la main), et le message de confirmation le signale. Si c'est une autre graphie d'un éditeur déjà présent, ajoutez-la plutôt à ses `aliases`. Un éditeur connu du vocabulaire comme venant d'un pays d'une autre langue n'est pas proposé pour une locale : sans édition française, l'éditeur « français » proposé par Wikidata pour un roman américain serait celui de l'édition originale (Alfred A. Knopf). Les éditeurs étrangers restent dans le vocabulaire même sans livre, pour pouvoir être reconnus et refusés.
 - Un livre enregistré sans identifiant Wikidata reçoit `"pages_estimated": true` et `"publisher_estimated": true` (s'il a des pages et un éditeur) : ces valeurs saisies à la main ne sont vérifiées par aucune source.
 - Un livre déjà présent (même identifiant, ou même titre pour le même auteur, sans tenir compte d'un article initial : « L'Iliade » = « Iliade ») est refusé.
 - Un auteur est reconnu par son identifiant Wikidata, ou à défaut par son nom, sans tenir compte des accents, de la casse, des espaces ni de la ponctuation (« J. D. Salinger » = « J.D. Salinger »). Cela évite de créer des doublons. Un homonyme qui a un autre identifiant Wikidata est un auteur différent.
@@ -58,6 +58,21 @@ Wikidata est souvent incomplet, en particulier pour les pages et les éditeurs. 
 - Un livre ajouté depuis Wikidata reçoit sa popularité (`popularity`), son nombre d'articles Wikipédia, qui sert au tirage `popular=True` du provider.
 
 Relisez les ajouts avec `git diff faker_literature/DATAS/literature.json`, puis lancez `pytest` avant de commiter.
+
+## Tout mettre à jour d'un coup
+
+```bash
+python tools/literature_editor/update_all.py [--dry-run] [--only ÉTAPE ...] [--skip ÉTAPE ...]
+```
+
+Le script enchaîne tous les scripts de mise à jour décrits ci-dessous, dans cet ordre : `popularity`, `authors`, `awards`, `series`, `foreign-publishers`, `editions`, `wikipedia`, `openlibrary`, `bnf`. Lancez-le après avoir ajouté des livres avec l'éditeur ou l'import Goodreads : ils reçoivent ainsi leurs prix, leurs séries et les pages et éditeurs d'éditions réelles.
+
+- Les étapes travaillent sur une **copie** du catalogue : `literature.json` n'est remplacé que si toutes ont réussi. Une source indisponible (réseau, quota) laisse donc le fichier intact, et le message nomme l'étape en échec.
+- Les réponses de Wikidata (éditions), de Wikipédia, d'Open Library et de la BnF sont gardées dans `data/sources/` (ignoré par git, option `--cache-dir`) : une seconde exécution ne relit que ce qui est nouveau. `--no-cache` relit tout.
+- À la fin, un tableau donne les comptes qui ont changé : livres, séries, prix, éditeurs, pages et éditeurs manquants par locale.
+- `--dry-run` exécute toutes les étapes sur la copie sans rien écrire. `--only openlibrary bnf` ou `--skip bnf` choisit les étapes.
+
+La première exécution complète est longue : la BnF et Open Library sont lues à une requête par seconde (environ un quart d'heure pour Open Library). Les suivantes ne relisent que ce qui est nouveau.
 
 ## Mettre à jour la popularité
 
@@ -90,6 +105,14 @@ python tools/literature_editor/update_awards.py [--dry-run]
 ```
 
 Le script remplace les prix de chaque livre qui a un identifiant Wikidata par les prix littéraires que son œuvre a reçus (P166, prix rattachés à « prix littéraire »), enregistrés par identifiant dans le vocabulaire `awards`, en tête du fichier. Les prix sans libellé français et anglais, et les palmarès que Wikidata classe parmi les prix (« Modern Library 100 Best Novels »…), sont écartés.
+
+## Retirer les éditeurs d'une autre langue
+
+```bash
+python tools/literature_editor/drop_foreign_publishers.py [--dry-run]
+```
+
+Le script retire d'une locale l'éditeur qui vient d'un pays d'une autre langue (d'après le `country` du vocabulaire `publishers`) : c'est l'éditeur de l'édition originale, recopié faute d'édition dans la langue de la locale (« Bradbury and Evans » pour l'édition française de *David Copperfield*). Le nombre de pages de la locale est retiré aussi quand il est identique à celui de l'autre locale, au même éditeur : il décrivait la même édition originale. Les œuvres jamais traduites en français gardent leur éditeur d'origine en `fr_FR`. Les scripts de complément (`update_editions.py`, `update_wikipedia.py`, `update_bnf.py`) remplissent ensuite les valeurs retirées d'après des éditions réelles.
 
 ## Mettre à jour les séries
 
@@ -131,6 +154,19 @@ L'infobox de l'article français d'une œuvre (« Infobox Livre ») décrit son 
 - Les règles sur les valeurs saisies à la main sont celles de `update_bnf.py`.
 
 Wikipédia limite le débit de son API : la collecte lit 20 articles par requête, avec des pauses, et reprend après un refus (429).
+
+## Compléter les pages et les éditeurs anglais avec Open Library
+
+```bash
+python tools/literature_editor/update_openlibrary.py [--dry-run] [--cache data/sources/openlibrary.json] [--limit N]
+```
+
+Pour chaque livre dont le nombre de pages ou l'éditeur `en_US` manque (ou dont l'éditeur `en_US` est d'une autre langue), le script lit les éditions de l'œuvre sur [Open Library](https://openlibrary.org), retrouvée par son identifiant Open Library sur Wikidata (P648). La plus ancienne édition en anglais qui a un nombre de pages et un éditeur, et qui n'est pas antérieure à l'œuvre, donne les deux valeurs : la première édition d'une œuvre écrite en anglais, la première traduction d'une autre. Quand seul le nombre de pages manque, l'édition doit être celle de l'éditeur du livre.
+
+- Sont écartées les éditions en gros caractères, audio et numériques, les versions abrégées ou adaptées, les guides de lecture, les clubs de livres et les réimpressions à la demande (CreateSpace, Kessinger…).
+- Les noms d'éditeurs sont ramenés au vocabulaire sans leurs suffixes (« Little, Brown and Co. » → Little, Brown). Un éditeur inconnu n'est ajouté que si son lieu de publication est dans un pays anglophone, qui devient son `country` ; un éditeur connu d'une autre langue est refusé.
+- Les valeurs saisies à la main (`pages_estimated`, `publisher_estimated`) ne sont pas modifiées.
+- Open Library demande de ne pas télécharger ses données en masse par l'API : le script lit une œuvre par seconde, s'identifie par son User-Agent (nom de l'outil et adresse du dépôt) et garde ce qu'il a lu dans le cache. Seules des données bibliographiques (éditeur et nombre de pages d'une édition) sont reprises ; l'Internet Archive ne revendique aucun droit sur les données de son catalogue.
 
 ## Compléter les pages et les éditeurs français avec la BnF
 

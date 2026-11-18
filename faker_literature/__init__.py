@@ -26,7 +26,7 @@ __all__ = ["LiteratureProvider", "BookFilter", "BookStore", "default_db_path", "
 T = TypeVar("T")
 
 # Fields of the localized books used by the provider but left out of book()
-INTERNAL_FIELDS = ("popularity", "writer_born", "writer_died", "awards", "series")
+INTERNAL_FIELDS = ("popularity", "writer_born", "writer_died", "awards", "series", "title_untranslated")
 
 # Editions of older works are drawn from this year on
 EARLIEST_EDITION_YEAR = 1950
@@ -561,10 +561,28 @@ class LiteratureProvider(BaseProvider):
         return drawn
 
     def publisher(self, **filters: Any) -> str:
-        """Return a publisher represented in the catalogue, optionally filtered (see :meth:`book`)."""
+        """Return a publisher represented in the catalogue, optionally filtered (see :meth:`book`).
+
+        In ``fr_FR``, the publishers of the works never translated into
+        French are left out: they are those of the original, foreign edition
+        ("Pantheon Books").  They are drawn only when the filters leave no
+        other publisher.
+        """
         popular = filters.pop("popular", False)
-        drawn: str = self._draw("publisher", lambda book: (book["publisher"],) if book["publisher"] else (),
-                                BookFilter(**filters), popular)
+        book_filter = BookFilter(**filters)
+        untranslated_left_out = self.provider_locale == "fr_FR"
+
+        def local(book: LocalizedBook) -> tuple[str, ...]:
+            if not book["publisher"] or (untranslated_left_out and book.get("title_untranslated")):
+                return ()
+            return (book["publisher"],)
+
+        try:
+            drawn: str = self._draw("publisher", local, book_filter, popular)
+        except ValueError:
+            # Only untranslated works match: their original publishers are better than nothing
+            drawn = self._draw("publisher of the original edition",
+                               lambda book: (book["publisher"],) if book["publisher"] else (), book_filter, popular)
         return drawn
 
     def award(

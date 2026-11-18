@@ -15,7 +15,13 @@ import pytest
 
 from faker_literature.matching import name_key
 from faker_literature.store import BUILTIN_DATA, LOCALES, load_builtin_books, validate_book
-from faker_literature.vocabulary import GenreVocabulary, PublisherVocabulary
+from faker_literature.vocabulary import (
+    FOREIGN_LANGUAGE_PUBLISHERS,
+    PUBLISHING_COUNTRIES,
+    GenreVocabulary,
+    PublisherVocabulary,
+    publisher_key,
+)
 
 QID = re.compile(r"Q[1-9][0-9]*")
 
@@ -81,11 +87,6 @@ def test_genres_are_sorted_by_id(catalogue):
     assert list(catalogue["genres"]) == sorted(catalogue["genres"])
 
 
-# Words that do not tell a publisher from another ("Éditions Gallimard", "Hodder & Stoughton Limited")
-PUBLISHER_NOISE = re.compile(
-    r"^(?:les |the )?(?:éditions |editions |editorial |editora )?"
-    r"|(?:,? (?:inc\.?|ltd\.?|limited|publishing|publishers|publications|company|co\.?|group|corporation"
-    r"|verlag|éditeur|books|press|& sons|sons))+$", re.IGNORECASE)
 # Distinct publishers whose names differ by such words only
 DISTINCT_PUBLISHERS = [
     {"bantam-books", "bantam-press"},  # American and British imprints of Bantam
@@ -95,14 +96,6 @@ DISTINCT_PUBLISHERS = [
     {"penguin-books", "penguin-group"},  # the imprint and its parent group
     {"pocket", "pocket-books"},  # French and American paperback publishers
 ]
-
-
-def _publisher_key(name):
-    name = name.replace(" and ", " & ")
-    previous = None
-    while previous != name:
-        previous, name = name, PUBLISHER_NOISE.sub("", name).strip()
-    return name_key(name)
 
 
 def test_publisher_vocabulary_is_unambiguous(catalogue):
@@ -117,7 +110,7 @@ def test_publisher_names_are_not_variants_of_each_other(catalogue):
     for publisher_id, publisher in catalogue["publishers"].items():
         name = publisher["name"]
         for label in [*(name.values() if isinstance(name, dict) else [name]), *publisher.get("aliases", [])]:
-            owners[_publisher_key(label)].add(publisher_id)
+            owners[publisher_key(label)].add(publisher_id)
     variants = [ids for ids in owners.values() if len(ids) > 1 and ids not in DISTINCT_PUBLISHERS]
     assert not variants
 
@@ -137,8 +130,13 @@ def test_books_refer_to_known_publishers(catalogue, books):
 
 
 def test_every_publisher_is_used(catalogue, books):
+    # Publishers of no locale's language stay known without books: an importer can then refuse them
+    # ("Kodansha" as the French publisher of a Japanese novel is that of its original edition)
     used = {value for _, book in books for value in (book.get("publisher") or {}).values() if value}
-    assert sorted(set(catalogue["publishers"]) - used) == []
+    locale_countries = set().union(*PUBLISHING_COUNTRIES.values())
+    unused = [publisher_id for publisher_id in sorted(set(catalogue["publishers"]) - used)
+              if catalogue["publishers"][publisher_id].get("country") in (None, *locale_countries)]
+    assert unused == []
 
 
 def test_publishers_are_sorted_by_id(catalogue):
@@ -157,21 +155,9 @@ def test_aliases_do_not_repeat_the_name(catalogue):
 
 
 # Countries whose publishers publish in the language of each locale
-LOCALE_COUNTRIES = {
-    "fr_FR": {"FR", "BE", "CH", "CA", "LU", "MC"},
-    "en_US": {"US", "GB", "CA", "AU", "IE", "NZ", "IN", "ZA"},
-}
-# Publishers working in the language of a locale from another country
-LOCALE_PUBLISHERS = {
-    "en_US": {
-        "olympia-press",  # Paris, in English: Lolita, Naked Lunch
-        "obelisk-press",  # Paris, in English: Tropic of Cancer
-        "shakespeare-and-company",  # Paris, in English: Ulysses
-    },
-}
 # Books whose publisher is not of the locale's language, at most: a ratchet, lowered as the catalogue is
 # corrected (tools/literature_editor/update_editions.py and update_bnf.py), so that it never gets worse
-MAX_FOREIGN_PUBLISHERS = {"fr_FR": 84, "en_US": 64}
+MAX_FOREIGN_PUBLISHERS = {"fr_FR": 0, "en_US": 0}
 
 
 def _foreign_publishers(catalogue, books, locale):
@@ -179,13 +165,13 @@ def _foreign_publishers(catalogue, books, locale):
     foreign = []
     for author, book in books:
         publisher_id = (book.get("publisher") or {}).get(locale)
-        if not publisher_id or publisher_id in LOCALE_PUBLISHERS.get(locale, ()):
+        if not publisher_id or publisher_id in FOREIGN_LANGUAGE_PUBLISHERS.get(locale, ()):
             continue
         # A work never translated into French has no French edition: its original one stands in
         if locale == "fr_FR" and book.get("title_untranslated"):
             continue
         country = catalogue["publishers"][publisher_id].get("country")
-        if country is not None and country not in LOCALE_COUNTRIES[locale]:
+        if country is not None and country not in PUBLISHING_COUNTRIES[locale]:
             foreign.append(f"{_label(author, book)}: {publisher_id} ({country})")
     return foreign
 

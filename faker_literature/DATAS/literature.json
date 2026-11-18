@@ -2536,6 +2536,10 @@
       "country": "US",
       "wikidata_id": "Q353060"
     },
+    "aivia-press": {
+      "name": "Aivia Press",
+      "country": "US"
+    },
     "albin-michel": {
       "name": "Albin Michel",
       "aliases": [
@@ -2560,7 +2564,10 @@
     "alfred-a-knopf-canada": {
       "name": "Alfred A. Knopf Canada",
       "country": "CA",
-      "wikidata_id": "Q109648461"
+      "wikidata_id": "Q109648461",
+      "aliases": [
+        "A.A. Knopf Canada"
+      ]
     },
     "algonquin-books": {
       "name": "Algonquin Books",
@@ -2588,6 +2595,10 @@
       "name": "American Publishing Company",
       "country": "US",
       "wikidata_id": "Q120997537"
+    },
+    "american-university-in-cairo-press": {
+      "name": "American University in Cairo Press",
+      "country": "US"
     },
     "amphora": {
       "name": "Amphora",
@@ -2877,11 +2888,23 @@
     "cassell": {
       "name": "Cassell",
       "country": "GB",
-      "wikidata_id": "Q5049289"
+      "wikidata_id": "Q5049289",
+      "aliases": [
+        "Cassell, Petter and Galpin",
+        "Cassell, Petter & Galpin"
+      ]
     },
     "casterman": {
       "name": "Casterman",
       "country": "BE"
+    },
+    "cds-books": {
+      "name": "CDS Books",
+      "country": "US"
+    },
+    "century": {
+      "name": "Century",
+      "country": "GB"
     },
     "chapman-hall": {
       "name": "Chapman & Hall",
@@ -2914,10 +2937,25 @@
       "country": "JP",
       "wikidata_id": "Q996095"
     },
+    "city-lights": {
+      "name": "City Lights",
+      "country": "US"
+    },
     "city-lights-bookstore": {
       "name": "City Lights Bookstore",
       "country": "US",
       "wikidata_id": "Q2394278"
+    },
+    "clarendon-press": {
+      "name": "Clarendon Press",
+      "country": "GB"
+    },
+    "clarke-irwin": {
+      "name": "Clarke, Irwin",
+      "aliases": [
+        "Clark, Irwin"
+      ],
+      "country": "CA"
     },
     "coffee-house-press": {
       "name": "Coffee House Press",
@@ -2933,6 +2971,10 @@
       "name": "Collins Crime Club",
       "country": "GB",
       "wikidata_id": "Q5147368"
+    },
+    "collins-harvill": {
+      "name": "Collins Harvill",
+      "country": "GB"
     },
     "companhia-das-letras": {
       "name": "Companhia das Letras",
@@ -2962,6 +3004,10 @@
       "country": "US",
       "wikidata_id": "Q123423120"
     },
+    "crossway-books": {
+      "name": "Crossway Books",
+      "country": "US"
+    },
     "crown-publishing-group": {
       "name": "Crown Publishing Group",
       "country": "US",
@@ -2972,10 +3018,18 @@
       "country": "PL",
       "wikidata_id": "Q12016595"
     },
+    "d-appleton-century": {
+      "name": "D. Appleton-Century",
+      "country": "US"
+    },
     "d-appleton-company": {
       "name": "D. Appleton & Company",
       "country": "US",
       "wikidata_id": "Q3011053"
+    },
+    "d-c-heath": {
+      "name": "D. C. Heath",
+      "country": "US"
     },
     "dalkey-archive-press": {
       "name": "Dalkey Archive Press",
@@ -3344,6 +3398,10 @@
       "name": "Fage éditions",
       "country": "FR"
     },
+    "falcon-press": {
+      "name": "Falcon Press",
+      "country": "US"
+    },
     "fantasy-publishing-company-inc": {
       "name": "Fantasy Publishing Company, Inc.",
       "country": "US",
@@ -3356,6 +3414,10 @@
     },
     "fasane": {
       "name": "Fasane"
+    },
+    "fawcett-crest": {
+      "name": "Fawcett Crest",
+      "country": "US"
     },
     "fawcett-publications": {
       "name": "Fawcett Publications",
@@ -3421,6 +3483,10 @@
       "country": "US",
       "wikidata_id": "Q5475605"
     },
+    "fourth-estate": {
+      "name": "Fourth Estate",
+      "country": "GB"
+    },
     "francois-buisson": {
       "name": "François Buisson",
       "country": "FR"
@@ -3433,6 +3499,10 @@
       "name": "Frederick Warne & Co",
       "country": "GB",
       "wikidata_id": "Q3087181"
+    },
+    "free-press": {
+      "name": "Free Press",
+      "country": "US"
     },
     "g-and-w-b-whittaker": {
       "name": "G. and W. B. Whittaker",
@@ -3489,6 +3559,10 @@
       "country": "FR",
       "wikidata_id": "Q733801"
     },
+    "gemor-press": {
+      "name": "Gemor Press",
+      "country": "US"
+    },
     "generation-comics-panini-france": {
       "name": "Génération comics-Panini France",
       "country": "FR"
@@ -3524,7 +3598,7 @@
     },
     "george-routledge-sons": {
       "name": "George Routledge & Sons",
-      "country": "US",
+      "country": "GB",
       "wikidata_id": "Q19444229"
     },
     "gerald-duckworth": {
@@ -3588,7 +3662,10 @@
     "grosset-dunlap": {
       "name": "Grosset & Dunlap",
       "country": "US",
-      "wikidata_id": "Q3117078"
+      "wikidata_id": "Q3117078",
+      "aliases": [
+        "Grosset"
+      ]
     },
     "grove-atlantic": {
       "name": "Grove Atlantic",
@@ -3606,6 +3683,10 @@
     "guerin": {
       "name": "Guérin",
       "country": "FR"
+    },
+    "h-s-nichols": {
+      "name": "H.S. Nichols",
+      "country": "GB"
     },
     "hachette": {
       "name": "Hachette",
@@ -3641,10 +3722,17 @@
     "harcourt": {
       "name": "Harcourt",
       "aliases": [
-        "Harcourt Brace Jovanovich"
+        "Harcourt Brace Jovanovich",
+        "Harcourt Brace",
+        "Harcourt, Brace & World",
+        "Harcourt, Brace and Company"
       ],
       "country": "US",
       "wikidata_id": "Q5654997"
+    },
+    "harmony-books": {
+      "name": "Harmony Books",
+      "country": "US"
     },
     "harper-brothers": {
       "name": "Harper & Brothers",
@@ -3668,6 +3756,10 @@
       "name": "HarperCollins",
       "country": "US",
       "wikidata_id": "Q95149"
+    },
+    "harperflamingo": {
+      "name": "HarperFlamingo",
+      "country": "US"
     },
     "harpertrophy": {
       "name": "HarperTrophy",
@@ -3762,6 +3854,10 @@
       "country": "GB",
       "wikidata_id": "Q378809"
     },
+    "hyperion": {
+      "name": "Hyperion",
+      "country": "US"
+    },
     "impr-de-crapelet": {
       "name": "Impr. de Crapelet",
       "country": "FR"
@@ -3790,6 +3886,10 @@
       "country": "US",
       "wikidata_id": "Q15077094"
     },
+    "j-crooke": {
+      "name": "J. Crooke",
+      "country": "GB"
+    },
     "j-hetzel": {
       "name": "J. Hetzel",
       "aliases": [
@@ -3799,9 +3899,17 @@
       "country": "FR",
       "wikidata_id": "Q40100542"
     },
+    "j-lehmann": {
+      "name": "J. Lehmann",
+      "country": "GB"
+    },
     "j-m-dent": {
       "name": "J. M. Dent",
       "country": "GB"
+    },
+    "j-munroe": {
+      "name": "J. Munroe",
+      "country": "US"
     },
     "j-w-arrowsmith": {
       "name": "J. W. Arrowsmith",
@@ -3845,6 +3953,10 @@
       "name": "John Day Company",
       "country": "US",
       "wikidata_id": "Q6228912"
+    },
+    "john-deighton": {
+      "name": "John Deighton",
+      "country": "GB"
     },
     "john-lane": {
       "name": "John Lane",
@@ -3892,6 +4004,10 @@
       "name": "Ki-oon",
       "country": "FR"
     },
+    "kinnell": {
+      "name": "Kinnell",
+      "country": "GB"
+    },
     "kinneret-zmora-bitan-dvir": {
       "name": "Kinneret Zmora-Bitan Dvir",
       "country": "IL",
@@ -3938,6 +4054,10 @@
       "name": "L'École des loisirs",
       "country": "FR",
       "wikidata_id": "Q3205210"
+    },
+    "l-smithers": {
+      "name": "L. Smithers",
+      "country": "GB"
     },
     "la-biblioteca": {
       "name": "La Biblioteca"
@@ -4122,19 +4242,39 @@
       "name": "Love Spell",
       "wikidata_id": "Q116880592"
     },
+    "luna": {
+      "name": "Luna",
+      "country": "US"
+    },
     "m-a-d-v-b-de-f-cie": {
       "name": "M. A. D. V. B. de F. & Cie"
     },
     "m-de-la-bedoyere": {
       "name": "M. de la Bédoyère"
     },
+    "m-k-mcelderry-books": {
+      "name": "M.K. McElderry Books",
+      "country": "US"
+    },
+    "m-s-mill": {
+      "name": "M. S. Mill",
+      "country": "US"
+    },
     "m-v-h": {
       "name": "M. V. H."
+    },
+    "macgibbon-kee": {
+      "name": "Macgibbon & Kee",
+      "country": "GB"
     },
     "maclehose-press": {
       "name": "MacLehose Press",
       "country": "GB",
       "wikidata_id": "Q104007577"
+    },
+    "macmillan-of-canada": {
+      "name": "Macmillan of Canada",
+      "country": "CA"
     },
     "macmillan-publishers": {
       "name": "Macmillan Publishers",
@@ -4187,6 +4327,10 @@
       "name": "McClelland & Stewart",
       "country": "CA",
       "wikidata_id": "Q6800322"
+    },
+    "mcgraw-hill-ryerson": {
+      "name": "McGraw-Hill Ryerson",
+      "country": "CA"
     },
     "mcsweeney-s": {
       "name": "McSweeney's",
@@ -4260,6 +4404,10 @@
       "name": "Mouton de Gruyter",
       "country": "DE"
     },
+    "mysterious-press": {
+      "name": "Mysterious Press",
+      "country": "US"
+    },
     "nagel": {
       "name": "Nagel",
       "country": "FR"
@@ -4314,6 +4462,10 @@
       "name": "Noonday Press",
       "wikidata_id": "Q17645428"
     },
+    "north-point-press": {
+      "name": "North Point Press",
+      "country": "US"
+    },
     "novy-mir": {
       "name": "Novy Mir",
       "country": "RU",
@@ -4338,6 +4490,10 @@
       "name": "Olympia Press",
       "country": "FR",
       "wikidata_id": "Q532567"
+    },
+    "onyx": {
+      "name": "Onyx",
+      "country": "US"
     },
     "open-court-publishing-company": {
       "name": "Open Court Publishing Company",
@@ -4379,6 +4535,10 @@
       ],
       "country": "US",
       "wikidata_id": "Q7108618"
+    },
+    "overlook-press": {
+      "name": "Overlook Press",
+      "country": "US"
     },
     "oxford-university-press": {
       "name": "Oxford University Press",
@@ -4461,6 +4621,18 @@
       "country": "US",
       "wikidata_id": "Q4046698"
     },
+    "peter-owen": {
+      "name": "Peter Owen",
+      "country": "GB"
+    },
+    "peter-owen-vision-press": {
+      "name": "Peter Owen & Vision Press",
+      "country": "GB"
+    },
+    "philosophical-library": {
+      "name": "Philosophical Library",
+      "country": "US"
+    },
     "picador": {
       "name": "Picador",
       "country": "GB",
@@ -4488,6 +4660,10 @@
       "country": "FR",
       "wikidata_id": "Q3392522"
     },
+    "plume": {
+      "name": "Plume",
+      "country": "US"
+    },
     "pocket": {
       "name": "Pocket",
       "country": "FR",
@@ -4510,6 +4686,10 @@
       "name": "Polity Press",
       "country": "GB"
     },
+    "poolbeg": {
+      "name": "Poolbeg",
+      "country": "IE"
+    },
     "poseidon-press": {
       "name": "Poseidon Press",
       "country": "US",
@@ -4518,6 +4698,10 @@
     "poulet-malassis-et-de-broise": {
       "name": "Poulet-Malassis et de Broise",
       "country": "FR"
+    },
+    "prentice-hall": {
+      "name": "Prentice-Hall",
+      "country": "US"
     },
     "presses-de-la-cite": {
       "name": "Presses de la Cité",
@@ -4561,6 +4745,10 @@
       "name": "Publ. orientalistes de France",
       "country": "FR"
     },
+    "publicaffairs": {
+      "name": "PublicAffairs",
+      "country": "US"
+    },
     "puffin-books": {
       "name": "Puffin Books",
       "country": "GB",
@@ -4570,6 +4758,10 @@
       "name": "Punch",
       "country": "GB",
       "wikidata_id": "Q849759"
+    },
+    "punk-planet-books": {
+      "name": "Punk Planet Books",
+      "country": "US"
     },
     "pygmalion": {
       "name": "Pygmalion",
@@ -4599,6 +4791,10 @@
       "name": "Random House",
       "country": "US",
       "wikidata_id": "Q744182"
+    },
+    "random-house-canada": {
+      "name": "Random House Canada",
+      "country": "CA"
     },
     "reganbooks": {
       "name": "ReganBooks",
@@ -4630,6 +4826,25 @@
       "name": "Riverhead Books",
       "country": "US",
       "wikidata_id": "Q7338215"
+    },
+    "riverside-press": {
+      "name": "Riverside Press",
+      "country": "US"
+    },
+    "rizzoli": {
+      "name": "Rizzoli",
+      "country": "US"
+    },
+    "roaring-brook-press": {
+      "name": "Roaring Brook Press",
+      "aliases": [
+        "Roaring Brook Pres"
+      ],
+      "country": "US"
+    },
+    "rob-weisbach-books": {
+      "name": "Rob Weisbach Books",
+      "country": "US"
     },
     "robert-laffont": {
       "name": "Robert Laffont",
@@ -4684,6 +4899,14 @@
       "country": "US",
       "wikidata_id": "Q1155729"
     },
+    "scribner-armstrong": {
+      "name": "Scribner, Armstrong",
+      "country": "US"
+    },
+    "seabury-press": {
+      "name": "Seabury Press",
+      "country": "US"
+    },
     "secker-warburg": {
       "name": "Secker & Warburg",
       "country": "GB",
@@ -4703,6 +4926,10 @@
       "name": "Shambhala Publications",
       "country": "US",
       "wikidata_id": "Q7487457"
+    },
+    "sheed-ward": {
+      "name": "Sheed & Ward",
+      "country": "US"
     },
     "shinchosha": {
       "name": "Shinchōsha",
@@ -4772,6 +4999,10 @@
       "country": "US",
       "wikidata_id": "Q7632210"
     },
+    "t-b-peterson-bros": {
+      "name": "T.B. Peterson & Bros.",
+      "country": "US"
+    },
     "t-fisher-unwin": {
       "name": "T. Fisher Unwin",
       "country": "GB",
@@ -4780,6 +5011,10 @@
     "tallandier": {
       "name": "Tallandier",
       "country": "FR"
+    },
+    "taplinger": {
+      "name": "Taplinger",
+      "country": "US"
     },
     "tarcherperigee": {
       "name": "TarcherPerigee",
@@ -4880,6 +5115,10 @@
       "country": "AU",
       "wikidata_id": "Q15574"
     },
+    "university-of-california-press": {
+      "name": "University of California Press",
+      "country": "US"
+    },
     "university-of-chicago-press": {
       "name": "University of Chicago Press",
       "country": "US",
@@ -4964,6 +5203,18 @@
       "name": "Vuibert",
       "country": "FR",
       "wikidata_id": "Q3563761"
+    },
+    "w-foulsham": {
+      "name": "W. Foulsham",
+      "country": "GB"
+    },
+    "w-j-black": {
+      "name": "W. J. Black",
+      "country": "US"
+    },
+    "w-s-gottsberger": {
+      "name": "W.S. Gottsberger",
+      "country": "US"
     },
     "w-w-norton-company": {
       "name": "W. W. Norton & Company",
@@ -5064,6 +5315,10 @@
       ],
       "country": "IL",
       "wikidata_id": "Q1132126"
+    },
+    "zoland-books": {
+      "name": "Zoland Books",
+      "country": "US"
     },
     "zondervan": {
       "name": "Zondervan",
@@ -5455,7 +5710,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "le-belial",
-            "en_US": "le-belial"
+            "en_US": null
           },
           "publisher_estimated": true,
           "popularity": 3,
@@ -5507,7 +5762,7 @@
             "en_US": 286
           },
           "publisher": {
-            "fr_FR": "vintage-books",
+            "fr_FR": null,
             "en_US": "vintage-books"
           },
           "popularity": 3,
@@ -5577,7 +5832,7 @@
             "en_US": 231
           },
           "publisher": {
-            "fr_FR": "del-rey-books",
+            "fr_FR": null,
             "en_US": "del-rey-books"
           },
           "popularity": 1,
@@ -5782,11 +6037,11 @@
           },
           "pages": {
             "fr_FR": 127,
-            "en_US": null
+            "en_US": 302
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "vintage-books"
           },
           "popularity": 19,
           "wikidata_id": "Q2632077"
@@ -5803,11 +6058,11 @@
           },
           "pages": {
             "fr_FR": 384,
-            "en_US": 320
+            "en_US": 273
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "hamish-hamilton"
           },
           "popularity": 25,
           "wikidata_id": "Q1195789"
@@ -5843,11 +6098,11 @@
           },
           "pages": {
             "fr_FR": 230,
-            "en_US": 210
+            "en_US": 199
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": "gallimard"
+            "en_US": "hamish-hamilton"
           },
           "popularity": 22,
           "wikidata_id": "Q1198739"
@@ -6388,7 +6643,7 @@
           },
           "publisher": {
             "fr_FR": "10-18",
-            "en_US": "novy-mir"
+            "en_US": null
           },
           "popularity": 38,
           "wikidata_id": "Q27321"
@@ -6501,7 +6756,10 @@
             "fr_FR": null,
             "en_US": 254
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "mcgraw-hill-ryerson"
+          },
           "popularity": 6,
           "wikidata_id": "Q60675668"
         },
@@ -6664,8 +6922,14 @@
             "en_US": "Intuition"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 344
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "grove-atlantic"
+          },
           "popularity": 1,
           "wikidata_id": "Q25217270"
         }
@@ -7155,11 +7419,11 @@
           },
           "pages": {
             "fr_FR": 63,
-            "en_US": null
+            "en_US": 52
           },
           "publisher": {
             "fr_FR": "editions-des-femmes",
-            "en_US": null
+            "en_US": "gemor-press"
           },
           "popularity": 1,
           "wikidata_id": "Q5915042"
@@ -7754,8 +8018,14 @@
             "en_US": "The Way the Crow Flies"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 720
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "alfred-a-knopf-canada"
+          },
           "popularity": 3,
           "wikidata_id": "Q3684232"
         }
@@ -7980,11 +8250,11 @@
           },
           "pages": {
             "fr_FR": 393,
-            "en_US": 304
+            "en_US": 294
           },
           "publisher": {
             "fr_FR": "flammarion",
-            "en_US": null
+            "en_US": "mcclelland-stewart"
           },
           "popularity": 7,
           "wikidata_id": "Q5507274"
@@ -8013,9 +8283,12 @@
           "title_untranslated": true,
           "pages": {
             "fr_FR": null,
-            "en_US": 424
+            "en_US": 384
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "dell-publishing"
+          },
           "popularity": 1,
           "wikidata_id": "Q5151976"
         }
@@ -8328,8 +8601,14 @@
             "en_US": "An American Childhood"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 255
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "harper-row"
+          },
           "popularity": 1,
           "wikidata_id": "Q130371144"
         },
@@ -8421,11 +8700,11 @@
           },
           "pages": {
             "fr_FR": 80,
-            "en_US": null
+            "en_US": 64
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "four-walls-eight-windows"
           },
           "popularity": 2,
           "wikidata_id": "Q60222267"
@@ -8635,7 +8914,10 @@
             "en_US": "Accordion Crimes"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 381
+          },
           "publisher": {
             "fr_FR": "charles-scribner-s-sons",
             "en_US": "charles-scribner-s-sons"
@@ -8654,11 +8936,11 @@
           },
           "pages": {
             "fr_FR": 41,
-            "en_US": 41
+            "en_US": 64
           },
           "publisher": {
             "fr_FR": "grasset",
-            "en_US": null
+            "en_US": "charles-scribner-s-sons"
           },
           "popularity": 14,
           "wikidata_id": "Q2699263"
@@ -9029,9 +9311,12 @@
           },
           "pages": {
             "fr_FR": null,
-            "en_US": 240
+            "en_US": 224
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "free-press"
+          },
           "popularity": 5,
           "wikidata_id": "Q5442721"
         }
@@ -9181,7 +9466,7 @@
           },
           "publisher": {
             "fr_FR": "flammarion",
-            "en_US": null
+            "en_US": "pantheon-books"
           },
           "popularity": 36,
           "wikidata_id": "Q59696"
@@ -9278,7 +9563,7 @@
             "en_US": 966
           },
           "publisher": {
-            "fr_FR": "victor-gollancz",
+            "fr_FR": null,
             "en_US": "victor-gollancz"
           },
           "popularity": 2,
@@ -9671,11 +9956,11 @@
           },
           "pages": {
             "fr_FR": 453,
-            "en_US": null
+            "en_US": 340
           },
           "publisher": {
             "fr_FR": "le-seuil",
-            "en_US": null
+            "en_US": "harvill-press"
           },
           "popularity": 4,
           "wikidata_id": "Q3823531"
@@ -9798,10 +10083,13 @@
             "en_US": "Pippi Goes on Board"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 140
+          },
           "publisher": {
             "fr_FR": "raben-sjogren",
-            "en_US": "raben-sjogren"
+            "en_US": "viking-press"
           },
           "popularity": 8,
           "wikidata_id": "Q393142"
@@ -9846,11 +10134,11 @@
           },
           "pages": {
             "fr_FR": 285,
-            "en_US": null
+            "en_US": 183
           },
           "publisher": {
             "fr_FR": "librairie-generale-francaise",
-            "en_US": "raben-sjogren"
+            "en_US": "viking-press"
           },
           "popularity": 30,
           "wikidata_id": "Q1142693"
@@ -9936,11 +10224,11 @@
           },
           "pages": {
             "fr_FR": 528,
-            "en_US": 546
+            "en_US": 518
           },
           "publisher": {
             "fr_FR": "editions-michel-lafon",
-            "en_US": "kinneret-zmora-bitan-dvir"
+            "en_US": "alfred-a-knopf-canada"
           },
           "popularity": 26,
           "wikidata_id": "Q1212645"
@@ -10235,7 +10523,7 @@
             "en_US": 256
           },
           "publisher": {
-            "fr_FR": "henry-holt-and-company",
+            "fr_FR": null,
             "en_US": "henry-holt-and-company"
           },
           "popularity": 5,
@@ -10412,7 +10700,7 @@
           },
           "pages": {
             "fr_FR": 639,
-            "en_US": null
+            "en_US": 755
           },
           "publisher": {
             "fr_FR": "presses-de-la-cite",
@@ -10447,7 +10735,7 @@
             "en_US": 511
           },
           "publisher": {
-            "fr_FR": "macmillan-publishers",
+            "fr_FR": null,
             "en_US": "macmillan-publishers"
           },
           "popularity": 14,
@@ -10844,11 +11132,11 @@
           },
           "pages": {
             "fr_FR": 320,
-            "en_US": null
+            "en_US": 271
           },
           "publisher": {
             "fr_FR": "le-seuil",
-            "en_US": null
+            "en_US": "dell-publishing"
           },
           "popularity": 11,
           "wikidata_id": "Q7734317"
@@ -11091,8 +11379,14 @@
             "en_US": "Neither Here nor There: Travels in Europe"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 254
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "william-morrow-and-company"
+          },
           "popularity": 5,
           "wikidata_id": "Q1998624"
         },
@@ -11294,11 +11588,11 @@
           },
           "pages": {
             "fr_FR": 214,
-            "en_US": 180
+            "en_US": 192
           },
           "publisher": {
             "fr_FR": "hachette-litteratures",
-            "en_US": null
+            "en_US": "puffin-books"
           },
           "popularity": 3,
           "wikidata_id": "Q3014156"
@@ -11329,7 +11623,7 @@
             "en_US": 153
           },
           "publisher": {
-            "fr_FR": "villard-books",
+            "fr_FR": null,
             "en_US": "villard-books"
           },
           "popularity": 16,
@@ -11412,11 +11706,11 @@
           },
           "pages": {
             "fr_FR": 281,
-            "en_US": null
+            "en_US": 190
           },
           "publisher": {
             "fr_FR": "editions-christian-bourgois",
-            "en_US": null
+            "en_US": "w-foulsham"
           },
           "popularity": 8,
           "wikidata_id": "Q3566302"
@@ -11861,7 +12155,10 @@
             "fr_FR": null,
             "en_US": 503
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "aivia-press"
+          },
           "popularity": 2,
           "wikidata_id": "Q8059309"
         }
@@ -11910,7 +12207,7 @@
             "en_US": 209
           },
           "publisher": {
-            "fr_FR": "geoffrey-bles",
+            "fr_FR": null,
             "en_US": "geoffrey-bles"
           },
           "popularity": 22,
@@ -11926,11 +12223,11 @@
             "en_US": "The Great Divorce"
           },
           "pages": {
-            "fr_FR": 118,
+            "fr_FR": null,
             "en_US": 118
           },
           "publisher": {
-            "fr_FR": "geoffrey-bles",
+            "fr_FR": null,
             "en_US": "geoffrey-bles"
           },
           "popularity": 13,
@@ -12260,7 +12557,7 @@
             "en_US": 457
           },
           "publisher": {
-            "fr_FR": "random-house",
+            "fr_FR": null,
             "en_US": "random-house"
           },
           "popularity": 19,
@@ -12389,11 +12686,11 @@
           },
           "pages": {
             "fr_FR": 210,
-            "en_US": null
+            "en_US": 214
           },
           "publisher": {
             "fr_FR": "robert-laffont",
-            "en_US": null
+            "en_US": "little-brown-and-company"
           },
           "popularity": 11,
           "wikidata_id": "Q2545720"
@@ -12478,9 +12775,12 @@
           "title_untranslated": true,
           "pages": {
             "fr_FR": null,
-            "en_US": 181
+            "en_US": 184
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "bantam-books"
+          },
           "popularity": 1,
           "wikidata_id": "Q7733044"
         },
@@ -12778,7 +13078,7 @@
             "en_US": 386
           },
           "publisher": {
-            "fr_FR": "alfred-a-knopf",
+            "fr_FR": null,
             "en_US": "alfred-a-knopf"
           },
           "popularity": 5,
@@ -12940,11 +13240,11 @@
           },
           "pages": {
             "fr_FR": 264,
-            "en_US": null
+            "en_US": 238
           },
           "publisher": {
             "fr_FR": "grasset",
-            "en_US": null
+            "en_US": "city-lights"
           },
           "popularity": 6,
           "wikidata_id": "Q7679346"
@@ -12969,8 +13269,14 @@
             "fr_FR": "1491 : Nouvelles Révélations sur les Amériques avant Christophe Colomb",
             "en_US": "1491: New Revelations of the Americas Before Columbus"
           },
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 465
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "alfred-a-knopf"
+          },
           "popularity": 8,
           "wikidata_id": "Q2310343"
         }
@@ -13054,7 +13360,7 @@
           },
           "pages_estimated": true,
           "publisher": {
-            "fr_FR": "bradbury-and-evans",
+            "fr_FR": null,
             "en_US": "penguin-classics"
           },
           "publisher_estimated": true,
@@ -13190,8 +13496,14 @@
             "fr_FR": "The Water-Babies, A Fairy Tale for a Land Baby",
             "en_US": "The Water-Babies, A Fairy Tale for a Land Baby"
           },
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 272
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "oxford-university-press"
+          },
           "popularity": 16,
           "wikidata_id": "Q14914646"
         }
@@ -13373,7 +13685,10 @@
             "fr_FR": null,
             "en_US": 240
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "ballantine-books"
+          },
           "popularity": 1,
           "wikidata_id": "Q130680390"
         },
@@ -13540,11 +13855,11 @@
           },
           "pages": {
             "fr_FR": 499,
-            "en_US": 249
+            "en_US": 352
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": "kawade-shobo-shinsha"
+            "en_US": "harpercollins"
           },
           "popularity": 23,
           "wikidata_id": "Q3235393"
@@ -13805,7 +14120,7 @@
             "en_US": 128
           },
           "publisher": {
-            "fr_FR": "verso-books",
+            "fr_FR": null,
             "en_US": "verso-books"
           },
           "popularity": 13,
@@ -13825,7 +14140,7 @@
             "en_US": 211
           },
           "publisher": {
-            "fr_FR": "basic-books",
+            "fr_FR": null,
             "en_US": "basic-books"
           },
           "popularity": 3,
@@ -13908,11 +14223,11 @@
           },
           "pages": {
             "fr_FR": 145,
-            "en_US": 241
+            "en_US": 111
           },
           "publisher": {
             "fr_FR": "les-belles-lettres",
-            "en_US": null
+            "en_US": "j-m-dent"
           },
           "popularity": 32,
           "wikidata_id": "Q50919"
@@ -13938,8 +14253,14 @@
             "en_US": "Practical Demonkeeping"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 243
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "harper-perennial"
+          },
           "popularity": 2,
           "wikidata_id": "Q5939607"
         },
@@ -14346,7 +14667,7 @@
           },
           "pages_estimated": true,
           "publisher": {
-            "fr_FR": "harpercollins",
+            "fr_FR": null,
             "en_US": "harpercollins"
           },
           "publisher_estimated": true,
@@ -14489,7 +14810,7 @@
           },
           "pages": {
             "fr_FR": 345,
-            "en_US": null
+            "en_US": 252
           },
           "publisher": {
             "fr_FR": "lefrancq",
@@ -14544,7 +14865,7 @@
           },
           "pages": {
             "fr_FR": 436,
-            "en_US": null
+            "en_US": 541
           },
           "publisher": {
             "fr_FR": "grasset",
@@ -14734,7 +15055,7 @@
           },
           "pages": {
             "fr_FR": 427,
-            "en_US": null
+            "en_US": 359
           },
           "publisher": {
             "fr_FR": "robert-laffont",
@@ -14884,7 +15205,7 @@
             "en_US": 247
           },
           "publisher": {
-            "fr_FR": "bantam-books",
+            "fr_FR": null,
             "en_US": "bantam-books"
           },
           "popularity": 5,
@@ -15102,8 +15423,14 @@
             "fr_FR": "Cœur d'encre",
             "en_US": "Inkheart"
           },
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 534
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "scholastic"
+          },
           "popularity": 21,
           "wikidata_id": "Q1458903"
         },
@@ -15177,7 +15504,7 @@
           },
           "pages_estimated": true,
           "publisher": {
-            "fr_FR": "simon-schuster",
+            "fr_FR": null,
             "en_US": "simon-schuster"
           },
           "publisher_estimated": true,
@@ -15194,8 +15521,14 @@
             "en_US": "Rendezvous in Black"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 199
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "w-j-black"
+          },
           "popularity": 1,
           "wikidata_id": "Q105722959"
         }
@@ -16384,7 +16717,7 @@
             "en_US": 530
           },
           "publisher": {
-            "fr_FR": "simon-schuster",
+            "fr_FR": null,
             "en_US": "simon-schuster"
           },
           "popularity": 5,
@@ -16567,7 +16900,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": "gallimard"
+            "en_US": null
           },
           "publisher_estimated": true
         },
@@ -16588,7 +16921,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": "gallimard"
+            "en_US": null
           },
           "publisher_estimated": true
         },
@@ -16609,7 +16942,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": "gallimard"
+            "en_US": null
           },
           "publisher_estimated": true
         }
@@ -16822,10 +17155,13 @@
             "fr_FR": "Traité de la nature humaine",
             "en_US": "A Treatise of Human Nature"
           },
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 709
+          },
           "publisher": {
             "fr_FR": "aubier",
-            "en_US": null
+            "en_US": "clarendon-press"
           },
           "popularity": 26,
           "wikidata_id": "Q2451675"
@@ -16856,7 +17192,7 @@
           },
           "publisher": {
             "fr_FR": "monsieur-toussaint-louverture",
-            "en_US": null
+            "en_US": "doubleday"
           },
           "popularity": 1,
           "wikidata_id": "Q7720381"
@@ -17190,8 +17526,14 @@
             "en_US": "Creepers"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 354
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "cds-books"
+          },
           "popularity": 1,
           "wikidata_id": "Q5183918"
         }
@@ -17280,11 +17622,11 @@
           },
           "pages": {
             "fr_FR": 382,
-            "en_US": null
+            "en_US": 592
           },
           "publisher": {
             "fr_FR": "l-atalante",
-            "en_US": null
+            "en_US": "baen-books"
           },
           "popularity": 2,
           "wikidata_id": "Q2943238"
@@ -17373,7 +17715,7 @@
             "en_US": 436
           },
           "publisher": {
-            "fr_FR": "bantam-books",
+            "fr_FR": null,
             "en_US": "bantam-books"
           },
           "popularity": 6,
@@ -17568,7 +17910,7 @@
           },
           "publisher": {
             "fr_FR": "francois-buisson",
-            "en_US": "francois-buisson"
+            "en_US": null
           },
           "popularity": 27,
           "wikidata_id": "Q945216"
@@ -17595,7 +17937,10 @@
             "en_US": "Angels"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 209
+          },
           "publisher": {
             "fr_FR": "alfred-a-knopf",
             "en_US": "alfred-a-knopf"
@@ -17905,7 +18250,7 @@
             "en_US": 979
           },
           "publisher": {
-            "fr_FR": "dell-publishing",
+            "fr_FR": null,
             "en_US": "dell-publishing"
           },
           "popularity": 5,
@@ -18163,7 +18508,7 @@
           "pages": null,
           "publisher": {
             "fr_FR": "jean-jacques-pauvert",
-            "en_US": "jean-jacques-pauvert"
+            "en_US": null
           },
           "popularity": 21,
           "wikidata_id": "Q1501981"
@@ -18308,7 +18653,7 @@
             "en_US": 256
           },
           "publisher": {
-            "fr_FR": "thomas-nelson-and-sons",
+            "fr_FR": null,
             "en_US": "thomas-nelson-and-sons"
           },
           "popularity": 3,
@@ -18492,7 +18837,7 @@
             "en_US": 916
           },
           "publisher": {
-            "fr_FR": "simon-schuster",
+            "fr_FR": null,
             "en_US": "simon-schuster"
           },
           "popularity": 4,
@@ -18645,7 +18990,7 @@
             "en_US": 282
           },
           "publisher": {
-            "fr_FR": "pocket-books",
+            "fr_FR": null,
             "en_US": "pocket-books"
           },
           "popularity": 2,
@@ -18662,11 +19007,11 @@
           },
           "pages": {
             "fr_FR": 470,
-            "en_US": null
+            "en_US": 284
           },
           "publisher": {
             "fr_FR": "au-diable-vauvert",
-            "en_US": null
+            "en_US": "harpercollins"
           },
           "popularity": 3,
           "wikidata_id": "Q4992405"
@@ -18682,7 +19027,7 @@
           },
           "pages": {
             "fr_FR": 305,
-            "en_US": null
+            "en_US": 249
           },
           "publisher": {
             "fr_FR": "au-diable-vauvert",
@@ -18851,7 +19196,7 @@
           },
           "pages": null,
           "publisher": {
-            "fr_FR": "random-house",
+            "fr_FR": null,
             "en_US": "random-house"
           },
           "popularity": 9,
@@ -18907,10 +19252,7 @@
             "fr_FR": null,
             "en_US": 32
           },
-          "publisher": {
-            "fr_FR": "bonnier",
-            "en_US": "bonnier"
-          },
+          "publisher": null,
           "popularity": 3,
           "wikidata_id": "Q15076301"
         },
@@ -18954,7 +19296,10 @@
             "en_US": "Crusade in Europe"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 550
+          },
           "publisher": {
             "fr_FR": "doubleday",
             "en_US": "doubleday"
@@ -19009,7 +19354,7 @@
             "en_US": 210
           },
           "publisher": {
-            "fr_FR": "hamish-hamilton",
+            "fr_FR": null,
             "en_US": "hamish-hamilton"
           },
           "popularity": 10,
@@ -19553,8 +19898,14 @@
             "en_US": "Ghosts"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 406
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "d-appleton-century"
+          },
           "popularity": 1,
           "wikidata_id": "Q129572835"
         }
@@ -19710,11 +20061,11 @@
           },
           "pages": {
             "fr_FR": 335,
-            "en_US": null
+            "en_US": 461
           },
           "publisher": {
             "fr_FR": "hachette",
-            "en_US": null
+            "en_US": "george-routledge-sons"
           },
           "popularity": 18,
           "wikidata_id": "Q1218985"
@@ -19786,11 +20137,11 @@
           },
           "pages": {
             "fr_FR": 379,
-            "en_US": 245
+            "en_US": 341
           },
           "publisher": {
             "fr_FR": "plon",
-            "en_US": null
+            "en_US": "edward-arnold-publishers"
           },
           "popularity": 19,
           "wikidata_id": "Q1146642"
@@ -19826,11 +20177,11 @@
           },
           "pages": {
             "fr_FR": 279,
-            "en_US": null
+            "en_US": 240
           },
           "publisher": {
             "fr_FR": "plon",
-            "en_US": null
+            "en_US": "macmillan-of-canada"
           },
           "popularity": 19,
           "wikidata_id": "Q1241741"
@@ -20030,7 +20381,7 @@
           },
           "publisher": {
             "fr_FR": "casterman",
-            "en_US": null
+            "en_US": "harcourt"
           },
           "popularity": 1,
           "wikidata_id": "Q7740967"
@@ -20332,7 +20683,7 @@
           },
           "pages_estimated": true,
           "publisher": {
-            "fr_FR": "random-house",
+            "fr_FR": null,
             "en_US": "random-house"
           },
           "publisher_estimated": true,
@@ -20478,11 +20829,11 @@
           },
           "pages": {
             "fr_FR": 521,
-            "en_US": null
+            "en_US": 538
           },
           "publisher": {
             "fr_FR": "editions-fasquelle",
-            "en_US": null
+            "en_US": "t-b-peterson-bros"
           },
           "popularity": 19,
           "wikidata_id": "Q1170032"
@@ -20562,11 +20913,11 @@
           },
           "pages": {
             "fr_FR": 415,
-            "en_US": null
+            "en_US": 365
           },
           "publisher": {
             "fr_FR": "g-charpentier",
-            "en_US": null
+            "en_US": "penguin-books"
           },
           "popularity": 21,
           "wikidata_id": "Q942810"
@@ -20837,11 +21188,11 @@
           },
           "pages": {
             "fr_FR": 315,
-            "en_US": null
+            "en_US": 224
           },
           "publisher": {
             "fr_FR": "gallimard-jeunesse",
-            "en_US": null
+            "en_US": "puffin-books"
           },
           "popularity": 7,
           "wikidata_id": "Q1912284"
@@ -20871,7 +21222,7 @@
             "en_US": 400
           },
           "publisher": {
-            "fr_FR": "wwe-books",
+            "fr_FR": null,
             "en_US": "wwe-books"
           },
           "popularity": 2,
@@ -20925,8 +21276,14 @@
             "en_US": "In Search of Memory"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 510
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "w-w-norton-company"
+          },
           "wikidata_id": "Q108151192"
         }
       ]
@@ -21202,8 +21559,14 @@
             "en_US": "The Denial of Death"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 315
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "free-press"
+          },
           "popularity": 10,
           "wikidata_id": "Q2841991"
         }
@@ -21317,7 +21680,7 @@
           },
           "pages_estimated": true,
           "publisher": {
-            "fr_FR": "charles-scribner-s-sons",
+            "fr_FR": null,
             "en_US": "charles-scribner-s-sons"
           },
           "publisher_estimated": true,
@@ -21680,7 +22043,7 @@
           },
           "pages": {
             "fr_FR": 388,
-            "en_US": null
+            "en_US": 315
           },
           "publisher": {
             "fr_FR": "librairie-generale-francaise",
@@ -21723,7 +22086,7 @@
             "en_US": 347
           },
           "publisher": {
-            "fr_FR": "new-directions-publishing",
+            "fr_FR": null,
             "en_US": "new-directions-publishing"
           },
           "popularity": 4,
@@ -22105,11 +22468,11 @@
           },
           "pages": {
             "fr_FR": 177,
-            "en_US": null
+            "en_US": 101
           },
           "publisher": {
             "fr_FR": "flammarion",
-            "en_US": null
+            "en_US": "j-crooke"
           },
           "popularity": 33,
           "wikidata_id": "Q1233830"
@@ -22193,11 +22556,11 @@
           },
           "pages": {
             "fr_FR": 192,
-            "en_US": null
+            "en_US": 86
           },
           "publisher": {
             "fr_FR": "librairie-de-la-bibliotheque-nationale",
-            "en_US": null
+            "en_US": "cassell"
           },
           "popularity": 18,
           "wikidata_id": "Q753251"
@@ -22374,8 +22737,14 @@
             "en_US": "Piercing the Darkness"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 441
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "crossway-books"
+          },
           "popularity": 1,
           "wikidata_id": "Q7191864"
         },
@@ -22389,8 +22758,14 @@
             "en_US": "Prophet"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 416
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "crossway-books"
+          },
           "popularity": 2,
           "wikidata_id": "Q7250281"
         }
@@ -22443,7 +22818,7 @@
           },
           "pages": {
             "fr_FR": 331,
-            "en_US": null
+            "en_US": 336
           },
           "publisher": {
             "fr_FR": "robert-laffont",
@@ -22923,7 +23298,7 @@
           },
           "pages": {
             "fr_FR": 276,
-            "en_US": null
+            "en_US": 195
           },
           "publisher": {
             "fr_FR": "vuibert",
@@ -22955,11 +23330,11 @@
           },
           "pages": {
             "fr_FR": 124,
-            "en_US": null
+            "en_US": 165
           },
           "publisher": {
             "fr_FR": "librairie-generale-francaise",
-            "en_US": null
+            "en_US": "riverside-press"
           },
           "popularity": 10,
           "wikidata_id": "Q379015"
@@ -23126,8 +23501,14 @@
             "en_US": "St. Thomas Aquinas: The Dumb Ox"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 248
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "sheed-ward"
+          },
           "popularity": 3,
           "wikidata_id": "Q18420384"
         }
@@ -23238,7 +23619,7 @@
           },
           "pages": {
             "fr_FR": 247,
-            "en_US": null
+            "en_US": 147
           },
           "publisher": {
             "fr_FR": "grasset",
@@ -24273,11 +24654,11 @@
           },
           "pages": {
             "fr_FR": 219,
-            "en_US": null
+            "en_US": 164
           },
           "publisher": {
             "fr_FR": "denoel",
-            "en_US": null
+            "en_US": "collins-harvill"
           },
           "popularity": 6,
           "wikidata_id": "Q3564888"
@@ -24353,11 +24734,11 @@
           },
           "pages": {
             "fr_FR": 255,
-            "en_US": null
+            "en_US": 246
           },
           "publisher": {
             "fr_FR": "presses-de-la-cite",
-            "en_US": null
+            "en_US": "prentice-hall"
           },
           "popularity": 4,
           "wikidata_id": "Q3214144"
@@ -25054,8 +25435,14 @@
             "en_US": "The Quiet Game"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 434
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "hodder-stoughton"
+          },
           "popularity": 2,
           "wikidata_id": "Q7759097"
         },
@@ -25174,7 +25561,7 @@
             "en_US": 352
           },
           "publisher": {
-            "fr_FR": "reganbooks",
+            "fr_FR": null,
             "en_US": "reganbooks"
           },
           "popularity": 5,
@@ -25414,11 +25801,11 @@
           },
           "pages": {
             "fr_FR": 400,
-            "en_US": null
+            "en_US": 458
           },
           "publisher": {
             "fr_FR": "alphonse-lemerre",
-            "en_US": "alphonse-lemerre"
+            "en_US": "h-s-nichols"
           },
           "popularity": 18,
           "wikidata_id": "Q728104"
@@ -25665,7 +26052,7 @@
           },
           "pages_estimated": true,
           "publisher": {
-            "fr_FR": "weird-tales",
+            "fr_FR": null,
             "en_US": "weird-tales"
           },
           "publisher_estimated": true
@@ -25815,7 +26202,7 @@
           },
           "pages": {
             "fr_FR": 192,
-            "en_US": null
+            "en_US": 127
           },
           "publisher": {
             "fr_FR": "j-ai-lu",
@@ -25845,8 +26232,14 @@
             "en_US": "In the Pond"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 178
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "zoland-books"
+          },
           "popularity": 2,
           "wikidata_id": "Q14981174"
         },
@@ -25935,11 +26328,11 @@
           },
           "pages": {
             "fr_FR": 380,
-            "en_US": null
+            "en_US": 246
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "viking-press"
           },
           "popularity": 7,
           "wikidata_id": "Q743797"
@@ -26250,7 +26643,7 @@
           },
           "publisher": {
             "fr_FR": "10-18",
-            "en_US": "kodansha"
+            "en_US": null
           },
           "popularity": 23,
           "wikidata_id": "Q930228"
@@ -26291,7 +26684,7 @@
           },
           "publisher": {
             "fr_FR": "editions-belfond",
-            "en_US": "kodansha"
+            "en_US": null
           },
           "popularity": 25,
           "wikidata_id": "Q2270009"
@@ -26362,7 +26755,7 @@
           },
           "publisher": {
             "fr_FR": "le-seuil",
-            "en_US": "ordfront"
+            "en_US": null
           },
           "popularity": 11,
           "wikidata_id": "Q1637394"
@@ -26385,11 +26778,11 @@
           },
           "pages": {
             "fr_FR": 429,
-            "en_US": null
+            "en_US": 500
           },
           "publisher": {
             "fr_FR": "le-seuil",
-            "en_US": "ordfront"
+            "en_US": "the-new-press"
           },
           "popularity": 9,
           "wikidata_id": "Q514724"
@@ -26468,11 +26861,11 @@
           },
           "pages": {
             "fr_FR": 484,
-            "en_US": 400
+            "en_US": 440
           },
           "publisher": {
             "fr_FR": "le-seuil",
-            "en_US": "ordfront"
+            "en_US": "harvill-press"
           },
           "popularity": 7,
           "wikidata_id": "Q930094"
@@ -26564,7 +26957,7 @@
           },
           "pages": {
             "fr_FR": 348,
-            "en_US": null
+            "en_US": 323
           },
           "publisher": {
             "fr_FR": "obelisk-press",
@@ -26584,7 +26977,7 @@
           },
           "pages": {
             "fr_FR": 507,
-            "en_US": null
+            "en_US": 367
           },
           "publisher": {
             "fr_FR": "obelisk-press",
@@ -26627,10 +27020,13 @@
             "fr_FR": "Sexus",
             "en_US": "Sexus"
           },
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 634
+          },
           "publisher": {
             "fr_FR": "j-ai-lu",
-            "en_US": null
+            "en_US": "olympia-press"
           },
           "popularity": 1,
           "wikidata_id": "Q3480964"
@@ -26646,7 +27042,7 @@
           },
           "pages": {
             "fr_FR": 143,
-            "en_US": null
+            "en_US": 171
           },
           "publisher": {
             "fr_FR": "olympia-press",
@@ -26795,11 +27191,11 @@
           },
           "pages": {
             "fr_FR": 182,
-            "en_US": null
+            "en_US": 124
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "j-lehmann"
           },
           "popularity": 19,
           "wikidata_id": "Q863037"
@@ -26886,11 +27282,11 @@
           },
           "pages": {
             "fr_FR": 415,
-            "en_US": null
+            "en_US": 1002
           },
           "publisher": {
             "fr_FR": "robert-laffont",
-            "en_US": null
+            "en_US": "little-brown-and-company"
           },
           "popularity": 5,
           "wikidata_id": "Q63998"
@@ -26938,11 +27334,11 @@
           },
           "pages": {
             "fr_FR": 239,
-            "en_US": null
+            "en_US": 188
           },
           "publisher": {
             "fr_FR": "calmann-levy",
-            "en_US": null
+            "en_US": "peter-owen-vision-press"
           },
           "popularity": 19,
           "wikidata_id": "Q1325403"
@@ -27074,12 +27470,12 @@
           },
           "pages": {
             "fr_FR": 320,
-            "en_US": 320
+            "en_US": null
           },
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "jc-lattes",
-            "en_US": "jc-lattes"
+            "en_US": null
           },
           "publisher_estimated": true,
           "wikidata_id": "Q3051922"
@@ -27143,12 +27539,12 @@
           },
           "pages": {
             "fr_FR": 288,
-            "en_US": 288
+            "en_US": null
           },
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": "gallimard"
+            "en_US": null
           },
           "publisher_estimated": true,
           "popularity": 1,
@@ -27413,7 +27809,7 @@
           "pages": null,
           "publisher": {
             "fr_FR": "edmond-werdet",
-            "en_US": "edmond-werdet"
+            "en_US": null
           },
           "popularity": 19,
           "wikidata_id": "Q2572925"
@@ -27832,11 +28228,11 @@
           },
           "pages": {
             "fr_FR": 124,
-            "en_US": null
+            "en_US": 187
           },
           "publisher": {
             "fr_FR": "presses-internationales",
-            "en_US": null
+            "en_US": "macmillan-publishers"
           },
           "popularity": 39,
           "wikidata_id": "Q1047711"
@@ -27986,11 +28382,11 @@
           },
           "pages": {
             "fr_FR": 186,
-            "en_US": null
+            "en_US": 134
           },
           "publisher": {
             "fr_FR": "le-seuil",
-            "en_US": null
+            "en_US": "jonathan-cape"
           },
           "popularity": 13,
           "wikidata_id": "Q1754953"
@@ -28546,10 +28942,13 @@
             "fr_FR": "Philosophiæ naturalis principia mathematica",
             "en_US": "Philosophiæ Naturalis Principia Mathematica"
           },
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 986
+          },
           "publisher": {
             "fr_FR": "michel-lambert",
-            "en_US": null
+            "en_US": "university-of-california-press"
           },
           "popularity": 80,
           "wikidata_id": "Q205921"
@@ -28576,11 +28975,11 @@
           },
           "pages": {
             "fr_FR": 389,
-            "en_US": null
+            "en_US": 298
           },
           "publisher": {
             "fr_FR": "fayard",
-            "en_US": null
+            "en_US": "black-swan"
           },
           "popularity": 7,
           "wikidata_id": "Q3700163"
@@ -28600,7 +28999,7 @@
           },
           "publisher": {
             "fr_FR": "grasset",
-            "en_US": "plaza-janes"
+            "en_US": null
           },
           "popularity": 9,
           "wikidata_id": "Q1439091"
@@ -28823,11 +29222,11 @@
           },
           "pages": {
             "fr_FR": 276,
-            "en_US": null
+            "en_US": 259
           },
           "publisher": {
             "fr_FR": "le-seuil",
-            "en_US": null
+            "en_US": "secker-warburg"
           },
           "popularity": 21,
           "wikidata_id": "Q1032190"
@@ -29062,9 +29461,12 @@
           "title_untranslated": true,
           "pages": {
             "fr_FR": null,
-            "en_US": 176
+            "en_US": 169
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "viking-press"
+          },
           "popularity": 6,
           "wikidata_id": "Q8059138"
         }
@@ -29677,9 +30079,12 @@
           "title_untranslated": true,
           "pages": {
             "fr_FR": null,
-            "en_US": 468
+            "en_US": 451
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "onyx"
+          },
           "popularity": 2,
           "wikidata_id": "Q16386951"
         },
@@ -29917,11 +30322,11 @@
           },
           "pages": {
             "fr_FR": 254,
-            "en_US": 288
+            "en_US": 321
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "grosset-dunlap"
           },
           "popularity": 27,
           "wikidata_id": "Q1196857"
@@ -30001,11 +30406,11 @@
           },
           "pages": {
             "fr_FR": 442,
-            "en_US": null
+            "en_US": 358
           },
           "publisher": {
             "fr_FR": "pocket",
-            "en_US": null
+            "en_US": "grafton"
           },
           "popularity": 1,
           "wikidata_id": "Q2513907"
@@ -30157,7 +30562,7 @@
             "en_US": 937
           },
           "publisher": {
-            "fr_FR": "random-house",
+            "fr_FR": null,
             "en_US": "random-house"
           },
           "popularity": 5,
@@ -30392,7 +30797,7 @@
           },
           "pages": {
             "fr_FR": 453,
-            "en_US": null
+            "en_US": 484
           },
           "publisher": {
             "fr_FR": "gallimard",
@@ -30505,7 +30910,7 @@
           },
           "publisher": {
             "fr_FR": "stock",
-            "en_US": "amphora"
+            "en_US": null
           },
           "popularity": 28,
           "wikidata_id": "Q1336124"
@@ -30589,11 +30994,11 @@
           },
           "pages": {
             "fr_FR": 286,
-            "en_US": null
+            "en_US": 263
           },
           "publisher": {
             "fr_FR": "payot-rivages",
-            "en_US": null
+            "en_US": "mysterious-press"
           },
           "popularity": 5,
           "wikidata_id": "Q1761597"
@@ -31296,8 +31701,14 @@
             "fr_FR": "Le Journal de Suzanne",
             "en_US": "Suzanne's Diary for Nicholas"
           },
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 266
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "little-brown-and-company"
+          },
           "popularity": 1,
           "wikidata_id": "Q3223741"
         },
@@ -31445,8 +31856,14 @@
             "en_US": "The Road to Jerusalem"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 311
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "orion-publishing-group"
+          },
           "popularity": 8,
           "wikidata_id": "Q3279808"
         }
@@ -31714,7 +32131,7 @@
             "en_US": 278
           },
           "publisher": {
-            "fr_FR": "harper-row",
+            "fr_FR": null,
             "en_US": "harper-row"
           },
           "popularity": 1,
@@ -31843,8 +32260,14 @@
             "en_US": "Hot Six"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 294
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "st-martin-s-press"
+          },
           "popularity": 1,
           "wikidata_id": "Q16844902"
         },
@@ -31878,8 +32301,14 @@
             "en_US": "Hard Eight"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 311
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "st-martin-s-press"
+          },
           "popularity": 1,
           "wikidata_id": "Q5655219"
         }
@@ -32226,8 +32655,14 @@
             "en_US": "Sharp Edges"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 368
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "pocket-books"
+          },
           "popularity": 1,
           "wikidata_id": "Q19895766"
         }
@@ -32536,7 +32971,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "le-belial",
-            "en_US": "le-belial"
+            "en_US": null
           },
           "publisher_estimated": true
         }
@@ -32587,11 +33022,11 @@
           },
           "pages": {
             "fr_FR": 629,
-            "en_US": null
+            "en_US": 157
           },
           "publisher": {
             "fr_FR": "flammarion",
-            "en_US": null
+            "en_US": "d-c-heath"
           },
           "popularity": 40,
           "wikidata_id": "Q913599"
@@ -32641,11 +33076,11 @@
           },
           "pages": {
             "fr_FR": 249,
-            "en_US": null
+            "en_US": 238
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "new-directions-publishing"
           },
           "popularity": 44,
           "wikidata_id": "Q658288"
@@ -32661,11 +33096,11 @@
           },
           "pages": {
             "fr_FR": 722,
-            "en_US": null
+            "en_US": 636
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": "gallimard"
+            "en_US": "philosophical-library"
           },
           "popularity": 41,
           "wikidata_id": "Q119709"
@@ -32810,8 +33245,14 @@
             "en_US": "The Passion"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 160
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "bloomsbury-publishing"
+          },
           "popularity": 3,
           "wikidata_id": "Q25183747"
         },
@@ -32840,8 +33281,14 @@
             "en_US": "Written on the Body"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 190
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "jonathan-cape"
+          },
           "wikidata_id": "Q123421333"
         },
         {
@@ -33247,8 +33694,14 @@
             "en_US": "Welcome to Temptation"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 341
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "st-martin-s-press"
+          },
           "popularity": 1,
           "wikidata_id": "Q19364533"
         }
@@ -33273,7 +33726,10 @@
             "en_US": "Good in Bed"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 418
+          },
           "publisher": {
             "fr_FR": null,
             "en_US": "washington-square-press"
@@ -33304,11 +33760,11 @@
           },
           "pages": {
             "fr_FR": 235,
-            "en_US": null
+            "en_US": 304
           },
           "publisher": {
             "fr_FR": "presses-de-la-cite",
-            "en_US": null
+            "en_US": "penguin-books"
           },
           "popularity": 1,
           "wikidata_id": "Q23307347"
@@ -33433,8 +33889,14 @@
             "fr_FR": "L'Amant ténébreux",
             "en_US": "Dark Lover"
           },
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 393
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "new-american-library"
+          },
           "popularity": 2,
           "wikidata_id": "Q11888154"
         }
@@ -33678,7 +34140,10 @@
             "en_US": "Black Hearts in Battersea"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 240
+          },
           "publisher": {
             "fr_FR": "doubleday",
             "en_US": "doubleday"
@@ -33989,7 +34454,7 @@
             "en_US": 405
           },
           "publisher": {
-            "fr_FR": "simon-schuster",
+            "fr_FR": null,
             "en_US": "simon-schuster"
           },
           "popularity": 3,
@@ -34171,8 +34636,14 @@
             "en_US": "Hairstyles of the Damned"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 270
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "punk-planet-books"
+          },
           "popularity": 1,
           "wikidata_id": "Q5639582"
         }
@@ -34429,9 +34900,12 @@
           "title_untranslated": true,
           "pages": {
             "fr_FR": null,
-            "en_US": 384
+            "en_US": 367
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "alfred-a-knopf"
+          },
           "popularity": 2,
           "wikidata_id": "Q3641765"
         },
@@ -34704,7 +35178,7 @@
           },
           "pages_estimated": true,
           "publisher": {
-            "fr_FR": "random-house",
+            "fr_FR": null,
             "en_US": "random-house"
           },
           "publisher_estimated": true
@@ -34737,11 +35211,11 @@
           },
           "pages": {
             "fr_FR": 484,
-            "en_US": null
+            "en_US": 426
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "harper-brothers"
           },
           "popularity": 1,
           "wikidata_id": "Q20664267"
@@ -34783,11 +35257,11 @@
           },
           "pages": {
             "fr_FR": 647,
-            "en_US": null
+            "en_US": 582
           },
           "publisher": {
             "fr_FR": "albin-michel",
-            "en_US": null
+            "en_US": "little-brown-and-company"
           },
           "popularity": 17,
           "wikidata_id": "Q1195350"
@@ -35368,8 +35842,14 @@
             "en_US": "The Milagro Beanfield War"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 629
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "ballantine-books"
+          },
           "popularity": 2,
           "wikidata_id": "Q104835706"
         }
@@ -35760,9 +36240,12 @@
           "title_untranslated": true,
           "pages": {
             "fr_FR": null,
-            "en_US": 399
+            "en_US": 372
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "doubleday"
+          },
           "popularity": 2,
           "wikidata_id": "Q7883241"
         }
@@ -35787,8 +36270,14 @@
             "en_US": "Naked Pictures of Famous People"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 163
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "rob-weisbach-books"
+          },
           "popularity": 1,
           "wikidata_id": "Q6960484"
         }
@@ -36017,7 +36506,7 @@
             "en_US": 247
           },
           "publisher": {
-            "fr_FR": "harcourt",
+            "fr_FR": null,
             "en_US": "harcourt"
           },
           "popularity": 6,
@@ -36176,11 +36665,11 @@
           },
           "pages": {
             "fr_FR": 310,
-            "en_US": 128
+            "en_US": 146
           },
           "publisher": {
             "fr_FR": "editions-christian-bourgois",
-            "en_US": null
+            "en_US": "dutton"
           },
           "popularity": 13,
           "wikidata_id": "Q1196790"
@@ -36231,11 +36720,11 @@
           },
           "pages": {
             "fr_FR": 397,
-            "en_US": 346
+            "en_US": 343
           },
           "publisher": {
             "fr_FR": "albin-michel",
-            "en_US": null
+            "en_US": "harcourt"
           },
           "popularity": 13,
           "wikidata_id": "Q2510238"
@@ -36493,7 +36982,10 @@
             "en_US": "Something Happened"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 569
+          },
           "publisher": {
             "fr_FR": "alfred-a-knopf",
             "en_US": "alfred-a-knopf"
@@ -36562,9 +37054,12 @@
             "fr_FR": "Un autre monde : Contre le fanatisme du marché",
             "en_US": "Making Globalization Work"
           },
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 384
+          },
           "publisher": {
-            "fr_FR": "w-w-norton-company",
+            "fr_FR": null,
             "en_US": "w-w-norton-company"
           },
           "popularity": 2,
@@ -36857,11 +37352,11 @@
           },
           "pages": {
             "fr_FR": 256,
-            "en_US": null
+            "en_US": 123
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": "fondo-de-cultura-economica"
+            "en_US": "grove-press"
           },
           "popularity": 32,
           "wikidata_id": "Q1427966"
@@ -37166,11 +37661,11 @@
           },
           "pages": {
             "fr_FR": 616,
-            "en_US": 600
+            "en_US": 310
           },
           "publisher": {
             "fr_FR": "j-hetzel",
-            "en_US": "j-hetzel"
+            "en_US": "scribner-armstrong"
           },
           "popularity": 53,
           "wikidata_id": "Q471005"
@@ -37196,7 +37691,7 @@
           },
           "publisher": {
             "fr_FR": "j-hetzel",
-            "en_US": "j-hetzel"
+            "en_US": null
           },
           "popularity": 28,
           "wikidata_id": "Q1214433"
@@ -37342,7 +37837,10 @@
             "fr_FR": null,
             "en_US": 417
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "roaring-brook-press"
+          },
           "popularity": 2,
           "wikidata_id": "Q5256515"
         }
@@ -37735,11 +38233,11 @@
           },
           "pages": {
             "fr_FR": 252,
-            "en_US": null
+            "en_US": 224
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": "kaizosha"
+            "en_US": "alfred-a-knopf"
           },
           "popularity": 4,
           "wikidata_id": "Q7271766"
@@ -37773,8 +38271,14 @@
             "fr_FR": "Quatre sœurs",
             "en_US": "The Makioka Sisters"
           },
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 530
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "alfred-a-knopf"
+          },
           "popularity": 10,
           "wikidata_id": "Q2354342"
         }
@@ -38102,7 +38606,10 @@
             "en_US": "Tropic of Orange"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 270
+          },
           "publisher": {
             "fr_FR": null,
             "en_US": "coffee-house-press"
@@ -38137,7 +38644,7 @@
           },
           "pages": {
             "fr_FR": 475,
-            "en_US": null
+            "en_US": 496
           },
           "publisher": {
             "fr_FR": "fleuve-noir",
@@ -38167,8 +38674,14 @@
             "en_US": "Blindsighted"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 311
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "william-morrow-and-company"
+          },
           "popularity": 3,
           "wikidata_id": "Q3823276"
         },
@@ -38291,7 +38804,10 @@
             "en_US": "Human Croquet"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 349
+          },
           "publisher": {
             "fr_FR": "doubleday",
             "en_US": "doubleday"
@@ -38461,7 +38977,7 @@
           },
           "pages": {
             "fr_FR": 223,
-            "en_US": null
+            "en_US": 170
           },
           "publisher": {
             "fr_FR": "gallimard-jeunesse",
@@ -38581,7 +39097,7 @@
           },
           "pages": {
             "fr_FR": 815,
-            "en_US": null
+            "en_US": 722
           },
           "publisher": {
             "fr_FR": "editions-du-pavois",
@@ -38619,7 +39135,7 @@
           },
           "pages": {
             "fr_FR": 291,
-            "en_US": null
+            "en_US": 226
           },
           "publisher": {
             "fr_FR": "pocket-jeunesse",
@@ -38672,11 +39188,11 @@
           },
           "pages": {
             "fr_FR": 245,
-            "en_US": null
+            "en_US": 197
           },
           "publisher": {
             "fr_FR": "pocket-jeunesse",
-            "en_US": null
+            "en_US": "scholastic"
           },
           "popularity": 1,
           "wikidata_id": "Q134292066"
@@ -38726,11 +39242,11 @@
           },
           "pages": {
             "fr_FR": 247,
-            "en_US": null
+            "en_US": 210
           },
           "publisher": {
             "fr_FR": "pocket-jeunesse",
-            "en_US": null
+            "en_US": "scholastic"
           },
           "popularity": 1,
           "wikidata_id": "Q134292069"
@@ -38757,11 +39273,11 @@
           },
           "pages": {
             "fr_FR": 172,
-            "en_US": null
+            "en_US": 158
           },
           "publisher": {
             "fr_FR": "rivages",
-            "en_US": null
+            "en_US": "algonquin-books"
           },
           "popularity": 2,
           "wikidata_id": "Q4660491"
@@ -39294,7 +39810,7 @@
             "en_US": 252
           },
           "publisher": {
-            "fr_FR": "pantheon-books",
+            "fr_FR": null,
             "en_US": "pantheon-books"
           },
           "popularity": 1,
@@ -39325,7 +39841,7 @@
             "en_US": 401
           },
           "publisher": {
-            "fr_FR": "viking-press",
+            "fr_FR": null,
             "en_US": "viking-press"
           },
           "popularity": 6,
@@ -39388,11 +39904,11 @@
           },
           "pages": {
             "fr_FR": 536,
-            "en_US": null
+            "en_US": 389
           },
           "publisher": {
             "fr_FR": "j-ai-lu",
-            "en_US": null
+            "en_US": "st-martin-s-press"
           },
           "popularity": 1,
           "wikidata_id": "Q80565519"
@@ -39417,11 +39933,11 @@
           },
           "pages": {
             "fr_FR": 272,
-            "en_US": null
+            "en_US": 326
           },
           "publisher": {
             "fr_FR": "les-moutons-electriques",
-            "en_US": null
+            "en_US": "tor-books"
           },
           "popularity": 1,
           "wikidata_id": "Q27976114"
@@ -39589,7 +40105,7 @@
           },
           "publisher": {
             "fr_FR": "generation-comics-panini-france",
-            "en_US": "kadokawa-shoten"
+            "en_US": null
           },
           "popularity": 16,
           "wikidata_id": "Q1344207"
@@ -39735,7 +40251,10 @@
             "en_US": "Slapstick"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 243
+          },
           "publisher": {
             "fr_FR": "dell-publishing",
             "en_US": "dell-publishing"
@@ -39754,7 +40273,7 @@
           },
           "pages": {
             "fr_FR": 282,
-            "en_US": null
+            "en_US": 295
           },
           "publisher": {
             "fr_FR": "grasset",
@@ -39899,7 +40418,7 @@
           },
           "pages": {
             "fr_FR": 367,
-            "en_US": null
+            "en_US": 398
           },
           "publisher": {
             "fr_FR": "flammarion",
@@ -40036,7 +40555,7 @@
           },
           "pages": {
             "fr_FR": 379,
-            "en_US": null
+            "en_US": 328
           },
           "publisher": {
             "fr_FR": "pocket",
@@ -40062,7 +40581,7 @@
           },
           "pages": {
             "fr_FR": 476,
-            "en_US": null
+            "en_US": 369
           },
           "publisher": {
             "fr_FR": "pocket",
@@ -40123,7 +40642,7 @@
           },
           "publisher": {
             "fr_FR": "pocket",
-            "en_US": null
+            "en_US": "broadway-books"
           },
           "popularity": 23,
           "wikidata_id": "Q2037865"
@@ -40230,11 +40749,11 @@
           },
           "pages": {
             "fr_FR": 351,
-            "en_US": null
+            "en_US": 309
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "william-morrow-and-company"
           },
           "wikidata_id": "Q52393714"
         }
@@ -40400,7 +40919,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": "gallimard"
+            "en_US": null
           },
           "publisher_estimated": true
         },
@@ -40424,7 +40943,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": "gallimard"
+            "en_US": null
           },
           "publisher_estimated": true,
           "popularity": 12,
@@ -40447,7 +40966,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": "gallimard"
+            "en_US": null
           },
           "publisher_estimated": true
         }
@@ -40474,11 +40993,11 @@
           },
           "pages": {
             "fr_FR": 310,
-            "en_US": null
+            "en_US": 313
           },
           "publisher": {
             "fr_FR": "hachette",
-            "en_US": null
+            "en_US": "w-s-gottsberger"
           },
           "popularity": 25,
           "wikidata_id": "Q1214043"
@@ -40670,8 +41189,14 @@
             "en_US": "Mitla Pass"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 495
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "bantam-books"
+          },
           "popularity": 2,
           "wikidata_id": "Q6881808"
         }
@@ -41033,8 +41558,14 @@
             "en_US": "Sliver of Truth"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 368
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "three-rivers-press"
+          },
           "popularity": 1,
           "wikidata_id": "Q16962119"
         }
@@ -41067,7 +41598,7 @@
           },
           "pages": {
             "fr_FR": 282,
-            "en_US": null
+            "en_US": 217
           },
           "publisher": {
             "fr_FR": "librairie-generale-francaise",
@@ -41241,7 +41772,7 @@
             "en_US": 131
           },
           "publisher": {
-            "fr_FR": "houghton-mifflin-harcourt",
+            "fr_FR": null,
             "en_US": "houghton-mifflin-harcourt"
           },
           "popularity": 2,
@@ -41468,7 +41999,10 @@
             "en_US": "Wayside School Gets a Little Stranger"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 208
+          },
           "publisher": {
             "fr_FR": "harpercollins",
             "en_US": "harpercollins"
@@ -41493,7 +42027,7 @@
           },
           "pages": {
             "fr_FR": 336,
-            "en_US": null
+            "en_US": 240
           },
           "publisher": {
             "fr_FR": "gallimard-jeunesse",
@@ -41525,11 +42059,11 @@
           },
           "pages": {
             "fr_FR": 623,
-            "en_US": 623
+            "en_US": 543
           },
           "publisher": {
             "fr_FR": "denoel",
-            "en_US": "denoel"
+            "en_US": "chatto-windus"
           },
           "popularity": 48,
           "wikidata_id": "Q774233"
@@ -41698,7 +42232,7 @@
             "en_US": 339
           },
           "publisher": {
-            "fr_FR": "frederick-a-stokes",
+            "fr_FR": null,
             "en_US": "frederick-a-stokes"
           },
           "popularity": 21,
@@ -41943,7 +42477,7 @@
           },
           "pages_estimated": true,
           "publisher": {
-            "fr_FR": "orbit",
+            "fr_FR": null,
             "en_US": "orbit"
           },
           "publisher_estimated": true,
@@ -42066,9 +42600,12 @@
           "title_untranslated": true,
           "pages": {
             "fr_FR": null,
-            "en_US": 597
+            "en_US": 434
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "century"
+          },
           "popularity": 2,
           "wikidata_id": "Q5121470"
         },
@@ -42231,7 +42768,7 @@
           },
           "pages": {
             "fr_FR": 636,
-            "en_US": null
+            "en_US": 375
           },
           "publisher": {
             "fr_FR": "gallimard",
@@ -42327,11 +42864,11 @@
           },
           "pages": {
             "fr_FR": 386,
-            "en_US": null
+            "en_US": 551
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "modern-library"
           },
           "popularity": 19,
           "wikidata_id": "Q2700307"
@@ -42540,7 +43077,7 @@
           },
           "pages": {
             "fr_FR": 828,
-            "en_US": null
+            "en_US": 1037
           },
           "publisher": {
             "fr_FR": "gallimard",
@@ -42770,7 +43307,7 @@
           },
           "pages": {
             "fr_FR": 188,
-            "en_US": null
+            "en_US": 173
           },
           "publisher": {
             "fr_FR": "hachette",
@@ -42950,8 +43487,14 @@
             "en_US": "Lucy Sullivan Is Getting Married"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 740
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "poolbeg"
+          },
           "popularity": 2,
           "wikidata_id": "Q6698514"
         }
@@ -42976,8 +43519,14 @@
             "en_US": "Housekeeping"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 219
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "picador"
+          },
           "popularity": 4,
           "wikidata_id": "Q5915883"
         }
@@ -43158,10 +43707,13 @@
             "fr_FR": "Persepolis",
             "en_US": "Persepolis"
           },
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 300
+          },
           "publisher": {
             "fr_FR": "l-association",
-            "en_US": "l-association"
+            "en_US": "pantheon-books"
           },
           "popularity": 38,
           "wikidata_id": "Q756604"
@@ -43412,7 +43964,7 @@
           },
           "pages": {
             "fr_FR": 709,
-            "en_US": null
+            "en_US": 736
           },
           "publisher": {
             "fr_FR": "denoel",
@@ -43487,7 +44039,7 @@
             "en_US": 139
           },
           "publisher": {
-            "fr_FR": "scholastic",
+            "fr_FR": null,
             "en_US": "scholastic"
           },
           "popularity": 3,
@@ -43648,7 +44200,7 @@
           },
           "pages": {
             "fr_FR": 393,
-            "en_US": null
+            "en_US": 206
           },
           "publisher": {
             "fr_FR": "gallimard",
@@ -43686,8 +44238,14 @@
             "fr_FR": "Yellow Dog",
             "en_US": "Yellow Dog"
           },
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 340
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "hyperion"
+          },
           "popularity": 2,
           "wikidata_id": "Q8051717"
         },
@@ -43823,11 +44381,11 @@
           },
           "pages": {
             "fr_FR": 233,
-            "en_US": null
+            "en_US": 252
           },
           "publisher": {
             "fr_FR": "albin-michel",
-            "en_US": null
+            "en_US": "dell-publishing"
           },
           "popularity": 1,
           "wikidata_id": "Q3210412"
@@ -43883,11 +44441,11 @@
           },
           "pages": {
             "fr_FR": 430,
-            "en_US": null
+            "en_US": 387
           },
           "publisher": {
             "fr_FR": "albin-michel",
-            "en_US": null
+            "en_US": "pocket-books"
           },
           "popularity": 3,
           "wikidata_id": "Q3015440"
@@ -43903,11 +44461,11 @@
           },
           "pages": {
             "fr_FR": 441,
-            "en_US": null
+            "en_US": 370
           },
           "publisher": {
             "fr_FR": "albin-michel",
-            "en_US": null
+            "en_US": "simon-schuster"
           },
           "popularity": 1,
           "wikidata_id": "Q3214149"
@@ -43965,7 +44523,10 @@
             "en_US": "Crow Lake"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 295
+          },
           "publisher": {
             "fr_FR": "chatto-windus",
             "en_US": "chatto-windus"
@@ -44132,8 +44693,14 @@
             "en_US": "This Rough Magic"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 254
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "m-s-mill"
+          },
           "popularity": 1,
           "wikidata_id": "Q7786243"
         },
@@ -44635,9 +45202,12 @@
             "fr_FR": "All American Girl",
             "en_US": "All American Girl"
           },
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 247
+          },
           "publisher": {
-            "fr_FR": "harpercollins",
+            "fr_FR": null,
             "en_US": "harpercollins"
           },
           "popularity": 4,
@@ -44834,7 +45404,7 @@
             "en_US": 320
           },
           "publisher": {
-            "fr_FR": "daw-books",
+            "fr_FR": null,
             "en_US": "daw-books"
           },
           "wikidata_id": "Q4796208"
@@ -44855,7 +45425,10 @@
             "en_US": "Arrow's Fall"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 319
+          },
           "publisher": {
             "fr_FR": "daw-books",
             "en_US": "daw-books"
@@ -44880,11 +45453,11 @@
           },
           "pages": {
             "fr_FR": 247,
-            "en_US": null
+            "en_US": 349
           },
           "publisher": {
             "fr_FR": "pocket",
-            "en_US": null
+            "en_US": "daw-books"
           },
           "wikidata_id": "Q6730477"
         },
@@ -44908,11 +45481,11 @@
           },
           "pages": {
             "fr_FR": 247,
-            "en_US": null
+            "en_US": 352
           },
           "publisher": {
             "fr_FR": "pocket",
-            "en_US": null
+            "en_US": "penguin-books"
           },
           "popularity": 1,
           "wikidata_id": "Q6730479"
@@ -44927,7 +45500,10 @@
             "en_US": "By the Sword"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 492
+          },
           "publisher": {
             "fr_FR": "daw-books",
             "en_US": "daw-books"
@@ -45415,11 +45991,11 @@
           },
           "pages": {
             "fr_FR": 280,
-            "en_US": null
+            "en_US": 216
           },
           "publisher": {
             "fr_FR": "bayard-jeunesse",
-            "en_US": null
+            "en_US": "farrar-straus-and-giroux"
           },
           "popularity": 16,
           "wikidata_id": "Q837055"
@@ -45449,7 +46025,7 @@
             "en_US": 256
           },
           "publisher": {
-            "fr_FR": "w-w-norton-company",
+            "fr_FR": null,
             "en_US": "w-w-norton-company"
           },
           "popularity": 2,
@@ -45866,7 +46442,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "albin-michel",
-            "en_US": "albin-michel"
+            "en_US": null
           },
           "publisher_estimated": true,
           "popularity": 17,
@@ -46068,11 +46644,11 @@
           },
           "pages": {
             "fr_FR": 389,
-            "en_US": null
+            "en_US": 289
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "alfred-a-knopf"
           },
           "popularity": 21,
           "wikidata_id": "Q966732"
@@ -46114,7 +46690,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": "gallimard"
+            "en_US": null
           },
           "publisher_estimated": true,
           "popularity": 16,
@@ -46131,11 +46707,11 @@
           },
           "pages": {
             "fr_FR": 164,
-            "en_US": null
+            "en_US": 168
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "harperflamingo"
           },
           "popularity": 12,
           "wikidata_id": "Q2713668"
@@ -46430,8 +47006,14 @@
             "en_US": "Banker to the Poor"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 258
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "publicaffairs"
+          },
           "popularity": 3,
           "wikidata_id": "Q4856255"
         }
@@ -46554,9 +47136,12 @@
           },
           "pages": {
             "fr_FR": null,
-            "en_US": 286
+            "en_US": 246
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "american-university-in-cairo-press"
+          },
           "popularity": 9,
           "wikidata_id": "Q510850"
         },
@@ -46571,11 +47156,11 @@
           },
           "pages": {
             "fr_FR": 627,
-            "en_US": 464
+            "en_US": 355
           },
           "publisher": {
             "fr_FR": "actes-sud",
-            "en_US": null
+            "en_US": "heinemann"
           },
           "popularity": 16,
           "wikidata_id": "Q2275911"
@@ -46622,8 +47207,14 @@
             "en_US": "My Secret Garden"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 336
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "pocket-books"
+          },
           "popularity": 7,
           "wikidata_id": "Q6946355"
         }
@@ -46753,11 +47344,11 @@
           },
           "pages": {
             "fr_FR": 194,
-            "en_US": 320
+            "en_US": 254
           },
           "publisher": {
             "fr_FR": "ariston",
-            "en_US": null
+            "en_US": "fawcett-crest"
           },
           "popularity": 19,
           "wikidata_id": "Q1187907"
@@ -47059,8 +47650,14 @@
             "en_US": "Be More Chill"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 287
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "miramax-books"
+          },
           "popularity": 1,
           "wikidata_id": "Q4875529"
         }
@@ -47497,8 +48094,14 @@
             "fr_FR": "Les Rescapés du cœur",
             "en_US": "The Rescue"
           },
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 384
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "grand-central-publishing"
+          },
           "popularity": 4,
           "wikidata_id": "Q4003753"
         },
@@ -47516,7 +48119,7 @@
             "en_US": 288
           },
           "publisher": {
-            "fr_FR": "grand-central-publishing",
+            "fr_FR": null,
             "en_US": "grand-central-publishing"
           },
           "popularity": 13,
@@ -47646,7 +48249,7 @@
           },
           "pages": null,
           "publisher": {
-            "fr_FR": "doubleday",
+            "fr_FR": null,
             "en_US": "doubleday"
           },
           "popularity": 3,
@@ -47680,7 +48283,7 @@
           },
           "pages_estimated": true,
           "publisher": {
-            "fr_FR": "alexandre-smirdin",
+            "fr_FR": null,
             "en_US": "penguin-classics"
           },
           "publisher_estimated": true
@@ -47757,7 +48360,7 @@
           },
           "publisher": {
             "fr_FR": "pocket",
-            "en_US": "bruno-cassirer"
+            "en_US": null
           },
           "popularity": 19,
           "wikidata_id": "Q1323860"
@@ -47822,7 +48425,7 @@
           },
           "pages_estimated": true,
           "publisher": {
-            "fr_FR": "mouton-de-gruyter",
+            "fr_FR": null,
             "en_US": "mit-press"
           },
           "publisher_estimated": true,
@@ -47932,8 +48535,14 @@
             "fr_FR": "Le Cœur de la mer",
             "en_US": "Heart of the Sea"
           },
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 369
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "jove-books"
+          },
           "wikidata_id": "Q133201546"
         },
         {
@@ -47947,11 +48556,11 @@
           },
           "pages": {
             "fr_FR": 509,
-            "en_US": null
+            "en_US": 439
           },
           "publisher": {
             "fr_FR": "j-ai-lu",
-            "en_US": null
+            "en_US": "g-p-putnam-s-sons"
           },
           "popularity": 1,
           "wikidata_id": "Q11857947"
@@ -48092,7 +48701,7 @@
           },
           "pages_estimated": true,
           "publisher": {
-            "fr_FR": "doubleday",
+            "fr_FR": null,
             "en_US": "doubleday"
           },
           "publisher_estimated": true,
@@ -48125,7 +48734,7 @@
             "en_US": 464
           },
           "publisher": {
-            "fr_FR": "gerald-duckworth",
+            "fr_FR": null,
             "en_US": "gerald-duckworth"
           },
           "popularity": 7,
@@ -48247,7 +48856,7 @@
           },
           "publisher": {
             "fr_FR": "robert-laffont",
-            "en_US": "opus-press"
+            "en_US": null
           },
           "popularity": 15,
           "wikidata_id": "Q2915294"
@@ -48377,10 +48986,13 @@
             "fr_FR": "Un mari idéal",
             "en_US": "An Ideal Husband"
           },
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 213
+          },
           "publisher": {
             "fr_FR": "tallandier",
-            "en_US": null
+            "en_US": "l-smithers"
           },
           "popularity": 26,
           "wikidata_id": "Q1143075"
@@ -48447,7 +49059,10 @@
             "en_US": "Cover Her Face"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 254
+          },
           "publisher": {
             "fr_FR": "faber-faber",
             "en_US": "faber-faber"
@@ -48602,7 +49217,7 @@
           },
           "pages": {
             "fr_FR": 239,
-            "en_US": null
+            "en_US": 222
           },
           "publisher": {
             "fr_FR": "gallimard",
@@ -48644,10 +49259,7 @@
             "en_US": "Libro de las preguntas"
           },
           "pages": null,
-          "publisher": {
-            "fr_FR": "editorial-losada",
-            "en_US": "editorial-losada"
-          },
+          "publisher": null,
           "popularity": 3,
           "wikidata_id": "Q2581615"
         }
@@ -48730,7 +49342,7 @@
             "en_US": 323
           },
           "publisher": {
-            "fr_FR": "j-b-lippincott-co",
+            "fr_FR": null,
             "en_US": "j-b-lippincott-co"
           },
           "popularity": 7,
@@ -48782,7 +49394,7 @@
             "en_US": 315
           },
           "publisher": {
-            "fr_FR": "ace-books",
+            "fr_FR": null,
             "en_US": "ace-books"
           },
           "popularity": 2,
@@ -48802,7 +49414,7 @@
             "en_US": 278
           },
           "publisher": {
-            "fr_FR": "ace-books",
+            "fr_FR": null,
             "en_US": "ace-books"
           },
           "popularity": 3,
@@ -49197,8 +49809,14 @@
             "en_US": "H.M.S. Unseen"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 526
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "harpercollins"
+          },
           "popularity": 2,
           "wikidata_id": "Q5627969"
         },
@@ -49250,11 +49868,11 @@
           },
           "pages": {
             "fr_FR": 458,
-            "en_US": null
+            "en_US": 440
           },
           "publisher": {
             "fr_FR": "albin-michel",
-            "en_US": null
+            "en_US": "harpercollins"
           },
           "popularity": 2,
           "wikidata_id": "Q388993"
@@ -49302,11 +49920,11 @@
           },
           "pages": {
             "fr_FR": 115,
-            "en_US": null
+            "en_US": 77
           },
           "publisher": {
             "fr_FR": "fayard",
-            "en_US": null
+            "en_US": "hamish-hamilton"
           },
           "popularity": 13,
           "wikidata_id": "Q1216687"
@@ -49468,7 +50086,10 @@
             "en_US": "Dark Star Safari"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 496
+          },
           "publisher": {
             "fr_FR": "houghton-mifflin-harcourt",
             "en_US": "houghton-mifflin-harcourt"
@@ -49576,7 +50197,10 @@
             "en_US": "Brown Girl, Brownstones"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 310
+          },
           "publisher": {
             "fr_FR": "random-house",
             "en_US": "random-house"
@@ -49611,7 +50235,7 @@
           },
           "publisher": {
             "fr_FR": "editions-anne-carriere",
-            "en_US": "companhia-das-letras"
+            "en_US": null
           },
           "popularity": 92,
           "wikidata_id": "Q179021"
@@ -49661,7 +50285,7 @@
           },
           "publisher": {
             "fr_FR": "editions-anne-carriere",
-            "en_US": "yedioth-ahronoth"
+            "en_US": null
           },
           "popularity": 34,
           "wikidata_id": "Q1139322"
@@ -49681,8 +50305,14 @@
             "en_US": "The Devil and Miss Prym"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 201
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "harpercollins"
+          },
           "popularity": 20,
           "wikidata_id": "Q1997592"
         },
@@ -49772,7 +50402,7 @@
           },
           "pages": {
             "fr_FR": 375,
-            "en_US": null
+            "en_US": 467
           },
           "publisher": {
             "fr_FR": "payot",
@@ -49859,7 +50489,7 @@
           },
           "pages": {
             "fr_FR": 310,
-            "en_US": null
+            "en_US": 192
           },
           "publisher": {
             "fr_FR": "10-18",
@@ -49970,8 +50600,14 @@
             "en_US": "The Blue Flower"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 225
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "houghton-mifflin"
+          },
           "popularity": 5,
           "wikidata_id": "Q20085225"
         }
@@ -50097,7 +50733,7 @@
           },
           "pages": {
             "fr_FR": 544,
-            "en_US": null
+            "en_US": 352
           },
           "publisher": {
             "fr_FR": "milady",
@@ -50155,11 +50791,11 @@
           },
           "pages": {
             "fr_FR": 191,
-            "en_US": null
+            "en_US": 197
           },
           "publisher": {
             "fr_FR": "nil-editions",
-            "en_US": null
+            "en_US": "hamish-hamilton"
           },
           "popularity": 7,
           "wikidata_id": "Q1917911"
@@ -50247,7 +50883,7 @@
             "en_US": 275
           },
           "publisher": {
-            "fr_FR": "roc-books",
+            "fr_FR": null,
             "en_US": "roc-books"
           },
           "popularity": 4,
@@ -50855,7 +51491,7 @@
             "en_US": 664
           },
           "publisher": {
-            "fr_FR": "charles-scribner-s-sons",
+            "fr_FR": null,
             "en_US": "charles-scribner-s-sons"
           },
           "popularity": 16,
@@ -50913,11 +51549,11 @@
           },
           "pages": {
             "fr_FR": 449,
-            "en_US": null
+            "en_US": 518
           },
           "publisher": {
             "fr_FR": "editions-de-l-archipel",
-            "en_US": null
+            "en_US": "harper-row"
           },
           "popularity": 3,
           "wikidata_id": "Q3819027"
@@ -51003,9 +51639,12 @@
           "title_untranslated": true,
           "pages": {
             "fr_FR": null,
-            "en_US": 377
+            "en_US": 432
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "luna"
+          },
           "popularity": 1,
           "wikidata_id": "Q19710925"
         }
@@ -51070,7 +51709,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "julliard",
-            "en_US": "julliard"
+            "en_US": null
           },
           "publisher_estimated": true,
           "popularity": 38,
@@ -51361,11 +52000,11 @@
           },
           "pages": {
             "fr_FR": 280,
-            "en_US": null
+            "en_US": 232
           },
           "publisher": {
             "fr_FR": "les-belles-lettres",
-            "en_US": null
+            "en_US": "j-munroe"
           },
           "popularity": 43,
           "wikidata_id": "Q264241"
@@ -51386,11 +52025,11 @@
           },
           "pages": {
             "fr_FR": 505,
-            "en_US": null
+            "en_US": 95
           },
           "publisher": {
             "fr_FR": "flammarion",
-            "en_US": null
+            "en_US": "john-deighton"
           },
           "popularity": 33,
           "wikidata_id": "Q520328"
@@ -51495,11 +52134,11 @@
           },
           "pages": {
             "fr_FR": 274,
-            "en_US": null
+            "en_US": 358
           },
           "publisher": {
             "fr_FR": "les-belles-lettres",
-            "en_US": null
+            "en_US": "macmillan-publishers"
           },
           "popularity": 45,
           "wikidata_id": "Q371884"
@@ -51685,7 +52324,7 @@
             "en_US": 239
           },
           "publisher": {
-            "fr_FR": "new-american-library",
+            "fr_FR": null,
             "en_US": "new-american-library"
           },
           "popularity": 2,
@@ -52316,7 +52955,7 @@
             "en_US": 317
           },
           "publisher": {
-            "fr_FR": "tusquets-editores",
+            "fr_FR": null,
             "en_US": "penguin-group"
           },
           "popularity": 6,
@@ -52351,7 +52990,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "denoel",
-            "en_US": "denoel"
+            "en_US": null
           },
           "publisher_estimated": true,
           "popularity": 6,
@@ -52374,7 +53013,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "denoel",
-            "en_US": "denoel"
+            "en_US": null
           },
           "publisher_estimated": true,
           "popularity": 5,
@@ -52397,7 +53036,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "denoel",
-            "en_US": "denoel"
+            "en_US": null
           },
           "publisher_estimated": true,
           "popularity": 3,
@@ -52423,7 +53062,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "presses-de-la-cite",
-            "en_US": "denoel"
+            "en_US": null
           },
           "publisher_estimated": true,
           "popularity": 6,
@@ -52446,7 +53085,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "denoel",
-            "en_US": "denoel"
+            "en_US": null
           },
           "publisher_estimated": true
         },
@@ -52467,7 +53106,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "denoel",
-            "en_US": "denoel"
+            "en_US": null
           },
           "publisher_estimated": true,
           "popularity": 4,
@@ -52500,7 +53139,7 @@
           },
           "publisher": {
             "fr_FR": "flammarion",
-            "en_US": "joannes-maire"
+            "en_US": null
           },
           "popularity": 43,
           "wikidata_id": "Q731224"
@@ -52694,8 +53333,14 @@
             "fr_FR": "Das Semco-System",
             "en_US": "Maverick"
           },
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 335
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "warner-books"
+          },
           "popularity": 3,
           "wikidata_id": "Q1170372"
         }
@@ -52834,11 +53479,11 @@
           },
           "pages": {
             "fr_FR": 153,
-            "en_US": null
+            "en_US": 110
           },
           "publisher": {
             "fr_FR": "editions-christian-bourgois",
-            "en_US": null
+            "en_US": "st-martin-s-press"
           },
           "popularity": 4,
           "wikidata_id": "Q4750250"
@@ -52865,7 +53510,7 @@
           },
           "pages": {
             "fr_FR": 380,
-            "en_US": null
+            "en_US": 332
           },
           "publisher": {
             "fr_FR": "robert-laffont",
@@ -52936,8 +53581,14 @@
             "en_US": "QED: The Strange Theory of Light and Matter"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 152
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "princeton-university-press"
+          },
           "popularity": 9,
           "wikidata_id": "Q7265419"
         },
@@ -52953,11 +53604,11 @@
           },
           "pages": {
             "fr_FR": 172,
-            "en_US": null
+            "en_US": 255
           },
           "publisher": {
             "fr_FR": "editions-odile-jacob",
-            "en_US": null
+            "en_US": "w-w-norton-company"
           },
           "popularity": 11,
           "wikidata_id": "Q2712899"
@@ -53077,11 +53728,11 @@
           },
           "pages": {
             "fr_FR": 411,
-            "en_US": null
+            "en_US": 429
           },
           "publisher": {
             "fr_FR": "flammarion",
-            "en_US": null
+            "en_US": "charles-scribner-s-sons"
           },
           "popularity": 36,
           "wikidata_id": "Q936801"
@@ -53121,7 +53772,7 @@
             "en_US": 1224
           },
           "publisher": {
-            "fr_FR": "viking-press",
+            "fr_FR": null,
             "en_US": "viking-press"
           },
           "popularity": 3,
@@ -53555,11 +54206,11 @@
           },
           "pages": {
             "fr_FR": 575,
-            "en_US": null
+            "en_US": 544
           },
           "publisher": {
             "fr_FR": "fleuve-noir",
-            "en_US": null
+            "en_US": "overlook-press"
           },
           "popularity": 1,
           "wikidata_id": "Q7768912"
@@ -53744,8 +54395,14 @@
             "en_US": "The Diary of Ellen Rimbauer: My Life at Rose Red"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 277
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "hyperion"
+          },
           "popularity": 2,
           "wikidata_id": "Q3793766"
         }
@@ -53835,11 +54492,11 @@
           },
           "pages": {
             "fr_FR": 232,
-            "en_US": 232
+            "en_US": 196
           },
           "publisher": {
             "fr_FR": "gallimard-jeunesse",
-            "en_US": null
+            "en_US": "alfred-a-knopf"
           },
           "popularity": 19,
           "wikidata_id": "Q1164830"
@@ -53892,9 +54549,12 @@
             "fr_FR": "Le Jeune Homme et l'Espace",
             "en_US": "Have Space Suit—Will Travel"
           },
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 276
+          },
           "publisher": {
-            "fr_FR": "charles-scribner-s-sons",
+            "fr_FR": null,
             "en_US": "charles-scribner-s-sons"
           },
           "popularity": 15,
@@ -54028,7 +54688,7 @@
           },
           "pages": {
             "fr_FR": 346,
-            "en_US": null
+            "en_US": 345
           },
           "publisher": {
             "fr_FR": "milady",
@@ -54091,9 +54751,12 @@
           },
           "pages": {
             "fr_FR": null,
-            "en_US": 284
+            "en_US": 262
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "falcon-press"
+          },
           "popularity": 2,
           "wikidata_id": "Q3407410"
         }
@@ -54224,7 +54887,7 @@
             "en_US": 192
           },
           "publisher": {
-            "fr_FR": "atheneum-books",
+            "fr_FR": null,
             "en_US": "atheneum-books"
           },
           "popularity": 3,
@@ -54255,7 +54918,7 @@
             "en_US": 352
           },
           "publisher": {
-            "fr_FR": "bantam-books",
+            "fr_FR": null,
             "en_US": "bantam-books"
           },
           "popularity": 2,
@@ -54960,7 +55623,7 @@
             "en_US": 960
           },
           "publisher": {
-            "fr_FR": "pocket-books",
+            "fr_FR": null,
             "en_US": "pocket-books"
           },
           "popularity": 4,
@@ -54977,11 +55640,11 @@
           },
           "pages": {
             "fr_FR": 359,
-            "en_US": null
+            "en_US": 542
           },
           "publisher": {
             "fr_FR": "presses-de-la-cite",
-            "en_US": null
+            "en_US": "kinnell"
           },
           "wikidata_id": "Q121567769"
         },
@@ -55078,7 +55741,7 @@
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": "gallimard"
+            "en_US": null
           },
           "publisher_estimated": true,
           "popularity": 13,
@@ -55107,11 +55770,11 @@
           },
           "pages": {
             "fr_FR": 253,
-            "en_US": null
+            "en_US": 217
           },
           "publisher": {
             "fr_FR": "le-seuil",
-            "en_US": null
+            "en_US": "noonday-press"
           },
           "popularity": 17,
           "wikidata_id": "Q1112285"
@@ -55212,7 +55875,7 @@
             "en_US": 673
           },
           "publisher": {
-            "fr_FR": "harpercollins",
+            "fr_FR": null,
             "en_US": "harpercollins"
           },
           "popularity": 7,
@@ -55238,7 +55901,7 @@
             "en_US": 1046
           },
           "publisher": {
-            "fr_FR": "harpercollins",
+            "fr_FR": null,
             "en_US": "harpercollins"
           },
           "popularity": 6,
@@ -55331,7 +55994,7 @@
             "en_US": 309
           },
           "publisher": {
-            "fr_FR": "ace-books",
+            "fr_FR": null,
             "en_US": "ace-books"
           },
           "popularity": 1,
@@ -55348,7 +56011,7 @@
           },
           "pages": null,
           "publisher": {
-            "fr_FR": "harpercollins",
+            "fr_FR": null,
             "en_US": "harpercollins"
           },
           "popularity": 1,
@@ -55366,8 +56029,14 @@
             "fr_FR": "Sunshine",
             "en_US": "Sunshine"
           },
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 389
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "berkley-books"
+          },
           "popularity": 1,
           "wikidata_id": "Q7641432"
         }
@@ -55532,9 +56201,12 @@
           "title_untranslated": true,
           "pages": {
             "fr_FR": null,
-            "en_US": 272
+            "en_US": 246
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "princeton-university-press"
+          },
           "popularity": 2,
           "wikidata_id": "Q7760881"
         }
@@ -55860,8 +56532,14 @@
             "en_US": "Music and Silence"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 448
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "random-house-canada"
+          },
           "popularity": 2,
           "wikidata_id": "Q6941715"
         }
@@ -56206,7 +56884,10 @@
             "en_US": "Heat and Dust"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 181
+          },
           "publisher": {
             "fr_FR": "john-murray",
             "en_US": "john-murray"
@@ -56275,7 +56956,10 @@
             "en_US": "My Father's Dragon"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 86
+          },
           "publisher": {
             "fr_FR": "random-house",
             "en_US": "random-house"
@@ -56310,7 +56994,7 @@
           },
           "publisher": {
             "fr_FR": "picquier",
-            "en_US": "kodansha"
+            "en_US": null
           },
           "popularity": 9,
           "wikidata_id": "Q928977"
@@ -56379,8 +57063,14 @@
             "en_US": "Hawkes Harbor"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 251
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "tor-books"
+          },
           "popularity": 1,
           "wikidata_id": "Q5685001"
         }
@@ -56556,7 +57246,7 @@
             "en_US": 336
           },
           "publisher": {
-            "fr_FR": "w-w-norton-company",
+            "fr_FR": null,
             "en_US": "w-w-norton-company"
           },
           "popularity": 24,
@@ -56766,11 +57456,11 @@
           },
           "pages": {
             "fr_FR": 402,
-            "en_US": 368
+            "en_US": 335
           },
           "publisher": {
             "fr_FR": "albin-michel",
-            "en_US": null
+            "en_US": "algonquin-books"
           },
           "popularity": 12,
           "wikidata_id": "Q3179227"
@@ -57139,8 +57829,14 @@
             "en_US": "The Laws of Our Fathers"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 552
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "farrar-straus-and-giroux"
+          },
           "popularity": 2,
           "wikidata_id": "Q5689750"
         },
@@ -57209,7 +57905,7 @@
           },
           "pages": {
             "fr_FR": 432,
-            "en_US": null
+            "en_US": 425
           },
           "publisher": {
             "fr_FR": "pocket-jeunesse",
@@ -57482,8 +58178,14 @@
             "en_US": "Human Traces"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 614
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "hutchinson"
+          },
           "popularity": 2,
           "wikidata_id": "Q5937647"
         }
@@ -57509,8 +58211,14 @@
             "en_US": "When Christ and His Saints Slept"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 746
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "henry-holt-and-company"
+          },
           "popularity": 2,
           "wikidata_id": "Q9372305"
         }
@@ -57658,11 +58366,11 @@
           },
           "pages": {
             "fr_FR": 304,
-            "en_US": null
+            "en_US": 294
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "taplinger"
           },
           "popularity": 28,
           "wikidata_id": "Q3960523"
@@ -57677,8 +58385,14 @@
             "en_US": "The Samurai"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 272
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "peter-owen"
+          },
           "popularity": 7,
           "wikidata_id": "Q2077477"
         },
@@ -57692,8 +58406,14 @@
             "en_US": "Deep River"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 224
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "new-directions-publishing"
+          },
           "popularity": 5,
           "wikidata_id": "Q5250267"
         }
@@ -57827,11 +58547,11 @@
           },
           "pages": {
             "fr_FR": 304,
-            "en_US": 315
+            "en_US": 362
           },
           "publisher": {
             "fr_FR": "hachette-litteratures",
-            "en_US": "deutscher-taschenbuch-verlag"
+            "en_US": "fourth-estate"
           },
           "popularity": 7,
           "wikidata_id": "Q3819909"
@@ -57900,8 +58620,14 @@
             "en_US": "The Map that Changed the World"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 338
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "viking-press"
+          },
           "popularity": 3,
           "wikidata_id": "Q3823002"
         }
@@ -57928,11 +58654,11 @@
           },
           "pages": {
             "fr_FR": 448,
-            "en_US": null
+            "en_US": 430
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "secker-warburg"
           },
           "popularity": 11,
           "wikidata_id": "Q859773"
@@ -57948,11 +58674,11 @@
           },
           "pages": {
             "fr_FR": 228,
-            "en_US": null
+            "en_US": 159
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "philosophical-library"
           },
           "popularity": 7,
           "wikidata_id": "Q2363200"
@@ -57971,11 +58697,11 @@
           },
           "pages": {
             "fr_FR": 584,
-            "en_US": null
+            "en_US": 610
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": "gallimard"
+            "en_US": "harcourt"
           },
           "popularity": 17,
           "wikidata_id": "Q1214721"
@@ -58068,7 +58794,7 @@
             "en_US": 400
           },
           "publisher": {
-            "fr_FR": "doubleday",
+            "fr_FR": null,
             "en_US": "berkley-books"
           },
           "popularity": 17,
@@ -58118,9 +58844,12 @@
           "title_untranslated": true,
           "pages": {
             "fr_FR": null,
-            "en_US": 407
+            "en_US": 393
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "black-swan"
+          },
           "popularity": 3,
           "wikidata_id": "Q521331"
         },
@@ -58134,7 +58863,10 @@
             "en_US": "Can You Keep a Secret?"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 357
+          },
           "publisher": {
             "fr_FR": "dial-press",
             "en_US": "dial-press"
@@ -58283,10 +59015,13 @@
             "fr_FR": "Éden",
             "en_US": "Eden"
           },
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 262
+          },
           "publisher": {
-            "fr_FR": "wydawnictwo-iskry",
-            "en_US": "wydawnictwo-iskry"
+            "fr_FR": null,
+            "en_US": "harcourt"
           },
           "popularity": 19,
           "wikidata_id": "Q1283523"
@@ -58325,11 +59060,11 @@
           },
           "pages": {
             "fr_FR": 314,
-            "en_US": 312
+            "en_US": 295
           },
           "publisher": {
             "fr_FR": "denoel",
-            "en_US": "wydawnictwo-literackie"
+            "en_US": "seabury-press"
           },
           "popularity": 20,
           "wikidata_id": "Q1048615"
@@ -58344,10 +59079,13 @@
             "en_US": "Tales of Pirx the Pilot"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 206
+          },
           "publisher": {
             "fr_FR": "wydawnictwo-literackie",
-            "en_US": "wydawnictwo-literackie"
+            "en_US": "harcourt"
           },
           "popularity": 11,
           "wikidata_id": "Q937248"
@@ -58619,8 +59357,14 @@
             "en_US": "A Year in the Merde"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 336
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "bantam-books"
+          },
           "popularity": 2,
           "wikidata_id": "Q4660861"
         }
@@ -58758,11 +59502,11 @@
           },
           "pages": {
             "fr_FR": 448,
-            "en_US": null
+            "en_US": 413
           },
           "publisher": {
             "fr_FR": "fayard",
-            "en_US": null
+            "en_US": "w-w-norton-company"
           },
           "popularity": 3,
           "wikidata_id": "Q3412913"
@@ -58803,7 +59547,7 @@
             "en_US": 540
           },
           "publisher": {
-            "fr_FR": "w-w-norton-company",
+            "fr_FR": null,
             "en_US": "w-w-norton-company"
           },
           "popularity": 4,
@@ -58859,7 +59603,7 @@
           },
           "pages_estimated": true,
           "publisher": {
-            "fr_FR": "doubleday",
+            "fr_FR": null,
             "en_US": "doubleday"
           },
           "publisher_estimated": true,
@@ -59128,7 +59872,10 @@
             "fr_FR": null,
             "en_US": 661
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "ballantine-books"
+          },
           "popularity": 1,
           "wikidata_id": "Q104841212"
         },
@@ -59149,7 +59896,7 @@
           },
           "pages": {
             "fr_FR": 446,
-            "en_US": null
+            "en_US": 407
           },
           "publisher": {
             "fr_FR": "pocket",
@@ -59174,7 +59921,10 @@
             "en_US": "Chaos and Order"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 617
+          },
           "publisher": {
             "fr_FR": "bantam-books",
             "en_US": "bantam-books"
@@ -59262,7 +60012,10 @@
             "fr_FR": null,
             "en_US": 130
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "hyperion"
+          },
           "popularity": 1,
           "wikidata_id": "Q7501143"
         },
@@ -59306,7 +60059,7 @@
             "en_US": 254
           },
           "publisher": {
-            "fr_FR": "riverhead-books",
+            "fr_FR": null,
             "en_US": "riverhead-books"
           },
           "popularity": 3,
@@ -59406,9 +60159,12 @@
           },
           "pages": {
             "fr_FR": null,
-            "en_US": 351
+            "en_US": 354
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "broadway-books"
+          },
           "popularity": 2,
           "wikidata_id": "Q7712769"
         }
@@ -59436,9 +60192,12 @@
           "title_untranslated": true,
           "pages": {
             "fr_FR": null,
-            "en_US": 448
+            "en_US": 272
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "harpercollins"
+          },
           "popularity": 1,
           "wikidata_id": "Q5280926"
         }
@@ -59574,8 +60333,14 @@
             "en_US": "The Boggart"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 196
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "m-k-mcelderry-books"
+          },
           "popularity": 1,
           "wikidata_id": "Q7719020"
         }
@@ -60091,7 +60856,7 @@
           },
           "pages": {
             "fr_FR": 241,
-            "en_US": null
+            "en_US": 66
           },
           "publisher": {
             "fr_FR": "le-seuil",
@@ -60228,7 +60993,7 @@
             "en_US": 29
           },
           "publisher": {
-            "fr_FR": "random-house",
+            "fr_FR": null,
             "en_US": "random-house"
           },
           "popularity": 5,
@@ -60253,7 +61018,7 @@
             "en_US": 25
           },
           "publisher": {
-            "fr_FR": "daw-books",
+            "fr_FR": null,
             "en_US": "daw-books"
           },
           "popularity": 2,
@@ -60393,7 +61158,7 @@
             "en_US": 582
           },
           "publisher": {
-            "fr_FR": "random-house",
+            "fr_FR": null,
             "en_US": "random-house"
           },
           "popularity": 1,
@@ -60425,7 +61190,7 @@
             "en_US": 346
           },
           "publisher": {
-            "fr_FR": "harpercollins",
+            "fr_FR": null,
             "en_US": "harpercollins"
           },
           "popularity": 1,
@@ -60442,7 +61207,10 @@
             "en_US": "The Living Blood"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 515
+          },
           "publisher": {
             "fr_FR": "pocket-books",
             "en_US": "pocket-books"
@@ -60526,11 +61294,11 @@
           },
           "pages": {
             "fr_FR": 383,
-            "en_US": 368
+            "en_US": 356
           },
           "publisher": {
             "fr_FR": "editions-odile-jacob",
-            "en_US": null
+            "en_US": "charles-scribner-s-sons"
           },
           "popularity": 2,
           "wikidata_id": "Q4765036"
@@ -60561,11 +61329,11 @@
           },
           "pages": {
             "fr_FR": 221,
-            "en_US": null
+            "en_US": 166
           },
           "publisher": {
             "fr_FR": "bordas",
-            "en_US": null
+            "en_US": "new-directions-publishing"
           },
           "popularity": 41,
           "wikidata_id": "Q842106"
@@ -60838,11 +61606,11 @@
           },
           "pages": {
             "fr_FR": 189,
-            "en_US": null
+            "en_US": 246
           },
           "publisher": {
             "fr_FR": "denoel",
-            "en_US": null
+            "en_US": "harmony-books"
           },
           "popularity": 3,
           "wikidata_id": "Q10680367"
@@ -61033,11 +61801,11 @@
           },
           "pages": {
             "fr_FR": 363,
-            "en_US": 352
+            "en_US": 369
           },
           "publisher": {
             "fr_FR": "presses-de-la-cite",
-            "en_US": null
+            "en_US": "ballantine-books"
           },
           "popularity": 8,
           "wikidata_id": "Q1781839"
@@ -61083,8 +61851,14 @@
             "en_US": "Vanish"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 336
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "random-house"
+          },
           "popularity": 3,
           "wikidata_id": "Q1301028"
         },
@@ -61106,9 +61880,12 @@
           "title_untranslated": true,
           "pages": {
             "fr_FR": null,
-            "en_US": 368
+            "en_US": 355
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "ballantine-books"
+          },
           "popularity": 2,
           "wikidata_id": "Q886696"
         }
@@ -61134,7 +61911,10 @@
             "en_US": "The Cay"
           },
           "title_untranslated": true,
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 144
+          },
           "publisher": {
             "fr_FR": "avon",
             "en_US": "avon"
@@ -61459,11 +62239,11 @@
           },
           "pages": {
             "fr_FR": 643,
-            "en_US": null
+            "en_US": 510
           },
           "publisher": {
             "fr_FR": "albin-michel",
-            "en_US": "bermann-fischer-verlag"
+            "en_US": "alfred-a-knopf"
           },
           "popularity": 30,
           "wikidata_id": "Q386431"
@@ -61522,11 +62302,11 @@
           },
           "pages": {
             "fr_FR": 640,
-            "en_US": 546
+            "en_US": 492
           },
           "publisher": {
             "fr_FR": "le-seuil",
-            "en_US": null
+            "en_US": "jonathan-cape"
           },
           "popularity": 15,
           "wikidata_id": "Q1191071"
@@ -61543,11 +62323,11 @@
           },
           "pages": {
             "fr_FR": 212,
-            "en_US": 194
+            "en_US": 183
           },
           "publisher": {
             "fr_FR": "le-seuil",
-            "en_US": null
+            "en_US": "j-b-lippincott-co"
           },
           "popularity": 18,
           "wikidata_id": "Q2344707"
@@ -61643,7 +62423,7 @@
             "en_US": 544
           },
           "publisher": {
-            "fr_FR": "charles-scribner-s-sons",
+            "fr_FR": null,
             "en_US": "charles-scribner-s-sons"
           },
           "popularity": 6,
@@ -61725,7 +62505,7 @@
           },
           "pages": null,
           "publisher": {
-            "fr_FR": "penguin-books",
+            "fr_FR": null,
             "en_US": "penguin-books"
           },
           "popularity": 1,
@@ -61772,8 +62552,14 @@
             "en_US": "Famous Last Words"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 396
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "clarke-irwin"
+          },
           "popularity": 3,
           "wikidata_id": "Q5433463"
         }
@@ -61877,11 +62663,11 @@
           },
           "pages": {
             "fr_FR": 188,
-            "en_US": null
+            "en_US": 221
           },
           "publisher": {
             "fr_FR": "plon",
-            "en_US": null
+            "en_US": "alfred-a-knopf"
           },
           "popularity": 5,
           "wikidata_id": "Q3015383"
@@ -61927,9 +62713,12 @@
             "fr_FR": "Génération grandiose",
             "en_US": "Greatest Generation"
           },
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 412
+          },
           "publisher": {
-            "fr_FR": "random-house",
+            "fr_FR": null,
             "en_US": "random-house"
           },
           "popularity": 2,
@@ -62478,9 +63267,12 @@
           },
           "pages": {
             "fr_FR": null,
-            "en_US": 933
+            "en_US": 878
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "penguin-books"
+          },
           "popularity": 4,
           "wikidata_id": "Q1212929"
         }
@@ -62506,11 +63298,11 @@
           },
           "pages": {
             "fr_FR": 317,
-            "en_US": null
+            "en_US": 304
           },
           "publisher": {
             "fr_FR": "quai-voltaire",
-            "en_US": null
+            "en_US": "plume"
           },
           "popularity": 3,
           "wikidata_id": "Q3213769"
@@ -62550,7 +63342,7 @@
           },
           "publisher": {
             "fr_FR": "quai-voltaire",
-            "en_US": null
+            "en_US": "dutton"
           },
           "popularity": 1,
           "wikidata_id": "Q33188257"
@@ -62655,11 +63447,11 @@
           },
           "pages": {
             "fr_FR": 445,
-            "en_US": null
+            "en_US": 512
           },
           "publisher": {
             "fr_FR": "gallmeister",
-            "en_US": null
+            "en_US": "headline-publishing-group-limited"
           },
           "popularity": 8,
           "wikidata_id": "Q2520402"
@@ -62692,7 +63484,7 @@
           },
           "pages": {
             "fr_FR": 708,
-            "en_US": null
+            "en_US": 640
           },
           "publisher": {
             "fr_FR": "presses-de-la-cite",
@@ -62718,7 +63510,7 @@
           },
           "pages": null,
           "publisher": {
-            "fr_FR": "del-rey-books",
+            "fr_FR": null,
             "en_US": "del-rey-books"
           },
           "popularity": 2,
@@ -62886,11 +63678,11 @@
           },
           "pages": {
             "fr_FR": 274,
-            "en_US": null
+            "en_US": 307
           },
           "publisher": {
             "fr_FR": "grasset",
-            "en_US": "bompiani"
+            "en_US": "harcourt"
           },
           "popularity": 3,
           "wikidata_id": "Q5431258"
@@ -63016,11 +63808,11 @@
           },
           "pages": {
             "fr_FR": 453,
-            "en_US": null
+            "en_US": 456
           },
           "publisher": {
             "fr_FR": "flammarion",
-            "en_US": "bompiani"
+            "en_US": "rizzoli"
           },
           "popularity": 5,
           "wikidata_id": "Q3974113"
@@ -63348,8 +64140,14 @@
             "en_US": "The Last Temptation"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 530
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "harpercollins"
+          },
           "popularity": 2,
           "wikidata_id": "Q7746098"
         }
@@ -63406,11 +64204,11 @@
           },
           "pages": {
             "fr_FR": 363,
-            "en_US": 172
+            "en_US": 486
           },
           "publisher": {
             "fr_FR": "hachette",
-            "en_US": null
+            "en_US": "a-l-burt-company"
           },
           "popularity": 13,
           "wikidata_id": "Q2496854"
@@ -63559,12 +64357,12 @@
           },
           "pages": {
             "fr_FR": 1463,
-            "en_US": 1463
+            "en_US": null
           },
           "pages_estimated": true,
           "publisher": {
             "fr_FR": "a-lacroix-verboeckhoven-et-cie",
-            "en_US": "a-lacroix-verboeckhoven-et-cie"
+            "en_US": null
           },
           "publisher_estimated": true,
           "popularity": 98,
@@ -63581,11 +64379,11 @@
           },
           "pages": {
             "fr_FR": 426,
-            "en_US": null
+            "en_US": 306
           },
           "publisher": {
             "fr_FR": "emile-testard-et-cie",
-            "en_US": null
+            "en_US": "d-c-heath"
           },
           "popularity": 26,
           "wikidata_id": "Q1211109"
@@ -64073,7 +64871,7 @@
           },
           "pages": {
             "fr_FR": 250,
-            "en_US": null
+            "en_US": 292
           },
           "publisher": {
             "fr_FR": "sovremennye-zapiski",
@@ -64804,8 +65602,14 @@
             "en_US": "No Name"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 278
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "harper-brothers"
+          },
           "popularity": 4,
           "wikidata_id": "Q7044605"
         },
@@ -64852,7 +65656,10 @@
             "fr_FR": "Histoire de la philosophie",
             "en_US": "The Story of Philosophy"
           },
-          "pages": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 592
+          },
           "publisher": {
             "fr_FR": null,
             "en_US": "garden-city-publishing-company"
@@ -64906,11 +65713,11 @@
           },
           "pages": {
             "fr_FR": 310,
-            "en_US": null
+            "en_US": 380
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "grosset-dunlap"
           },
           "popularity": 15,
           "wikidata_id": "Q1212765"
@@ -64926,11 +65733,11 @@
           },
           "pages": {
             "fr_FR": 422,
-            "en_US": null
+            "en_US": 378
           },
           "publisher": {
             "fr_FR": "gallimard",
-            "en_US": null
+            "en_US": "random-house"
           },
           "popularity": 27,
           "wikidata_id": "Q1823273"
@@ -65003,11 +65810,11 @@
           },
           "pages": {
             "fr_FR": 317,
-            "en_US": null
+            "en_US": 262
           },
           "publisher": {
             "fr_FR": "editions-christian-bourgois",
-            "en_US": null
+            "en_US": "viking-press"
           },
           "popularity": 3,
           "wikidata_id": "Q5045655"
@@ -65059,11 +65866,11 @@
           },
           "pages": {
             "fr_FR": 201,
-            "en_US": null
+            "en_US": 200
           },
           "publisher": {
             "fr_FR": "la-decouverte",
-            "en_US": null
+            "en_US": "victor-gollancz"
           },
           "popularity": 9,
           "wikidata_id": "Q2755162"
@@ -65287,7 +66094,10 @@
             "fr_FR": 110,
             "en_US": 110
           },
-          "publisher": null,
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "ballantine-books"
+          },
           "popularity": 2,
           "wikidata_id": "Q7764218"
         }
@@ -65463,7 +66273,7 @@
           },
           "pages": {
             "fr_FR": 258,
-            "en_US": null
+            "en_US": 225
           },
           "publisher": {
             "fr_FR": "olympia-press",
@@ -65556,7 +66366,7 @@
           },
           "pages": {
             "fr_FR": 342,
-            "en_US": null
+            "en_US": 207
           },
           "publisher": {
             "fr_FR": "aubier",
@@ -65642,7 +66452,7 @@
           },
           "pages": {
             "fr_FR": 255,
-            "en_US": null
+            "en_US": 149
           },
           "publisher": {
             "fr_FR": "didier",
@@ -65851,7 +66661,7 @@
           },
           "pages": {
             "fr_FR": 181,
-            "en_US": null
+            "en_US": 155
           },
           "publisher": {
             "fr_FR": "didier",
@@ -65871,7 +66681,7 @@
           },
           "pages": {
             "fr_FR": 139,
-            "en_US": null
+            "en_US": 143
           },
           "publisher": {
             "fr_FR": "librairie-theatrale",
@@ -66045,7 +66855,7 @@
           },
           "publisher": {
             "fr_FR": "julliard",
-            "en_US": null
+            "en_US": "macgibbon-kee"
           },
           "popularity": 16,
           "wikidata_id": "Q3057258"
@@ -66061,11 +66871,11 @@
           },
           "pages": {
             "fr_FR": 188,
-            "en_US": null
+            "en_US": 166
           },
           "publisher": {
             "fr_FR": "denoel",
-            "en_US": null
+            "en_US": "macgibbon-kee"
           },
           "popularity": 5,
           "wikidata_id": "Q13632942"
@@ -66185,7 +66995,7 @@
           },
           "publisher": {
             "fr_FR": "albin-michel",
-            "en_US": "chuokoron-shinsha"
+            "en_US": null
           },
           "popularity": 10,
           "wikidata_id": "Q2604594"
@@ -66200,12 +67010,12 @@
             "en_US": "Palm-of-the-Hand Stories"
           },
           "pages": {
-            "fr_FR": 644,
-            "en_US": 644
+            "fr_FR": null,
+            "en_US": 238
           },
           "publisher": {
-            "fr_FR": "shinchosha",
-            "en_US": "shinchosha"
+            "fr_FR": null,
+            "en_US": "north-point-press"
           },
           "popularity": 6,
           "wikidata_id": "Q3296810"
@@ -66393,8 +67203,14 @@
             "en_US": "Jonah's Gourd Vine"
           },
           "title_untranslated": true,
-          "pages": null,
-          "publisher": null,
+          "pages": {
+            "fr_FR": null,
+            "en_US": 316
+          },
+          "publisher": {
+            "fr_FR": null,
+            "en_US": "j-b-lippincott-co"
+          },
           "popularity": 1,
           "wikidata_id": "Q24255910"
         },

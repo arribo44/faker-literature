@@ -339,3 +339,33 @@ def test_books_in_series_rejects_unknown_and_ambiguous_names(fake_en):
         fake_en.books_in_series("no such series")
     with pytest.raises(ValueError, match="names several series"):
         fake_en.books_in_series("trilogy")
+
+
+# Publishers of the French locale
+
+def test_french_publishers_leave_out_the_original_editions_of_untranslated_works():
+    fake = Faker("fr_FR")
+    fake.add_provider(LiteratureProvider)
+    fake.seed_instance(1)
+    raw = LiteratureProvider(fake).books_flat
+    translated = {book["publisher"]["fr_FR"] for book in raw
+                  if book.get("publisher") and book["publisher"]["fr_FR"] and not book.get("title_untranslated")}
+    only_untranslated = {book["publisher"]["fr_FR"] for book in raw
+                         if book.get("publisher") and book["publisher"]["fr_FR"] and book.get("title_untranslated")
+                         } - translated
+    assert only_untranslated  # "Pantheon Books"...
+
+    assert not {fake.publisher() for _ in range(500)} & only_untranslated
+    # book() keeps the publisher of every work
+    untranslated = next(book for book in raw if book.get("title_untranslated") and book.get("publisher")
+                        and book["publisher"]["fr_FR"] in only_untranslated)
+    writer = untranslated["writer"]["fr_FR"] if isinstance(untranslated["writer"], dict) else untranslated["writer"]
+    assert untranslated["publisher"]["fr_FR"] in {
+        book["publisher"] for book in fake.books_by_author(writer)}
+
+
+def test_french_publishers_of_untranslated_writers_only_are_still_drawn():
+    fake = Faker("fr_FR")
+    fake.add_provider(LiteratureProvider)
+
+    assert fake.publisher(author="Abe Kōbō") == "Shinchōsha"

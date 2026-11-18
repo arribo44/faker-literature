@@ -38,6 +38,7 @@ from faker_literature.importers.wikidata import (
     DETAILS_QUERY,
     ITEM_AUTHORS_QUERY,
     _entity_id,
+    align_publishers,
     known_nationalities,
     match_work,
     parse_bindings,
@@ -46,7 +47,7 @@ from faker_literature.importers.wikidata import (
     search_items,
 )
 from faker_literature.matching import YEAR_TOLERANCE, DuplicateIndex, name_key, title_key
-from faker_literature.vocabulary import GenreVocabulary
+from faker_literature.vocabulary import GenreVocabulary, PublisherVocabulary
 
 BATCH_SIZE = 40
 PAUSE = 1.0
@@ -187,6 +188,8 @@ def add_records(data, records, authors, max_per_author=MAX_PER_AUTHOR, log=print
     nationality.
     """
     known_ids = {book.get("wikidata_id") for author in data["authors"] for book in author["books"]}
+    # Publishers of another language than a locale's are those of the original edition: left out
+    records = align_publishers(records, PublisherVocabulary(data.get("publishers", {})))
     index = DuplicateIndex([book for author in data["authors"] for book in author["books"]],
                            year_tolerance=YEAR_TOLERANCE)
     skipped = Counter()

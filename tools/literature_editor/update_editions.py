@@ -291,14 +291,9 @@ def update(data, editions, languages, publishers):
             work_editions = {locale: editions.get((work, locale), {}) for locale in LOCALES}
             update_book(book, work_editions, languages.get(work, set()), resolver, report)
     # Publishers no longer used (replaced by those of real editions) leave the vocabulary
-    used = {publisher_id for author in data["authors"] for book in author["books"]
-            for publisher_id in (book.get("publisher") or {}).values() if publisher_id}
-    unused = sorted(set(vocabulary_data) - used)
-    for publisher_id in unused:
-        del vocabulary_data[publisher_id]
-    editor._with_vocabulary(data, "publishers", vocabulary_data)
-    report["publishers added"] = len([publisher_id for publisher_id in resolver.added if publisher_id in used])
-    report["publishers dropped"] = len(set(unused) - set(resolver.added))
+    dropped = editor.prune_publishers(data)
+    report["publishers added"] = len([publisher_id for publisher_id in resolver.added if publisher_id not in dropped])
+    report["publishers dropped"] = len(set(dropped) - set(resolver.added))
     return report
 
 

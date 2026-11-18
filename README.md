@@ -18,7 +18,7 @@ Every record comes from a real catalogue of well-known works, so a generated boo
 | Books | 2,255 |
 | Genres | 220 per locale |
 | Nationalities | 56 |
-| Publishers | 520 |
+| Publishers | 579 |
 | Literary awards | 84 |
 | Series | 266 |
 | Years covered | 800 BC → 2024 |
@@ -140,7 +140,7 @@ work = fake.literary_work()  # same as fake.book()
 
 Each call returns a **new dictionary**: you can modify it freely without affecting the catalogue.
 
-> **About page counts and publishers.** The 422 books entered by hand have a page count that *estimates* the usual length of the work in each language (French editions are often a little longer), and a plausible publisher (often the first or a common one) that was not checked against a source. These values are realistic enough for test data but do not describe a specific edition, and the page count and the publisher of a book may come from different editions: their raw records carry `"pages_estimated": true` and `"publisher_estimated": true` (see `provider.books_flat`). The other books carry the page count and publisher of a real edition in each locale's language: an English or French edition found on Wikidata, the edition described by the infobox of the work's Wikipedia article (the French translation in the French article, the original edition of an English work in the English one), or else, in French, the edition of the usual French publisher of the work in the general catalogue of the [Bibliothèque nationale de France](https://catalogue.bnf.fr/). A value that no source gives is `None`.
+> **About page counts and publishers.** The 422 books entered by hand have a page count that *estimates* the usual length of the work in each language (French editions are often a little longer), and a plausible publisher (often the first or a common one) that was not checked against a source. These values are realistic enough for test data but do not describe a specific edition, and the page count and the publisher of a book may come from different editions: their raw records carry `"pages_estimated": true` and `"publisher_estimated": true` (see `provider.books_flat`). The other books carry the page count and publisher of a real edition in each locale's language: an English or French edition found on Wikidata, the edition described by the infobox of the work's Wikipedia article (the French translation in the French article, the original edition of an English work in the English one), in English the earliest English edition recorded by [Open Library](https://openlibrary.org/), or else, in French, the edition of the usual French publisher of the work in the general catalogue of the [Bibliothèque nationale de France](https://catalogue.bnf.fr/). A publisher of another language than the locale's (that of the original edition) is never given to it. A value that no source gives is `None`.
 
 ---
 
@@ -220,7 +220,7 @@ pages = fake.pages()                 # 112
 publisher = fake.publisher()         # "Penguin Classics" (en_US), "Gallimard" (fr_FR)
 ```
 
-Each of these methods is an **independent** random draw from the catalogue. Use `book()` when the values must belong together. Genres, years, page counts and publishers are drawn in proportion to their number of books.
+Each of these methods is an **independent** random draw from the catalogue. Use `book()` when the values must belong together. Genres, years, page counts and publishers are drawn in proportion to their number of books. In `fr_FR`, `publisher()` leaves out the works never translated into French, whose publisher is that of their original, foreign edition, unless the filters leave no other publisher.
 
 The values are drawn from pools computed once per locale and kept until the catalogue changes, so generating large datasets stays fast (a few microseconds per value).
 
@@ -674,3 +674,5 @@ MIT License. See [LICENSE](LICENSE) for details. Imported Wikidata content is av
 French page counts and publishers taken from the general catalogue of the Bibliothèque nationale de France: source *Bibliothèque nationale de France, catalogue général* ([catalogue.bnf.fr](https://catalogue.bnf.fr/)), reused under the [Licence Ouverte / Open Licence 2.0](https://www.etalab.gouv.fr/licence-ouverte-open-licence/) (Etalab). Only bibliographic facts are reused (publisher and number of pages of an edition).
 
 Some page counts and publishers come from the infoboxes of [Wikipedia](https://www.wikipedia.org/) articles (French and English): bibliographic facts only, no text of the articles.
+
+English page counts and publishers also come from the editions recorded by [Open Library](https://openlibrary.org/) (Internet Archive), which asserts no rights over its catalogue data: bibliographic facts only (publisher and number of pages of an edition).
