@@ -8,7 +8,7 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 
 ### Modifié
 
-- **Résultats du provider** : 394 œuvres traduites reçoivent leur titre français, d'après leurs traductions au catalogue de la BnF (relues une à une) ; elles portaient leur titre anglais en `fr_FR`. Livres dont le titre français est le titre anglais : de 904 à 510 ; œuvres marquées non traduites : de 642 à 303. Leurs éditions françaises donnent ensemble le nombre de pages et l'éditeur : livres sans éditeur `fr_FR`, de 475 à 296 ; sans nombre de pages `fr_FR`, de 807 à 450. 181 éditeurs `fr_FR` qui étaient ceux de l'édition originale étrangère sont remplacés par l'éditeur français.
+- **Résultats du provider** : 393 œuvres traduites reçoivent leur titre français, d'après leurs traductions au catalogue de la BnF (relues une à une) ; elles portaient leur titre anglais en `fr_FR`. Livres dont le titre français est le titre anglais : de 904 à 511 ; œuvres marquées non traduites : de 642 à 303. Leurs éditions françaises donnent ensemble le nombre de pages et l'éditeur : livres sans éditeur `fr_FR`, de 475 à 296 ; sans nombre de pages `fr_FR`, de 807 à 450. 181 éditeurs `fr_FR` qui étaient ceux de l'édition originale étrangère sont remplacés par l'éditeur français.
 - Vocabulaire des éditeurs : 627 éditeurs (48 éditeurs français ajoutés d'après la BnF, avec leur pays, dont Orbit France, distinct de l'Orbit britannique). Le Sénégal et la Côte d'Ivoire comptent parmi les pays d'édition en français.
 
 ### Outillage
