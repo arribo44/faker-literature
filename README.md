@@ -19,6 +19,8 @@ Every record comes from a real catalogue of well-known works, so a generated boo
 | Genres | 220 per locale |
 | Nationalities | 56 |
 | Publishers | 520 |
+| Literary awards | 84 |
+| Series | 266 |
 | Years covered | 800 BC → 2024 |
 
 Classics, philosophy, crime fiction, science fiction, fantasy, horror, poetry, drama, essays and contemporary novels by French, American, British, Italian, Greek, Roman, Russian, German, Japanese, Latin-American writers, and more. 422 books were entered by hand; the others come from Wikidata, most of them picked among the most rated books of a Goodreads export (see [tools/goodreads_import](tools/goodreads_import/README.md)). Writers from English-speaking countries account for about three quarters of the books; 638 works never translated into French keep their original title in both locales (`"title_untranslated": true` in their raw record).
