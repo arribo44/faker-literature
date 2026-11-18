@@ -4,7 +4,7 @@ Toutes les évolutions notables de `faker-literature` sont documentées dans ce 
 
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0/) et les versions suivent [Semantic Versioning](https://semver.org/lang/fr/).
 
-## [Non publié]
+## [0.7.0] - 2026-11-18
 
 ### Ajouté
 
@@ -14,6 +14,7 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 
 ### Modifié
 
+- **Résultats du provider** : `book()` renvoie `publisher: None` en `fr_FR` pour 84 livres de plus, dont l'éditeur « français » était en réalité celui de l'édition originale étrangère (391 → 475 livres sans éditeur français) ; `citation()` omet alors l'éditeur, et `edition()` en tire un autre, comme pour tout livre sans éditeur. En `en_US`, les livres sans éditeur passent de 406 à 250, et sans nombre de pages de 528 à 296, d'après des éditions réelles.
 - `publisher()` en `fr_FR` ne tire plus les éditeurs des œuvres jamais traduites en français, qui sont ceux de leur édition originale étrangère (« Pantheon Books ») : la part d'éditeurs étrangers tirés passe d'environ un sur cinq à zéro. Ils restent tirés quand les filtres ne laissent pas d'autre éditeur (`publisher(author="Abe Kōbō")`), et `book()` garde l'éditeur de chaque œuvre.
 - Importeur Wikidata, éditeur local et import Goodreads : un éditeur connu du vocabulaire comme venant d'un pays d'une autre langue n'est plus donné à une locale (`PublisherVocabulary.publishes_in()`). Sans édition française, l'éditeur « français » d'un roman américain était celui de son édition originale.
 - Vocabulaire des éditeurs : 579 éditeurs (59 ajoutés d'après Open Library, avec leur pays). Les scripts de complément ne retirent plus du vocabulaire les éditeurs étrangers devenus inutilisés (`editor.prune_publishers()`).
@@ -179,6 +180,7 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 - Packaging PyPI avec `setup.py`.
 - Tests automatises et documentation d'utilisation.
 
+[0.7.0]: https://github.com/arribo44/faker-literature/releases/tag/v0.7.0
 [0.6.0]: https://github.com/arribo44/faker-literature/releases/tag/v0.6.0
 [0.5.0]: https://github.com/arribo44/faker-literature/releases/tag/v0.5.0
 [0.4.0]: https://github.com/arribo44/faker-literature/releases/tag/v0.4.0
