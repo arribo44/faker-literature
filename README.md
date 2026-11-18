@@ -636,6 +636,14 @@ Releasing a version:
 
 The `Release` workflow then tests and builds the package, checks that the tag matches the version and the changelog, publishes it on PyPI through [Trusted Publishing](https://docs.pypi.org/trusted-publishers/) (no API token stored), and creates the GitHub release with the changelog section as notes. Running the workflow by hand (*Actions → Release → Run workflow*) publishes on TestPyPI instead, as a dry run.
 
+When the workflow cannot publish on PyPI (a Trusted Publishing error), publish the tagged version by hand, with the same checks:
+
+```bash
+python tools/release.py build X.Y.Z    # builds from the tag only, runs twine check, prints the SHA-256
+python -m twine upload build/release-X.Y.Z/*    # with your own PyPI token
+python tools/release.py github X.Y.Z   # checks PyPI serves the same files, then creates the GitHub release
+```
+
 Project layout:
 
 ```

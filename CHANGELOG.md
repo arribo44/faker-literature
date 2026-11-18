@@ -4,6 +4,14 @@ Toutes les évolutions notables de `faker-literature` sont documentées dans ce 
 
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0/) et les versions suivent [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [Non publié]
+
+### Outillage
+
+- `tools/release.py` : publication à la main d'une version taguée quand le workflow ne peut pas atteindre PyPI. `build` construit le paquet depuis le tag seul, avec les vérifications du workflow (tag, version, section datée du CHANGELOG, `twine check --strict`) ; `github` vérifie que PyPI sert les mêmes fichiers (SHA-256), puis crée la release GitHub.
+- Workflows : actions GitHub à jour (`checkout` v7, `setup-python` v7, `upload-artifact` v7, `download-artifact` v8), qui tournent sous Node.js 24.
+- `update_all.py` utilise les caches existants de Wikipédia et de la BnF (`wikipedia_cache.json`, `bnf_cache.json`).
+
 ## [0.7.0] - 2026-11-18
 
 ### Ajouté
