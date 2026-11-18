@@ -12,6 +12,10 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 - Schéma : champ `series` (`[{"name": {locale: nom}, "position": rang}]`, rang facultatif).
 - Tests de cohérence : séries du vocabulaire toutes utilisées, traduction unique de chaque nom, rangs distincts dans une série.
 
+### Corrigé
+
+- Base persistante partagée par plusieurs processus : un import pouvait écraser sans erreur les livres qu'un autre processus venait d'importer. TinyDB calcule l'identifiant d'un nouveau document une fois par processus, puis le garde en mémoire ; quand un autre processus avait inséré entre-temps, cet identifiant était déjà pris. Chaque insertion relit désormais le plus grand identifiant dans le fichier, sous le verrou.
+
 ## [0.5.0] - 2026-11-18
 
 ### Ajouté

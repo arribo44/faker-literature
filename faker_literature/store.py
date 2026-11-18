@@ -19,12 +19,12 @@ from contextlib import AbstractContextManager
 from pathlib import Path
 from typing import Any, TypeVar
 
-from tinydb import Query, TinyDB
+from tinydb import Query
 from tinydb.queries import QueryLike
 from tinydb.storages import MemoryStorage
 from tinydb.table import Table
 
-from faker_literature._storage import AtomicJSONStorage, FileLock
+from faker_literature._storage import AtomicJSONStorage, FileLock, SharedTinyDB
 from faker_literature.matching import YEAR_TOLERANCE, DuplicateIndex
 from faker_literature.vocabulary import GenreVocabulary, PublisherVocabulary
 
@@ -299,10 +299,10 @@ class BookStore:
     def __init__(self, path: PathLike | None = None, builtin_path: PathLike = BUILTIN_DATA) -> None:
         self.path = None if path is None else Path(path)
         if self.path is None:
-            self._db = TinyDB(storage=MemoryStorage)
+            self._db = SharedTinyDB(storage=MemoryStorage)
             self._lock: AbstractContextManager[Any] = threading.RLock()
         else:
-            self._db = TinyDB(
+            self._db = SharedTinyDB(
                 str(self.path), storage=AtomicJSONStorage, create_dirs=True,
                 indent=2, ensure_ascii=False,
             )
