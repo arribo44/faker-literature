@@ -40,7 +40,7 @@ def publisher_key(name: str) -> str:
 
 # Countries whose publishers publish in the language of each locale
 PUBLISHING_COUNTRIES = {
-    "fr_FR": frozenset({"FR", "BE", "CH", "CA", "LU", "MC"}),
+    "fr_FR": frozenset({"FR", "BE", "CH", "CA", "LU", "MC", "SN", "CI"}),
     "en_US": frozenset({"US", "GB", "CA", "AU", "IE", "NZ", "IN", "ZA"}),
 }
 # Publishers working in the language of a locale from another country

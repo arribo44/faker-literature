@@ -77,6 +77,7 @@ def _publishers():
         "payot-rivages": {"name": "Payot & Rivages", "country": "FR"},
         "pocket": {"name": "Pocket", "country": "FR"},
         "pocket-books": {"name": "Pocket Books", "country": "US"},
+        "orbit": {"name": "Orbit", "country": "GB"},
     }))
 
 
@@ -85,6 +86,9 @@ def test_bnf_names_map_onto_the_vocabulary():
     assert publishers.resolve("Payot et Rivages") == "payot-rivages"
     assert publishers.resolve("Presses pocket") == "pocket"  # the French Pocket, not Pocket Books
     assert publishers.resolve("[s.n.]") is None
+    # A name of BNF_NAMES stands for its entry: the French Orbit, added, not the British one
+    assert publishers.resolve("Orbit") is None
+    assert publishers.resolve("Orbit", create=True, country="FR") == "orbit-france"
     assert publishers.resolve("Éd. Archipoche") is None
     assert publishers.resolve("Éd. Archipoche", create=True, country="FR") == "editions-archipoche"
     assert publishers.vocabulary.publishers["editions-archipoche"] == {"name": "Éditions Archipoche",

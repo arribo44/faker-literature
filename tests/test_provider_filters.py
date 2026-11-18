@@ -368,4 +368,4 @@ def test_french_publishers_of_untranslated_writers_only_are_still_drawn():
     fake = Faker("fr_FR")
     fake.add_provider(LiteratureProvider)
 
-    assert fake.publisher(author="Abe Kōbō") == "Shinchōsha"
+    assert fake.publisher(author="R. K. Narayan") == "Indian Thought Publications"

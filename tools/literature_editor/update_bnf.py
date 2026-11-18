@@ -63,7 +63,7 @@ import editor
 
 from faker_literature.matching import name_key, title_key
 from faker_literature.store import MAX_PAGES
-from faker_literature.vocabulary import PublisherVocabulary
+from faker_literature.vocabulary import PUBLISHING_COUNTRIES, PublisherVocabulary
 
 ENDPOINT = "https://catalogue.bnf.fr/api/SRU"
 USER_AGENT = "faker-literature-tools/0.4 (catalogue maintenance)"
@@ -73,7 +73,7 @@ TIMEOUT = 90
 ATTEMPTS = 4
 MIN_PAGES = 10
 MARC = "{info:lc/xmlns/marcxchange-v2}"
-FRANCOPHONE = {"FR", "BE", "CH", "CA", "LU", "MC"}
+FRANCOPHONE = PUBLISHING_COUNTRIES["fr_FR"]
 SOURCE = "Bibliothèque nationale de France, catalogue général"
 
 # Places of publication of the French editions, and their country
@@ -88,12 +88,13 @@ PLACES = {
         "aixenprovence", "latourdaigues", "saintlaurentduvar", "carrieressurseine", "boulognebillancourt",
         "malakoff", "ivrysurseine", "vincennes", "lagnysurmarne", "auverssuroise", "champignysurmarne",
         "saintquentinfallavier", "lafleche", "lambersart", "orleans", "amiens", "brest", "laval", "lorient", "quimper",
+        "nimes", "herblay", "verneuilsurseine", "plaisancedutouch",
     ], "FR"),
     **dict.fromkeys(["bruxelles", "brussels", "verviers", "alleur", "tournai", "liege", "namur",
                      "louvainlaneuve", "mons", "charleroi", "gand"], "BE"),
-    **dict.fromkeys(["geneve", "lausanne", "neuchatel", "vevey", "fribourg", "sion"], "CH"),
-    **dict.fromkeys(["montreal", "quebec", "outremont"], "CA"),
-    "monaco": "MC", "luxembourg": "LU",
+    **dict.fromkeys(["geneve", "carougegeneve", "carouge", "lausanne", "neuchatel", "vevey", "fribourg", "sion"], "CH"),
+    **dict.fromkeys(["montreal", "quebec", "outremont", "ottawa"], "CA"),
+    "monaco": "MC", "luxembourg": "LU", "dakar": "SN", "abidjan": "CI",
 }
 # "Montréal (Québec)", "Alleur (Belgique)": the country in brackets
 PLACE_COUNTRIES = {"quebec": "CA", "canada": "CA", "belgique": "BE", "suisse": "CH", "france": "FR"}
@@ -117,6 +118,8 @@ BNF_NAMES = {
     "bodbooksondemand": "Books on Demand", "booksondemand": "Books on Demand",
     # The first name of Gallimard, kept by the BnF for its editions of 1911-1919
     "nouvellerevuefrancaise": "Gallimard",
+    # The French imprint of Calmann-Lévy (2008-2012), not the British Orbit
+    "orbit": "Orbit France",
 }
 # Publishers of large-print editions, left out like the large-print collections
 LARGE_PRINT_PUBLISHERS = {"avuedoeil", "voirdepres", "loupe", "feryane", "libradiffusio", "pointdeux",
@@ -302,7 +305,9 @@ def initials_key(name):
 class BnfPublishers:
     """Map the publisher names of the BnF onto the ``publishers`` vocabulary, adding the unknown ones.
 
-    A name is looked up as it is, by :func:`loose_key`, through ``BNF_NAMES``,
+    A name listed in ``BNF_NAMES`` stands for its entry first ("Orbit" is
+    Orbit France, not the British Orbit).  Otherwise a name is looked up as it
+    is, by :func:`loose_key`, through ``BNF_NAMES``,
     by its initials ("R. Laffont" is Robert Laffont), and without its
     initials ("E. Flammarion" is Flammarion).
     """
@@ -357,11 +362,15 @@ class BnfPublishers:
         if not name or name.casefold() in {"s.n.", "sn"} or name_key(name) in PLACES:
             return None
         canonical = self.canonical(name)
-        known = (self.vocabulary.match(name) or self.by_loose.get(loose_key(name))
-                 or (self.by_initials.get(initials_key(name)) if INITIALS.match(name) else None)
-                 or self.vocabulary.match(canonical) or self.by_loose.get(loose_key(canonical))
-                 # "Fernand Aubier" is Aubier, "Pauvert" is Jean-Jacques Pauvert
-                 or self.by_loose.get(self._surname(canonical)) or self.by_surname.get(loose_key(canonical)))
+        if loose_key(name) in BNF_NAMES:
+            # A name listed in BNF_NAMES stands for its entry, even when another publisher bears it
+            known = self.vocabulary.match(canonical) or self.by_loose.get(loose_key(canonical))
+        else:
+            known = (self.vocabulary.match(name) or self.by_loose.get(loose_key(name))
+                     or (self.by_initials.get(initials_key(name)) if INITIALS.match(name) else None)
+                     or self.vocabulary.match(canonical) or self.by_loose.get(loose_key(canonical))
+                     # "Fernand Aubier" is Aubier, "Pauvert" is Jean-Jacques Pauvert
+                     or self.by_loose.get(self._surname(canonical)) or self.by_surname.get(loose_key(canonical)))
         if known or not create:
             return known
         display = re.sub(r"^[ÉéEe]d\.\s*", "Éditions ", canonical)
