@@ -328,3 +328,23 @@ def test_awards_vocabulary_is_used_and_unambiguous(catalogue, books):
     assert all("wikidata_id" in book for _, book in books if "awards" in book)
     pairs = [(award["fr_FR"], award["en_US"]) for award in vocabulary.values()]
     assert _one_to_one(pairs) == {}
+
+
+def test_series_vocabulary_is_used_and_unambiguous(catalogue, books):
+    vocabulary = catalogue["series"]
+    used = [entry["id"] for _, book in books for entry in book.get("series", [])]
+    assert set(used) == set(vocabulary)
+    assert all(book["series"] and len({entry["id"] for entry in book["series"]}) == len(book["series"])
+               for _, book in books if "series" in book)
+    assert all("wikidata_id" in book for _, book in books if "series" in book)
+    pairs = [(series["fr_FR"], series["en_US"]) for series in vocabulary.values()]
+    assert _one_to_one(pairs) == {}
+
+
+def test_ranks_in_a_series_are_distinct(books):
+    ranks = defaultdict(list)
+    for _, book in books:
+        for entry in book.get("series", []):
+            if "position" in entry:
+                ranks[entry["id"]].append(entry["position"])
+    assert {series: sorted(found) for series, found in ranks.items() if len(found) != len(set(found))} == {}

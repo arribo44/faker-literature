@@ -44,11 +44,13 @@ MAX_TEXT_LENGTH = 300
 MAX_GENRES = 20
 MIN_YEAR, MAX_YEAR = -3000, 2100
 MAX_PAGES = 100000
+MAX_SERIES = 5
+MAX_POSITION = 10000
 
 # Fields of the schema; other ("extra") fields such as ``isbn`` are kept as is
 SCHEMA_FIELDS = {
     "writer", "nationality", "title", "title_untranslated", "genre", "year", "pages", "pages_estimated", "publisher",
-    "publisher_estimated", "popularity", "writer_born", "writer_died", "awards", "source", "wikidata_id",
+    "publisher_estimated", "popularity", "writer_born", "writer_died", "awards", "series", "source", "wikidata_id",
 }
 MAX_EXTRA_FIELDS = 20
 MAX_POPULARITY = 10**9
@@ -80,14 +82,17 @@ def load_publishers(path: PathLike = BUILTIN_DATA) -> PublisherVocabulary:
 def load_builtin_books(path: PathLike = BUILTIN_DATA) -> tuple[list[Record], str]:
     """Read the bundled JSON and return ``(flat records, sha256 of the file)``.
 
-    Books refer to genres and publishers by id: records get the ``{locale:
-    [labels]}`` and ``{locale: name}`` of the vocabularies instead.
+    Books refer to genres, publishers, awards and series by id: records get
+    the ``{locale: [labels]}``, ``{locale: name}``, ``{locale: [names]}`` and
+    ``[{"name": {locale: name}, "position": rank}]`` of the vocabularies
+    instead.
     """
     raw = Path(path).read_bytes()
     data = json.loads(raw.decode("utf-8"))
     vocabulary = GenreVocabulary(data["genres"])
     publishers = PublisherVocabulary(data.get("publishers", {}))
     awards = data.get("awards", {})
+    series = data.get("series", {})
     books = []
     for author in data["authors"]:
         for book in author["books"]:
@@ -101,6 +106,10 @@ def load_builtin_books(path: PathLike = BUILTIN_DATA) -> tuple[list[Record], str
                 "publisher": publishers.resolve(book.get("publisher")),
                 **({"awards": {locale: [awards[award][locale] for award in book["awards"]] for locale in LOCALES}}
                    if book.get("awards") else {}),
+                **({"series": [{"name": series[entry["id"]], **({"position": entry["position"]}
+                                                                if "position" in entry else {})}
+                               for entry in book["series"]]}
+                   if book.get("series") else {}),
                 "source": BUILTIN_SOURCE,
             })
     return books, hashlib.sha256(raw).hexdigest()
@@ -140,6 +149,20 @@ def _check_awards(value: object, field: str) -> None:
         raise ValueError(f"{field}: expected 0 to {MAX_GENRES} awards")
     for index, award in enumerate(value):
         _check_string(award, f"{field}[{index}]")
+
+
+def _check_series(value: object) -> None:
+    if not isinstance(value, (list, tuple)) or len(value) > MAX_SERIES:
+        raise ValueError(f"series: expected 0 to {MAX_SERIES} series")
+    for index, entry in enumerate(value):
+        field = f"series[{index}]"
+        if not isinstance(entry, dict) or not set(entry) <= {"name", "position"}:
+            raise ValueError(f"{field}: expected a mapping with a name and an optional position")
+        _check_localized(entry.get("name"), f"{field}.name", _check_string)
+        position = entry.get("position")
+        if "position" in entry and (isinstance(position, bool) or not isinstance(position, int)
+                                    or not 0 < position <= MAX_POSITION):
+            raise ValueError(f"{field}.position: expected a rank between 1 and {MAX_POSITION}")
 
 
 def _check_pages(value: object, field: str) -> None:
@@ -196,6 +219,9 @@ def validate_book(book: object) -> None:
     # Literary awards received by the work, localized like the genres
     if book.get("awards") is not None:
         _check_localized(book["awards"], "awards", _check_awards)
+    # Series the work belongs to, with its rank in each when known: [{"name": {locale: name}, "position": 3}]
+    if book.get("series") is not None:
+        _check_series(book["series"])
     # True when the page counts estimate the usual length of the work, and when the publishers
     # are plausible but were not checked against a source: neither describes a known edition
     for field in ("pages", "publisher"):
@@ -250,6 +276,8 @@ def localize_book(book: Mapping[str, Any], locale: str) -> LocalizedBook:
         "writer_born": book.get("writer_born"),
         "writer_died": book.get("writer_died"),
         "awards": tuple(pick(book.get("awards") or {}, locale) or ()),
+        # (name, rank or None) pairs
+        "series": tuple((pick(entry["name"], locale), entry.get("position")) for entry in book.get("series") or ()),
     }
 
 

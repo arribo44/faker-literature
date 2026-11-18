@@ -4,6 +4,14 @@ Toutes les évolutions notables de `faker-literature` sont documentées dans ce 
 
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0/) et les versions suivent [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [Non publié]
+
+### Ajouté
+
+- Séries et cycles : 504 œuvres appartiennent à l'une des 266 séries enregistrées par Wikidata (vocabulaire `series` du catalogue, rempli par `tools/literature_editor/update_series.py`), avec leur rang dans la série pour 364 d'entre elles. Filtre `series` sur toutes les méthodes de tirage (`book(series="rougon")`, `"*"` pour tout livre d'une série), `series()`, `all_series()`, `books_in_series()` (livres dans l'ordre de lecture, avec leur `position`), et les séries dans `writer_profile()`. Les personnages récurrents (Maigret, Hercule Poirot) comptent comme des séries ; les collections d'éditeur, les revues, les franchises et les séries télévisées sont écartées.
+- Schéma : champ `series` (`[{"name": {locale: nom}, "position": rang}]`, rang facultatif).
+- Tests de cohérence : séries du vocabulaire toutes utilisées, traduction unique de chaque nom, rangs distincts dans une série.
+
 ## [0.5.0] - 2026-11-18
 
 ### Ajouté
