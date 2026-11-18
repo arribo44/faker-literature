@@ -20,7 +20,7 @@ from faker_literature.edition import CURRENCIES, FORMATS, make_isbn13, round_pri
 from faker_literature.matching import name_key
 from faker_literature.store import LOCALES, BookStore, LocalizedBook, PathLike, Record, default_db_path, pick
 
-__version__ = "0.5.0"
+__version__ = "0.6.0"
 __all__ = ["LiteratureProvider", "BookFilter", "BookStore", "default_db_path", "__version__"]
 
 T = TypeVar("T")
