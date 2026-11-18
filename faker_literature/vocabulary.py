@@ -17,6 +17,27 @@ from faker_literature.matching import name_key
 
 LOCALES = ("fr_FR", "en_US")
 
+# Words that do not tell a publisher from another ("Éditions Gallimard", "Hodder & Stoughton Limited")
+PUBLISHER_NOISE = re.compile(
+    r"^(?:les |the )?(?:éditions |editions |editorial |editora )?"
+    r"|(?:,? (?:inc\.?|ltd\.?|limited|publishing|publishers|publications|company|co\.?|group|corporation"
+    r"|verlag|éditeur|books|press|& sons|sons))+$", re.IGNORECASE)
+
+
+def publisher_key(name: str) -> str:
+    """Compare publisher names regardless of the words that do not tell them apart.
+
+    "Chatto and Windus" and "Chatto & Windus", "Bantam" and "Bantam Books",
+    "Little, Brown and Company" and "Little, Brown" give the same key.  Some
+    distinct publishers share a key ("Pocket" and "Pocket Books").
+    """
+    name = name.replace(" and ", " & ")
+    previous = None
+    while previous != name:
+        previous, name = name, PUBLISHER_NOISE.sub("", name).strip()
+    return name_key(name)
+
+
 # Countries whose publishers publish in the language of each locale
 PUBLISHING_COUNTRIES = {
     "fr_FR": frozenset({"FR", "BE", "CH", "CA", "LU", "MC"}),

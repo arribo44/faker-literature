@@ -22,7 +22,7 @@ from faker_literature.importers.wikidata import (
 from faker_literature.matching import DuplicateIndex, name_key, sort_key, title_key
 from faker_literature.matching import names as _names
 from faker_literature.store import LOCALES, MAX_PAGES, validate_book
-from faker_literature.vocabulary import GenreVocabulary, PublisherVocabulary
+from faker_literature.vocabulary import PUBLISHING_COUNTRIES, GenreVocabulary, PublisherVocabulary
 
 CATALOGUE_PATH = ROOT / "faker_literature" / "DATAS" / "literature.json"
 MAX_WORKS = 300
@@ -429,6 +429,24 @@ def publisher_ids(vocabulary, publisher):
         if created:
             new.append(name)
     return ids, new
+
+
+def prune_publishers(data):
+    """Remove the publishers no book uses any more from the vocabulary, and return their ids.
+
+    Publishers from a country of no locale's language stay: known, they let
+    the importers refuse them ("Kodansha" as the French publisher of a
+    Japanese novel is that of its original edition).
+    """
+    used = {publisher_id for author in data["authors"] for book in author["books"]
+            for publisher_id in (book.get("publisher") or {}).values() if publisher_id}
+    locale_countries = set().union(*PUBLISHING_COUNTRIES.values())
+    dropped = [publisher_id for publisher_id, publisher in sorted(data["publishers"].items())
+               if publisher_id not in used and publisher.get("country") in (None, *locale_countries)]
+    for publisher_id in dropped:
+        del data["publishers"][publisher_id]
+    _with_vocabulary(data, "publishers", data["publishers"])
+    return dropped
 
 
 def _with_vocabulary(data, key, vocabulary):

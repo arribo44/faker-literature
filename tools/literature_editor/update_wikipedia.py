@@ -321,10 +321,10 @@ def needs(book, vocabulary, locale):
     if pages is None and not book.get("pages_estimated"):
         needed.add("pages")
     if not book.get("publisher_estimated"):
-        country = vocabulary.publishers[publisher].get("country") if publisher else None
         if publisher is None:
             needed.add("publisher")
-        elif country is not None and country not in COUNTRIES[locale]:
+        elif not vocabulary.publishes_in(vocabulary.name(publisher, locale), locale):
+            # The publisher of the original edition ("Olympia Press", in Paris and in English, is not one)
             needed.add("publisher")
             if not book.get("pages_estimated") and pages == (book.get("pages") or {}).get("fr_FR"):
                 needed.add("pages")
@@ -385,13 +385,9 @@ def update(data, cache):
                     current[locale] = values[field]
                     book[field] = current
                     report[f"{field}[{locale}] {'filled' if previous is None else 'replaced'}"] += 1
-    used = {value for author in data["authors"] for book in author["books"]
-            for value in (book.get("publisher") or {}).values() if value}
-    for publisher_id in sorted(set(data["publishers"]) - used):
-        del data["publishers"][publisher_id]
-        report["publishers dropped"] += publisher_id not in publishers.added
-    editor._with_vocabulary(data, "publishers", data["publishers"])
-    report["publishers added"] = len([publisher_id for publisher_id in publishers.added if publisher_id in used])
+    dropped = editor.prune_publishers(data)
+    report["publishers dropped"] += len(set(dropped) - set(publishers.added))
+    report["publishers added"] = len([publisher_id for publisher_id in publishers.added if publisher_id not in dropped])
     return report
 
 

@@ -555,13 +555,9 @@ def update(data, cache):
                     if book.get(f"{field}_estimated"):
                         # The flag stays: the English value typed by hand is still unchecked
                         report[f"{field}[fr_FR] estimate replaced"] += 1
-    used = {value for author in data["authors"] for book in author["books"]
-            for value in (book.get("publisher") or {}).values() if value}
-    for publisher_id in sorted(set(data["publishers"]) - used):
-        del data["publishers"][publisher_id]
-        report["publishers dropped"] += publisher_id not in publishers.added
-    editor._with_vocabulary(data, "publishers", data["publishers"])
-    report["publishers added"] = len([publisher_id for publisher_id in publishers.added if publisher_id in used])
+    dropped = editor.prune_publishers(data)
+    report["publishers dropped"] += len(set(dropped) - set(publishers.added))
+    report["publishers added"] = len([publisher_id for publisher_id in publishers.added if publisher_id not in dropped])
     return report
 
 

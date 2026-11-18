@@ -6,13 +6,22 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 
 ## [Non publié]
 
+### Ajouté
+
+- Pages et éditeurs anglais d'après les éditions d'Open Library (`tools/literature_editor/update_openlibrary.py`) : l'œuvre est retrouvée par son identifiant Open Library sur Wikidata (P648), et sa plus ancienne édition en anglais qui n'est pas antérieure à l'œuvre donne le nombre de pages et l'éditeur ensemble. Les éditions en gros caractères, audio, numériques, abrégées, les clubs de livres et les réimpressions à la demande sont écartés. Nombres de pages `en_US` manquants : de 533 à 296 ; éditeurs `en_US` manquants : de 470 à 250. L'API est lue à une œuvre par seconde, avec un cache.
+- `tools/literature_editor/update_all.py` : enchaîne toutes les mises à jour (popularité, auteurs, prix, séries, éditeurs étrangers, éditions Wikidata, Wikipédia, Open Library, BnF) sur une copie du catalogue, qui n'est remplacé que si toutes ont réussi, avec les caches des sources dans `data/sources/` et un bilan avant / après. Les livres ajoutés par l'éditeur ou l'import Goodreads reçoivent ainsi leurs prix, leurs séries et les pages et éditeurs d'éditions réelles.
+- `vocabulary.publisher_key()` : comparaison des noms d'éditeurs sans les mots qui ne les distinguent pas (« Chatto and Windus » = « Chatto & Windus », « Bantam » = « Bantam Books »), commune au test de cohérence et à Open Library.
+
 ### Modifié
 
 - `publisher()` en `fr_FR` ne tire plus les éditeurs des œuvres jamais traduites en français, qui sont ceux de leur édition originale étrangère (« Pantheon Books ») : la part d'éditeurs étrangers tirés passe d'environ un sur cinq à zéro. Ils restent tirés quand les filtres ne laissent pas d'autre éditeur (`publisher(author="Abe Kōbō")`), et `book()` garde l'éditeur de chaque œuvre.
 - Importeur Wikidata, éditeur local et import Goodreads : un éditeur connu du vocabulaire comme venant d'un pays d'une autre langue n'est plus donné à une locale (`PublisherVocabulary.publishes_in()`). Sans édition française, l'éditeur « français » d'un roman américain était celui de son édition originale.
+- Vocabulaire des éditeurs : 579 éditeurs (59 ajoutés d'après Open Library, avec leur pays). Les scripts de complément ne retirent plus du vocabulaire les éditeurs étrangers devenus inutilisés (`editor.prune_publishers()`).
 
 ### Corrigé
 
+- `update_wikipedia.py` (et donc Open Library) : un éditeur anglophone installé à Paris (Olympia Press, Obelisk Press) n'est plus pris pour un éditeur étranger à remplacer.
+- Vocabulaire : George Routledge & Sons est londonien, non américain.
 - Catalogue : 84 éditeurs `fr_FR` et 64 éditeurs `en_US` qui étaient ceux de l'édition originale, dans une autre langue (*David Copperfield* chez Bradbury and Evans en français, *La Mort heureuse* de Camus chez Gallimard en anglais), sont retirés, avec 7 nombres de pages qui décrivaient la même édition (script `tools/literature_editor/drop_foreign_publishers.py`). Le test de cohérence entre l'éditeur et la locale n'admet plus aucune exception. Les éditeurs étrangers restent dans le vocabulaire, même sans livre, pour pouvoir être reconnus et refusés.
 
 ## [0.6.0] - 2026-11-18

@@ -20,6 +20,7 @@ from faker_literature.vocabulary import (
     PUBLISHING_COUNTRIES,
     GenreVocabulary,
     PublisherVocabulary,
+    publisher_key,
 )
 
 QID = re.compile(r"Q[1-9][0-9]*")
@@ -86,11 +87,6 @@ def test_genres_are_sorted_by_id(catalogue):
     assert list(catalogue["genres"]) == sorted(catalogue["genres"])
 
 
-# Words that do not tell a publisher from another ("Éditions Gallimard", "Hodder & Stoughton Limited")
-PUBLISHER_NOISE = re.compile(
-    r"^(?:les |the )?(?:éditions |editions |editorial |editora )?"
-    r"|(?:,? (?:inc\.?|ltd\.?|limited|publishing|publishers|publications|company|co\.?|group|corporation"
-    r"|verlag|éditeur|books|press|& sons|sons))+$", re.IGNORECASE)
 # Distinct publishers whose names differ by such words only
 DISTINCT_PUBLISHERS = [
     {"bantam-books", "bantam-press"},  # American and British imprints of Bantam
@@ -100,14 +96,6 @@ DISTINCT_PUBLISHERS = [
     {"penguin-books", "penguin-group"},  # the imprint and its parent group
     {"pocket", "pocket-books"},  # French and American paperback publishers
 ]
-
-
-def _publisher_key(name):
-    name = name.replace(" and ", " & ")
-    previous = None
-    while previous != name:
-        previous, name = name, PUBLISHER_NOISE.sub("", name).strip()
-    return name_key(name)
 
 
 def test_publisher_vocabulary_is_unambiguous(catalogue):
@@ -122,7 +110,7 @@ def test_publisher_names_are_not_variants_of_each_other(catalogue):
     for publisher_id, publisher in catalogue["publishers"].items():
         name = publisher["name"]
         for label in [*(name.values() if isinstance(name, dict) else [name]), *publisher.get("aliases", [])]:
-            owners[_publisher_key(label)].add(publisher_id)
+            owners[publisher_key(label)].add(publisher_id)
     variants = [ids for ids in owners.values() if len(ids) > 1 and ids not in DISTINCT_PUBLISHERS]
     assert not variants
 
