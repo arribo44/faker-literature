@@ -236,6 +236,7 @@ The values are drawn from pools computed once per locale and kept until the cata
 | `after`, `before` | first published in or after / before or in that year (negative for BC) |
 | `century` | first published in that century: `19` for 1801-1900, `-5` for 500-401 BC |
 | `award` | a literary award the work received, by part of its name (`"goncourt"`, `"hugo"`), or `"*"` for any |
+| `series` | a series the work belongs to, by part of its name (`"rougon"`, `"discworld"`), or `"*"` for any |
 | `popular` | `True` to draw well-known books more often (see below) |
 
 ```python
@@ -286,6 +287,32 @@ fake.writer_profile("Ursula K. Le Guin")["awards"]
 ```
 
 The `award` filter matches part of the name, case-insensitively: `"goncourt"` also finds the *Goncourt des lycéens*. Awards are not part of `book()`'s record.
+
+---
+
+### 📚 Series
+
+504 works of the catalogue belong to one of 266 series or cycles, as recorded by Wikidata (130 of them have at least two books in the catalogue): *Les Rougon-Macquart*, *La Comédie humaine*, *Harry Potter*, *Discworld*, *Foundation*... Series of novels about a recurring character (*Maigret*, *Hercule Poirot*, *Jack Reacher*) count as series.
+
+```python
+fake.series()                                  # "The Chronicles of Narnia"
+fake_fr.series(nationality="français")         # "Les Rougon-Macquart"
+fake.book(series="discworld")                  # a Discworld novel
+fake.title(series="*", century=19)             # any 19th-century work that belongs to a series
+fake.all_series()                              # the 266 series, sorted, localized
+
+fake.books_in_series("Foundation Trilogy")     # the books in reading order, with their rank
+# [{'title': 'Foundation', ..., 'position': 1},
+#  {'title': 'Foundation and Empire', ..., 'position': 2},
+#  {'title': 'Second Foundation', ..., 'position': 3}]
+
+fake.writer_profile("Terry Pratchett")["series"]
+# ['Discworld', 'Rincewind', 'Witches']
+```
+
+`books_in_series()` takes the name of a series, ignoring case, accents and punctuation, or a part of it that names a single series (`"rougon"`); it raises a `ValueError` when the name matches no series or several. Books are ordered by their rank in the series (`position`, known for two thirds of them), then by year; `position` is `None` when Wikidata does not give the rank.
+
+The `series` filter matches part of the name, case-insensitively. Series are not part of `book()`'s record. When Wikidata has no French name for a series, the French locale uses the English one without its descriptive words (*Wallander novels* → *Wallander*), like the titles of untranslated works.
 
 ---
 
@@ -505,6 +532,7 @@ Record schema:
 | `writer_born`, `writer_died` | ❌ | years of birth and death of the author (negative for BC), used by `writer_profile()` |
 | `popularity` | ❌ | how well known the work is (a positive integer), used by `popular=True` |
 | `awards` | ❌ | `{"fr_FR": [str, ...], "en_US": [str, ...]}`: literary awards received by the work |
+| `series` | ❌ | `[{"name": {"fr_FR": str, "en_US": str}, "position": int}, ...]` (0 to 5 series): the series the work belongs to, with its rank (optional, 1 to 10000) |
 | `genre` | ✅ | `{"fr_FR": [str, ...], "en_US": [str, ...]}` (1 to 20 genres) |
 | `year` | ✅ | integer between -3000 and 2100 |
 | `pages` | ❌ | `None`, or `{"fr_FR": int, "en_US": int}` (1 to 100000, each may be `None`) |
@@ -621,7 +649,7 @@ faker_literature/
 ├── importers/
 │   └── wikidata.py      # Wikidata importer
 └── DATAS/
-    └── literature.json  # bundled catalogue: genre, award and publisher vocabularies + authors and books
+    └── literature.json  # bundled catalogue: genre, award, series and publisher vocabularies + authors and books
 tools/
 ├── literature_editor/   # local web page to add books to literature.json from Wikidata
 └── goodreads_import/    # adds the works of a Goodreads export to literature.json, through Wikidata

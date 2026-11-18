@@ -91,6 +91,16 @@ python tools/literature_editor/update_awards.py [--dry-run]
 
 Le script remplace les prix de chaque livre qui a un identifiant Wikidata par les prix littéraires que son œuvre a reçus (P166, prix rattachés à « prix littéraire »), enregistrés par identifiant dans le vocabulaire `awards`, en tête du fichier. Les prix sans libellé français et anglais, et les palmarès que Wikidata classe parmi les prix (« Modern Library 100 Best Novels »…), sont écartés.
 
+## Mettre à jour les séries
+
+```bash
+python tools/literature_editor/update_series.py [--dry-run]
+```
+
+Le script remplace les séries de chaque livre qui a un identifiant Wikidata par les séries auxquelles son œuvre appartient (P179), avec son rang dans la série quand Wikidata le donne (qualificatif P1545, nombre entier). Les séries sont enregistrées par identifiant dans le vocabulaire `series`, en tête du fichier, après les prix.
+
+Wikidata range aussi sous P179 des collections d'éditeur, des revues, des franchises de films ou des séries télévisées : seules sont gardées les séries et les cycles de livres (trilogies, sagas…) et les personnages récurrents (Maigret, Adam Dalgliesh : la série de romans qui leur est consacrée). Le nom français d'une série est son libellé français, sinon son libellé multilingue (`mul`), sinon son nom anglais sans les mots qui la décrivent (« Wallander novels » → « Wallander », « canon of Hercule Poirot » → « Hercule Poirot »).
+
 ## Compléter les pages et les éditeurs
 
 ```bash

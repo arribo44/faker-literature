@@ -302,3 +302,40 @@ def test_award_draws_and_lists(fake_en):
     assert fake_en.award(nationality="French", century=20) in awards
     le_guin = fake_en.writer_profile("Ursula K. Le Guin")
     assert "Hugo Award for Best Novel" in le_guin["awards"]
+
+
+# Series
+
+def test_series_filter_and_draws(fake_en):
+    harry_potter = {book["title"] for book in fake_en.books_in_series("harry potter")}
+    assert fake_en.book(series="HARRY")["title"] in harry_potter
+    assert "series" not in fake_en.book(series="*")
+    assert fake_en.writer(series="harry potter", nationality="*") == "J.K. Rowling"
+    assert {fake_en.title(series="rougon") for _ in range(20)} <= {
+        book["title"] for book in fake_en.books_in_series("Les Rougon-Macquart")}
+    with pytest.raises(ValueError, match="series='no such series'"):
+        fake_en.book(series="no such series")
+    series = fake_en.all_series()
+    assert series == sorted(series, key=str.casefold) and "Discworld" in series
+    assert {fake_en.series() for _ in range(50)} <= set(series)
+    assert fake_en.series(nationality="French", century=19) in series
+    assert "Les Rougon-Macquart" in fake_en.writer_profile("Émile Zola")["series"]
+
+
+def test_books_in_series_follow_the_reading_order():
+    fake = Faker("fr_FR")
+    fake.add_provider(LiteratureProvider)
+
+    rougon = fake.books_in_series("les rougon macquart")
+
+    positions = [book["position"] for book in rougon]
+    assert positions[:2] == [1, 7] and positions == sorted(positions)
+    assert rougon[0]["title"] == "La Fortune des Rougon" and rougon[0]["writer"] == "Émile Zola"
+    assert fake.books_in_series("Harry Potter")[-1]["title"] == "Harry Potter et les Reliques de la Mort"
+
+
+def test_books_in_series_rejects_unknown_and_ambiguous_names(fake_en):
+    with pytest.raises(ValueError, match="No series named"):
+        fake_en.books_in_series("no such series")
+    with pytest.raises(ValueError, match="names several series"):
+        fake_en.books_in_series("trilogy")

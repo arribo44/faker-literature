@@ -1415,6 +1415,1072 @@
       "en_US": "Retro Hugo Award for Best Novella"
     }
   },
+  "series": {
+    "Q844": {
+      "fr_FR": "James Bond",
+      "en_US": "James Bond"
+    },
+    "Q4470": {
+      "fr_FR": "La Roue du temps",
+      "en_US": "The Wheel of Time"
+    },
+    "Q6027": {
+      "fr_FR": "Les Rougon-Macquart",
+      "en_US": "Les Rougon-Macquart"
+    },
+    "Q8337": {
+      "fr_FR": "Harry Potter",
+      "en_US": "Harry Potter"
+    },
+    "Q15228": {
+      "fr_FR": "Le Seigneur des anneaux",
+      "en_US": "The Lord of the Rings"
+    },
+    "Q45875": {
+      "fr_FR": "Le Trône de fer",
+      "en_US": "A Song of Ice and Fire"
+    },
+    "Q50188": {
+      "fr_FR": "La Comédie humaine",
+      "en_US": "The Human Comedy"
+    },
+    "Q116546": {
+      "fr_FR": "Cycle de Terremer",
+      "en_US": "Earthsea series"
+    },
+    "Q129240": {
+      "fr_FR": "À la croisée des mondes",
+      "en_US": "His Dark Materials"
+    },
+    "Q182099": {
+      "fr_FR": "Cycle de Xanth",
+      "en_US": "Xanth"
+    },
+    "Q213167": {
+      "fr_FR": "Percy Jackson",
+      "en_US": "Percy Jackson & the Olympians"
+    },
+    "Q280898": {
+      "fr_FR": "La Tour sombre",
+      "en_US": "The Dark Tower"
+    },
+    "Q325283": {
+      "fr_FR": "Artemis Fowl",
+      "en_US": "Artemis Fowl"
+    },
+    "Q464928": {
+      "fr_FR": "À la recherche du temps perdu",
+      "en_US": "In Search of Lost Time"
+    },
+    "Q483412": {
+      "fr_FR": "Le Monde de Narnia",
+      "en_US": "The Chronicles of Narnia"
+    },
+    "Q517705": {
+      "fr_FR": "La Guerre de la faille",
+      "en_US": "The Riftwar Saga"
+    },
+    "Q548365": {
+      "fr_FR": "Animorphs",
+      "en_US": "Animorphs"
+    },
+    "Q549364": {
+      "fr_FR": "Anita Blake",
+      "en_US": "Anita Blake: Vampire Hunter"
+    },
+    "Q578605": {
+      "fr_FR": "Cycle épique",
+      "en_US": "Epic Cycle"
+    },
+    "Q621596": {
+      "fr_FR": "mythe de Cthulhu",
+      "en_US": "Cthulhu Mythos"
+    },
+    "Q630048": {
+      "fr_FR": "trilogie du pont",
+      "en_US": "Bridge trilogy"
+    },
+    "Q632554": {
+      "fr_FR": "Cœur d'encre",
+      "en_US": "Inkheart series"
+    },
+    "Q685165": {
+      "fr_FR": "Les Maîtres de Rome",
+      "en_US": "Masters of Rome"
+    },
+    "Q692326": {
+      "fr_FR": "Ilium/Olympos",
+      "en_US": "Ilium/Olympos"
+    },
+    "Q742171": {
+      "fr_FR": "Mythologiques",
+      "en_US": "Mythologiques"
+    },
+    "Q773758": {
+      "fr_FR": "Cycle Drenaï",
+      "en_US": "Drenai series"
+    },
+    "Q808549": {
+      "fr_FR": "The Baroque Cycle",
+      "en_US": "The Baroque Cycle"
+    },
+    "Q830561": {
+      "fr_FR": "commissaire Maigret",
+      "en_US": "Jules Maigret"
+    },
+    "Q840516": {
+      "fr_FR": "Chroniques des vampires",
+      "en_US": "The Vampire Chronicles"
+    },
+    "Q853855": {
+      "fr_FR": "Darren Shan",
+      "en_US": "The Saga of Darren Shan"
+    },
+    "Q880203": {
+      "fr_FR": "La Confrérie de la dague noire",
+      "en_US": "Black Dagger Brotherhood"
+    },
+    "Q913482": {
+      "fr_FR": "Cycle des robots",
+      "en_US": "Robot series"
+    },
+    "Q921950": {
+      "fr_FR": "Uglies",
+      "en_US": "Uglies series"
+    },
+    "Q958873": {
+      "fr_FR": "Autremonde",
+      "en_US": "Otherland"
+    },
+    "Q971694": {
+      "fr_FR": "U.S.A.",
+      "en_US": "U.S.A."
+    },
+    "Q999222": {
+      "fr_FR": "Les Enfants de la Terre",
+      "en_US": "Earth's Children hexalogy"
+    },
+    "Q1002223": {
+      "fr_FR": "Chrestomanci",
+      "en_US": "Chrestomanci series"
+    },
+    "Q1047783": {
+      "fr_FR": "Caspak",
+      "en_US": "Caspak trilogy"
+    },
+    "Q1082587": {
+      "fr_FR": "Lincoln Rhyme",
+      "en_US": "Lincoln Rhyme"
+    },
+    "Q1092918": {
+      "fr_FR": "Histoires de Bas-de-Cuir",
+      "en_US": "Leatherstocking Tales"
+    },
+    "Q1111179": {
+      "fr_FR": "trilogie des mousquetaires",
+      "en_US": "D'Artagnan Romances"
+    },
+    "Q1134354": {
+      "fr_FR": "Le Club des cinq",
+      "en_US": "The Famous Five"
+    },
+    "Q1167968": {
+      "fr_FR": "L'Arcane des épées",
+      "en_US": "Memory, Sorrow, and Thorn"
+    },
+    "Q1198588": {
+      "fr_FR": "Odyssées de l'espace",
+      "en_US": "Space Odyssey"
+    },
+    "Q1208412": {
+      "fr_FR": "Téméraire",
+      "en_US": "Temeraire"
+    },
+    "Q1211900": {
+      "fr_FR": "Les Chroniques de Prydain",
+      "en_US": "The Chronicles of Prydain"
+    },
+    "Q1213577": {
+      "fr_FR": "Les Cantos d'Hypérion",
+      "en_US": "Hyperion Cantos"
+    },
+    "Q1213846": {
+      "fr_FR": "Children of the Red King",
+      "en_US": "Children of the Red King"
+    },
+    "Q1214341": {
+      "fr_FR": "Les Gardiens de Ga'Hoole",
+      "en_US": "Guardians of Ga'Hoole"
+    },
+    "Q1217409": {
+      "fr_FR": "Les Chemins de la liberté",
+      "en_US": "The Roads to Freedom"
+    },
+    "Q1247790": {
+      "fr_FR": "Rougemuraille",
+      "en_US": "Redwall"
+    },
+    "Q1254342": {
+      "fr_FR": "La Ballade de Pern",
+      "en_US": "Dragonriders of Pern"
+    },
+    "Q1272578": {
+      "fr_FR": "Richard Sharpe",
+      "en_US": "Richard Sharpe"
+    },
+    "Q1375442": {
+      "fr_FR": "L'Épouvanteur",
+      "en_US": "The Wardstone Chronicles"
+    },
+    "Q1408715": {
+      "fr_FR": "Pellucidar",
+      "en_US": "Pellucidar"
+    },
+    "Q1469475": {
+      "fr_FR": "Marcus Didius Falco",
+      "en_US": "Marcus Didius Falco"
+    },
+    "Q1501254": {
+      "fr_FR": "Cycle de Mars",
+      "en_US": "Barsoom"
+    },
+    "Q1503215": {
+      "fr_FR": "Allan Quatermain",
+      "en_US": "Allan Quatermain"
+    },
+    "Q1540209": {
+      "fr_FR": "Les Sept Clefs du pouvoir",
+      "en_US": "The Keys to the Kingdom"
+    },
+    "Q1564644": {
+      "fr_FR": "Cycle de Fondation",
+      "en_US": "Foundation series"
+    },
+    "Q1618095": {
+      "fr_FR": "Les Portes du temps",
+      "en_US": "The Dark Is Rising Sequence"
+    },
+    "Q1856030": {
+      "fr_FR": "Les Chroniques de Thomas Covenant",
+      "en_US": "The Chronicles of Thomas Covenant"
+    },
+    "Q1914251": {
+      "fr_FR": "Maximum Ride",
+      "en_US": "Maximum Ride"
+    },
+    "Q1998865": {
+      "fr_FR": "Shannara",
+      "en_US": "Shannara"
+    },
+    "Q2152729": {
+      "fr_FR": "La Guerre des serpents",
+      "en_US": "The Serpentwar Saga"
+    },
+    "Q2211517": {
+      "fr_FR": "Les Aventuriers de la mer",
+      "en_US": "Liveship Traders"
+    },
+    "Q2246861": {
+      "fr_FR": "Inspector Alan Banks",
+      "en_US": "Inspector Alan Banks"
+    },
+    "Q2271327": {
+      "fr_FR": "Cycle du rêve",
+      "en_US": "Dream Cycle"
+    },
+    "Q2305146": {
+      "fr_FR": "Lyonesse",
+      "en_US": "Lyonesse Trilogy"
+    },
+    "Q2305629": {
+      "fr_FR": "Adam Dalgliesh",
+      "en_US": "Adam Dalgliesh"
+    },
+    "Q2307373": {
+      "fr_FR": "Les Dossiers Dresden",
+      "en_US": "The Dresden Files"
+    },
+    "Q2316684": {
+      "fr_FR": "canon de Sherlock Holmes",
+      "en_US": "Sherlock Holmes"
+    },
+    "Q2328396": {
+      "fr_FR": "Cycle de l'Ékumen",
+      "en_US": "Hainish Cycle"
+    },
+    "Q2330719": {
+      "fr_FR": "Professeur Challenger",
+      "en_US": "Professor Challenger"
+    },
+    "Q2334547": {
+      "fr_FR": "87e District",
+      "en_US": "87th Precinct"
+    },
+    "Q2364144": {
+      "fr_FR": "Crusades tetralogy",
+      "en_US": "Crusades tetralogy"
+    },
+    "Q2511839": {
+      "fr_FR": "Le Soldat chamane",
+      "en_US": "Soldier Son Trilogy"
+    },
+    "Q2599462": {
+      "fr_FR": "La Crucifixion en rose",
+      "en_US": "The Rosy Crucifixion"
+    },
+    "Q2610590": {
+      "fr_FR": "Neuromancien",
+      "en_US": "Sprawl trilogy"
+    },
+    "Q2642928": {
+      "fr_FR": "Cycle d'Ender",
+      "en_US": "Ender's Saga"
+    },
+    "Q2659466": {
+      "fr_FR": "Ring",
+      "en_US": "Ring"
+    },
+    "Q2725082": {
+      "fr_FR": "Les Aventures du capitaine Alatriste",
+      "en_US": "Captain Alatriste"
+    },
+    "Q2743959": {
+      "fr_FR": "Le Nouvel Ordre Jedi",
+      "en_US": "The New Jedi Order"
+    },
+    "Q2779934": {
+      "fr_FR": "The Sisterhood of the Traveling Pants",
+      "en_US": "The Sisterhood of the Traveling Pants"
+    },
+    "Q2975594": {
+      "fr_FR": "Tales of Dunk and Egg",
+      "en_US": "Tales of Dunk and Egg"
+    },
+    "Q2983578": {
+      "fr_FR": "Lew Archer",
+      "en_US": "Lew Archer"
+    },
+    "Q3008298": {
+      "fr_FR": "philosophie d'Albert Camus",
+      "en_US": "The strange writer"
+    },
+    "Q3026037": {
+      "fr_FR": "dialogues de Platon",
+      "en_US": "Platonic dialogue"
+    },
+    "Q3048935": {
+      "fr_FR": "Voyages extraordinaires",
+      "en_US": "Voyages Extraordinaires"
+    },
+    "Q3209692": {
+      "fr_FR": "La Guerre des ténèbres",
+      "en_US": "The Darkwar Saga"
+    },
+    "Q3209782": {
+      "fr_FR": "Anne of Green Gables",
+      "en_US": "Anne of Green Gables"
+    },
+    "Q3210169": {
+      "fr_FR": "La Légende de Duluoz",
+      "en_US": "Duluoz Legend"
+    },
+    "Q3212110": {
+      "fr_FR": "La Quête d'Erekosë",
+      "en_US": "Erekosë"
+    },
+    "Q3212653": {
+      "fr_FR": "La Saga Malaussène",
+      "en_US": "La Saga Malaussène"
+    },
+    "Q3212666": {
+      "fr_FR": "La Saga des ombres",
+      "en_US": "Shadow hexalogy"
+    },
+    "Q3212670": {
+      "fr_FR": "La Saga du Commonwealth",
+      "en_US": "Commonwealth Saga"
+    },
+    "Q3213313": {
+      "fr_FR": "La Trilogie des Snopes",
+      "en_US": "Snopes trilogy"
+    },
+    "Q3225913": {
+      "fr_FR": "Le Prince du néant",
+      "en_US": "Prince of Nothing"
+    },
+    "Q3232559": {
+      "fr_FR": "Les Femmes de l'Autremonde",
+      "en_US": "Women of the Otherworld"
+    },
+    "Q3233269": {
+      "fr_FR": "Les Hérauts de Valdemar",
+      "en_US": "Heralds of Valdemar"
+    },
+    "Q3257270": {
+      "fr_FR": "Livres du Disque-monde",
+      "en_US": "Discworld"
+    },
+    "Q3270030": {
+      "fr_FR": "The Mediator",
+      "en_US": "The Mediator"
+    },
+    "Q3272407": {
+      "fr_FR": "Les Enquêtes de Mma Ramotswe",
+      "en_US": "The No. 1 Ladies' Detective Agency"
+    },
+    "Q3312723": {
+      "fr_FR": "Midnighters",
+      "en_US": "Midnighters trilogy"
+    },
+    "Q3413711": {
+      "fr_FR": "Quatuor de Los Angeles",
+      "en_US": "L.A. Quartet"
+    },
+    "Q3420135": {
+      "fr_FR": "Rats de NIMH",
+      "en_US": "Rats of NIMH"
+    },
+    "Q3480545": {
+      "fr_FR": "Serviteur du cristal",
+      "en_US": "The Sellswords"
+    },
+    "Q3549283": {
+      "fr_FR": "Underworld USA",
+      "en_US": "Underworld USA Trilogy"
+    },
+    "Q3562203": {
+      "fr_FR": "The Asian Saga",
+      "en_US": "The Asian Saga"
+    },
+    "Q3772092": {
+      "fr_FR": "Lancedragon - trilogie des Héros",
+      "en_US": "Dragonlance: Heroes I"
+    },
+    "Q3791080": {
+      "fr_FR": "Nos ancêtres",
+      "en_US": "Our Ancestors"
+    },
+    "Q3822522": {
+      "fr_FR": "The Genesis of Shannara trilogy",
+      "en_US": "The Genesis of Shannara trilogy"
+    },
+    "Q3828658": {
+      "fr_FR": "Lancedragon - Séquence de Raistlin",
+      "en_US": "The Raistlin Chronicles"
+    },
+    "Q3870445": {
+      "fr_FR": "Narratives of Empire",
+      "en_US": "Narratives of Empire"
+    },
+    "Q4189813": {
+      "fr_FR": "Les Apprentis Jedi",
+      "en_US": "Jedi Apprentice"
+    },
+    "Q4404357": {
+      "fr_FR": "La Légende de Drizzt",
+      "en_US": "The Legend of Drizzt"
+    },
+    "Q4417649": {
+      "fr_FR": "Bourne",
+      "en_US": "Bourne"
+    },
+    "Q4716871": {
+      "fr_FR": "Alex Cross",
+      "en_US": "Alex Cross"
+    },
+    "Q5015435": {
+      "fr_FR": "La trilogie de Merlin (Mary Stewart)",
+      "en_US": "Mary Stewart's Merlin Trilogy"
+    },
+    "Q5051062": {
+      "fr_FR": "Cat Royal",
+      "en_US": "Cat Royal"
+    },
+    "Q5140179": {
+      "fr_FR": "Le Codex Aléra",
+      "en_US": "The Codex Alera"
+    },
+    "Q5186028": {
+      "fr_FR": "Crispin: The Cross of Lead",
+      "en_US": "Crispin: The Cross of Lead"
+    },
+    "Q5193682": {
+      "fr_FR": "Cycle de La Culture",
+      "en_US": "Culture series"
+    },
+    "Q5216069": {
+      "fr_FR": "Dangerous Angels",
+      "en_US": "Dangerous Angels"
+    },
+    "Q5256510": {
+      "fr_FR": "Den of Shadows",
+      "en_US": "Den of Shadows"
+    },
+    "Q5400672": {
+      "fr_FR": "La Petite Maison dans la prairie",
+      "en_US": "Little House on the Prairie"
+    },
+    "Q5476116": {
+      "fr_FR": "Vampire City",
+      "en_US": "The Morganville Vampires"
+    },
+    "Q5530710": {
+      "fr_FR": "Gemma Doyle Trilogy",
+      "en_US": "Gemma Doyle Trilogy"
+    },
+    "Q5557451": {
+      "fr_FR": "Ghostwalker",
+      "en_US": "Ghostwalker series"
+    },
+    "Q5596158": {
+      "fr_FR": "Grant County, Georgia",
+      "en_US": "Grant County, Georgia"
+    },
+    "Q5599115": {
+      "fr_FR": "Great Episodes",
+      "en_US": "Great Episodes"
+    },
+    "Q5739185": {
+      "fr_FR": "L'Héritage de Shannara",
+      "en_US": "Heritage of Shannara"
+    },
+    "Q5755341": {
+      "fr_FR": "Le Haut Druide",
+      "en_US": "High Druid of Shannara trilogy"
+    },
+    "Q5965446": {
+      "fr_FR": "Tarzan",
+      "en_US": "Tarzan"
+    },
+    "Q6095696": {
+      "fr_FR": "Dune",
+      "en_US": "Dune"
+    },
+    "Q6152684": {
+      "fr_FR": "American trilogy",
+      "en_US": "American trilogy"
+    },
+    "Q6211812": {
+      "fr_FR": "Joe Pitt",
+      "en_US": "Joe Pitt Casebooks"
+    },
+    "Q6418590": {
+      "fr_FR": "Kitty Norville",
+      "en_US": "Kitty Norville"
+    },
+    "Q6517323": {
+      "fr_FR": "L'Héritage de la Force",
+      "en_US": "Legacy of the Force"
+    },
+    "Q6662479": {
+      "fr_FR": "Lloyd Hopkins Trilogy",
+      "en_US": "Lloyd Hopkins Trilogy"
+    },
+    "Q6684319": {
+      "fr_FR": "Merlin",
+      "en_US": "Lost Years of Merlin series"
+    },
+    "Q6909582": {
+      "fr_FR": "L'Appel de Mordant",
+      "en_US": "Mordant's Need"
+    },
+    "Q7088493": {
+      "fr_FR": "Ologies",
+      "en_US": "Ologies"
+    },
+    "Q7225812": {
+      "fr_FR": "Polly O'Keefe",
+      "en_US": "Polly O'Keefe"
+    },
+    "Q7252806": {
+      "fr_FR": "Provost's Dog",
+      "en_US": "Provost's Dog"
+    },
+    "Q7398922": {
+      "fr_FR": "Saga of the Light Isles",
+      "en_US": "Saga of the Light Isles"
+    },
+    "Q7508546": {
+      "fr_FR": "Wayside School",
+      "en_US": "Wayside School"
+    },
+    "Q7601155": {
+      "fr_FR": "Republic Commando",
+      "en_US": "Republic Commando"
+    },
+    "Q7608372": {
+      "fr_FR": "Stephanie Plum",
+      "en_US": "Stephanie Plum"
+    },
+    "Q7679332": {
+      "fr_FR": "Contes de mon hôte",
+      "en_US": "Tales of My Landlord"
+    },
+    "Q7714409": {
+      "fr_FR": "Secret Show",
+      "en_US": "The Art Trilogy"
+    },
+    "Q7719349": {
+      "fr_FR": "Abarat",
+      "en_US": "The Books of Abarat"
+    },
+    "Q7727861": {
+      "fr_FR": "Saga des Courtney",
+      "en_US": "The Courtney Novels series"
+    },
+    "Q7728968": {
+      "fr_FR": "Nid obscur",
+      "en_US": "The Dark Nest trilogy"
+    },
+    "Q7734811": {
+      "fr_FR": "La Guerre éternelle",
+      "en_US": "The Forever War series"
+    },
+    "Q7735793": {
+      "fr_FR": "Cycle des Seuils",
+      "en_US": "The Gap Cycle"
+    },
+    "Q7738933": {
+      "fr_FR": "Les Harpistes",
+      "en_US": "The Harper Hall Trilogy"
+    },
+    "Q7741505": {
+      "fr_FR": "The Immortals",
+      "en_US": "The Immortals"
+    },
+    "Q7744295": {
+      "fr_FR": "The Kiesha'ra",
+      "en_US": "The Kiesha'ra Series"
+    },
+    "Q7745986": {
+      "fr_FR": "The Last Roundup",
+      "en_US": "The Last Roundup"
+    },
+    "Q7763492": {
+      "fr_FR": "Septenaigue",
+      "en_US": "Sevenwaters"
+    },
+    "Q7764372": {
+      "fr_FR": "The Sin War",
+      "en_US": "The Sin War"
+    },
+    "Q7765254": {
+      "fr_FR": "The Song of the Lioness",
+      "en_US": "The Song of the Lioness"
+    },
+    "Q7767382": {
+      "fr_FR": "Isabel Dalhousie",
+      "en_US": "The Sunday Philosophy Club"
+    },
+    "Q7774746": {
+      "fr_FR": "Wicked",
+      "en_US": "The Wicked Years"
+    },
+    "Q7797371": {
+      "fr_FR": "Three Californias Trilogy",
+      "en_US": "Three Californias Trilogy"
+    },
+    "Q7805078": {
+      "fr_FR": "Time Quintet",
+      "en_US": "Time Quintet"
+    },
+    "Q7846951": {
+      "fr_FR": "Troie",
+      "en_US": "Troy Series"
+    },
+    "Q7887251": {
+      "fr_FR": "Les Nouvelles Chroniques de Krondor",
+      "en_US": "Krondor's Sons"
+    },
+    "Q7912971": {
+      "fr_FR": "Vampire Destiny Trilogy",
+      "en_US": "Vampire Destiny Trilogy"
+    },
+    "Q7913002": {
+      "fr_FR": "Vampire Rites Trilogy",
+      "en_US": "Vampire Rites Trilogy"
+    },
+    "Q7970866": {
+      "fr_FR": "Les Guerres de l'ombre et de la lumière",
+      "en_US": "Wars of Light and Shadow"
+    },
+    "Q7975429": {
+      "fr_FR": "Waverley novels",
+      "en_US": "Waverley Novels"
+    },
+    "Q8539013": {
+      "fr_FR": "L'Épée de Vérité",
+      "en_US": "The Sword of Truth"
+    },
+    "Q10331939": {
+      "fr_FR": "Zombie Story",
+      "en_US": "Monster"
+    },
+    "Q10376289": {
+      "fr_FR": "Les Aubreyades",
+      "en_US": "Aubrey–Maturin series"
+    },
+    "Q11767104": {
+      "fr_FR": "Manitou",
+      "en_US": "The Manitou"
+    },
+    "Q12056086": {
+      "fr_FR": "Star Trek",
+      "en_US": "Star Trek"
+    },
+    "Q12168238": {
+      "fr_FR": "Le Cimetière des livres oubliés",
+      "en_US": "The Cemetery of Forgotten Books"
+    },
+    "Q12428817": {
+      "fr_FR": "Rabbit Angstrom",
+      "en_US": "Rabbit Angstrom series"
+    },
+    "Q12857071": {
+      "fr_FR": "roman de Sherlock Holmes",
+      "en_US": "Sherlock Holmes novels"
+    },
+    "Q15624191": {
+      "fr_FR": "L'Ancien Royaume",
+      "en_US": "Old Kingdom"
+    },
+    "Q16385973": {
+      "fr_FR": "Heinlein juveniles",
+      "en_US": "Heinlein juveniles"
+    },
+    "Q16640092": {
+      "fr_FR": "Greg Mandel",
+      "en_US": "Greg Mandel"
+    },
+    "Q16967812": {
+      "fr_FR": "Women's Murder Club",
+      "en_US": "Women's Murder Club"
+    },
+    "Q17113225": {
+      "fr_FR": "Le Chat qui...",
+      "en_US": "The Cat Who..."
+    },
+    "Q17147603": {
+      "fr_FR": "The Sundering",
+      "en_US": "The Sundering"
+    },
+    "Q17638305": {
+      "fr_FR": "Rizzoli and Isles",
+      "en_US": "Rizzoli & Isles"
+    },
+    "Q18107449": {
+      "fr_FR": "Le Passeur",
+      "en_US": "The Giver Quartet"
+    },
+    "Q18153036": {
+      "fr_FR": "Le Chardon et le Tartan",
+      "en_US": "Outlander series"
+    },
+    "Q18336332": {
+      "fr_FR": "Fleurs Captives",
+      "en_US": "Dollanganger"
+    },
+    "Q18380271": {
+      "fr_FR": "Siècle",
+      "en_US": "The Century Trilogy"
+    },
+    "Q18516851": {
+      "fr_FR": "romans du commissaire Brunetti",
+      "en_US": "Commissario Brunetti novels"
+    },
+    "Q20575086": {
+      "fr_FR": "Mark Renton",
+      "en_US": "Mark Renton series"
+    },
+    "Q20655440": {
+      "fr_FR": "Le Parrain",
+      "en_US": "The Godfather"
+    },
+    "Q20668228": {
+      "fr_FR": "The Immortals After Dark",
+      "en_US": "The Immortals After Dark"
+    },
+    "Q20736364": {
+      "fr_FR": "Dirk Gently, détective holistique",
+      "en_US": "Dirk Gently series"
+    },
+    "Q20825680": {
+      "fr_FR": "Inspector Lynley",
+      "en_US": "Inspector Lynley series"
+    },
+    "Q20899148": {
+      "fr_FR": "Foundation Trilogy",
+      "en_US": "Foundation Trilogy"
+    },
+    "Q20963052": {
+      "fr_FR": "Les Deuxièmes Chroniques de Thomas Covenant",
+      "en_US": "The Second Chronicles of Thomas Covenant"
+    },
+    "Q21117729": {
+      "fr_FR": "Cycle d'Elric",
+      "en_US": "Elric saga"
+    },
+    "Q21658012": {
+      "fr_FR": "Les Voyageurs temporels d'Oxford",
+      "en_US": "Oxford time-traveling historians"
+    },
+    "Q21997237": {
+      "fr_FR": "Wallander",
+      "en_US": "Wallander novels"
+    },
+    "Q25210939": {
+      "fr_FR": "Jack Reacher",
+      "en_US": "Jack Reacher"
+    },
+    "Q27536277": {
+      "fr_FR": "Commissaire Jean-Baptiste Adamsberg",
+      "en_US": "Commissioner Jean-Baptiste Adamsberg"
+    },
+    "Q27538007": {
+      "fr_FR": "Les Évangélistes",
+      "en_US": "The Evangelists"
+    },
+    "Q28130013": {
+      "fr_FR": "Les Princes-Marchands",
+      "en_US": "The Merchant Princes"
+    },
+    "Q51955014": {
+      "fr_FR": "My Father's Dragon trilogy",
+      "en_US": "My Father's Dragon trilogy"
+    },
+    "Q54875383": {
+      "fr_FR": "série Rincevent",
+      "en_US": "Rincewind"
+    },
+    "Q54876099": {
+      "fr_FR": "Sorcières",
+      "en_US": "Witches"
+    },
+    "Q55163199": {
+      "fr_FR": "Ryanverse",
+      "en_US": "Ryanverse"
+    },
+    "Q55600140": {
+      "fr_FR": "Vernon Subutex",
+      "en_US": "Vernon Subutex"
+    },
+    "Q56584159": {
+      "fr_FR": "L'Enfant de nulle part",
+      "en_US": "Changeling"
+    },
+    "Q56660241": {
+      "fr_FR": "Spenser",
+      "en_US": "Spenser"
+    },
+    "Q56884286": {
+      "fr_FR": "Robur",
+      "en_US": "Robur"
+    },
+    "Q57831862": {
+      "fr_FR": "Odd Thomas",
+      "en_US": "Odd Thomas"
+    },
+    "Q58878965": {
+      "fr_FR": "Thursday Next",
+      "en_US": "Thursday Next"
+    },
+    "Q60533943": {
+      "fr_FR": "Cycle Honor Harrington",
+      "en_US": "Cycle Honor Harrington"
+    },
+    "Q62388951": {
+      "fr_FR": "Rama",
+      "en_US": "Rama"
+    },
+    "Q79754003": {
+      "fr_FR": "Dirk Pitt",
+      "en_US": "Dirk Pitt"
+    },
+    "Q83559723": {
+      "fr_FR": "Kingsbridge",
+      "en_US": "Kingsbridge"
+    },
+    "Q83561430": {
+      "fr_FR": "Robert Langdon",
+      "en_US": "Robert Langdon series"
+    },
+    "Q87718825": {
+      "fr_FR": "Bernie Rhodenbarr",
+      "en_US": "Bernie Rhodenbarr"
+    },
+    "Q96277193": {
+      "fr_FR": "George Smiley",
+      "en_US": "George Smiley series"
+    },
+    "Q96278982": {
+      "fr_FR": "Harry Bosch",
+      "en_US": "Harry Bosch"
+    },
+    "Q96279770": {
+      "fr_FR": "The Camel Club",
+      "en_US": "The Camel Club"
+    },
+    "Q100715649": {
+      "fr_FR": "La Servante écarlate",
+      "en_US": "The Handmaid's Tale"
+    },
+    "Q101081742": {
+      "fr_FR": "Pippi Långstrump",
+      "en_US": "Pippi Longstocking"
+    },
+    "Q102408600": {
+      "fr_FR": "Jackson Brodie",
+      "en_US": "Jackson Brodie series"
+    },
+    "Q109544620": {
+      "fr_FR": "Boy/Girl Battle",
+      "en_US": "Boy/Girl Battle series"
+    },
+    "Q109587621": {
+      "fr_FR": "Dave Robicheaux",
+      "en_US": "Dave Robicheaux"
+    },
+    "Q110249900": {
+      "fr_FR": "Vampires in San Francisco",
+      "en_US": "Vampires in San Francisco"
+    },
+    "Q110249902": {
+      "fr_FR": "Death Merchant Chronicles",
+      "en_US": "Death Merchant Chronicles"
+    },
+    "Q110929807": {
+      "fr_FR": "Hannibal Lecter",
+      "en_US": "Hannibal Lecter"
+    },
+    "Q110945382": {
+      "fr_FR": "March Trilogy",
+      "en_US": "March Trilogy"
+    },
+    "Q112123147": {
+      "fr_FR": "Kay Scarpetta",
+      "en_US": "Kay Scarpetta"
+    },
+    "Q112123449": {
+      "fr_FR": "Mille femmes blanches",
+      "en_US": "One Thousand White Women"
+    },
+    "Q112147292": {
+      "fr_FR": "La trilogie du Capitaine Némo",
+      "en_US": "Captain Nemo trilogy"
+    },
+    "Q113839147": {
+      "fr_FR": "La Trilogie de Hurle",
+      "en_US": "La Trilogie de Hurle"
+    },
+    "Q122441953": {
+      "fr_FR": "Hercule Poirot",
+      "en_US": "Hercule Poirot"
+    },
+    "Q124313069": {
+      "fr_FR": "la trilogie du Héraut-mage",
+      "en_US": "The Last Herald-Mage"
+    },
+    "Q124331878": {
+      "fr_FR": "Trilogie de la Brume",
+      "en_US": "Trilogie de la Brume"
+    },
+    "Q125070963": {
+      "fr_FR": "Tom Ripley",
+      "en_US": "Tom Ripley series"
+    },
+    "Q125218257": {
+      "fr_FR": "On the Seventh Day",
+      "en_US": "On the Seventh Day"
+    },
+    "Q125630375": {
+      "fr_FR": "Le Dieu de la guerre",
+      "en_US": "Bahzell"
+    },
+    "Q126365859": {
+      "fr_FR": "The Outworlds",
+      "en_US": "The Outworlds"
+    },
+    "Q126365868": {
+      "fr_FR": "Enfants de la conquête",
+      "en_US": "In Conquest Born"
+    },
+    "Q130380618": {
+      "fr_FR": "Dark",
+      "en_US": "Dark Series"
+    },
+    "Q130680396": {
+      "fr_FR": "Henry Thompson",
+      "en_US": "Henry Thompson"
+    },
+    "Q131108445": {
+      "fr_FR": "Matthew Scudder",
+      "en_US": "Matthew Scudder"
+    },
+    "Q131728033": {
+      "fr_FR": "Commissaire Montalbano",
+      "en_US": "Commissario Montalbano"
+    },
+    "Q132133414": {
+      "fr_FR": "Miss Marple",
+      "en_US": "Miss Marple"
+    },
+    "Q133201499": {
+      "fr_FR": "Magie irlandaise",
+      "en_US": "Irish Trilogy or Gallaghers of Ardmore"
+    },
+    "Q133501358": {
+      "fr_FR": "Jeremy Logan",
+      "en_US": "Jeremy Logan"
+    },
+    "Q133505136": {
+      "fr_FR": "American Gods",
+      "en_US": "American Gods"
+    },
+    "Q135228711": {
+      "fr_FR": "Le labyrinthe du monde",
+      "en_US": "Le labyrinthe du monde"
+    },
+    "Q135265863": {
+      "fr_FR": "Queen's Thief",
+      "en_US": "Queen's Thief"
+    },
+    "Q135650769": {
+      "fr_FR": "Tom Sawyer",
+      "en_US": "Tom Sawyer books"
+    },
+    "Q136567305": {
+      "fr_FR": "Scenes from Provincial Life",
+      "en_US": "Scenes from Provincial Life"
+    },
+    "Q137867913": {
+      "fr_FR": "Les Années glorieuses",
+      "en_US": "Les Années glorieuses"
+    },
+    "Q138348496": {
+      "fr_FR": "Dragons of a New Age",
+      "en_US": "Dragons of a New Age"
+    },
+    "Q138348696": {
+      "fr_FR": "Minotaur Wars",
+      "en_US": "Minotaur Wars"
+    },
+    "Q139926399": {
+      "fr_FR": "Old Filth",
+      "en_US": "Old Filth"
+    },
+    "Q140389121": {
+      "fr_FR": "Company Wars",
+      "en_US": "Company Wars"
+    },
+    "Q142083056": {
+      "fr_FR": "The Talisman",
+      "en_US": "The Talisman book series"
+    },
+    "Q142108721": {
+      "fr_FR": "Kenzie & Gennaro",
+      "en_US": "Kenzie & Gennaro"
+    }
+  },
   "publishers": {
     "10-18": {
       "name": "10/18",
@@ -4124,6 +5190,11 @@
             "detective-novel",
             "mystery"
           ],
+          "series": [
+            {
+              "id": "Q122441953"
+            }
+          ],
           "title": {
             "fr_FR": "La Mystérieuse Affaire de Styles",
             "en_US": "The Mysterious Affair at Styles"
@@ -4146,6 +5217,11 @@
           "genre": [
             "detective-novel",
             "whodunit"
+          ],
+          "series": [
+            {
+              "id": "Q122441953"
+            }
           ],
           "title": {
             "fr_FR": "Le Meurtre de Roger Ackroyd",
@@ -4170,6 +5246,11 @@
             "detective-novel",
             "locked-room-mystery"
           ],
+          "series": [
+            {
+              "id": "Q122441953"
+            }
+          ],
           "title": {
             "fr_FR": "Le Crime de l'Orient-Express",
             "en_US": "Murder on the Orient Express"
@@ -4193,6 +5274,11 @@
             "detective-novel",
             "aviation"
           ],
+          "series": [
+            {
+              "id": "Q122441953"
+            }
+          ],
           "title": {
             "fr_FR": "Mort dans les nuages",
             "en_US": "Death in the Clouds"
@@ -4215,6 +5301,11 @@
           "genre": [
             "detective-novel",
             "mystery"
+          ],
+          "series": [
+            {
+              "id": "Q122441953"
+            }
           ],
           "title": {
             "fr_FR": "Mort sur le Nil",
@@ -4262,6 +5353,12 @@
             "detective-novel",
             "village"
           ],
+          "series": [
+            {
+              "id": "Q132133414",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Le Crime de l'Abbé-Aubin",
             "en_US": "The Moving Finger"
@@ -4307,6 +5404,11 @@
           "genre": [
             "detective-novel",
             "final-case"
+          ],
+          "series": [
+            {
+              "id": "Q122441953"
+            }
           ],
           "title": {
             "fr_FR": "Le Dernier Coup de Poirot",
@@ -4640,6 +5742,12 @@
             "philosophical",
             "existentialist"
           ],
+          "series": [
+            {
+              "id": "Q3008298",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "L'Étranger",
             "en_US": "The Stranger"
@@ -4661,6 +5769,12 @@
           "year": 1944,
           "genre": [
             "existentialism"
+          ],
+          "series": [
+            {
+              "id": "Q3008298",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Caligula",
@@ -4943,6 +6057,12 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q3272407",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Vague à l'âme au Botswana",
             "en_US": "Morality for Beautiful Girls"
@@ -4962,6 +6082,12 @@
           "year": 2004,
           "genre": [
             "philosophical-novel"
+          ],
+          "series": [
+            {
+              "id": "Q7767382",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Le Club des philosophes amateurs",
@@ -4983,6 +6109,12 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q7767382",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Amis, Amants, Chocolat",
             "en_US": "Friends, Lovers, Chocolate"
@@ -5002,6 +6134,12 @@
           "year": 2006,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q3272407",
+              "position": 7
+            }
           ],
           "title": {
             "fr_FR": "1 cobra, 2 souliers et beaucoup d'ennuis",
@@ -5023,6 +6161,12 @@
           "genre": [
             "detective-novel",
             "mystery"
+          ],
+          "series": [
+            {
+              "id": "Q3272407",
+              "position": 8
+            }
           ],
           "title": {
             "fr_FR": "Le Bon Mari de Zebra Drive",
@@ -5056,6 +6200,12 @@
           "genre": [
             "adventure-novel",
             "historical"
+          ],
+          "series": [
+            {
+              "id": "Q1111179",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Les Trois Mousquetaires",
@@ -5148,6 +6298,12 @@
           "genre": [
             "historical-novel",
             "adventure"
+          ],
+          "series": [
+            {
+              "id": "Q1111179",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Le Vicomte de Bragelonne",
@@ -5588,6 +6744,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q5256510"
+            }
+          ],
           "title": {
             "fr_FR": "In the Forests of the Night",
             "en_US": "In the Forests of the Night"
@@ -5609,6 +6770,11 @@
           "genre": [
             "gothic-novel",
             "horror"
+          ],
+          "series": [
+            {
+              "id": "Q5256510"
+            }
           ],
           "title": {
             "fr_FR": "Demon in My View",
@@ -5632,6 +6798,11 @@
             "horror",
             "gothic-novel"
           ],
+          "series": [
+            {
+              "id": "Q5256510"
+            }
+          ],
           "title": {
             "fr_FR": "Shattered Mirror",
             "en_US": "Shattered Mirror"
@@ -5654,6 +6825,11 @@
             "horror",
             "gothic-novel"
           ],
+          "series": [
+            {
+              "id": "Q5256510"
+            }
+          ],
           "title": {
             "fr_FR": "Midnight Predator",
             "en_US": "Midnight Predator"
@@ -5675,6 +6851,12 @@
           "genre": [
             "fantasy",
             "horror"
+          ],
+          "series": [
+            {
+              "id": "Q7744295",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Hawksong",
@@ -6020,6 +7202,12 @@
             "crime",
             "mystery"
           ],
+          "series": [
+            {
+              "id": "Q131728033",
+              "position": 7
+            }
+          ],
           "title": {
             "fr_FR": "L'Excursion à Tindari",
             "en_US": "Excursion to Tindari"
@@ -6040,6 +7228,12 @@
           "genre": [
             "mystery",
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q131728033",
+              "position": 10
+            }
           ],
           "title": {
             "fr_FR": "Le Tour de bouée",
@@ -6307,6 +7501,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q2779934"
+            }
+          ],
           "title": {
             "fr_FR": "Girls in Pants: The Third Summer of the Sisterhood",
             "en_US": "Girls in Pants: The Third Summer of the Sisterhood"
@@ -6327,6 +7526,11 @@
           "year": 2007,
           "genre": [
             "young-adult"
+          ],
+          "series": [
+            {
+              "id": "Q2779934"
+            }
           ],
           "title": {
             "fr_FR": "Forever in Blue: The Fourth Summer of the Sisterhood",
@@ -6492,6 +7696,11 @@
           "year": 1992,
           "genre": [
             "historical-novel"
+          ],
+          "series": [
+            {
+              "id": "Q5599115"
+            }
           ],
           "title": {
             "fr_FR": "A Break with Charity",
@@ -6689,6 +7898,16 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q1254342",
+              "position": 3
+            },
+            {
+              "id": "Q7738933",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Le Chant du dragon",
             "en_US": "Dragonsong"
@@ -6710,6 +7929,16 @@
             "science-fiction",
             "fantasy",
             "young-adult"
+          ],
+          "series": [
+            {
+              "id": "Q1254342",
+              "position": 4
+            },
+            {
+              "id": "Q7738933",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "La Chanteuse-dragon de Pern",
@@ -6808,6 +8037,12 @@
             "horror",
             "supernatural-fiction"
           ],
+          "series": [
+            {
+              "id": "Q840516",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Entretien avec un vampire",
             "en_US": "Interview with the Vampire"
@@ -6831,6 +8066,12 @@
             "horror",
             "supernatural-fiction"
           ],
+          "series": [
+            {
+              "id": "Q840516",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Le Vampire Lestat",
             "en_US": "The Vampire Lestat"
@@ -6853,6 +8094,12 @@
           "genre": [
             "gothic-novel"
           ],
+          "series": [
+            {
+              "id": "Q840516",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "La Reine des damnés",
             "en_US": "The Queen of the Damned"
@@ -6874,6 +8121,12 @@
             "gothic-novel",
             "horror"
           ],
+          "series": [
+            {
+              "id": "Q840516",
+              "position": 6
+            }
+          ],
           "title": {
             "fr_FR": "Armand le vampire",
             "en_US": "The Vampire Armand"
@@ -6893,6 +8146,12 @@
           "year": 2000,
           "genre": [
             "horror"
+          ],
+          "series": [
+            {
+              "id": "Q840516",
+              "position": 7
+            }
           ],
           "title": {
             "fr_FR": "Merrick",
@@ -7945,6 +9204,12 @@
             "science-fiction",
             "anticipation"
           ],
+          "series": [
+            {
+              "id": "Q1198588",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "2001 : l'odyssée de l'espace",
             "en_US": "2001: A Space Odyssey"
@@ -7975,6 +9240,12 @@
             "Q595998",
             "Q266012",
             "Q27496509"
+          ],
+          "series": [
+            {
+              "id": "Q62388951",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Rama",
@@ -8031,6 +9302,15 @@
             "detective-novel",
             "mystery"
           ],
+          "series": [
+            {
+              "id": "Q2316684"
+            },
+            {
+              "id": "Q12857071",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Une étude en rouge",
             "en_US": "A Study in Scarlet"
@@ -8053,6 +9333,14 @@
           "genre": [
             "detective-novel",
             "mystery"
+          ],
+          "series": [
+            {
+              "id": "Q2316684"
+            },
+            {
+              "id": "Q12857071"
+            }
           ],
           "title": {
             "fr_FR": "Le Signe des quatre",
@@ -8077,6 +9365,11 @@
             "short-story",
             "detective-novel"
           ],
+          "series": [
+            {
+              "id": "Q12857071"
+            }
+          ],
           "title": {
             "fr_FR": "Les Aventures de Sherlock Holmes",
             "en_US": "The Adventures of Sherlock Holmes"
@@ -8100,6 +9393,14 @@
             "detective-novel",
             "gothic"
           ],
+          "series": [
+            {
+              "id": "Q2316684"
+            },
+            {
+              "id": "Q12857071"
+            }
+          ],
           "title": {
             "fr_FR": "Le Chien des Baskerville",
             "en_US": "The Hound of the Baskervilles"
@@ -8122,6 +9423,12 @@
           "genre": [
             "science-fiction",
             "adventure"
+          ],
+          "series": [
+            {
+              "id": "Q2330719",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Le Monde perdu",
@@ -8378,6 +9685,12 @@
           "genre": [
             "adventure-novel"
           ],
+          "series": [
+            {
+              "id": "Q2725082",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Le Capitaine Alatriste",
             "en_US": "Captain Alatriste"
@@ -8447,6 +9760,12 @@
             "fantasy",
             "children-s-literature"
           ],
+          "series": [
+            {
+              "id": "Q101081742",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Fifi Brindacier",
             "en_US": "Pippi Longstocking"
@@ -8468,6 +9787,12 @@
             "fantasy",
             "children-s-literature"
           ],
+          "series": [
+            {
+              "id": "Q101081742",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Pippi Goes on Board",
             "en_US": "Pippi Goes on Board"
@@ -8486,6 +9811,12 @@
           "genre": [
             "children-s-literature",
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q101081742",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Pippi in the South Seas",
@@ -8681,6 +10012,11 @@
           "year": 2006,
           "genre": [
             "children-s-literature"
+          ],
+          "series": [
+            {
+              "id": "Q5186028"
+            }
           ],
           "title": {
             "fr_FR": "Crispin: At the Edge of the World",
@@ -8920,6 +10256,11 @@
           "year": 1985,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q12056086"
+            }
           ],
           "title": {
             "fr_FR": "Ishmaël",
@@ -9414,6 +10755,11 @@
           "year": 2006,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q1272578"
+            }
           ],
           "title": {
             "fr_FR": "Sharpe's Fury",
@@ -10300,6 +11646,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q1247790",
+              "position": 5
+            }
+          ],
           "title": {
             "fr_FR": "Salamandastron",
             "en_US": "Salamandastron"
@@ -10319,6 +11671,12 @@
           "year": 1995,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q1247790",
+              "position": 8
+            }
           ],
           "title": {
             "fr_FR": "Solaris",
@@ -10340,6 +11698,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q1247790",
+              "position": 12
+            }
+          ],
           "title": {
             "fr_FR": "Le Guerrier disparu",
             "en_US": "The Legend of Luke"
@@ -10359,6 +11723,12 @@
           "year": 2002,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q1247790",
+              "position": 15
+            }
           ],
           "title": {
             "fr_FR": "L'Odyssée de Triss",
@@ -10572,6 +11942,12 @@
             "fantasy",
             "children-s-literature"
           ],
+          "series": [
+            {
+              "id": "Q483412",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Le Lion, la Sorcière blanche et l'Armoire magique",
             "en_US": "The Lion, the Witch, and the Wardrobe"
@@ -10593,6 +11969,12 @@
             "fantasy",
             "high-fantasy",
             "children-s-literature"
+          ],
+          "series": [
+            {
+              "id": "Q483412",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Le Prince Caspian",
@@ -10628,6 +12010,12 @@
           ],
           "awards": [
             "Q255032"
+          ],
+          "series": [
+            {
+              "id": "Q140389121",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Les Étoiles de la chute",
@@ -10989,6 +12377,12 @@
             "mystery",
             "young-adult"
           ],
+          "series": [
+            {
+              "id": "Q124331878",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Le Prince de la brume",
             "en_US": "The Prince of Mist"
@@ -11008,6 +12402,12 @@
           "year": 1995,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q124331878",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Les Lumières de septembre",
@@ -11033,6 +12433,12 @@
             "mystery",
             "adventure-novel",
             "gothic-novel"
+          ],
+          "series": [
+            {
+              "id": "Q12168238",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "L'Ombre du vent",
@@ -11115,6 +12521,12 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q6418590",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Kitty et Les Ondes de minuit",
             "en_US": "Kitty and the Midnight Hour"
@@ -11135,6 +12547,12 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q6418590",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Kitty au Capitole",
             "en_US": "Kitty Goes to Washington"
@@ -11154,6 +12572,12 @@
           "year": 2007,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q6418590",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Vacances sanglantes",
@@ -11280,6 +12704,12 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q126365868",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Enfants de la conquête",
             "en_US": "In Conquest Born"
@@ -11299,6 +12729,12 @@
           "year": 1998,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q126365859",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "This Alien Shore",
@@ -11778,6 +13214,12 @@
             "alternate-history",
             "science-fantasy"
           ],
+          "series": [
+            {
+              "id": "Q28130013",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Une affaire de famille",
             "en_US": "The Family Trade"
@@ -11823,6 +13265,12 @@
             "fantasy",
             "science-fantasy",
             "alternate-history"
+          ],
+          "series": [
+            {
+              "id": "Q28130013",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Un secret de famille",
@@ -11910,6 +13358,12 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q130680396",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Caught Stealing",
             "en_US": "Caught Stealing"
@@ -11928,6 +13382,12 @@
           "genre": [
             "thriller",
             "horror"
+          ],
+          "series": [
+            {
+              "id": "Q6211812",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Already Dead",
@@ -11951,6 +13411,12 @@
             "thriller",
             "noir",
             "horror"
+          ],
+          "series": [
+            {
+              "id": "Q6211812",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "No Dominion",
@@ -12232,6 +13698,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q130380618",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Dark Prince",
             "en_US": "Dark Prince"
@@ -12252,6 +13724,12 @@
           "year": 2003,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q5557451",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Shadow Game",
@@ -12514,6 +13992,11 @@
             "fantasy",
             "mystery"
           ],
+          "series": [
+            {
+              "id": "Q110249902"
+            }
+          ],
           "title": {
             "fr_FR": "A Dirty Job",
             "en_US": "A Dirty Job"
@@ -12534,6 +14017,12 @@
           "year": 2007,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q110249900",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "You Suck",
@@ -12705,6 +14194,12 @@
             "anthropology",
             "philosophy"
           ],
+          "series": [
+            {
+              "id": "Q742171",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Le Cru et le cuit",
             "en_US": "The Raw and the Cooked"
@@ -12728,6 +14223,12 @@
             "anthropology",
             "philosophy"
           ],
+          "series": [
+            {
+              "id": "Q742171",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Du miel aux cendres",
             "en_US": "From Honey to Ashes"
@@ -12750,6 +14251,12 @@
           "genre": [
             "anthropology",
             "philosophy"
+          ],
+          "series": [
+            {
+              "id": "Q742171",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "L'Origine des manières de table",
@@ -12852,6 +14359,12 @@
             "fantasy",
             "horror"
           ],
+          "series": [
+            {
+              "id": "Q7714409",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Secret Show",
             "en_US": "The Great and Secret Show"
@@ -12872,6 +14385,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q7714409",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Everville",
             "en_US": "Everville"
@@ -12891,6 +14410,11 @@
           "year": 2002,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q7719349"
+            }
           ],
           "title": {
             "fr_FR": "Abarat",
@@ -12925,6 +14449,12 @@
             "crime",
             "adventure-novel"
           ],
+          "series": [
+            {
+              "id": "Q79754003",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "MayDay!",
             "en_US": "The Mediterranean Caper"
@@ -12947,6 +14477,12 @@
             "crime",
             "adventure-novel"
           ],
+          "series": [
+            {
+              "id": "Q79754003",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Iceberg",
             "en_US": "Iceberg"
@@ -12967,6 +14503,12 @@
           "genre": [
             "crime",
             "adventure-novel"
+          ],
+          "series": [
+            {
+              "id": "Q79754003",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Renflouez le Titanic !",
@@ -12990,6 +14532,12 @@
             "crime",
             "adventure-novel"
           ],
+          "series": [
+            {
+              "id": "Q79754003",
+              "position": 11
+            }
+          ],
           "title": {
             "fr_FR": "Sahara",
             "en_US": "Sahara"
@@ -13012,6 +14560,12 @@
             "crime",
             "thriller",
             "adventure-novel"
+          ],
+          "series": [
+            {
+              "id": "Q79754003",
+              "position": 15
+            }
           ],
           "title": {
             "fr_FR": "Atlantide",
@@ -13045,6 +14599,12 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q685165",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "La Couronne d'herbe",
             "en_US": "The Grass Crown"
@@ -13064,6 +14624,12 @@
           "year": 1996,
           "genre": [
             "historical-novel"
+          ],
+          "series": [
+            {
+              "id": "Q685165",
+              "position": 4
+            }
           ],
           "title": {
             "fr_FR": "Caesar's Women",
@@ -13104,6 +14670,12 @@
           "year": 2002,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q685165",
+              "position": 6
+            }
           ],
           "title": {
             "fr_FR": "César et Cléopâtre",
@@ -13271,6 +14843,12 @@
             "Q18693138",
             "Q2576795",
             "Q266012"
+          ],
+          "series": [
+            {
+              "id": "Q21658012",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Le Livre du jugement dernier",
@@ -13514,6 +15092,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q632554",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Cœur d'encre",
             "en_US": "Inkheart"
@@ -13543,6 +15127,12 @@
           "genre": [
             "fantasy",
             "young-adult"
+          ],
+          "series": [
+            {
+              "id": "Q632554",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Sang d'encre",
@@ -13828,6 +15418,12 @@
             "thriller",
             "esoteric"
           ],
+          "series": [
+            {
+              "id": "Q83561430",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Da Vinci Code",
             "en_US": "The Da Vinci Code"
@@ -13850,6 +15446,12 @@
           "genre": [
             "thriller",
             "esoteric"
+          ],
+          "series": [
+            {
+              "id": "Q83561430",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Le Symbole perdu",
@@ -13874,6 +15476,12 @@
             "thriller",
             "esoteric"
           ],
+          "series": [
+            {
+              "id": "Q83561430",
+              "position": 4
+            }
+          ],
           "title": {
             "fr_FR": "Inferno",
             "en_US": "Inferno"
@@ -13896,6 +15504,12 @@
           "genre": [
             "thriller",
             "esoteric"
+          ],
+          "series": [
+            {
+              "id": "Q83561430",
+              "position": 5
+            }
           ],
           "title": {
             "fr_FR": "Origine",
@@ -13986,6 +15600,12 @@
             "science-fiction",
             "science-fantasy"
           ],
+          "series": [
+            {
+              "id": "Q1213577",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Endymion",
             "en_US": "Endymion"
@@ -14010,6 +15630,12 @@
           "awards": [
             "Q2576795"
           ],
+          "series": [
+            {
+              "id": "Q1213577",
+              "position": 4
+            }
+          ],
           "title": {
             "fr_FR": "L'Éveil d'Endymion",
             "en_US": "The Rise of Endymion"
@@ -14032,6 +15658,12 @@
           ],
           "awards": [
             "Q2576795"
+          ],
+          "series": [
+            {
+              "id": "Q692326",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Ilium",
@@ -14244,6 +15876,12 @@
             "humorous-novel",
             "detective"
           ],
+          "series": [
+            {
+              "id": "Q3212653",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Au bonheur des ogres",
             "en_US": "The Scapegoat's Odyssey"
@@ -14266,6 +15904,12 @@
           "genre": [
             "humorous-novel",
             "detective"
+          ],
+          "series": [
+            {
+              "id": "Q3212653",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "La Fée carabine",
@@ -14504,6 +16148,14 @@
           "genre": [
             "children-s-literature"
           ],
+          "series": [
+            {
+              "id": "Q853855"
+            },
+            {
+              "id": "Q7913002"
+            }
+          ],
           "title": {
             "fr_FR": "La Montagne des vampires",
             "en_US": "Vampire Mountain"
@@ -14524,6 +16176,14 @@
           "genre": [
             "young-adult",
             "horror"
+          ],
+          "series": [
+            {
+              "id": "Q853855"
+            },
+            {
+              "id": "Q7913002"
+            }
           ],
           "title": {
             "fr_FR": "Trials of Death",
@@ -14546,6 +16206,14 @@
           "genre": [
             "horror",
             "young-adult"
+          ],
+          "series": [
+            {
+              "id": "Q853855"
+            },
+            {
+              "id": "Q7912971"
+            }
           ],
           "title": {
             "fr_FR": "The Lake of Souls",
@@ -14820,6 +16488,12 @@
           "genre": [
             "thriller"
           ],
+          "series": [
+            {
+              "id": "Q96279770",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "The Collectors",
             "en_US": "The Collectors"
@@ -15049,6 +16723,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q773758",
+              "position": 11
+            }
+          ],
           "title": {
             "fr_FR": "Les Épées de la nuit et du jour",
             "en_US": "The Swords of Night and Day"
@@ -15069,6 +16749,12 @@
           "genre": [
             "fantasy",
             "high-fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q7846951",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Le Bouclier du tonnerre",
@@ -15556,6 +17242,12 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q60533943",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Mission Basilic",
             "en_US": "On Basilisk Station"
@@ -15575,6 +17267,12 @@
           "year": 2004,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q125630375",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Cavaliers du vent",
@@ -15606,6 +17304,12 @@
           "year": 2006,
           "genre": [
             "horror"
+          ],
+          "series": [
+            {
+              "id": "Q10331939",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Zombie Island",
@@ -15681,6 +17385,12 @@
             "thriller",
             "mystery"
           ],
+          "series": [
+            {
+              "id": "Q57831862",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "L'Étrange Odd Thomas",
             "en_US": "Odd Thomas"
@@ -15701,6 +17411,12 @@
           "genre": [
             "thriller"
           ],
+          "series": [
+            {
+              "id": "Q57831862",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "L'Ami Odd Thomas",
             "en_US": "Forever Odd"
@@ -15720,6 +17436,12 @@
           "year": 2006,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q57831862",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Brother Odd",
@@ -15920,6 +17642,12 @@
           "awards": [
             "Q673795"
           ],
+          "series": [
+            {
+              "id": "Q142108721",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Un dernier verre avant la guerre",
             "en_US": "A Drink Before the War"
@@ -15939,6 +17667,12 @@
           "year": 1999,
           "genre": [
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q142108721",
+              "position": 5
+            }
           ],
           "title": {
             "fr_FR": "Prières pour la pluie",
@@ -16046,6 +17780,12 @@
             "historical-novel",
             "science-fantasy"
           ],
+          "series": [
+            {
+              "id": "Q18153036",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Le Chardon et le Tartan",
             "en_US": "Outlander"
@@ -16069,6 +17809,12 @@
             "science-fantasy",
             "historical-novel"
           ],
+          "series": [
+            {
+              "id": "Q18153036",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Le Talisman",
             "en_US": "Dragonfly in Amber"
@@ -16089,6 +17835,12 @@
           "genre": [
             "historical-novel",
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q18153036",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Le Voyage",
@@ -16111,6 +17863,12 @@
             "fantasy",
             "historical-novel"
           ],
+          "series": [
+            {
+              "id": "Q18153036",
+              "position": 4
+            }
+          ],
           "title": {
             "fr_FR": "Les Tambours de l'automne",
             "en_US": "Drums of Autumn"
@@ -16131,6 +17889,12 @@
           "genre": [
             "historical-novel",
             "romance"
+          ],
+          "series": [
+            {
+              "id": "Q18153036",
+              "position": 5
+            }
           ],
           "title": {
             "fr_FR": "La Croix de Feu / Le Temps des rêves",
@@ -16167,6 +17931,12 @@
           "awards": [
             "Q465150"
           ],
+          "series": [
+            {
+              "id": "Q113839147",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Le Château de Hurle",
             "en_US": "Howl's Moving Castle"
@@ -16186,6 +17956,11 @@
           "year": 2006,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q1002223"
+            }
           ],
           "title": {
             "fr_FR": "The Pinhoe Egg",
@@ -16608,6 +18383,12 @@
           "genre": [
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q18516851",
+              "position": 16
+            }
+          ],
           "title": {
             "fr_FR": "Le Cantique des innocents",
             "en_US": "Suffer the Little Children"
@@ -16767,6 +18548,12 @@
             "science-fiction",
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q20736364",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Beau comme un aéroport",
             "en_US": "The Long Dark Tea-Time of the Soul"
@@ -16786,6 +18573,12 @@
           "year": 2002,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q20736364",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Fonds de tiroir",
@@ -17100,6 +18893,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q7088493",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Dragonologie: Encyclopédie des dragons",
             "en_US": "Dragonology: The Complete Book of Dragons"
@@ -17331,6 +19130,12 @@
           "genre": [
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q2334547",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Le Fourgue",
             "en_US": "The Pusher"
@@ -17459,6 +19264,11 @@
             "science-fiction",
             "planetary-romance"
           ],
+          "series": [
+            {
+              "id": "Q1501254"
+            }
+          ],
           "title": {
             "fr_FR": "Une princesse de Mars",
             "en_US": "A Princess of Mars"
@@ -17481,6 +19291,12 @@
           "genre": [
             "adventure-novel",
             "jungle"
+          ],
+          "series": [
+            {
+              "id": "Q5965446",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Tarzan chez les singes",
@@ -17506,6 +19322,11 @@
             "science-fiction",
             "planetary-romance"
           ],
+          "series": [
+            {
+              "id": "Q1501254"
+            }
+          ],
           "title": {
             "fr_FR": "Le Seigneur de Mars",
             "en_US": "The Warlord of Mars"
@@ -17530,6 +19351,11 @@
             "science-fiction",
             "lost-world"
           ],
+          "series": [
+            {
+              "id": "Q1408715"
+            }
+          ],
           "title": {
             "fr_FR": "Au cœur de Pellucidar",
             "en_US": "At the Earth's Core"
@@ -17553,6 +19379,12 @@
             "adventure",
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q5965446",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Le Retour de Tarzan",
             "en_US": "The Return of Tarzan"
@@ -17574,6 +19406,11 @@
             "adventure-novel",
             "science-fiction",
             "planetary-romance"
+          ],
+          "series": [
+            {
+              "id": "Q1501254"
+            }
           ],
           "title": {
             "fr_FR": "Les Dieux de Mars",
@@ -17598,6 +19435,11 @@
             "adventure-novel",
             "science-fiction",
             "lost-world"
+          ],
+          "series": [
+            {
+              "id": "Q1047783"
+            }
           ],
           "title": {
             "fr_FR": "Le Pays que le temps a oublié",
@@ -18241,6 +20083,11 @@
           "genre": [
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q20825680"
+            }
+          ],
           "title": {
             "fr_FR": "Le Meurtre de la falaise",
             "en_US": "Deception on His Mind"
@@ -18260,6 +20107,11 @@
           "year": 1999,
           "genre": [
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q20825680"
+            }
           ],
           "title": {
             "fr_FR": "Une patience d'ange",
@@ -18281,6 +20133,11 @@
           "genre": [
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q20825680"
+            }
+          ],
           "title": {
             "fr_FR": "Sans l'ombre d'un témoin",
             "en_US": "With No One as Witness"
@@ -18300,6 +20157,11 @@
           "year": 2006,
           "genre": [
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q20825680"
+            }
           ],
           "title": {
             "fr_FR": "Anatomie d'un crime",
@@ -18518,6 +20380,12 @@
             "naturalism",
             "social-novel"
           ],
+          "series": [
+            {
+              "id": "Q6027",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "La Fortune des Rougon",
             "en_US": "The Fortune of the Rougons"
@@ -18540,6 +20408,12 @@
           "genre": [
             "naturalism",
             "social-novel"
+          ],
+          "series": [
+            {
+              "id": "Q6027",
+              "position": 7
+            }
           ],
           "title": {
             "fr_FR": "L'Assommoir",
@@ -18564,6 +20438,12 @@
             "naturalism",
             "social-novel"
           ],
+          "series": [
+            {
+              "id": "Q6027",
+              "position": 9
+            }
+          ],
           "title": {
             "fr_FR": "Nana",
             "en_US": "Nana"
@@ -18586,6 +20466,12 @@
           "genre": [
             "naturalism"
           ],
+          "series": [
+            {
+              "id": "Q6027",
+              "position": 11
+            }
+          ],
           "title": {
             "fr_FR": "Au Bonheur des Dames",
             "en_US": "The Ladies' Paradise"
@@ -18606,6 +20492,12 @@
           "genre": [
             "naturalism",
             "social-novel"
+          ],
+          "series": [
+            {
+              "id": "Q6027",
+              "position": 13
+            }
           ],
           "title": {
             "fr_FR": "Germinal",
@@ -18630,6 +20522,12 @@
             "naturalism",
             "social-novel"
           ],
+          "series": [
+            {
+              "id": "Q6027",
+              "position": 14
+            }
+          ],
           "title": {
             "fr_FR": "L'Œuvre",
             "en_US": "The Masterpiece"
@@ -18651,6 +20549,12 @@
           "year": 1890,
           "genre": [
             "psychological-thriller"
+          ],
+          "series": [
+            {
+              "id": "Q6027",
+              "position": 17
+            }
           ],
           "title": {
             "fr_FR": "La Bête humaine",
@@ -18819,6 +20723,12 @@
             "mystery",
             "children-s-literature"
           ],
+          "series": [
+            {
+              "id": "Q1134354",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Le Club des cinq et le Trésor de l'île",
             "en_US": "Five on a Treasure Island"
@@ -18892,6 +20802,12 @@
           "genre": [
             "fantasy",
             "children-s-literature"
+          ],
+          "series": [
+            {
+              "id": "Q325283",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Code Éternité",
@@ -20080,6 +21996,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q5216069"
+            }
+          ],
           "title": {
             "fr_FR": "Witch Baby",
             "en_US": "Witch Baby"
@@ -20490,6 +22411,12 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q6095696",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Le Messie de Dune",
             "en_US": "Dune Messiah"
@@ -20530,6 +22457,12 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q6095696",
+              "position": 4
+            }
+          ],
           "title": {
             "fr_FR": "L'Empereur-Dieu de Dune",
             "en_US": "God Emperor of Dune"
@@ -20550,6 +22483,12 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q6095696",
+              "position": 5
+            }
+          ],
           "title": {
             "fr_FR": "Les Hérétiques de Dune",
             "en_US": "Heretics of Dune"
@@ -20569,6 +22508,12 @@
           "year": 1985,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q6095696",
+              "position": 6
+            }
           ],
           "title": {
             "fr_FR": "La Maison des mères",
@@ -20815,6 +22760,11 @@
           "awards": [
             "Q2425126"
           ],
+          "series": [
+            {
+              "id": "Q27538007"
+            }
+          ],
           "title": {
             "fr_FR": "Debout les morts",
             "en_US": "The Three Evangelists"
@@ -20837,6 +22787,11 @@
           "genre": [
             "detective-novel",
             "historical"
+          ],
+          "series": [
+            {
+              "id": "Q27536277"
+            }
           ],
           "title": {
             "fr_FR": "Les quatre fleuves",
@@ -20861,6 +22816,12 @@
             "detective-novel",
             "mystery"
           ],
+          "series": [
+            {
+              "id": "Q27536277",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Pars vite et reviens tard",
             "en_US": "Have Mercy on Us All"
@@ -20884,6 +22845,12 @@
             "detective-novel",
             "archaeological"
           ],
+          "series": [
+            {
+              "id": "Q27536277",
+              "position": 5
+            }
+          ],
           "title": {
             "fr_FR": "Dans les bois éternels",
             "en_US": "This Night's Foul Work"
@@ -20906,6 +22873,12 @@
           "genre": [
             "detective-novel",
             "medieval"
+          ],
+          "series": [
+            {
+              "id": "Q27536277",
+              "position": 6
+            }
           ],
           "title": {
             "fr_FR": "Un lieu incertain",
@@ -21347,6 +23320,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q15624191",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Sabriël",
             "en_US": "Sabriel"
@@ -21367,6 +23346,12 @@
           "genre": [
             "fantasy",
             "young-adult"
+          ],
+          "series": [
+            {
+              "id": "Q1540209",
+              "position": 5
+            }
           ],
           "title": {
             "fr_FR": "Vendredi maléfique",
@@ -21967,6 +23952,12 @@
             "Q6359432",
             "Q607354"
           ],
+          "series": [
+            {
+              "id": "Q45875",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Le Trône de fer - Les rois des sables",
             "en_US": "A Game of Thrones"
@@ -21994,6 +23985,12 @@
             "Q6359432",
             "Q607354"
           ],
+          "series": [
+            {
+              "id": "Q45875",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Le Trône de fer - Le Donjon rouge",
             "en_US": "A Clash of Kings"
@@ -22015,6 +24012,12 @@
           "year": 1998,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q2975594",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Le Chevalier errant",
@@ -22039,6 +24042,12 @@
           "awards": [
             "Q6359432",
             "Q607354"
+          ],
+          "series": [
+            {
+              "id": "Q45875",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Le Trône de fer - L'Invincible Armure",
@@ -22065,6 +24074,12 @@
           ],
           "awards": [
             "Q607354"
+          ],
+          "series": [
+            {
+              "id": "Q45875",
+              "position": 5
+            }
           ],
           "title": {
             "fr_FR": "Le Trône de fer - Les Rois de l'orage",
@@ -22284,6 +24299,11 @@
           "genre": [
             "detective-novel",
             "psychological"
+          ],
+          "series": [
+            {
+              "id": "Q830561"
+            }
           ],
           "title": {
             "fr_FR": "Le Chien jaune",
@@ -22684,6 +24704,11 @@
           "genre": [
             "historical-novel"
           ],
+          "series": [
+            {
+              "id": "Q3870445"
+            }
+          ],
           "title": {
             "fr_FR": "Burr",
             "en_US": "Burr"
@@ -22704,6 +24729,11 @@
           "year": 1984,
           "genre": [
             "historical-novel"
+          ],
+          "series": [
+            {
+              "id": "Q3870445"
+            }
           ],
           "title": {
             "fr_FR": "Lincoln",
@@ -22849,6 +24879,12 @@
           "genre": [
             "horror",
             "occult"
+          ],
+          "series": [
+            {
+              "id": "Q11767104",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Le Manitou",
@@ -23054,6 +25090,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q7774746",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Wicked",
             "en_US": "Wicked"
@@ -23116,6 +25158,12 @@
           "year": 2005,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q7774746",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Son of a Witch: la Véritable Suite de Wicked",
@@ -23527,6 +25575,11 @@
             "weird-fiction",
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q621596"
+            }
+          ],
           "title": {
             "fr_FR": "Dagon",
             "en_US": "Dagon"
@@ -23549,6 +25602,11 @@
             "weird-fiction",
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q2271327"
+            }
+          ],
           "title": {
             "fr_FR": "La Cité sans nom",
             "en_US": "The Nameless City"
@@ -23570,6 +25628,11 @@
             "horror",
             "weird-fiction",
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q621596"
+            }
           ],
           "title": {
             "fr_FR": "La Couleur tombée du ciel",
@@ -23613,6 +25676,11 @@
             "horror",
             "cosmic"
           ],
+          "series": [
+            {
+              "id": "Q621596"
+            }
+          ],
           "title": {
             "fr_FR": "L'Appel de Cthulhu",
             "en_US": "The Call of Cthulhu"
@@ -23636,6 +25704,11 @@
             "horror",
             "weird-fiction",
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q621596"
+            }
           ],
           "title": {
             "fr_FR": "L'Abomination de Dunwich",
@@ -23682,6 +25755,11 @@
             "weird-fiction",
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q621596"
+            }
+          ],
           "title": {
             "fr_FR": "Les Montagnes hallucinées",
             "en_US": "At the Mountains of Madness"
@@ -23725,6 +25803,11 @@
             "epistolary",
             "fantasy",
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q2271327"
+            }
           ],
           "title": {
             "fr_FR": "L'Affaire Charles Dexter Ward",
@@ -24263,6 +26346,12 @@
             "detective-novel",
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q21997237",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Les Chiens de Riga",
             "en_US": "The Dogs of Riga"
@@ -24283,6 +26372,12 @@
           "genre": [
             "crime",
             "detective-novel"
+          ],
+          "series": [
+            {
+              "id": "Q21997237",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "La Lionne blanche",
@@ -24306,6 +26401,12 @@
             "mystery",
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q21997237",
+              "position": 4
+            }
+          ],
           "title": {
             "fr_FR": "L'Homme qui souriait",
             "en_US": "The Man Who Smiled"
@@ -24328,6 +26429,12 @@
             "mystery",
             "detective-novel"
           ],
+          "series": [
+            {
+              "id": "Q21997237",
+              "position": 5
+            }
+          ],
           "title": {
             "fr_FR": "Le Guerrier solitaire",
             "en_US": "Sidetracked"
@@ -24348,6 +26455,12 @@
           "genre": [
             "mystery",
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q21997237",
+              "position": 7
+            }
           ],
           "title": {
             "fr_FR": "Les Morts de la Saint-Jean",
@@ -24505,6 +26618,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q2599462"
+            }
+          ],
           "title": {
             "fr_FR": "Sexus",
             "en_US": "Sexus"
@@ -24557,6 +26675,11 @@
           "genre": [
             "lost-world",
             "adventure-novel"
+          ],
+          "series": [
+            {
+              "id": "Q1503215"
+            }
           ],
           "title": {
             "fr_FR": "Les Mines du roi Salomon",
@@ -25103,6 +27226,11 @@
             "epic-poetry",
             "mythology"
           ],
+          "series": [
+            {
+              "id": "Q578605"
+            }
+          ],
           "title": {
             "fr_FR": "L'Iliade",
             "en_US": "The Iliad"
@@ -25123,6 +27251,11 @@
           "genre": [
             "epic-poetry",
             "adventure"
+          ],
+          "series": [
+            {
+              "id": "Q578605"
+            }
           ],
           "title": {
             "fr_FR": "L'Odyssée",
@@ -25157,6 +27290,11 @@
             "historical-novel",
             "civil-war"
           ],
+          "series": [
+            {
+              "id": "Q50188"
+            }
+          ],
           "title": {
             "fr_FR": "Les Chouans",
             "en_US": "The Chouans"
@@ -25179,6 +27317,11 @@
           "genre": [
             "realist-novel",
             "drama"
+          ],
+          "series": [
+            {
+              "id": "Q50188"
+            }
           ],
           "title": {
             "fr_FR": "Le Colonel Chabert",
@@ -25203,6 +27346,11 @@
             "realist-novel",
             "social"
           ],
+          "series": [
+            {
+              "id": "Q50188"
+            }
+          ],
           "title": {
             "fr_FR": "Eugénie Grandet",
             "en_US": "Eugénie Grandet"
@@ -25226,6 +27374,11 @@
             "realist-novel",
             "social"
           ],
+          "series": [
+            {
+              "id": "Q50188"
+            }
+          ],
           "title": {
             "fr_FR": "Le Père Goriot",
             "en_US": "Father Goriot"
@@ -25248,6 +27401,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q50188"
+            }
+          ],
           "title": {
             "fr_FR": "Le Lys dans la vallée",
             "en_US": "The Lily of the Valley"
@@ -25265,6 +27423,11 @@
           "genre": [
             "realist-novel",
             "ambition"
+          ],
+          "series": [
+            {
+              "id": "Q50188"
+            }
           ],
           "title": {
             "fr_FR": "Illusions perdues",
@@ -25288,6 +27451,11 @@
           "genre": [
             "realist-novel",
             "splendor"
+          ],
+          "series": [
+            {
+              "id": "Q50188"
+            }
           ],
           "title": {
             "fr_FR": "Splendeurs et misères des courtisanes",
@@ -25458,6 +27626,12 @@
           "awards": [
             "Q747089"
           ],
+          "series": [
+            {
+              "id": "Q5193682",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "L'Homme des jeux",
             "en_US": "The Player of Games"
@@ -25482,6 +27656,12 @@
             "Q4836602",
             "Q18693138"
           ],
+          "series": [
+            {
+              "id": "Q5193682",
+              "position": 5
+            }
+          ],
           "title": {
             "fr_FR": "Excession",
             "en_US": "Excession"
@@ -25502,6 +27682,12 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q5193682",
+              "position": 6
+            }
+          ],
           "title": {
             "fr_FR": "Inversions",
             "en_US": "Inversions"
@@ -25521,6 +27707,12 @@
           "year": 2000,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q5193682",
+              "position": 7
+            }
           ],
           "title": {
             "fr_FR": "Le Sens du vent",
@@ -25629,6 +27821,11 @@
             "crime",
             "spy-fiction"
           ],
+          "series": [
+            {
+              "id": "Q844"
+            }
+          ],
           "title": {
             "fr_FR": "Espions, faites vos jeux",
             "en_US": "Casino Royale"
@@ -25649,6 +27846,11 @@
           "genre": [
             "crime",
             "spy-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q844"
+            }
           ],
           "title": {
             "fr_FR": "Moonraker",
@@ -25671,6 +27873,11 @@
             "crime",
             "spy-fiction"
           ],
+          "series": [
+            {
+              "id": "Q844"
+            }
+          ],
           "title": {
             "fr_FR": "Goldfinger",
             "en_US": "Goldfinger"
@@ -25692,6 +27899,11 @@
             "crime",
             "spy-fiction"
           ],
+          "series": [
+            {
+              "id": "Q844"
+            }
+          ],
           "title": {
             "fr_FR": "Motel 007",
             "en_US": "The Spy Who Loved Me"
@@ -25711,6 +27923,11 @@
           "year": 1963,
           "genre": [
             "spy-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q844"
+            }
           ],
           "title": {
             "fr_FR": "Au service secret de Sa Majesté",
@@ -26061,6 +28278,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q20575086"
+            }
+          ],
           "title": {
             "fr_FR": "Trainspotting",
             "en_US": "Trainspotting"
@@ -26113,6 +28335,12 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q913482",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Les Robots",
             "en_US": "I, Robot"
@@ -26133,6 +28361,16 @@
           "genre": [
             "science-fiction",
             "anticipation"
+          ],
+          "series": [
+            {
+              "id": "Q20899148",
+              "position": 1
+            },
+            {
+              "id": "Q1564644",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Fondation",
@@ -26156,6 +28394,16 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q20899148",
+              "position": 2
+            },
+            {
+              "id": "Q1564644",
+              "position": 4
+            }
+          ],
           "title": {
             "fr_FR": "Fondation et Empire",
             "en_US": "Foundation and Empire"
@@ -26175,6 +28423,16 @@
           "year": 1953,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q20899148",
+              "position": 3
+            },
+            {
+              "id": "Q1564644",
+              "position": 5
+            }
           ],
           "title": {
             "fr_FR": "Seconde Fondation",
@@ -26196,6 +28454,11 @@
           "genre": [
             "science-fiction",
             "detective"
+          ],
+          "series": [
+            {
+              "id": "Q913482"
+            }
           ],
           "title": {
             "fr_FR": "Les Cavernes d'acier",
@@ -26487,6 +28750,11 @@
             "philosophical-novel",
             "supernatural-fiction"
           ],
+          "series": [
+            {
+              "id": "Q3791080"
+            }
+          ],
           "title": {
             "fr_FR": "Le Baron perché",
             "en_US": "The Baron in the Trees"
@@ -26731,6 +28999,12 @@
           "awards": [
             "Q1362723"
           ],
+          "series": [
+            {
+              "id": "Q136567305",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Boyhood: Scenes from Provincial Life",
             "en_US": "Boyhood: Scenes from Provincial Life"
@@ -26774,6 +29048,12 @@
           "year": 2002,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q136567305",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Youth",
@@ -26852,6 +29132,12 @@
             "high-fantasy",
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q15228",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "La Communauté de l'anneau",
             "en_US": "The Fellowship of the Ring"
@@ -26872,6 +29158,12 @@
           "genre": [
             "fantasy",
             "high-fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q15228",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Les Deux Tours",
@@ -27115,6 +29407,12 @@
           "awards": [
             "Q7575072"
           ],
+          "series": [
+            {
+              "id": "Q8337",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Harry Potter à l'école des sorciers",
             "en_US": "Harry Potter and the Philosopher's Stone"
@@ -27137,6 +29435,12 @@
           "genre": [
             "fantasy",
             "children-s-literature"
+          ],
+          "series": [
+            {
+              "id": "Q8337",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Harry Potter et la Chambre des secrets",
@@ -27164,6 +29468,12 @@
           "awards": [
             "Q607354"
           ],
+          "series": [
+            {
+              "id": "Q8337",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Harry Potter et le Prisonnier d'Azkaban",
             "en_US": "Harry Potter and the Prisoner of Azkaban"
@@ -27190,6 +29500,12 @@
           "awards": [
             "Q255032"
           ],
+          "series": [
+            {
+              "id": "Q8337",
+              "position": 4
+            }
+          ],
           "title": {
             "fr_FR": "Harry Potter et la Coupe de feu",
             "en_US": "Harry Potter and the Goblet of Fire"
@@ -27212,6 +29528,12 @@
           "genre": [
             "fantasy",
             "children-s-literature"
+          ],
+          "series": [
+            {
+              "id": "Q8337",
+              "position": 5
+            }
           ],
           "title": {
             "fr_FR": "Harry Potter et l'Ordre du phénix",
@@ -27236,6 +29558,12 @@
             "fantasy",
             "children-s-literature"
           ],
+          "series": [
+            {
+              "id": "Q8337",
+              "position": 6
+            }
+          ],
           "title": {
             "fr_FR": "Harry Potter et le Prince de sang-mêlé",
             "en_US": "Harry Potter and the Half-Blood Prince"
@@ -27258,6 +29586,12 @@
           "genre": [
             "fantasy",
             "children-s-literature"
+          ],
+          "series": [
+            {
+              "id": "Q8337",
+              "position": 7
+            }
           ],
           "title": {
             "fr_FR": "Harry Potter et les Reliques de la Mort",
@@ -27517,6 +29851,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q3210169"
+            }
+          ],
           "title": {
             "fr_FR": "Anges de la Désolation",
             "en_US": "Desolation Angels"
@@ -27650,6 +29989,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q2305146",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Madouc",
             "en_US": "Madouc"
@@ -27680,6 +30025,12 @@
           "year": 2006,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q17147603",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Godslayer",
@@ -28089,6 +30440,11 @@
             "historical-novel",
             "war-novel"
           ],
+          "series": [
+            {
+              "id": "Q3562203"
+            }
+          ],
           "title": {
             "fr_FR": "Un caïd",
             "en_US": "King Rat"
@@ -28108,6 +30464,11 @@
           "year": 1966,
           "genre": [
             "historical-novel"
+          ],
+          "series": [
+            {
+              "id": "Q3562203"
+            }
           ],
           "title": {
             "fr_FR": "Taï-Pan",
@@ -28129,6 +30490,11 @@
           "genre": [
             "historical-novel"
           ],
+          "series": [
+            {
+              "id": "Q3562203"
+            }
+          ],
           "title": {
             "fr_FR": "Shōgun",
             "en_US": "Shōgun"
@@ -28148,6 +30514,12 @@
           "year": 1986,
           "genre": [
             "historical-novel"
+          ],
+          "series": [
+            {
+              "id": "Q3562203",
+              "position": 6
+            }
           ],
           "title": {
             "fr_FR": "Whirlwind",
@@ -28169,6 +30541,11 @@
           "year": 1993,
           "genre": [
             "historical-novel"
+          ],
+          "series": [
+            {
+              "id": "Q3562203"
+            }
           ],
           "title": {
             "fr_FR": "Gai-Jin",
@@ -28201,6 +30578,11 @@
           "genre": [
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q6662479"
+            }
+          ],
           "title": {
             "fr_FR": "Lune sanglante",
             "en_US": "Blood on the Moon"
@@ -28221,6 +30603,11 @@
           "genre": [
             "noir-novel",
             "detective"
+          ],
+          "series": [
+            {
+              "id": "Q3413711"
+            }
           ],
           "title": {
             "fr_FR": "L.A. Confidential",
@@ -28243,6 +30630,11 @@
           "year": 1995,
           "genre": [
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q3549283"
+            }
           ],
           "title": {
             "fr_FR": "American Tabloïd",
@@ -28285,6 +30677,11 @@
           "genre": [
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q3549283"
+            }
+          ],
           "title": {
             "fr_FR": "American Death Trip",
             "en_US": "The Cold Six Thousand"
@@ -28317,6 +30714,12 @@
           "genre": [
             "adventure-novel",
             "frontier"
+          ],
+          "series": [
+            {
+              "id": "Q1092918",
+              "position": 4
+            }
           ],
           "title": {
             "fr_FR": "Le Pionnier",
@@ -28363,6 +30766,12 @@
           "genre": [
             "adventure-novel",
             "historical"
+          ],
+          "series": [
+            {
+              "id": "Q1092918",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Le Dernier des Mohicans",
@@ -28603,6 +31012,11 @@
           "genre": [
             "detective-novel"
           ],
+          "series": [
+            {
+              "id": "Q109587621"
+            }
+          ],
           "title": {
             "fr_FR": "Purple Cane Road",
             "en_US": "Purple Cane Road"
@@ -28798,6 +31212,12 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q4716871",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Le Masque de l'araignée",
             "en_US": "Along Came a Spider"
@@ -28820,6 +31240,12 @@
             "crime",
             "mystery"
           ],
+          "series": [
+            {
+              "id": "Q4716871",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Et tombent les filles",
             "en_US": "Kiss the Girls"
@@ -28839,6 +31265,12 @@
           "year": 2001,
           "genre": [
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q16967812",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Premier à mourir",
@@ -28874,6 +31306,12 @@
           "genre": [
             "science-fiction",
             "young-adult"
+          ],
+          "series": [
+            {
+              "id": "Q1914251",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Opération angel",
@@ -28995,6 +31433,12 @@
           "year": 1998,
           "genre": [
             "historical-novel"
+          ],
+          "series": [
+            {
+              "id": "Q2364144",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "The Road to Jerusalem",
@@ -29141,6 +31585,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q139926399"
+            }
+          ],
           "title": {
             "fr_FR": "Le maître des apparences",
             "en_US": "Old Filth"
@@ -29251,6 +31700,11 @@
           "genre": [
             "children-s-literature"
           ],
+          "series": [
+            {
+              "id": "Q3420135"
+            }
+          ],
           "title": {
             "fr_FR": "Racso et les Rats de NIMH",
             "en_US": "Racso and the Rats of NIMH"
@@ -29334,6 +31788,11 @@
           "genre": [
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q7608372"
+            }
+          ],
           "title": {
             "fr_FR": "À la une, à la deux, à la mort",
             "en_US": "Three to Get Deadly"
@@ -29353,6 +31812,11 @@
           "year": 1998,
           "genre": [
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q7608372"
+            }
           ],
           "title": {
             "fr_FR": "Quatre ou double",
@@ -29403,6 +31867,11 @@
           "year": 2002,
           "genre": [
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q7608372"
+            }
           ],
           "title": {
             "fr_FR": "Hard Eight",
@@ -29515,6 +31984,12 @@
             "fantasy",
             "high-fantasy"
           ],
+          "series": [
+            {
+              "id": "Q7970866",
+              "position": 5
+            }
+          ],
           "title": {
             "fr_FR": "Grand Conspiracy",
             "en_US": "Grand Conspiracy"
@@ -29603,6 +32078,12 @@
             "mystery",
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q58878965",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "L'Affaire Jane Eyre",
             "en_US": "The Eyre Affair"
@@ -29626,6 +32107,12 @@
             "crime",
             "alternate-history"
           ],
+          "series": [
+            {
+              "id": "Q58878965",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Délivrez-moi !",
             "en_US": "Lost in a Good Book"
@@ -29648,6 +32135,12 @@
             "fantasy",
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q58878965",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Le Puits des histoires perdues",
             "en_US": "The Well of Lost Plots"
@@ -29669,6 +32162,12 @@
             "science-fiction",
             "fantasy",
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q58878965",
+              "position": 4
+            }
           ],
           "title": {
             "fr_FR": "Sauvez Hamlet !",
@@ -29900,6 +32399,12 @@
           "genre": [
             "historical-novel"
           ],
+          "series": [
+            {
+              "id": "Q999222",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Le Clan de l'Ours des Cavernes",
             "en_US": "The Clan of the Cave Bear"
@@ -29919,6 +32424,12 @@
           "year": 1982,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q999222",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "La Vallée des chevaux",
@@ -29951,6 +32462,12 @@
           "year": 1997,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q138348496",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "The Day of the Tempest",
@@ -30158,6 +32675,12 @@
           "genre": [
             "philosophical-novel",
             "existentialist-novel"
+          ],
+          "series": [
+            {
+              "id": "Q1217409",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "L'Âge de raison",
@@ -30516,6 +33039,11 @@
             "thriller",
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q1082587"
+            }
+          ],
           "title": {
             "fr_FR": "Le Désosseur",
             "en_US": "The Bone Collector"
@@ -30557,6 +33085,11 @@
           "genre": [
             "thriller",
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q1082587"
+            }
           ],
           "title": {
             "fr_FR": "L'Homme qui disparaît",
@@ -30796,6 +33329,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q1213846"
+            }
+          ],
           "title": {
             "fr_FR": "Midnight for Charlie Bone",
             "en_US": "Midnight for Charlie Bone"
@@ -30884,6 +33422,12 @@
           "year": 2005,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q880203",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "L'Amant ténébreux",
@@ -30999,6 +33543,12 @@
             "high-fantasy",
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q5140179",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Les Furies de Calderon",
             "en_US": "Furies of Calderon"
@@ -31019,6 +33569,12 @@
           "genre": [
             "fantasy",
             "mystery"
+          ],
+          "series": [
+            {
+              "id": "Q2307373",
+              "position": 7
+            }
           ],
           "title": {
             "fr_FR": "Dead Beat",
@@ -31041,6 +33597,12 @@
           "genre": [
             "fantasy",
             "high-fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q5140179",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "La Furie du Curseur",
@@ -31072,6 +33634,11 @@
           "year": 2000,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q112123449"
+            }
           ],
           "title": {
             "fr_FR": "Mille femmes blanches",
@@ -31511,6 +34078,12 @@
             "Q595998",
             "Q266012"
           ],
+          "series": [
+            {
+              "id": "Q7734811",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "La Guerre éternelle",
             "en_US": "The Forever War"
@@ -31535,6 +34108,12 @@
             "Q255032",
             "Q1030402",
             "Q266012"
+          ],
+          "series": [
+            {
+              "id": "Q7734811",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "La Paix éternelle",
@@ -32147,6 +34726,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q971694"
+            }
+          ],
           "title": {
             "fr_FR": "Le 42e Parallèle",
             "en_US": "The 42nd Parallel"
@@ -32610,6 +35194,12 @@
           "genre": [
             "spy-fiction"
           ],
+          "series": [
+            {
+              "id": "Q96277193",
+              "position": 6
+            }
+          ],
           "title": {
             "fr_FR": "Comme un collégien",
             "en_US": "The Honourable Schoolboy"
@@ -33038,6 +35628,12 @@
           "awards": [
             "Q109554372",
             "Q833633"
+          ],
+          "series": [
+            {
+              "id": "Q12428817",
+              "position": 4
+            }
           ],
           "title": {
             "fr_FR": "Rabbit en paix",
@@ -33800,6 +36396,12 @@
             "fantasy",
             "children-s-literature"
           ],
+          "series": [
+            {
+              "id": "Q1375442",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "L'apprenti Épouvanteur",
             "en_US": "The Spook's Apprentice"
@@ -34281,6 +36883,11 @@
             "science-fiction",
             "young-adult"
           ],
+          "series": [
+            {
+              "id": "Q4189813"
+            }
+          ],
           "title": {
             "fr_FR": "La Marque royale",
             "en_US": "The Mark of the Crown"
@@ -34366,6 +36973,12 @@
             "science-fiction",
             "adventure"
           ],
+          "series": [
+            {
+              "id": "Q3048935",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Cinq semaines en ballon",
             "en_US": "Five Weeks in a Balloon"
@@ -34388,6 +37001,12 @@
           "genre": [
             "science-fiction",
             "adventure"
+          ],
+          "series": [
+            {
+              "id": "Q3048935",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Voyage au centre de la Terre",
@@ -34412,6 +37031,12 @@
             "science-fiction",
             "adventure"
           ],
+          "series": [
+            {
+              "id": "Q3048935",
+              "position": 4
+            }
+          ],
           "title": {
             "fr_FR": "De la Terre à la Lune",
             "en_US": "From the Earth to the Moon"
@@ -34434,6 +37059,15 @@
           "genre": [
             "science-fiction",
             "travel"
+          ],
+          "series": [
+            {
+              "id": "Q112147292"
+            },
+            {
+              "id": "Q3048935",
+              "position": 6
+            }
           ],
           "title": {
             "fr_FR": "Vingt mille lieues sous les mers",
@@ -34459,6 +37093,12 @@
             "adventure",
             "serialized-fiction"
           ],
+          "series": [
+            {
+              "id": "Q3048935",
+              "position": 11
+            }
+          ],
           "title": {
             "fr_FR": "Le Tour du monde en quatre-vingts jours",
             "en_US": "Around the World in Eighty Days"
@@ -34479,6 +37119,12 @@
           "genre": [
             "science-fiction",
             "adventure"
+          ],
+          "series": [
+            {
+              "id": "Q3048935",
+              "position": 14
+            }
           ],
           "title": {
             "fr_FR": "Michel Strogoff",
@@ -34505,6 +37151,15 @@
             "robinsonade",
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q112147292"
+            },
+            {
+              "id": "Q3048935",
+              "position": 12
+            }
+          ],
           "title": {
             "fr_FR": "L'Île mystérieuse",
             "en_US": "The Mysterious Island"
@@ -34525,6 +37180,12 @@
           "genre": [
             "adventure"
           ],
+          "series": [
+            {
+              "id": "Q3048935",
+              "position": 19
+            }
+          ],
           "title": {
             "fr_FR": "Les Tribulations d'un Chinois en Chine",
             "en_US": "Tribulations of a Chinaman in China"
@@ -34544,6 +37205,16 @@
           "year": 1886,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q56884286",
+              "position": 1
+            },
+            {
+              "id": "Q3048935",
+              "position": 29
+            }
           ],
           "title": {
             "fr_FR": "Robur-le-Conquérant",
@@ -34656,6 +37327,11 @@
           "year": 2007,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q5051062"
+            }
           ],
           "title": {
             "fr_FR": "Den of Thieves",
@@ -34893,6 +37569,12 @@
             "science-fiction",
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q7763492",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Fils de l'ombre",
             "en_US": "Son of the Shadows"
@@ -34912,6 +37594,12 @@
           "year": 2001,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q7763492",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Enfant de la prophétie",
@@ -34934,6 +37622,12 @@
             "fantasy",
             "historical-novel"
           ],
+          "series": [
+            {
+              "id": "Q7398922",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Wolfskin",
             "en_US": "Wolfskin"
@@ -34954,6 +37648,12 @@
           "year": 2004,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q7398922",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Foxmask",
@@ -35425,6 +38125,12 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q7601155",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Triple zéro",
             "en_US": "Republic Commando: Triple Zero"
@@ -35500,6 +38206,11 @@
           "year": 2005,
           "genre": [
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q5596158"
+            }
           ],
           "title": {
             "fr_FR": "Faithless",
@@ -35614,6 +38325,12 @@
           "genre": [
             "detective-novel",
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q102408600",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Jackson Brodie, détective privée (Case Histories)",
@@ -35731,6 +38448,12 @@
           "year": 1997,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q548365",
+              "position": 10
+            }
           ],
           "title": {
             "fr_FR": "L'Androïde",
@@ -35884,6 +38607,12 @@
             "fantasy",
             "children-s-literature"
           ],
+          "series": [
+            {
+              "id": "Q1214341",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "L'Enlèvement",
             "en_US": "Guardians of Ga'Hoole: The Capture"
@@ -35905,6 +38634,12 @@
             "children-s-literature",
             "adventure-novel"
           ],
+          "series": [
+            {
+              "id": "Q1214341",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Le Grand Voyage",
             "en_US": "Guardians of Ga'Hoole: The Journey"
@@ -35924,6 +38659,12 @@
           "year": 2004,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q1214341",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "L'Assaut",
@@ -35946,6 +38687,12 @@
             "fantasy",
             "children-s-literature"
           ],
+          "series": [
+            {
+              "id": "Q1214341",
+              "position": 4
+            }
+          ],
           "title": {
             "fr_FR": "Le Siège",
             "en_US": "Guardians of Ga'Hoole: The Siege"
@@ -35966,6 +38713,12 @@
           "genre": [
             "fantasy",
             "children-s-literature"
+          ],
+          "series": [
+            {
+              "id": "Q1214341",
+              "position": 6
+            }
           ],
           "title": {
             "fr_FR": "L'Incendie",
@@ -36129,6 +38882,12 @@
             "romance",
             "adventure-novel"
           ],
+          "series": [
+            {
+              "id": "Q3232559",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Morsure",
             "en_US": "Bitten"
@@ -36148,6 +38907,12 @@
           "year": 2003,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q3232559",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Capture",
@@ -36169,6 +38934,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q3232559",
+              "position": 5
+            }
+          ],
           "title": {
             "fr_FR": "Hantise",
             "en_US": "Haunted"
@@ -36189,6 +38960,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q3232559",
+              "position": 6
+            }
+          ],
           "title": {
             "fr_FR": "Rupture",
             "en_US": "Broken"
@@ -36208,6 +38985,11 @@
           "year": 2006,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q3232559"
+            }
           ],
           "title": {
             "fr_FR": "Chaotic",
@@ -36287,6 +39069,12 @@
           "genre": [
             "historical-novel"
           ],
+          "series": [
+            {
+              "id": "Q83559723",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Les Piliers de la Terre",
             "en_US": "The Pillars of the Earth"
@@ -36309,6 +39097,12 @@
           "genre": [
             "historical-novel"
           ],
+          "series": [
+            {
+              "id": "Q83559723",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Un monde sans fin",
             "en_US": "World Without End"
@@ -36330,6 +39124,12 @@
           "year": 2010,
           "genre": [
             "historical-novel"
+          ],
+          "series": [
+            {
+              "id": "Q18380271",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "La Chute des géants",
@@ -36550,6 +39350,12 @@
           "awards": [
             "Q2090893"
           ],
+          "series": [
+            {
+              "id": "Q7797371",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Le Rivage oublié",
             "en_US": "The Wild Shore"
@@ -36569,6 +39375,12 @@
           "year": 1988,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q7797371",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "La Côte dorée",
@@ -36592,6 +39404,12 @@
           ],
           "awards": [
             "Q1030402"
+          ],
+          "series": [
+            {
+              "id": "Q7797371",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Lisière du Pacifique",
@@ -36756,6 +39574,11 @@
             "mystery",
             "horror"
           ],
+          "series": [
+            {
+              "id": "Q2659466"
+            }
+          ],
           "title": {
             "fr_FR": "Ring",
             "en_US": "Ring"
@@ -36805,6 +39628,11 @@
           "year": 2006,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q20668228"
+            }
           ],
           "title": {
             "fr_FR": "A Hunger Like No Other",
@@ -37031,6 +39859,12 @@
             "family-saga",
             "children-s-literature"
           ],
+          "series": [
+            {
+              "id": "Q5400672",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Little House in the Big Woods",
             "en_US": "Little House in the Big Woods"
@@ -37052,6 +39886,12 @@
           "genre": [
             "family-saga",
             "historical-novel"
+          ],
+          "series": [
+            {
+              "id": "Q5400672",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Un enfant de la terre",
@@ -37095,6 +39935,12 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q5400672",
+              "position": 9
+            }
+          ],
           "title": {
             "fr_FR": "Les jeunes mariés",
             "en_US": "The First Four Years"
@@ -37126,6 +39972,12 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q549364",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Plaisirs coupables",
             "en_US": "Guilty Pleasures"
@@ -37145,6 +39997,12 @@
           "year": 1994,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q549364",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Le Cadavre rieur",
@@ -37166,6 +40024,12 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q549364",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Le Cirque des damnés",
             "en_US": "Circus of the Damned"
@@ -37186,6 +40050,12 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q549364",
+              "position": 4
+            }
+          ],
           "title": {
             "fr_FR": "Lunatic Café",
             "en_US": "The Lunatic Cafe"
@@ -37205,6 +40075,12 @@
           "year": 1996,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q549364",
+              "position": 5
+            }
           ],
           "title": {
             "fr_FR": "Le Squelette sanglant",
@@ -37317,6 +40193,12 @@
           "awards": [
             "Q179810"
           ],
+          "series": [
+            {
+              "id": "Q87718825",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Vol et Volupté",
             "en_US": "The Burglar Who Liked to Quote Kipling"
@@ -37335,6 +40217,12 @@
           "year": 1991,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q131108445",
+              "position": 9
+            }
           ],
           "title": {
             "fr_FR": "Une danse aux abattoirs",
@@ -37461,6 +40349,12 @@
           "year": 2002,
           "genre": [
             "thriller"
+          ],
+          "series": [
+            {
+              "id": "Q25210939",
+              "position": 6
+            }
           ],
           "title": {
             "fr_FR": "Without Fail",
@@ -37858,6 +40752,11 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q5530710"
+            }
+          ],
           "title": {
             "fr_FR": "A Great and Terrible Beauty",
             "en_US": "A Great and Terrible Beauty"
@@ -37891,6 +40790,12 @@
           "genre": [
             "mystery"
           ],
+          "series": [
+            {
+              "id": "Q17113225",
+              "position": 6
+            }
+          ],
           "title": {
             "fr_FR": "Le chat qui jouait au postier",
             "en_US": "The Cat Who Played Post Office"
@@ -37910,6 +40815,12 @@
           "year": 1988,
           "genre": [
             "mystery"
+          ],
+          "series": [
+            {
+              "id": "Q17113225",
+              "position": 7
+            }
           ],
           "title": {
             "fr_FR": "Le Chat qui connaissait Shakespeare",
@@ -37965,6 +40876,12 @@
             "science-fiction",
             "thriller"
           ],
+          "series": [
+            {
+              "id": "Q133501358",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Deep storm",
             "en_US": "Deep Storm"
@@ -37995,6 +40912,11 @@
           "year": 1989,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q1469475"
+            }
           ],
           "title": {
             "fr_FR": "The Silver Pigs",
@@ -38134,6 +41056,11 @@
             "fantasy",
             "high-fantasy"
           ],
+          "series": [
+            {
+              "id": "Q1211900"
+            }
+          ],
           "title": {
             "fr_FR": "Le Livre des Trois",
             "en_US": "The Book of Three"
@@ -38153,6 +41080,11 @@
           "year": 1965,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q1211900"
+            }
           ],
           "title": {
             "fr_FR": "Le Chaudron noir",
@@ -38175,6 +41107,11 @@
             "fantasy",
             "high-fantasy"
           ],
+          "series": [
+            {
+              "id": "Q1211900"
+            }
+          ],
           "title": {
             "fr_FR": "Le Château de Llyr",
             "en_US": "The Castle of Llyr"
@@ -38194,6 +41131,11 @@
           "year": 1967,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q1211900"
+            }
           ],
           "title": {
             "fr_FR": "Taram chevalier errant",
@@ -38217,6 +41159,11 @@
           ],
           "awards": [
             "Q622813"
+          ],
+          "series": [
+            {
+              "id": "Q1211900"
+            }
           ],
           "title": {
             "fr_FR": "Le Haut Roi",
@@ -38310,6 +41257,12 @@
           "awards": [
             "Q622813"
           ],
+          "series": [
+            {
+              "id": "Q18107449",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Le Passeur",
             "en_US": "The Giver"
@@ -38331,6 +41284,12 @@
             "science-fiction",
             "children-s-literature"
           ],
+          "series": [
+            {
+              "id": "Q18107449",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "L'Élue",
             "en_US": "Gathering Blue"
@@ -38350,6 +41309,12 @@
           "year": 2004,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q18107449",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Messager",
@@ -38446,6 +41411,11 @@
           "genre": [
             "comedy"
           ],
+          "series": [
+            {
+              "id": "Q7508546"
+            }
+          ],
           "title": {
             "fr_FR": "Sideways Stories From Wayside School",
             "en_US": "Sideways Stories From Wayside School"
@@ -38466,6 +41436,11 @@
           "year": 1989,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q7508546"
+            }
           ],
           "title": {
             "fr_FR": "Sideways Arithmetic From Wayside School",
@@ -38579,6 +41554,12 @@
             "realist-novel",
             "family-saga"
           ],
+          "series": [
+            {
+              "id": "Q110945382",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Les Quatre Filles du docteur March",
             "en_US": "Little Women"
@@ -38681,6 +41662,12 @@
           "year": 1908,
           "genre": [
             "children-s-literature"
+          ],
+          "series": [
+            {
+              "id": "Q3209782",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Anne… la maison aux pignons verts",
@@ -39001,6 +41988,12 @@
           "genre": [
             "young-adult"
           ],
+          "series": [
+            {
+              "id": "Q7225812",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "A House Like a Lotus",
             "en_US": "A House Like a Lotus"
@@ -39022,6 +42015,16 @@
           "genre": [
             "science-fiction",
             "young-adult"
+          ],
+          "series": [
+            {
+              "id": "Q7225812",
+              "position": 4
+            },
+            {
+              "id": "Q7805078",
+              "position": 5
+            }
           ],
           "title": {
             "fr_FR": "An Acceptable Time",
@@ -39312,6 +42315,12 @@
           "genre": [
             "autobiography"
           ],
+          "series": [
+            {
+              "id": "Q464928",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Du côté de chez Swann",
             "en_US": "Swann's Way"
@@ -39335,6 +42344,12 @@
           "awards": [
             "Q187300"
           ],
+          "series": [
+            {
+              "id": "Q464928",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "À l'ombre des jeunes filles en fleurs",
             "en_US": "In the Shadow of Young Girls in Flower"
@@ -39355,6 +42370,12 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q464928",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Le Côté de Guermantes",
             "en_US": "The Guermantes Way"
@@ -39374,6 +42395,11 @@
           "year": 1920,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q464928"
+            }
           ],
           "title": {
             "fr_FR": "Sodome et Gomorrhe",
@@ -39410,6 +42436,12 @@
           "awards": [
             "Q708830",
             "Q3405805"
+          ],
+          "series": [
+            {
+              "id": "Q100715649",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Le Conte du serviteur",
@@ -39532,6 +42564,11 @@
           "year": 1998,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q3828658"
+            }
           ],
           "title": {
             "fr_FR": "Une âme bien trempée",
@@ -39854,6 +42891,12 @@
             "narrative",
             "autobiographical"
           ],
+          "series": [
+            {
+              "id": "Q135228711",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Archives du Nord",
             "en_US": "How Many Years"
@@ -40015,6 +43058,11 @@
             "thriller",
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q20655440"
+            }
+          ],
           "title": {
             "fr_FR": "Le Sicilien",
             "en_US": "The Sicilian"
@@ -40034,6 +43082,11 @@
           "year": 2000,
           "genre": [
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q20655440"
+            }
           ],
           "title": {
             "fr_FR": "Omerta",
@@ -40265,6 +43318,11 @@
             "satirical-novel",
             "adventures"
           ],
+          "series": [
+            {
+              "id": "Q135650769"
+            }
+          ],
           "title": {
             "fr_FR": "Les Aventures de Tom Sawyer",
             "en_US": "The Adventures of Tom Sawyer"
@@ -40287,6 +43345,11 @@
           "genre": [
             "satirical-novel",
             "adventures"
+          ],
+          "series": [
+            {
+              "id": "Q135650769"
+            }
           ],
           "title": {
             "fr_FR": "Les Aventures de Huckleberry Finn",
@@ -41114,6 +44177,11 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q5015435"
+            }
+          ],
           "title": {
             "fr_FR": "The Wicked Day",
             "en_US": "The Wicked Day"
@@ -41537,6 +44605,11 @@
           "genre": [
             "young-adult"
           ],
+          "series": [
+            {
+              "id": "Q3270030"
+            }
+          ],
           "title": {
             "fr_FR": "Darkest Hour",
             "en_US": "Darkest Hour"
@@ -41629,6 +44702,12 @@
             "fantasy",
             "young-adult"
           ],
+          "series": [
+            {
+              "id": "Q135265863",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "The Queen of Attolia",
             "en_US": "The Queen of Attolia"
@@ -41650,6 +44729,12 @@
           "genre": [
             "fantasy",
             "young-adult"
+          ],
+          "series": [
+            {
+              "id": "Q135265863",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "The King of Attolia",
@@ -41734,6 +44819,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q3233269",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Arrows of the Queen",
             "en_US": "Arrows of the Queen"
@@ -41753,6 +44844,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q3233269",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Arrow's Fall",
             "en_US": "Arrow's Fall"
@@ -41770,6 +44867,12 @@
           "year": 1989,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q124313069",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "La Proie de la magie",
@@ -41792,6 +44895,12 @@
           ],
           "awards": [
             "Q594550"
+          ],
+          "series": [
+            {
+              "id": "Q124313069",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Le Prix de la magie",
@@ -41925,6 +45034,12 @@
           "genre": [
             "detective-novel",
             "noir"
+          ],
+          "series": [
+            {
+              "id": "Q96278982",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "L'Envol des anges",
@@ -42429,6 +45544,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q3212110",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Le Champion éternel",
             "en_US": "The Eternal Champion"
@@ -42451,6 +45572,12 @@
           ],
           "awards": [
             "Q27496509"
+          ],
+          "series": [
+            {
+              "id": "Q21117729",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Elric des dragons",
@@ -43521,6 +46648,12 @@
             "Q5157154",
             "Q2090893"
           ],
+          "series": [
+            {
+              "id": "Q1208412",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Les Dragons de Sa Majesté",
             "en_US": "His Majesty's Dragon"
@@ -43544,6 +46677,12 @@
           ],
           "awards": [
             "Q2090893"
+          ],
+          "series": [
+            {
+              "id": "Q1208412",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Le Trône de jade",
@@ -43816,6 +46955,12 @@
           "awards": [
             "Q708830"
           ],
+          "series": [
+            {
+              "id": "Q808549",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Quicksilver",
             "en_US": "Quicksilver"
@@ -43839,6 +46984,12 @@
           ],
           "awards": [
             "Q2576795"
+          ],
+          "series": [
+            {
+              "id": "Q808549",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "The Confusion",
@@ -43999,6 +47150,12 @@
             "Q255032",
             "Q607354",
             "Q266012"
+          ],
+          "series": [
+            {
+              "id": "Q133505136",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "American Gods",
@@ -44765,6 +47922,12 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q133201499",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Le Cœur de la mer",
             "en_US": "Heart of the Sea"
@@ -45042,6 +48205,12 @@
             "Q2576795",
             "Q266012"
           ],
+          "series": [
+            {
+              "id": "Q2642928",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "La Voix des morts",
             "en_US": "Speaker for the Dead"
@@ -45061,6 +48230,12 @@
           "year": 1991,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q2642928",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Xénocide",
@@ -45082,6 +48257,12 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q2642928",
+              "position": 4
+            }
+          ],
           "title": {
             "fr_FR": "Les Enfants de l'esprit",
             "en_US": "Children of the Mind"
@@ -45102,6 +48283,15 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q2642928"
+            },
+            {
+              "id": "Q3212666",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "La Stratégie de l'ombre",
             "en_US": "Ender's Shadow"
@@ -45121,6 +48311,15 @@
           "year": 2001,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q2642928"
+            },
+            {
+              "id": "Q3212666",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "L'Ombre de l'Hégémon",
@@ -45238,6 +48437,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q2305629"
+            }
+          ],
           "title": {
             "fr_FR": "Cover Her Face",
             "en_US": "Cover Her Face"
@@ -45255,6 +48459,11 @@
           "year": 1975,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q2305629"
+            }
           ],
           "title": {
             "fr_FR": "Meurtre dans un fauteuil",
@@ -45280,6 +48489,11 @@
           "awards": [
             "Q176441"
           ],
+          "series": [
+            {
+              "id": "Q2305629"
+            }
+          ],
           "title": {
             "fr_FR": "Un certain goût pour la mort",
             "en_US": "A Taste for Death"
@@ -45300,6 +48514,11 @@
           "genre": [
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q2305629"
+            }
+          ],
           "title": {
             "fr_FR": "Meurtres en soutane",
             "en_US": "Death in Holy Orders"
@@ -45319,6 +48538,11 @@
           "year": 2005,
           "genre": [
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q2305629"
+            }
           ],
           "title": {
             "fr_FR": "Le Phare",
@@ -45600,6 +48824,12 @@
           "genre": [
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q112123147",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Postmortem",
             "en_US": "Postmortem"
@@ -45619,6 +48849,12 @@
           "year": 1995,
           "genre": [
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q112123147",
+              "position": 6
+            }
           ],
           "title": {
             "fr_FR": "Une mort sans nom",
@@ -45640,6 +48876,12 @@
           "genre": [
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q112123147",
+              "position": 7
+            }
+          ],
           "title": {
             "fr_FR": "Morts en eaux troubles",
             "en_US": "Cause of Death"
@@ -45660,6 +48902,12 @@
           "genre": [
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q112123147",
+              "position": 12
+            }
+          ],
           "title": {
             "fr_FR": "Baton Rouge",
             "en_US": "Blow Fly"
@@ -45679,6 +48927,12 @@
           "year": 2004,
           "genre": [
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q112123147",
+              "position": 13
+            }
           ],
           "title": {
             "fr_FR": "Signe suspect",
@@ -45738,6 +48992,11 @@
           "awards": [
             "Q176441"
           ],
+          "series": [
+            {
+              "id": "Q125070963"
+            }
+          ],
           "title": {
             "fr_FR": "Le Talentueux Mr. Ripley",
             "en_US": "The Talented Mr. Ripley"
@@ -45772,6 +49031,12 @@
           "genre": [
             "historical-novel"
           ],
+          "series": [
+            {
+              "id": "Q10376289",
+              "position": 8
+            }
+          ],
           "title": {
             "fr_FR": "Mission en mer Ionienne",
             "en_US": "The Ionian Mission"
@@ -45791,6 +49056,12 @@
           "year": 1986,
           "genre": [
             "historical-novel"
+          ],
+          "series": [
+            {
+              "id": "Q10376289",
+              "position": 11
+            }
           ],
           "title": {
             "fr_FR": "The Reverse of the Medal",
@@ -45813,6 +49084,12 @@
           "genre": [
             "historical-novel"
           ],
+          "series": [
+            {
+              "id": "Q10376289",
+              "position": 15
+            }
+          ],
           "title": {
             "fr_FR": "Clarissa Oakes",
             "en_US": "Clarissa Oakes"
@@ -45834,6 +49111,12 @@
           "genre": [
             "historical-novel"
           ],
+          "series": [
+            {
+              "id": "Q10376289",
+              "position": 20
+            }
+          ],
           "title": {
             "fr_FR": "Blue at the Mizzen",
             "en_US": "Blue at the Mizzen"
@@ -45854,6 +49137,12 @@
           "year": 2004,
           "genre": [
             "historical-novel"
+          ],
+          "series": [
+            {
+              "id": "Q10376289",
+              "position": 21
+            }
           ],
           "title": {
             "fr_FR": "The Final Unfinished Voyage of Jack Aubrey",
@@ -46332,6 +49621,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q125218257"
+            }
+          ],
           "title": {
             "fr_FR": "Sur le bord de la rivière Piedra, je me suis assise et j'ai pleuré",
             "en_US": "By the River Piedra I Sat Down and Wept"
@@ -46352,6 +49646,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q125218257"
+            }
+          ],
           "title": {
             "fr_FR": "Veronika décide de mourir",
             "en_US": "Veronika Decides to Die"
@@ -46371,6 +49670,11 @@
           "year": 2000,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q125218257"
+            }
           ],
           "title": {
             "fr_FR": "The Devil and Miss Prym",
@@ -46755,6 +50059,12 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q16640092",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Mindstar",
             "en_US": "Mindstar Rising"
@@ -46775,6 +50085,12 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q16640092",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Quantum",
             "en_US": "A Quantum Murder"
@@ -46794,6 +50110,12 @@
           "year": 2004,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q3212670",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "L'Étoile de Pandore",
@@ -46863,6 +50185,11 @@
           "awards": [
             "Q1616499",
             "Q176441"
+          ],
+          "series": [
+            {
+              "id": "Q2246861"
+            }
           ],
           "title": {
             "fr_FR": "saison sèche",
@@ -47297,6 +50624,12 @@
             "science-fiction",
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q129240",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "La Tour des anges",
             "en_US": "The Subtle Knife"
@@ -47317,6 +50650,12 @@
           "genre": [
             "science-fiction",
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q129240",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Le Miroir d'ambre",
@@ -47421,6 +50760,11 @@
           ],
           "awards": [
             "Q833633"
+          ],
+          "series": [
+            {
+              "id": "Q6152684"
+            }
           ],
           "title": {
             "fr_FR": "Pastorale américaine",
@@ -47681,6 +51025,12 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q109544620",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "The Boys Start the War",
             "en_US": "The Boys Start the War"
@@ -47815,6 +51165,11 @@
             "historical-novel",
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q137867913"
+            }
+          ],
           "title": {
             "fr_FR": "Le Grand Monde",
             "en_US": "The Great World"
@@ -47848,6 +51203,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q182099",
+              "position": 10
+            }
+          ],
           "title": {
             "fr_FR": "Vale of the Vole",
             "en_US": "Vale of the Vole"
@@ -47868,6 +51229,12 @@
           "year": 1991,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q182099",
+              "position": 14
+            }
           ],
           "title": {
             "fr_FR": "Question Quest",
@@ -47890,6 +51257,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q182099",
+              "position": 15
+            }
+          ],
           "title": {
             "fr_FR": "The Color of Her Panties",
             "en_US": "The Color of Her Panties"
@@ -47911,6 +51284,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q182099",
+              "position": 16
+            }
+          ],
           "title": {
             "fr_FR": "Demons Don't Dream",
             "en_US": "Demons Don't Dream"
@@ -47931,6 +51310,12 @@
           "year": 1994,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q182099",
+              "position": 17
+            }
           ],
           "title": {
             "fr_FR": "Harpy Thyme",
@@ -47965,6 +51350,11 @@
           "genre": [
             "philosophical-dialogue"
           ],
+          "series": [
+            {
+              "id": "Q3026037"
+            }
+          ],
           "title": {
             "fr_FR": "Gorgias",
             "en_US": "Gorgias"
@@ -47984,6 +51374,11 @@
           "year": -400,
           "genre": [
             "philosophical-dialogue"
+          ],
+          "series": [
+            {
+              "id": "Q3026037"
+            }
           ],
           "title": {
             "fr_FR": "Protagoras",
@@ -48005,6 +51400,11 @@
           "genre": [
             "philosophical-dialogue",
             "justice"
+          ],
+          "series": [
+            {
+              "id": "Q3026037"
+            }
           ],
           "title": {
             "fr_FR": "Apologie de Socrate",
@@ -48029,6 +51429,11 @@
             "philosophical-dialogue",
             "love"
           ],
+          "series": [
+            {
+              "id": "Q3026037"
+            }
+          ],
           "title": {
             "fr_FR": "Le Banquet",
             "en_US": "The Symposium"
@@ -48052,6 +51457,11 @@
             "philosophical-dialogue",
             "political"
           ],
+          "series": [
+            {
+              "id": "Q3026037"
+            }
+          ],
           "title": {
             "fr_FR": "La République",
             "en_US": "The Republic"
@@ -48073,6 +51483,11 @@
           "year": -360,
           "genre": [
             "philosophical-dialogue"
+          ],
+          "series": [
+            {
+              "id": "Q3026037"
+            }
           ],
           "title": {
             "fr_FR": "Timée",
@@ -48255,6 +51670,11 @@
           "year": 2006,
           "genre": [
             "young-adult"
+          ],
+          "series": [
+            {
+              "id": "Q5476116"
+            }
           ],
           "title": {
             "fr_FR": "Vampire City 1 : Bienvenue en enfer",
@@ -48626,6 +52046,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q517705",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Magicien",
             "en_US": "Magician"
@@ -48645,6 +52071,12 @@
           "year": 1989,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q7887251",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Prince de sang",
@@ -48666,6 +52098,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q2152729",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "La Rage d'un roi démon",
             "en_US": "Rage of a Demon King"
@@ -48686,6 +52124,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q3209692",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Les Faucons de la nuit",
             "en_US": "Flight of the Nighthawks"
@@ -48705,6 +52149,12 @@
           "year": 2006,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q3209692",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "La Dimension des ombres",
@@ -49265,6 +52715,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q3772092",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "La Légende de Huma",
             "en_US": "The Legend of Huma"
@@ -49285,6 +52741,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q138348696",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Night of Blood",
             "en_US": "Night of Blood"
@@ -49299,6 +52761,11 @@
           "year": 2006,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q7764372"
+            }
           ],
           "title": {
             "fr_FR": "Birthright",
@@ -50050,6 +53517,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q3225913",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Le Guerrier prophète",
             "en_US": "The Warrior Prophet"
@@ -50069,6 +53542,12 @@
           "year": 2006,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q3225913",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Le Chant des sorciers",
@@ -50167,6 +53646,12 @@
             "young-adult",
             "adventure-novel"
           ],
+          "series": [
+            {
+              "id": "Q213167",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Le Voleur de foudre",
             "en_US": "The Lightning Thief"
@@ -50189,6 +53674,12 @@
             "adventure-novel",
             "young-adult"
           ],
+          "series": [
+            {
+              "id": "Q213167",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "La Mer des monstres",
             "en_US": "The Sea of Monsters"
@@ -50210,6 +53701,12 @@
             "fantasy",
             "adventure-novel",
             "young-adult"
+          ],
+          "series": [
+            {
+              "id": "Q213167",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Le Sort du titan",
@@ -50386,6 +53883,11 @@
             "adventure-novel",
             "young-adult"
           ],
+          "series": [
+            {
+              "id": "Q16385973"
+            }
+          ],
           "title": {
             "fr_FR": "Le Jeune Homme et l'Espace",
             "en_US": "Have Space Suit—Will Travel"
@@ -50510,6 +54012,16 @@
             "fantasy",
             "high-fantasy"
           ],
+          "series": [
+            {
+              "id": "Q4404357",
+              "position": 15
+            },
+            {
+              "id": "Q3480545",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "La Promesse du roi-sorcier",
             "en_US": "Promise of the Witch King"
@@ -50530,6 +54042,16 @@
           "genre": [
             "fantasy",
             "high-fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q4404357",
+              "position": 16
+            },
+            {
+              "id": "Q3480545",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "La Route du patriarche",
@@ -50620,6 +54142,11 @@
           "year": 1995,
           "genre": [
             "detective-novel"
+          ],
+          "series": [
+            {
+              "id": "Q56660241"
+            }
           ],
           "title": {
             "fr_FR": "Thin Air",
@@ -51021,6 +54548,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q4470",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Le Dragon réincarné",
             "en_US": "The Dragon Reborn"
@@ -51040,6 +54573,12 @@
           "year": 1992,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q4470",
+              "position": 4
+            }
           ],
           "title": {
             "fr_FR": "Un lever de ténèbres",
@@ -51061,6 +54600,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q4470",
+              "position": 6
+            }
+          ],
           "title": {
             "fr_FR": "Le Seigneur du chaos",
             "en_US": "Lord of Chaos"
@@ -51080,6 +54625,12 @@
           "year": 2000,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q4470",
+              "position": 9
+            }
           ],
           "title": {
             "fr_FR": "Le Cœur de l'hiver",
@@ -51236,6 +54787,12 @@
             "thriller",
             "spy-fiction"
           ],
+          "series": [
+            {
+              "id": "Q4417649",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "La Mémoire dans la peau",
             "en_US": "The Bourne Identity"
@@ -51255,6 +54812,12 @@
           "year": 1990,
           "genre": [
             "spy-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q4417649",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "La Vengeance dans la peau",
@@ -51634,6 +55197,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q2211517",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Brumes et Tempêtes / L'Éveil des eaux dormantes / Prisons d'eau et de bois",
             "en_US": "The Mad Ship"
@@ -51654,6 +55223,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q2211517",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Les Marches du trône / Ombres et Flammes / Le Seigneur des trois règnes",
             "en_US": "Ship of Destiny"
@@ -51673,6 +55248,12 @@
           "year": 2006,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q2511839",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Le Fils rejeté / La Magie de la peur / Le Choix du soldat",
@@ -51830,6 +55411,11 @@
           "genre": [
             "historical-novel"
           ],
+          "series": [
+            {
+              "id": "Q7745986"
+            }
+          ],
           "title": {
             "fr_FR": "A Star Called Henry",
             "en_US": "A Star Called Henry"
@@ -51850,6 +55436,11 @@
           "year": 2004,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q7745986"
+            }
           ],
           "title": {
             "fr_FR": "Oh, Play That Thing!",
@@ -52019,6 +55610,12 @@
           "year": 1980,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q56584159",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "L'Enfant tombé de nulle part",
@@ -52285,6 +55882,11 @@
           "genre": [
             "detective-novel",
             "noir"
+          ],
+          "series": [
+            {
+              "id": "Q2983578"
+            }
           ],
           "title": {
             "fr_FR": "Le Guerrier du désert",
@@ -52661,6 +56263,12 @@
           "year": 1948,
           "genre": [
             "children-s-literature"
+          ],
+          "series": [
+            {
+              "id": "Q51955014",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "My Father's Dragon",
@@ -53589,6 +57197,12 @@
             "dystopian",
             "young-adult"
           ],
+          "series": [
+            {
+              "id": "Q921950",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Uglies",
             "en_US": "Uglies"
@@ -53609,6 +57223,12 @@
           "genre": [
             "science-fiction",
             "young-adult"
+          ],
+          "series": [
+            {
+              "id": "Q921950",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Pretties",
@@ -53631,6 +57251,11 @@
             "science-fiction",
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q3312723"
+            }
+          ],
           "title": {
             "fr_FR": "L'Étreinte des ténèbres",
             "en_US": "Touching Darkness"
@@ -53652,6 +57277,11 @@
             "science-fiction",
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q3312723"
+            }
+          ],
           "title": {
             "fr_FR": "Le Long jour bleu",
             "en_US": "Blue Noon"
@@ -53671,6 +57301,12 @@
           "year": 2006,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q921950",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Specials",
@@ -55282,6 +58918,12 @@
             "horror",
             "supernatural-fiction"
           ],
+          "series": [
+            {
+              "id": "Q280898",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "La Tour sombre",
             "en_US": "The Dark Tower: The Gunslinger"
@@ -55304,6 +58946,12 @@
           "genre": [
             "horror",
             "supernatural-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q142083056",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Le Talisman",
@@ -55436,6 +59084,16 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q1856030",
+              "position": 5
+            },
+            {
+              "id": "Q20963052",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "L'Arbre primordial",
             "en_US": "The One Tree"
@@ -55456,6 +59114,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q6909582",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Un cavalier passe / Le Feu de ses passions",
             "en_US": "A Man Rides Through"
@@ -55472,6 +59136,12 @@
           "year": 1991,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q7735793",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Le Savoir interdit",
@@ -55493,6 +59163,12 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q7735793",
+              "position": 4
+            }
+          ],
           "title": {
             "fr_FR": "Chaos and Order",
             "en_US": "Chaos and Order"
@@ -55510,6 +59186,12 @@
           "year": 1999,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q7735793",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "L'Éveil du dieu noir",
@@ -55860,6 +59542,12 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q1618095",
+              "position": 5
+            }
+          ],
           "title": {
             "fr_FR": "Silver on the Tree",
             "en_US": "Silver on the Tree"
@@ -56202,6 +59890,11 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q6684319"
+            }
+          ],
           "title": {
             "fr_FR": "Les Années oubliées",
             "en_US": "The Lost Years of Merlin"
@@ -56443,6 +60136,12 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q1167968",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "La Route des Rêves",
             "en_US": "Stone of Farewell"
@@ -56462,6 +60161,12 @@
           "year": 1993,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q1167968",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "La Citadelle assiégée",
@@ -56483,6 +60188,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q1167968"
+            }
+          ],
           "title": {
             "fr_FR": "Le Cri de Camaris",
             "en_US": "To Green Angel Tower, part 2"
@@ -56503,6 +60213,12 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q958873",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Autremonde / L'Ombre de la cité d'or",
             "en_US": "City of Golden Shadow"
@@ -56522,6 +60238,11 @@
           "year": 1998,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q958873"
+            }
           ],
           "title": {
             "fr_FR": "Le Fleuve entre les mondes / Les Voiles d'illusion",
@@ -56554,6 +60275,11 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q7765254"
+            }
+          ],
           "title": {
             "fr_FR": "Alanna: The First Adventure",
             "en_US": "Alanna: The First Adventure"
@@ -56574,6 +60300,11 @@
           "year": 1984,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q7765254"
+            }
           ],
           "title": {
             "fr_FR": "In the Hand of the Goddess",
@@ -56596,6 +60327,11 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q7765254"
+            }
+          ],
           "title": {
             "fr_FR": "Lioness Rampant",
             "en_US": "Lioness Rampant"
@@ -56617,6 +60353,11 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q7741505"
+            }
+          ],
           "title": {
             "fr_FR": "Wild Magic",
             "en_US": "Wild Magic"
@@ -56637,6 +60378,11 @@
           "year": 2006,
           "genre": [
             "novel"
+          ],
+          "series": [
+            {
+              "id": "Q7252806"
+            }
           ],
           "title": {
             "fr_FR": "Terrier",
@@ -56872,6 +60618,14 @@
             "fantasy",
             "high-fantasy"
           ],
+          "series": [
+            {
+              "id": "Q5739185"
+            },
+            {
+              "id": "Q1998865"
+            }
+          ],
           "title": {
             "fr_FR": "Les Descendants de Shannara",
             "en_US": "The Scions of Shannara"
@@ -56892,6 +60646,14 @@
           "genre": [
             "fantasy",
             "high-fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q5739185"
+            },
+            {
+              "id": "Q1998865"
+            }
           ],
           "title": {
             "fr_FR": "La Reine des elfes de Shannara",
@@ -56934,6 +60696,14 @@
             "fantasy",
             "high-fantasy"
           ],
+          "series": [
+            {
+              "id": "Q5755341"
+            },
+            {
+              "id": "Q1998865"
+            }
+          ],
           "title": {
             "fr_FR": "Jarka Ruus",
             "en_US": "Jarka Ruus"
@@ -56954,6 +60724,14 @@
           "genre": [
             "fantasy",
             "high-fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q1998865"
+            },
+            {
+              "id": "Q3822522"
+            }
           ],
           "title": {
             "fr_FR": "Armageddon's Children",
@@ -56989,6 +60767,12 @@
             "fantasy",
             "high-fantasy"
           ],
+          "series": [
+            {
+              "id": "Q8539013",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "La Première Leçon du sorcier",
             "en_US": "Wizard's First Rule"
@@ -57009,6 +60793,12 @@
           "genre": [
             "fantasy",
             "high-fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q8539013",
+              "position": 8
+            }
           ],
           "title": {
             "fr_FR": "L'Empire des vaincus",
@@ -57074,6 +60864,16 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q3257270",
+              "position": 1
+            },
+            {
+              "id": "Q54875383",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "La Huitième Couleur",
             "en_US": "The Colour of Magic"
@@ -57093,6 +60893,16 @@
           "year": 1986,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q3257270",
+              "position": 2
+            },
+            {
+              "id": "Q54875383",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Le Huitième Sortilège",
@@ -57114,6 +60924,16 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q3257270",
+              "position": 3
+            },
+            {
+              "id": "Q54876099",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "La Huitième Fille",
             "en_US": "Equal Rites"
@@ -57134,6 +60954,16 @@
           "genre": [
             "fantasy"
           ],
+          "series": [
+            {
+              "id": "Q3257270",
+              "position": 6
+            },
+            {
+              "id": "Q54876099",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Trois Sœurcières",
             "en_US": "Wyrd Sisters"
@@ -57153,6 +60983,12 @@
           "year": 1992,
           "genre": [
             "fantasy"
+          ],
+          "series": [
+            {
+              "id": "Q3257270",
+              "position": 13
+            }
           ],
           "title": {
             "fr_FR": "Les Petits Dieux",
@@ -57185,6 +61021,12 @@
           "genre": [
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q17638305",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "La Reine des morts",
             "en_US": "The Sinner"
@@ -57206,6 +61048,12 @@
             "horror",
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q17638305",
+              "position": 4
+            }
+          ],
           "title": {
             "fr_FR": "Body Double",
             "en_US": "Body Double"
@@ -57224,6 +61072,12 @@
           "genre": [
             "thriller"
           ],
+          "series": [
+            {
+              "id": "Q17638305",
+              "position": 5
+            }
+          ],
           "title": {
             "fr_FR": "Vanish",
             "en_US": "Vanish"
@@ -57238,6 +61092,12 @@
           "year": 2006,
           "genre": [
             "thriller"
+          ],
+          "series": [
+            {
+              "id": "Q17638305",
+              "position": 6
+            }
           ],
           "title": {
             "fr_FR": "The Mephisto Club",
@@ -57404,6 +61264,12 @@
             "crime",
             "horror"
           ],
+          "series": [
+            {
+              "id": "Q110929807",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Dragon rouge",
             "en_US": "Red Dragon"
@@ -57424,6 +61290,12 @@
           "genre": [
             "thriller",
             "horror"
+          ],
+          "series": [
+            {
+              "id": "Q110929807",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Hannibal",
@@ -58082,6 +61954,12 @@
             "techno-thriller",
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q55163199",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Jeux de guerre",
             "en_US": "Patriot Games"
@@ -58102,6 +61980,12 @@
           "genre": [
             "techno-thriller",
             "crime"
+          ],
+          "series": [
+            {
+              "id": "Q55163199",
+              "position": 1
+            }
           ],
           "title": {
             "fr_FR": "Sans aucun remords",
@@ -58124,6 +62008,12 @@
             "techno-thriller",
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q55163199",
+              "position": 8
+            }
+          ],
           "title": {
             "fr_FR": "Dette d'honneur",
             "en_US": "Debt of Honor"
@@ -58145,6 +62035,12 @@
             "techno-thriller",
             "crime"
           ],
+          "series": [
+            {
+              "id": "Q55163199",
+              "position": 9
+            }
+          ],
           "title": {
             "fr_FR": "Sur ordre",
             "en_US": "Executive Orders"
@@ -58164,6 +62060,12 @@
           "year": 2002,
           "genre": [
             "techno-thriller"
+          ],
+          "series": [
+            {
+              "id": "Q55163199",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Red Rabbit",
@@ -58778,6 +62680,12 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q2743959",
+              "position": 9
+            }
+          ],
           "title": {
             "fr_FR": "Étoile après étoile",
             "en_US": "Star by Star"
@@ -58798,6 +62706,12 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q7728968",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "La Guerre de l'essaim",
             "en_US": "The Swarm War"
@@ -58814,6 +62728,12 @@
           "year": 2006,
           "genre": [
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q6517323",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Tempête",
@@ -59210,6 +63130,12 @@
             "Q255032",
             "Q266012"
           ],
+          "series": [
+            {
+              "id": "Q2328396",
+              "position": 4
+            }
+          ],
           "title": {
             "fr_FR": "La Main gauche de la nuit",
             "en_US": "The Left Hand of Darkness"
@@ -59233,6 +63159,12 @@
             "fantasy",
             "bildungsroman"
           ],
+          "series": [
+            {
+              "id": "Q116546",
+              "position": 2
+            }
+          ],
           "title": {
             "fr_FR": "Les Tombeaux d'Atuan",
             "en_US": "The Tombs of Atuan"
@@ -59255,6 +63187,12 @@
           ],
           "awards": [
             "Q572316"
+          ],
+          "series": [
+            {
+              "id": "Q116546",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "L'Ultime Rivage",
@@ -59283,6 +63221,12 @@
             "Q266012",
             "Q19360203"
           ],
+          "series": [
+            {
+              "id": "Q2328396",
+              "position": 5
+            }
+          ],
           "title": {
             "fr_FR": "La Toile du monde",
             "en_US": "The Dispossessed"
@@ -59308,6 +63252,12 @@
           "awards": [
             "Q607354",
             "Q266012"
+          ],
+          "series": [
+            {
+              "id": "Q116546",
+              "position": 4
+            }
           ],
           "title": {
             "fr_FR": "Tehanu",
@@ -59820,6 +63770,11 @@
           "genre": [
             "gothic-novel"
           ],
+          "series": [
+            {
+              "id": "Q18336332"
+            }
+          ],
           "title": {
             "fr_FR": "Fleurs captives",
             "en_US": "Flowers in the Attic"
@@ -60043,6 +63998,12 @@
           "awards": [
             "Q3404918"
           ],
+          "series": [
+            {
+              "id": "Q55600140",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Vernon Subutex 1",
             "en_US": "Vernon Subutex 1"
@@ -60065,6 +64026,12 @@
           "genre": [
             "contemporary-novel",
             "saga"
+          ],
+          "series": [
+            {
+              "id": "Q55600140",
+              "position": 3
+            }
           ],
           "title": {
             "fr_FR": "Vernon Subutex 3",
@@ -60543,6 +64510,12 @@
             "historical-novel",
             "adventure"
           ],
+          "series": [
+            {
+              "id": "Q7975429",
+              "position": 4
+            }
+          ],
           "title": {
             "fr_FR": "Rob Roy",
             "en_US": "Rob Roy"
@@ -60566,6 +64539,12 @@
             "historical-novel",
             "scottish"
           ],
+          "series": [
+            {
+              "id": "Q7679332",
+              "position": 3
+            }
+          ],
           "title": {
             "fr_FR": "Le Cœur du Midlothian",
             "en_US": "The Heart of Midlothian"
@@ -60588,6 +64567,12 @@
           "genre": [
             "historical-novel",
             "chivalric"
+          ],
+          "series": [
+            {
+              "id": "Q7975429",
+              "position": 5
+            }
           ],
           "title": {
             "fr_FR": "Ivanhoé",
@@ -60686,6 +64671,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q7727861"
+            }
+          ],
           "title": {
             "fr_FR": "Quand le lion a faim",
             "en_US": "When the Lion Feeds"
@@ -60706,6 +64696,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q7727861"
+            }
+          ],
           "title": {
             "fr_FR": "La Piste du chacal",
             "en_US": "A Sparrow Falls"
@@ -60725,6 +64720,11 @@
           "year": 1997,
           "genre": [
             "historical-novel"
+          ],
+          "series": [
+            {
+              "id": "Q7727861"
+            }
           ],
           "title": {
             "fr_FR": "Les Oiseaux de proie",
@@ -60940,6 +64940,11 @@
           "genre": [
             "novel"
           ],
+          "series": [
+            {
+              "id": "Q3213313"
+            }
+          ],
           "title": {
             "fr_FR": "Le Hameau",
             "en_US": "The Hamlet"
@@ -61043,6 +65048,11 @@
           "genre": [
             "science-fiction"
           ],
+          "series": [
+            {
+              "id": "Q2610590"
+            }
+          ],
           "title": {
             "fr_FR": "Gravé sur chrome",
             "en_US": "Burning Chrome"
@@ -61070,6 +65080,12 @@
             "Q1341487",
             "Q27496509"
           ],
+          "series": [
+            {
+              "id": "Q2610590",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Neuromancien",
             "en_US": "Neuromancer"
@@ -61092,6 +65108,12 @@
           "genre": [
             "cyberpunk",
             "science-fiction"
+          ],
+          "series": [
+            {
+              "id": "Q2610590",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Count Zero",
@@ -61117,6 +65139,12 @@
             "cyberpunk",
             "dystopian"
           ],
+          "series": [
+            {
+              "id": "Q630048",
+              "position": 1
+            }
+          ],
           "title": {
             "fr_FR": "Lumière virtuelle",
             "en_US": "Virtual Light"
@@ -61137,6 +65165,12 @@
           "genre": [
             "science-fiction",
             "cyberpunk"
+          ],
+          "series": [
+            {
+              "id": "Q630048",
+              "position": 2
+            }
           ],
           "title": {
             "fr_FR": "Idoru",
