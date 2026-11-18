@@ -4,6 +4,17 @@ Toutes les évolutions notables de `faker-literature` sont documentées dans ce 
 
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0/) et les versions suivent [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [Non publié]
+
+### Modifié
+
+- `publisher()` en `fr_FR` ne tire plus les éditeurs des œuvres jamais traduites en français, qui sont ceux de leur édition originale étrangère (« Pantheon Books ») : la part d'éditeurs étrangers tirés passe d'environ un sur cinq à zéro. Ils restent tirés quand les filtres ne laissent pas d'autre éditeur (`publisher(author="Abe Kōbō")`), et `book()` garde l'éditeur de chaque œuvre.
+- Importeur Wikidata, éditeur local et import Goodreads : un éditeur connu du vocabulaire comme venant d'un pays d'une autre langue n'est plus donné à une locale (`PublisherVocabulary.publishes_in()`). Sans édition française, l'éditeur « français » d'un roman américain était celui de son édition originale.
+
+### Corrigé
+
+- Catalogue : 84 éditeurs `fr_FR` et 64 éditeurs `en_US` qui étaient ceux de l'édition originale, dans une autre langue (*David Copperfield* chez Bradbury and Evans en français, *La Mort heureuse* de Camus chez Gallimard en anglais), sont retirés, avec 7 nombres de pages qui décrivaient la même édition (script `tools/literature_editor/drop_foreign_publishers.py`). Le test de cohérence entre l'éditeur et la locale n'admet plus aucune exception. Les éditeurs étrangers restent dans le vocabulaire, même sans livre, pour pouvoir être reconnus et refusés.
+
 ## [0.6.0] - 2026-11-18
 
 ### Ajouté

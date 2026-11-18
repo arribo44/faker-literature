@@ -287,9 +287,23 @@ def test_publishers_known_to_the_catalogue_get_their_catalogue_name():
 
     aligned = wikidata.align_publishers([gallimard, unknown, none])
 
-    assert aligned[0]["publisher"] == {"fr_FR": "Gallimard", "en_US": "Gallimard"}
+    # Gallimard, a French publisher, published the original edition, not an English one
+    assert aligned[0]["publisher"] == {"fr_FR": "Gallimard", "en_US": None}
     assert aligned[1:] == [unknown, none]
     assert gallimard["publisher"]["fr_FR"] == "Éditions Gallimard"  # records are not modified in place
+
+
+def test_publishers_of_another_language_are_dropped_from_the_locale():
+    knopf = {"publisher": {"fr_FR": "Knopf", "en_US": "Alfred A. Knopf"}, "title": "A"}
+    kodansha = {"publisher": {"fr_FR": "Kōdansha", "en_US": "Kodansha"}, "title": "B"}
+    olympia = {"publisher": {"fr_FR": "Olympia Press", "en_US": "Olympia Press"}, "title": "C"}
+
+    aligned = wikidata.align_publishers([knopf, kodansha, olympia])
+
+    assert aligned[0]["publisher"] == {"fr_FR": None, "en_US": "Alfred A. Knopf"}
+    assert aligned[1]["publisher"] is None  # Japanese: neither French nor English
+    # A Paris publisher of books in English
+    assert aligned[2]["publisher"] == {"fr_FR": "Olympia Press", "en_US": "Olympia Press"}
 
 
 def test_works_without_french_title_are_kept_only_on_request():

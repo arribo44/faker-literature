@@ -220,7 +220,7 @@ pages = fake.pages()                 # 112
 publisher = fake.publisher()         # "Penguin Classics" (en_US), "Gallimard" (fr_FR)
 ```
 
-Each of these methods is an **independent** random draw from the catalogue. Use `book()` when the values must belong together. Genres, years, page counts and publishers are drawn in proportion to their number of books.
+Each of these methods is an **independent** random draw from the catalogue. Use `book()` when the values must belong together. Genres, years, page counts and publishers are drawn in proportion to their number of books. In `fr_FR`, `publisher()` leaves out the works never translated into French, whose publisher is that of their original, foreign edition, unless the filters leave no other publisher.
 
 The values are drawn from pools computed once per locale and kept until the catalogue changes, so generating large datasets stays fast (a few microseconds per value).
 

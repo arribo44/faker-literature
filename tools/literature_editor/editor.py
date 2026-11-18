@@ -322,8 +322,10 @@ def annotate(data, author, works):
         if "genre" in work:
             work["genre"] = suggest_genres(vocabulary, work["genre"])
         if work.get("publisher"):
-            # The catalogue name of a known publisher ("Éditions Gallimard" -> "Gallimard")
-            work["publisher"] = {locale: publishers.canonical(name, locale) if name else name
+            # The catalogue name of a known publisher ("Éditions Gallimard" -> "Gallimard"), left empty when it
+            # works in another language: that of the original edition, not of an edition for the locale
+            work["publisher"] = {locale: publishers.canonical(name, locale)
+                                 if name and publishers.publishes_in(name, locale) else ""
                                  for locale, name in work["publisher"].items()}
     if entry is None:
         return None

@@ -15,7 +15,12 @@ import pytest
 
 from faker_literature.matching import name_key
 from faker_literature.store import BUILTIN_DATA, LOCALES, load_builtin_books, validate_book
-from faker_literature.vocabulary import GenreVocabulary, PublisherVocabulary
+from faker_literature.vocabulary import (
+    FOREIGN_LANGUAGE_PUBLISHERS,
+    PUBLISHING_COUNTRIES,
+    GenreVocabulary,
+    PublisherVocabulary,
+)
 
 QID = re.compile(r"Q[1-9][0-9]*")
 
@@ -137,8 +142,13 @@ def test_books_refer_to_known_publishers(catalogue, books):
 
 
 def test_every_publisher_is_used(catalogue, books):
+    # Publishers of no locale's language stay known without books: an importer can then refuse them
+    # ("Kodansha" as the French publisher of a Japanese novel is that of its original edition)
     used = {value for _, book in books for value in (book.get("publisher") or {}).values() if value}
-    assert sorted(set(catalogue["publishers"]) - used) == []
+    locale_countries = set().union(*PUBLISHING_COUNTRIES.values())
+    unused = [publisher_id for publisher_id in sorted(set(catalogue["publishers"]) - used)
+              if catalogue["publishers"][publisher_id].get("country") in (None, *locale_countries)]
+    assert unused == []
 
 
 def test_publishers_are_sorted_by_id(catalogue):
@@ -157,21 +167,9 @@ def test_aliases_do_not_repeat_the_name(catalogue):
 
 
 # Countries whose publishers publish in the language of each locale
-LOCALE_COUNTRIES = {
-    "fr_FR": {"FR", "BE", "CH", "CA", "LU", "MC"},
-    "en_US": {"US", "GB", "CA", "AU", "IE", "NZ", "IN", "ZA"},
-}
-# Publishers working in the language of a locale from another country
-LOCALE_PUBLISHERS = {
-    "en_US": {
-        "olympia-press",  # Paris, in English: Lolita, Naked Lunch
-        "obelisk-press",  # Paris, in English: Tropic of Cancer
-        "shakespeare-and-company",  # Paris, in English: Ulysses
-    },
-}
 # Books whose publisher is not of the locale's language, at most: a ratchet, lowered as the catalogue is
 # corrected (tools/literature_editor/update_editions.py and update_bnf.py), so that it never gets worse
-MAX_FOREIGN_PUBLISHERS = {"fr_FR": 84, "en_US": 64}
+MAX_FOREIGN_PUBLISHERS = {"fr_FR": 0, "en_US": 0}
 
 
 def _foreign_publishers(catalogue, books, locale):
@@ -179,13 +177,13 @@ def _foreign_publishers(catalogue, books, locale):
     foreign = []
     for author, book in books:
         publisher_id = (book.get("publisher") or {}).get(locale)
-        if not publisher_id or publisher_id in LOCALE_PUBLISHERS.get(locale, ()):
+        if not publisher_id or publisher_id in FOREIGN_LANGUAGE_PUBLISHERS.get(locale, ()):
             continue
         # A work never translated into French has no French edition: its original one stands in
         if locale == "fr_FR" and book.get("title_untranslated"):
             continue
         country = catalogue["publishers"][publisher_id].get("country")
-        if country is not None and country not in LOCALE_COUNTRIES[locale]:
+        if country is not None and country not in PUBLISHING_COUNTRIES[locale]:
             foreign.append(f"{_label(author, book)}: {publisher_id} ({country})")
     return foreign
 

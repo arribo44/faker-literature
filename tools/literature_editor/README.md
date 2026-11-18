@@ -49,7 +49,7 @@ Wikidata est souvent incomplet, en particulier pour les pages et les éditeurs. 
 - Le livre est inséré chez son auteur dans l'ordre chronologique. Un nouvel auteur est inséré dans l'ordre alphabétique, sans tenir compte des accents.
 - L'identifiant Wikidata est enregistré sur l'auteur et sur le livre (`wikidata_id`), ce qui permet de détecter les doublons.
 - Les genres sont enregistrés par leur identifiant dans le vocabulaire `genres`, en tête du fichier. Chaque genre saisi est cherché dans ce vocabulaire (libellés et alias, en français ou en anglais, sans tenir compte de la casse ni des accents) : un genre connu peut donc n'être saisi que dans une langue. Un genre inconnu devient un nouveau genre du vocabulaire, à condition d'être saisi dans les deux langues, à la même position : le n-ième genre inconnu en français est apparié au n-ième genre inconnu en anglais. Le message de confirmation signale les genres créés.
-- Les éditeurs sont enregistrés par leur identifiant dans le vocabulaire `publishers`, en tête du fichier. Chaque éditeur saisi est cherché parmi les noms et les alias du vocabulaire, sans tenir compte de la casse, des accents ni de la ponctuation : « Éditions Gallimard » donne `gallimard`. Les propositions de Wikidata sont remplacées par le nom du catalogue quand l'éditeur est connu. Un éditeur inconnu devient un nouvel éditeur du vocabulaire, sans pays ni identifiant Wikidata (à compléter à la main), et le message de confirmation le signale. Si c'est une autre graphie d'un éditeur déjà présent, ajoutez-la plutôt à ses `aliases`.
+- Les éditeurs sont enregistrés par leur identifiant dans le vocabulaire `publishers`, en tête du fichier. Chaque éditeur saisi est cherché parmi les noms et les alias du vocabulaire, sans tenir compte de la casse, des accents ni de la ponctuation : « Éditions Gallimard » donne `gallimard`. Les propositions de Wikidata sont remplacées par le nom du catalogue quand l'éditeur est connu. Un éditeur inconnu devient un nouvel éditeur du vocabulaire, sans pays ni identifiant Wikidata (à compléter à la main), et le message de confirmation le signale. Si c'est une autre graphie d'un éditeur déjà présent, ajoutez-la plutôt à ses `aliases`. Un éditeur connu du vocabulaire comme venant d'un pays d'une autre langue n'est pas proposé pour une locale : sans édition française, l'éditeur « français » proposé par Wikidata pour un roman américain serait celui de l'édition originale (Alfred A. Knopf). Les éditeurs étrangers restent dans le vocabulaire même sans livre, pour pouvoir être reconnus et refusés.
 - Un livre enregistré sans identifiant Wikidata reçoit `"pages_estimated": true` et `"publisher_estimated": true` (s'il a des pages et un éditeur) : ces valeurs saisies à la main ne sont vérifiées par aucune source.
 - Un livre déjà présent (même identifiant, ou même titre pour le même auteur, sans tenir compte d'un article initial : « L'Iliade » = « Iliade ») est refusé.
 - Un auteur est reconnu par son identifiant Wikidata, ou à défaut par son nom, sans tenir compte des accents, de la casse, des espaces ni de la ponctuation (« J. D. Salinger » = « J.D. Salinger »). Cela évite de créer des doublons. Un homonyme qui a un autre identifiant Wikidata est un auteur différent.
@@ -90,6 +90,14 @@ python tools/literature_editor/update_awards.py [--dry-run]
 ```
 
 Le script remplace les prix de chaque livre qui a un identifiant Wikidata par les prix littéraires que son œuvre a reçus (P166, prix rattachés à « prix littéraire »), enregistrés par identifiant dans le vocabulaire `awards`, en tête du fichier. Les prix sans libellé français et anglais, et les palmarès que Wikidata classe parmi les prix (« Modern Library 100 Best Novels »…), sont écartés.
+
+## Retirer les éditeurs d'une autre langue
+
+```bash
+python tools/literature_editor/drop_foreign_publishers.py [--dry-run]
+```
+
+Le script retire d'une locale l'éditeur qui vient d'un pays d'une autre langue (d'après le `country` du vocabulaire `publishers`) : c'est l'éditeur de l'édition originale, recopié faute d'édition dans la langue de la locale (« Bradbury and Evans » pour l'édition française de *David Copperfield*). Le nombre de pages de la locale est retiré aussi quand il est identique à celui de l'autre locale, au même éditeur : il décrivait la même édition originale. Les œuvres jamais traduites en français gardent leur éditeur d'origine en `fr_FR`. Les scripts de complément (`update_editions.py`, `update_wikipedia.py`, `update_bnf.py`) remplissent ensuite les valeurs retirées d'après des éditions réelles.
 
 ## Mettre à jour les séries
 

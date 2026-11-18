@@ -276,6 +276,7 @@ def localize_book(book: Mapping[str, Any], locale: str) -> LocalizedBook:
         "writer_born": book.get("writer_born"),
         "writer_died": book.get("writer_died"),
         "awards": tuple(pick(book.get("awards") or {}, locale) or ()),
+        "title_untranslated": book.get("title_untranslated", False),
         # (name, rank or None) pairs
         "series": tuple((pick(entry["name"], locale), entry.get("position")) for entry in book.get("series") or ()),
     }

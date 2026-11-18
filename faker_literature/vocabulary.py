@@ -16,6 +16,20 @@ from typing import Any
 from faker_literature.matching import name_key
 
 LOCALES = ("fr_FR", "en_US")
+
+# Countries whose publishers publish in the language of each locale
+PUBLISHING_COUNTRIES = {
+    "fr_FR": frozenset({"FR", "BE", "CH", "CA", "LU", "MC"}),
+    "en_US": frozenset({"US", "GB", "CA", "AU", "IE", "NZ", "IN", "ZA"}),
+}
+# Publishers working in the language of a locale from another country
+FOREIGN_LANGUAGE_PUBLISHERS = {
+    "en_US": frozenset({
+        "olympia-press",  # Paris, in English: Lolita, Naked Lunch
+        "obelisk-press",  # Paris, in English: Tropic of Cancer
+        "shakespeare-and-company",  # Paris, in English: Ulysses
+    }),
+}
 # {id: {"fr_FR": label, "en_US": label, "aliases": {locale: [label, ...]}}}
 Genres = dict[str, dict[str, Any]]
 GENRE_ID = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
@@ -196,6 +210,21 @@ class PublisherVocabulary:
         """Return the catalogue name of the publisher called ``label``, or ``label`` itself when unknown."""
         publisher_id = self.match(label)
         return self.name(publisher_id, locale) if publisher_id else label
+
+    def publishes_in(self, label: str | None, locale: str) -> bool:
+        """Tell whether the publisher called ``label`` may publish an edition for ``locale``.
+
+        Only the publishers known to come from a country of another language
+        are refused: "Alfred A. Knopf" for ``fr_FR`` is the publisher of an
+        original, American edition, not of a French one.  Unknown publishers,
+        and those without a country, are accepted.
+        """
+        publisher_id = self.match(label)
+        if publisher_id is None:
+            return True
+        country = self.publishers[publisher_id].get("country")
+        return (country is None or country in PUBLISHING_COUNTRIES[locale]
+                or publisher_id in FOREIGN_LANGUAGE_PUBLISHERS.get(locale, ()))
 
     def names(self, locale: str) -> list[str]:
         """Return the name of every publisher in ``locale``, sorted."""

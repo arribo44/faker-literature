@@ -469,14 +469,19 @@ def align_authors(records: Iterable[Record], known_books: Iterable[Mapping[str, 
 def align_publishers(records: Iterable[Record], publishers: PublisherVocabulary | None = None) -> list[Record]:
     """Give the publishers known to the catalogue their catalogue name ("Éditions Gallimard" -> "Gallimard").
 
-    Unknown publishers keep their Wikidata label.
+    Unknown publishers keep their Wikidata label.  A publisher known to work
+    in another language than a locale's is dropped from that locale: without
+    a French edition, the French publisher of an American novel would be that
+    of its original edition (see :meth:`PublisherVocabulary.publishes_in`).
     """
     publishers = publishers or load_publishers()
     aligned = []
     for record in records:
         publisher = record.get("publisher")
         if publisher:
-            publisher = {locale: publishers.canonical(name, locale) for locale, name in publisher.items()}
+            publisher = {locale: publishers.canonical(name, locale) if publishers.publishes_in(name, locale) else None
+                         for locale, name in publisher.items()}
+            publisher = publisher if any(publisher.values()) else None
             record = dict(record, publisher=publisher)
         aligned.append(record)
     return aligned
