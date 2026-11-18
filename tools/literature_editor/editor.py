@@ -22,7 +22,7 @@ from faker_literature.importers.wikidata import (
 from faker_literature.matching import DuplicateIndex, name_key, sort_key, title_key
 from faker_literature.matching import names as _names
 from faker_literature.store import LOCALES, MAX_PAGES, validate_book
-from faker_literature.vocabulary import GenreVocabulary
+from faker_literature.vocabulary import GenreVocabulary, PublisherVocabulary
 
 CATALOGUE_PATH = ROOT / "faker_literature" / "DATAS" / "literature.json"
 MAX_WORKS = 300
@@ -294,18 +294,14 @@ def _is_known(book, entry_books):
 def catalogue_info(data):
     """Return the values already used in the catalogue, to suggest consistent ones."""
     info = {"authors": len(data["authors"]), "books": 0}
-    for field in ("nationality", "publisher"):
-        info[field] = {locale: set() for locale in LOCALES}
+    info["nationality"] = {locale: set() for locale in LOCALES}
     for entry in data["authors"]:
         info["books"] += len(entry["books"])
         for locale in LOCALES:
             info["nationality"][locale].add(entry["nationality"][locale])
-        for book in entry["books"]:
-            for locale in LOCALES:
-                if book.get("publisher") and book["publisher"].get(locale):
-                    info["publisher"][locale].add(book["publisher"][locale])
-    for field in ("nationality", "publisher"):
-        info[field] = {locale: sorted(values, key=str.casefold) for locale, values in info[field].items()}
+    info["nationality"] = {locale: sorted(values, key=str.casefold) for locale, values in info["nationality"].items()}
+    publishers = PublisherVocabulary(data.get("publishers", {}))
+    info["publisher"] = {locale: publishers.names(locale) for locale in LOCALES}
     vocabulary = GenreVocabulary(data["genres"])
     info["genre"] = {locale: vocabulary.labels(locale) for locale in LOCALES}
     info["genre_pairs"] = [{locale: genre[locale] for locale in LOCALES} for genre in data["genres"].values()]
@@ -320,10 +316,15 @@ def annotate(data, author, works):
     entry = find_author(data, author["wikidata_id"], author["name"].values())
     books = entry["books"] if entry else [book for item in data["authors"] for book in item["books"]]
     vocabulary = GenreVocabulary(data["genres"])
+    publishers = PublisherVocabulary(data.get("publishers", {}))
     for work in works:
         work["in_catalogue"] = _is_known(work, books)
         if "genre" in work:
             work["genre"] = suggest_genres(vocabulary, work["genre"])
+        if work.get("publisher"):
+            # The catalogue name of a known publisher ("Éditions Gallimard" -> "Gallimard")
+            work["publisher"] = {locale: publishers.canonical(name, locale) if name else name
+                                 for locale, name in work["publisher"].items()}
     if entry is None:
         return None
     return {"name": entry["name"], "nationality": entry["nationality"], "books": len(entry["books"])}
@@ -405,6 +406,45 @@ def genre_ids(vocabulary, genre):
     return ids, new
 
 
+def publisher_ids(vocabulary, publisher):
+    """Return the ``{locale: id}`` of the publishers typed in the page, adding the new ones to ``vocabulary``.
+
+    A name is looked up among the names and aliases of the vocabulary; an
+    unknown one becomes a new publisher.  Returns ``(ids, new publisher names)``.
+    """
+    if publisher is None:
+        return None, []
+    ids, new = {}, []
+    for locale in LOCALES:
+        name = publisher.get(locale)
+        if not name:
+            ids[locale] = None
+            continue
+        try:
+            ids[locale], created = vocabulary.ensure(name)
+        except ValueError as error:
+            raise ValueError(f"Éditeur : « {name} » ne peut pas devenir un nouvel éditeur ({error}).") from None
+        if created:
+            new.append(name)
+    return ids, new
+
+
+def _with_vocabulary(data, key, vocabulary):
+    """Store ``vocabulary`` sorted under ``key``, keeping the vocabularies before the authors."""
+    vocabulary = dict(sorted(vocabulary.items()))
+    if key in data:
+        data[key] = vocabulary
+        return
+    reordered = {}
+    for name, value in data.items():
+        if name == "authors":
+            reordered[key] = vocabulary
+        reordered[name] = value
+    reordered.setdefault(key, vocabulary)
+    data.clear()
+    data.update(reordered)
+
+
 def build_book(raw):
     """Normalize a book submitted by the page into the catalogue layout."""
     year = raw.get("year")
@@ -483,13 +523,18 @@ def add_book(data, raw_author, raw_book):
     if not (book["genre"]["fr_FR"] or book["genre"]["en_US"]):
         raise ValueError("Genres : au moins un genre est requis, en français ou en anglais, séparés par des virgules.")
     book["genre"], new_genres = genre_ids(vocabulary, book["genre"])
+    # New publishers likewise go to a copy of the publishers
+    publishers = dict(data.get("publishers", {}))
+    publisher_vocabulary = PublisherVocabulary(publishers)
+    book["publisher"], new_publishers = publisher_ids(publisher_vocabulary, book["publisher"])
 
     if created:
         name = names["fr_FR"] if names["fr_FR"] == names["en_US"] else names
         entry = {"name": name, "wikidata_id": qid, "nationality": nationality, "books": []}
     try:
         validate_book({"writer": entry["name"], "nationality": entry["nationality"], **book,
-                       "genre": vocabulary.resolve(book["genre"]), "source": "builtin"})
+                       "genre": vocabulary.resolve(book["genre"]),
+                       "publisher": publisher_vocabulary.resolve(book["publisher"]), "source": "builtin"})
     except ValueError as error:
         raise ValueError(explain_error(error)) from None
     if _is_known(book, entry["books"]):
@@ -505,10 +550,13 @@ def add_book(data, raw_author, raw_book):
                     len(entry["books"]))
     entry["books"].insert(position, book)
     data["genres"] = dict(sorted(genres.items()))
+    _with_vocabulary(data, "publishers", publishers)
 
     title = book["title"]["fr_FR"]
     message = (f"« {title} » ajouté, avec le nouvel auteur {names['fr_FR']}." if created
                else f"« {title} » ajouté à {names['fr_FR']} ({len(entry['books'])} livres).")
     if new_genres:
         message += " Nouveau(x) genre(s) : " + ", ".join(new_genres) + "."
+    if new_publishers:
+        message += " Nouvel(s) éditeur(s) : " + ", ".join(new_publishers) + "."
     return message, created

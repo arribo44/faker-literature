@@ -280,6 +280,18 @@ def test_authors_already_in_the_catalogue_keep_their_name_and_nationality():
     assert wilde == other
 
 
+def test_publishers_known_to_the_catalogue_get_their_catalogue_name():
+    gallimard = {"publisher": {"fr_FR": "Éditions Gallimard", "en_US": "Gallimard"}, "title": "A"}
+    unknown = {"publisher": {"fr_FR": "Maison inconnue", "en_US": "Unknown House"}, "title": "B"}
+    none = {"publisher": None, "title": "C"}
+
+    aligned = wikidata.align_publishers([gallimard, unknown, none])
+
+    assert aligned[0]["publisher"] == {"fr_FR": "Gallimard", "en_US": "Gallimard"}
+    assert aligned[1:] == [unknown, none]
+    assert gallimard["publisher"]["fr_FR"] == "Éditions Gallimard"  # records are not modified in place
+
+
 def test_works_without_french_title_are_kept_only_on_request():
     row = _row(titleEn="Franny and Zooey")
     del row["titleFr"]

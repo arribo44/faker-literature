@@ -1,6 +1,6 @@
 import pytest
 
-from faker_literature.vocabulary import GenreVocabulary, slugify
+from faker_literature.vocabulary import GenreVocabulary, PublisherVocabulary, slugify
 
 
 def _vocabulary():
@@ -62,3 +62,73 @@ def test_ambiguous_or_malformed_vocabularies_are_rejected(genres, message):
 def test_slugify():
     assert slugify("children's literature") == "children-s-literature"
     assert slugify("Épopée") == "epopee"
+
+
+def test_slugify_transliterates_letters_without_accent():
+    assert slugify("Yapı Kredi Yayınları") == "yapi-kredi-yayinlari"
+    assert slugify("Gyldendal Norsk Forlag ØÆ") == "gyldendal-norsk-forlag-oae"
+
+
+def _publishers():
+    return PublisherVocabulary({
+        "gallimard": {"name": "Gallimard", "aliases": ["Éditions Gallimard"], "country": "FR"},
+        "the-russian-messenger": {"name": {"fr_FR": "Le Messager russe", "en_US": "The Russian Messenger"}},
+    })
+
+
+@pytest.mark.parametrize("label, expected", [
+    ("Gallimard", "gallimard"),
+    ("éditions gallimard", "gallimard"),
+    ("Le Messager russe", "the-russian-messenger"),
+    ("The Russian Messenger", "the-russian-messenger"),
+    ("Galimard", None),
+    ("", None),
+    (None, None),
+])
+def test_publisher_match_uses_names_and_aliases(label, expected):
+    assert _publishers().match(label) == expected
+
+
+def test_publisher_names_are_localized_when_needed():
+    vocabulary = _publishers()
+    assert vocabulary.resolve({"fr_FR": "the-russian-messenger", "en_US": "gallimard"}) == {
+        "fr_FR": "Le Messager russe", "en_US": "Gallimard"}
+    assert vocabulary.resolve({"fr_FR": None, "en_US": "the-russian-messenger"}) == {
+        "fr_FR": None, "en_US": "The Russian Messenger"}
+    assert vocabulary.resolve(None) is None
+    assert vocabulary.names("fr_FR") == ["Gallimard", "Le Messager russe"]
+    assert vocabulary.canonical("Éditions Gallimard", "en_US") == "Gallimard"
+    assert vocabulary.canonical("Verdier", "fr_FR") == "Verdier"
+    with pytest.raises(ValueError, match="unknown publisher"):
+        vocabulary.resolve({"fr_FR": "nope", "en_US": None})
+
+
+def test_publisher_add_and_ensure():
+    vocabulary = _publishers()
+    assert vocabulary.ensure("ÉDITIONS GALLIMARD") == ("gallimard", False)
+    assert vocabulary.ensure("Verdier") == ("verdier", True)
+    assert vocabulary.publishers["verdier"] == {"name": "Verdier"}
+    assert vocabulary.match("verdier") == "verdier"
+    # Another spelling of a known name is refused, an id already taken gets a suffix
+    with pytest.raises(ValueError, match="already used by verdier"):
+        vocabulary.add("Verdier!")
+    vocabulary.publishers["verdier-house"] = {"name": "Maison Verdier"}
+    assert vocabulary.add("Verdier House", country="FR", wikidata_id="Q1") == "verdier-house-2"
+    assert vocabulary.publishers["verdier-house-2"] == {"name": "Verdier House", "country": "FR", "wikidata_id": "Q1"}
+
+
+@pytest.mark.parametrize("publishers, message", [
+    ({"Bad Id": {"name": "X"}}, "lower-case"),
+    ({"x": {"name": "X", "city": "Paris"}}, "unknown fields"),
+    ({"x": {"name": " X"}}, "surrounding spaces"),
+    ({"x": {"name": ""}}, "non-empty"),
+    ({"x": {}}, "non-empty"),
+    ({"x": {"name": {"fr_FR": "X"}}}, "exactly the locales"),
+    ({"x": {"name": "X", "aliases": "Y"}}, "aliases must be a list"),
+    ({"x": {"name": "X", "country": "France"}}, "ISO 3166"),
+    ({"x": {"name": "X", "wikidata_id": "P123"}}, "wikidata_id"),
+    ({"x": {"name": "X"}, "y": {"name": "Z", "aliases": ["x"]}}, "already used by x"),
+])
+def test_invalid_publishers_are_refused(publishers, message):
+    with pytest.raises(ValueError, match=message):
+        PublisherVocabulary(publishers)

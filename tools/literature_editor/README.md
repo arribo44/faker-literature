@@ -49,6 +49,7 @@ Wikidata est souvent incomplet, en particulier pour les pages et les éditeurs. 
 - Le livre est inséré chez son auteur dans l'ordre chronologique. Un nouvel auteur est inséré dans l'ordre alphabétique, sans tenir compte des accents.
 - L'identifiant Wikidata est enregistré sur l'auteur et sur le livre (`wikidata_id`), ce qui permet de détecter les doublons.
 - Les genres sont enregistrés par leur identifiant dans le vocabulaire `genres`, en tête du fichier. Chaque genre saisi est cherché dans ce vocabulaire (libellés et alias, en français ou en anglais, sans tenir compte de la casse ni des accents) : un genre connu peut donc n'être saisi que dans une langue. Un genre inconnu devient un nouveau genre du vocabulaire, à condition d'être saisi dans les deux langues, à la même position : le n-ième genre inconnu en français est apparié au n-ième genre inconnu en anglais. Le message de confirmation signale les genres créés.
+- Les éditeurs sont enregistrés par leur identifiant dans le vocabulaire `publishers`, en tête du fichier. Chaque éditeur saisi est cherché parmi les noms et les alias du vocabulaire, sans tenir compte de la casse, des accents ni de la ponctuation : « Éditions Gallimard » donne `gallimard`. Les propositions de Wikidata sont remplacées par le nom du catalogue quand l'éditeur est connu. Un éditeur inconnu devient un nouvel éditeur du vocabulaire, sans pays ni identifiant Wikidata (à compléter à la main), et le message de confirmation le signale. Si c'est une autre graphie d'un éditeur déjà présent, ajoutez-la plutôt à ses `aliases`.
 - Un livre enregistré sans identifiant Wikidata reçoit `"pages_estimated": true` et `"publisher_estimated": true` (s'il a des pages et un éditeur) : ces valeurs saisies à la main ne sont vérifiées par aucune source.
 - Un livre déjà présent (même identifiant, ou même titre pour le même auteur, sans tenir compte d'un article initial : « L'Iliade » = « Iliade ») est refusé.
 - Un auteur est reconnu par son identifiant Wikidata, ou à défaut par son nom, sans tenir compte des accents, de la casse, des espaces ni de la ponctuation (« J. D. Salinger » = « J.D. Salinger »). Cela évite de créer des doublons. Un homonyme qui a un autre identifiant Wikidata est un auteur différent.
@@ -89,3 +90,67 @@ python tools/literature_editor/update_awards.py [--dry-run]
 ```
 
 Le script remplace les prix de chaque livre qui a un identifiant Wikidata par les prix littéraires que son œuvre a reçus (P166, prix rattachés à « prix littéraire »), enregistrés par identifiant dans le vocabulaire `awards`, en tête du fichier. Les prix sans libellé français et anglais, et les palmarès que Wikidata classe parmi les prix (« Modern Library 100 Best Novels »…), sont écartés.
+
+## Compléter les pages et les éditeurs
+
+```bash
+python tools/literature_editor/update_editions.py [--dry-run] [--rows FICHIER]
+```
+
+Le script cherche les éditions françaises et anglaises de chaque œuvre (P747, ou P629 de l'édition, avec la langue P407) et en tire, pour la locale de même langue, le nombre de pages (P1104) et l'éditeur (P123) :
+
+- une valeur manquante est prise dans une édition de la langue de la locale. Le nombre de pages et l'éditeur viennent d'une même édition quand elle donne les deux, la plus ancienne (en général la première traduction) ;
+- pour une œuvre écrite dans une autre langue, une valeur qui ne correspond à aucune édition de la langue de la locale venait de l'édition originale (G. P. Putnam's Sons pour l'édition française d'un roman américain) : elle est remplacée par celle d'une édition de cette langue, s'il y en a une ;
+- les valeurs saisies à la main (`pages_estimated`, `publisher_estimated`) ne sont pas modifiées : elles décrivent une édition courante, quand les éditions de Wikidata sont souvent anciennes ou inhabituelles.
+
+Les éditeurs sont ramenés au vocabulaire `publishers` par identifiant Wikidata, puis par nom. Un éditeur inconnu y est ajouté avec son pays, s'il s'agit bien d'une maison d'édition, d'une marque éditoriale, de presses universitaires ou d'un club de livres : Wikidata donne aussi pour éditeurs des personnes, des sites (Gallica), des collections et des revues. Les éditeurs qui ne servent plus à aucun livre sont retirés du vocabulaire. Lancez ensuite `pytest` : `tests/test_catalogue.py` signale un nouvel éditeur dont le nom ne serait qu'une variante d'un éditeur existant.
+
+`--rows` garde les réponses de Wikidata dans un fichier, pour qu'un second passage (après `--dry-run`) ne l'interroge pas de nouveau.
+
+## Compléter les pages et les éditeurs avec Wikipédia
+
+```bash
+python tools/literature_editor/update_wikipedia.py [--dry-run] [--cache FICHIER] [--collect]
+python tools/literature_editor/update_wikipedia.py --cache FICHIER --propose-titles titres.json
+```
+
+L'infobox de l'article français d'une œuvre (« Infobox Livre ») décrit son édition française : la première pour une œuvre française, la traduction pour une autre, dont l'édition originale figure dans les paramètres `*_orig`. Son `éditeur` et ses `pages` donnent donc ceux d'une édition française réelle, et son `titre` le titre français d'un livre resté en anglais. L'infobox de l'article anglais (« Infobox book ») décrit l'édition originale : elle ne sert qu'aux œuvres écrites en anglais.
+
+- Un livre ne reçoit les valeurs d'une infobox que si elles couvrent toutes celles qui lui manquent (pages et éditeur ensemble), pour qu'elles décrivent une même édition ; les autres sont laissés à `update_bnf.py`, à lancer ensuite.
+- L'éditeur est retrouvé par l'article vers lequel pointe l'infobox, via son élément Wikidata : un éditeur connu sous un autre nom (« Hachette Livre ») est reconnu par son identifiant ; un éditeur inconnu n'est ajouté que si c'est une maison d'édition, avec son pays. Un éditeur sans lien, ou dont la langue ne peut être établie, est écarté.
+- Les règles sur les valeurs saisies à la main sont celles de `update_bnf.py`.
+
+Wikipédia limite le débit de son API : la collecte lit 20 articles par requête, avec des pauses, et reprend après un refus (429).
+
+## Compléter les pages et les éditeurs français avec la BnF
+
+```bash
+python tools/literature_editor/update_bnf.py [--dry-run] [--cache FICHIER] [--collect] [--limit N]
+```
+
+Wikidata décrit peu d'éditions françaises. Ce script interroge le catalogue général de la Bibliothèque nationale de France (API SRU, `https://catalogue.bnf.fr/api/SRU`) pour les livres dont le titre français est une traduction (pas `title_untranslated`) et dont le nombre de pages ou l'éditeur en français manque, ou dont l'éditeur français n'est que celui de l'édition originale (éditeur d'un pays non francophone).
+
+- La recherche demande les textes imprimés en français de l'auteur (par son nom de famille) ayant ce titre ; seules les notices dont le titre est le même (sans tenir compte de la casse, des accents, de la ponctuation ni d'un article initial) sont retenues. Les éditions en gros caractères, en braille ou sonores, et celles en plusieurs volumes pour le nombre de pages, sont écartées.
+- L'éditeur qui a publié le plus d'éditions de l'œuvre est son éditeur français habituel ; les clubs de livres (France Loisirs, Le Grand Livre du mois, Rombaldi…), qui rééditent les autres, passent après. Sa plus ancienne édition paginée donne le nombre de pages : pages et éditeur décrivent une même édition réelle.
+- Un éditeur français qui n'était que celui de l'édition originale est remplacé, ainsi que le nombre de pages s'il était le même qu'en anglais (celui de l'édition originale).
+- Les valeurs saisies à la main (`pages_estimated`, `publisher_estimated`) ne sont pas modifiées.
+- Les noms d'éditeurs de la BnF (« Payot et Rivages », « Presses pocket », « A. Michel ») sont ramenés au vocabulaire `publishers` par nom, par alias, en ignorant « Éditions », « éditeur » et « et » / « & », et par la table `BNF_NAMES` des abréviations. Un éditeur inconnu est ajouté au vocabulaire, avec le pays de son lieu de publication quand il est connu.
+
+### Titres français des livres « non traduits »
+
+Un livre marqué `title_untranslated` n'a pas de titre français à chercher. Pourtant, beaucoup ont été traduits : Wikidata n'en connaissait simplement pas le titre français. La BnF note le titre original des traductions (zone 454), ce qui permet de les retrouver :
+
+```bash
+# 1. Chercher les traductions par le titre original (anglais)
+python tools/literature_editor/update_bnf.py --cache cache.json --collect --titles
+# 2. Écrire les titres trouvés, à relire
+python tools/literature_editor/update_bnf.py --cache cache.json --propose-titles titres.json
+# 3. Après relecture : appliquer les titres, puis les pages et éditeurs de ces traductions
+python tools/literature_editor/update_bnf.py --cache cache.json --apply-titles titres.json
+```
+
+Les propositions de `update_wikipedia.py --propose-titles` (le `titre` de l'infobox française) ont le même format. Le titre proposé par la BnF est le plus fréquent parmi les traductions en français seul (les éditions bilingues sont écartées), avec les majuscules de l'usage français : celle du premier mot, et celle du nom qui suit un article défini initial (« L'Architecture du bonheur », mais « Une saison en enfer »). Chaque proposition indique le nombre de traductions trouvées et leurs autres titres. Relisez le fichier : supprimez une proposition fausse, ou corrigez son `fr_FR`. Appliquer un titre retire le marqueur `title_untranslated` ; le nombre de pages et l'éditeur français viennent alors des mêmes traductions.
+
+`--collect` remplit seulement le cache (`--cache`), sans toucher au catalogue : la collecte de plus d'un millier de livres prend une quarantaine de minutes, à raison d'une requête par seconde. Les passages suivants lisent le cache.
+
+Les notices de la BnF sont réutilisées sous la [Licence Ouverte / Open Licence 2.0](https://www.etalab.gouv.fr/licence-ouverte-open-licence/), qui impose de citer la source : « Bibliothèque nationale de France, catalogue général ». La mention figure dans le README du paquet.

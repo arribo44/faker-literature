@@ -77,3 +77,4 @@ faker_literature/DATAS/.literature_db.json
 DEPLOY.md
 .deploy/
 scripts/
+data/sources/

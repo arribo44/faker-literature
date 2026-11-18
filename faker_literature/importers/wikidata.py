@@ -23,11 +23,12 @@ from faker_literature.store import (
     BookStore,
     Record,
     load_builtin_books,
+    load_publishers,
     load_vocabulary,
     pick,
     validate_book,
 )
-from faker_literature.vocabulary import GenreVocabulary
+from faker_literature.vocabulary import GenreVocabulary, PublisherVocabulary
 
 # One SPARQL result row: {variable: {"type": ..., "value": ...}}
 Binding = dict[str, dict[str, str]]
@@ -465,6 +466,22 @@ def align_authors(records: Iterable[Record], known_books: Iterable[Mapping[str, 
     return aligned
 
 
+def align_publishers(records: Iterable[Record], publishers: PublisherVocabulary | None = None) -> list[Record]:
+    """Give the publishers known to the catalogue their catalogue name ("Éditions Gallimard" -> "Gallimard").
+
+    Unknown publishers keep their Wikidata label.
+    """
+    publishers = publishers or load_publishers()
+    aligned = []
+    for record in records:
+        publisher = record.get("publisher")
+        if publisher:
+            publisher = {locale: publishers.canonical(name, locale) for locale, name in publisher.items()}
+            record = dict(record, publisher=publisher)
+        aligned.append(record)
+    return aligned
+
+
 def fetch_works(
     limit: int = 500,
     min_sitelinks: int = 30,
@@ -509,6 +526,6 @@ def import_into(store: BookStore, limit: int = 500, min_sitelinks: int = 30, log
     builtin = [book for book in store.books.all() if book["source"] != SOURCE]
     vocabulary = load_vocabulary()
     records = exclude_known(fetch_works(limit, min_sitelinks, log=log, vocabulary=vocabulary), builtin)
-    records = align_authors(records, builtin)
+    records = align_publishers(align_authors(records, builtin))
     return store.replace_source(SOURCE, records)
 

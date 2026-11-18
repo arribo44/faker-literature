@@ -103,8 +103,43 @@ def test_add_book_creates_a_sorted_author(catalogue):
     assert book["year"] == 1008
     assert book["genre"] == ["novel", "classic"]
     assert book["pages"] == {"fr_FR": 1400, "en_US": None}
-    assert book["publisher"] == {"fr_FR": "Verdier", "en_US": None}
+    # Publishers are ids of the publishers vocabulary: an unknown one is added
+    assert book["publisher"] == {"fr_FR": "verdier", "en_US": None}
+    assert catalogue["publishers"]["verdier"] == {"name": "Verdier"}
+    assert "Nouvel(s) éditeur(s) : Verdier." in message
     assert "pages_estimated" not in book and "publisher_estimated" not in book
+
+
+def test_add_book_maps_publishers_onto_the_vocabulary(catalogue):
+    before = dict(catalogue["publishers"])
+    message, _ = editor.add_book(catalogue, _author(), _book(
+        publisher={"fr_FR": "Éditions Gallimard", "en_US": "penguin classics"}))
+
+    book = next(entry for entry in catalogue["authors"] if entry.get("wikidata_id") == "Q999999")["books"][0]
+    assert book["publisher"] == {"fr_FR": "gallimard", "en_US": "penguin-classics"}
+    assert catalogue["publishers"] == before
+    assert "éditeur" not in message
+
+
+def test_a_refused_book_adds_no_publisher(catalogue):
+    with pytest.raises(ValueError):
+        editor.add_book(catalogue, _author(), _book(year="", publisher={"fr_FR": "Verdier", "en_US": ""}))
+    assert "verdier" not in catalogue["publishers"]
+
+
+def test_annotate_suggests_the_catalogue_name_of_a_publisher(catalogue):
+    works = [{"title": {"fr_FR": "X", "en_US": "X"}, "year": 2000, "wikidata_id": "Q1",
+              "publisher": {"fr_FR": "Éditions Gallimard", "en_US": "Unknown House"}}]
+    editor.annotate(catalogue, {"wikidata_id": "Q999999", "name": {"fr_FR": "Y", "en_US": "Y"}}, works)
+    assert works[0]["publisher"] == {"fr_FR": "Gallimard", "en_US": "Unknown House"}
+
+
+def test_catalogue_info_lists_the_publishers_of_the_vocabulary(catalogue):
+    info = editor.catalogue_info(catalogue)
+    assert "Gallimard" in info["publisher"]["fr_FR"]
+    assert "Université d'Adélaïde" in info["publisher"]["fr_FR"]
+    assert "University of Adelaide" in info["publisher"]["en_US"]
+    assert "Éditions Gallimard" not in info["publisher"]["fr_FR"]
 
 
 def test_values_typed_without_wikidata_are_flagged_as_estimates(catalogue):
