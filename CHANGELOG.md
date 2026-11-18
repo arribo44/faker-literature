@@ -4,7 +4,7 @@ Toutes les évolutions notables de `faker-literature` sont documentées dans ce 
 
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0/) et les versions suivent [Semantic Versioning](https://semver.org/lang/fr/).
 
-## [Non publié]
+## [0.5.0] - 2026-11-18
 
 ### Ajouté
 
@@ -147,6 +147,7 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr-FR/1.1.0
 - Packaging PyPI avec `setup.py`.
 - Tests automatises et documentation d'utilisation.
 
+[0.5.0]: https://github.com/arribo44/faker-literature/releases/tag/v0.5.0
 [0.4.0]: https://github.com/arribo44/faker-literature/releases/tag/v0.4.0
 [0.3.0]: https://github.com/arribo44/faker-literature/releases/tag/v0.3.0
 [0.2.1]: https://github.com/arribo44/faker-literature/releases/tag/v0.2.1
