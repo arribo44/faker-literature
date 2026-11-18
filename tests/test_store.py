@@ -232,6 +232,22 @@ def test_concurrent_processes_do_not_lose_updates(tmp_path):
     assert (sources["a"], sources["b"], sources["c"]) == (1, 1, 1)
 
 
+def test_stores_sharing_a_database_do_not_overwrite_each_other(tmp_path):
+    # Each store has its own TinyDB table: a document id remembered by one of them must not be
+    # reused once the other one has inserted, which would overwrite the other one's book
+    db_path = tmp_path / "db.json"
+    builtin = _small_builtin(tmp_path)
+    first, second = BookStore(db_path, builtin), BookStore(db_path, builtin)
+
+    first.replace_source("a", [_imported_book()])
+    second.replace_source("b", [_imported_book(year=-701), _imported_book(year=-702)])
+    first.replace_source("c", [_imported_book(year=-703)])
+    first.books.insert(dict(_imported_book(year=-704), source="d"))
+
+    sources = BookStore(db_path, builtin).sources()
+    assert (sources["a"], sources["b"], sources["c"], sources["d"]) == (1, 2, 1, 1)
+
+
 def test_file_lock_is_reentrant_and_exclusive(tmp_path):
     lock = FileLock(tmp_path / "db.json.lock")
     with lock, lock:

@@ -5,6 +5,8 @@
   write) never sees a half-written file.
 * :class:`FileLock` serializes the read-modify-write sequences of several
   processes sharing the same database, so that none of their updates is lost.
+* :class:`SharedTinyDB` gives every new document an id read from the file,
+  so that a process never reuses an id another process has given meanwhile.
 """
 
 from __future__ import annotations
@@ -16,11 +18,14 @@ import sys
 import tempfile
 import threading
 import time
+from collections.abc import Iterable, Mapping
 from pathlib import Path
 from types import TracebackType
 from typing import IO, Any
 
+from tinydb import TinyDB
 from tinydb.storages import Storage
+from tinydb.table import Table
 
 if sys.platform == "win32":  # pragma: no cover - exercised on Windows only
     import msvcrt
@@ -148,3 +153,29 @@ class FileLock:
                 self._file.close()
                 self._file = None
         self._thread_lock.release()
+
+
+class SharedTable(Table):
+    """TinyDB table that does not trust its cached next document id.
+
+    :class:`~tinydb.table.Table` computes the id of a new document once, then
+    counts on from it in memory.  When another process (or another store on
+    the same file) has inserted meanwhile, that id is already taken:
+    ``insert_multiple`` then silently overwrites the other document, and
+    ``insert`` fails.  This table reads the highest id from the file again at
+    each insertion; callers hold the :class:`FileLock` around it.
+    """
+
+    def insert(self, document: Mapping[Any, Any]) -> int:
+        self._next_id = None
+        return super().insert(document)
+
+    def insert_multiple(self, documents: Iterable[Mapping[Any, Any]]) -> list[int]:
+        self._next_id = None
+        return super().insert_multiple(documents)
+
+
+class SharedTinyDB(TinyDB):
+    """TinyDB database whose tables can be shared by several processes (see :class:`SharedTable`)."""
+
+    table_class = SharedTable
